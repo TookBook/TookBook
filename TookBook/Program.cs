@@ -1,13 +1,10 @@
-// -----------------------------------------------------------------------------------------------
-//  Program.cs by Thomas Thorin, Copyright (C) 2022.
-//  Published under GNU General Public License v3 (GPL-3)
-// -----------------------------------------------------------------------------------------------
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -21,7 +18,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapControllerRoute(
     name: "default",
