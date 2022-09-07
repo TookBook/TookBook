@@ -8,5 +8,8 @@ namespace TookBook.Controllers
     public class GenericController : ControllerBase
     {
        
+        //Reponse.Ok(book)
+
+        //Response.False();
     };
 }
