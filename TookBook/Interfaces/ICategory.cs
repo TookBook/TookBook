@@ -1,14 +1,13 @@
-﻿namespace TookBook.Services
+﻿namespace TookBook.Interfaces
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using TookBook.Models;
 
-    public class UserService
+    public interface ICategory
     {
-
+        public string Name { get; set; }
     }
 }
