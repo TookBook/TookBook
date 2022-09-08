@@ -8,12 +8,14 @@
     using TookBook.Interfaces;
     using MongoDB.Bson.Serialization.Attributes;
     using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson;
 
     public class Book : IBook
     {
 
-        // TODO: Double check how to add BsonId properly
+        
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string BookId { get; set; } = "";
 
         public string Title { get; set; } = "";
