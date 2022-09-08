@@ -42,7 +42,7 @@ let theme = createTheme({
 		})
 
 	},
-	/** Section to add custom fonts, requires font to be imported in a css file first. Use fontFamily array at the bottom to assign fallback fonts */
+	/** Section to add custom fonts, requires font to be imported in index.html first. Use fontFamily array at the bottom to assign fallback fonts */
 	// typography: {
 	// 	h1: {
 	// 		fontFamily: ""
