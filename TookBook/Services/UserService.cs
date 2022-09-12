@@ -25,6 +25,15 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
+        public async Task Login(string email, string password)
+        {
+            var user = await _userCollection.FindAsync(email, password);
+            if (user)
+            {
+                return true
+            }
+        }
+
         //public async Task CreateAsync(Book book) { }
         //public async Task AddToBookAsync(string id, string bookId) { }
         //public async Task DeleteAsync(string id) { }
