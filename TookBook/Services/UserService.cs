@@ -25,14 +25,21 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
-        public async Task Login(string email, string password)
+        public async Task<User> LoginAsync(string username, string password)
         {
-            var user = await _userCollection.FindAsync(email, password);
-            if (user)
-            {
-                return true
-            }
+            return await _userCollection.FindAsync(o => o.UserName == username && o.Password == password).Result.Single()
         }
+        
+        public async Task<User> ForgotPasswordAsync(string mail, string password)
+        {
+            return await _userCollection.FindAsync(o => o.UserName == username && o.Password == password).Result.Single()
+        }
+
+        public async Task<User> ForgotUsernameAsync(string mail)
+        {
+            return await _userCollection.FindAsync(o => o.UserName == username).Result.Single()
+        }
+
 
         //public async Task CreateAsync(Book book) { }
         //public async Task AddToBookAsync(string id, string bookId) { }
