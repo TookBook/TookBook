@@ -1,8 +1,14 @@
+using TookBook.Models;
+using TookBook.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<BookService>();
+builder.Services.AddSingleton<UserService>();
+//builder.Services.AddSingleton<CategoryService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 

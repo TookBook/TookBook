@@ -1,6 +1,7 @@
 ﻿namespace TookBook.Models
 {
-using MongoDB.Bson.Serialization.Attributes;
+    using MongoDB.Bson;
+    using MongoDB.Bson.Serialization.Attributes;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,6 +13,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
         // TODO: Add correct type?
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = "";
 
         public string UserName { get; set; } = "";

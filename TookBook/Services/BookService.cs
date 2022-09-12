@@ -1,5 +1,7 @@
 ﻿namespace TookBook.Services
 {
+    using Microsoft.Extensions.Options;
+    using MongoDB.Driver;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -10,17 +12,22 @@
     public class BookService
     {
 
-        //private readonly låtsasmongoDBgrej<Book> bookCollection;
+        private readonly IMongoCollection<Book> _booksCollection;
+        
+        public BookService(IOptions<MongoDBSettings> mongoDBSettings)
+        {
+            MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
+            IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
+            _booksCollection = database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
+        }
+        
+        public async Task<List<Book>> GetAsync() {
+            return await _booksCollection.Find(_book => true).ToListAsync();
+        }
 
-        //public async Task<Book> GetBookAsync(int id)
-        //{
-
-
-        //    //var result = await bookCollection.GetBookAsync(book => book.id == id);
-
-        //    //return result.FirstOrDefault();
-
-        //}
+        //public async Task CreateAsync(Book book) { }
+        //public async Task AddToBookAsync(string id, string bookId) { }
+        //public async Task DeleteAsync(string id) { }
 
 
     }

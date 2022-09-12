@@ -1,5 +1,7 @@
 ﻿namespace TookBook.Models
 {
+    using MongoDB.Bson.Serialization.Attributes;
+    using MongoDB.Bson;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,6 +11,9 @@
 
     public class Category : ICategory
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = "";
         public string Name { get; set; } = "";
 
     }
