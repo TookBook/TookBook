@@ -11,7 +11,7 @@
     public class User : IUser
     {
 
-        // TODO: Add correct type?
+       
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = "";

@@ -1,8 +1,10 @@
 using TookBook.Models;
 using TookBook.Services;
+using TookBook.DbUtils;
 
 var builder = WebApplication.CreateBuilder(args);
 
+BSONSettings.InitSettings();
 // Add services to the container.
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));

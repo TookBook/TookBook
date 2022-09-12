@@ -17,31 +17,31 @@ using MongoDB.Bson;
         
         public string BookId { get; set; } = "";
 
-        [BsonElement("title")]
+      
         public string Title { get; set; } = "";
         
-        [BsonElement("category")]
+      
         public string Category { get; set; } = "";
         
-        [BsonElement("language")]
+        
         public string Language { get; set; } = "";
         
-        [BsonElement("authors")]
+      
         public string[]? Authors { get; set; }
         
-        [BsonElement("year")]
+        
         public int Year { get; set; }
         
-        [BsonElement("inStock")]
+       
         public int[]? InStock { get; set; }
         
-        [BsonElement("price")]
+      
         public decimal Price { get; set; }
         
-        [BsonElement("seller")]
+       
         public string Seller { get; set; } = "";
         
-        [BsonElement("bookInfo")]
+       
         public string BookInfo { get; set; } = "";
     }
 }
