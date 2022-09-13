@@ -27,7 +27,7 @@
         public bool IsActive { get; set; } = false;
         public bool IsBlocked { get; set; } = false;
 
-        public IEnumerable<Order> Orders { get; set; } = new List<Order>();
+        public IEnumerable<Order> Orders { get; set; }
 
     }
 }

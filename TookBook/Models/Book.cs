@@ -21,18 +21,18 @@
         public string Title { get; set; } = "";
 
 
-        public IEnumerable<Category> Categories { get; set; } = new List<Category>();
+        public IEnumerable<Category> Categories { get; set; }
 
 
         public string Language { get; set; } = "";
 
 
-        public IEnumerable<Author> Authors { get; set; } = new List<Author>();
+        public IEnumerable<Author> Authors { get; set; }
 
 
         public int Year { get; set; }
 
-
+        [BsonElement("instock")]
         public InStock InStock { get; set; } = null!;
 
 
@@ -41,7 +41,7 @@
 
         public string Seller { get; set; } = "";
 
-
+        [BsonElement("bookinfo")]
         public string BookInfo { get; set; } = "";
     }
 }
