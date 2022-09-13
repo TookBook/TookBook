@@ -32,12 +32,13 @@
             _booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
             _userCollection = _database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
 
+            LoadMockData();
         }
 
         public async void LoadMockData()
         {
+           
             string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
-            
             string rawText = ReadMockDataFromFile(filePath);
 
             var document = BsonSerializer.Deserialize<Book>(rawText);
