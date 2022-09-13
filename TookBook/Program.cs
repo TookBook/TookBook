@@ -1,18 +1,27 @@
 using TookBook.Models;
 using TookBook.Services;
 using TookBook.DbUtils;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
 BSONSettings.InitSettings();
-// Add services to the container.
 
+// Add services to the container.
+// TODO: Remove multiple xService singletons, each one has a connection to the database, which might cause issues?
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+//builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.g));
 builder.Services.AddSingleton<BookService>();
 builder.Services.AddSingleton<UserService>();
 //builder.Services.AddSingleton<CategoryService>();
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
+
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddSingleton<MongoDBSeeder>();
+}
 
 var app = builder.Build();
 

@@ -15,7 +15,7 @@ using MongoDB.Bson.Serialization.Conventions;
 
         /// <summary>
         /// Registers a CamelCaseElementNameConvention-pack into MongoDB's BSON Settings. 
-        /// Makes it easier to create case insensitive models for use in the database, since the naming conventions of C# and MongoDB collection differs.
+        /// Makes it easier to create case insensitive models for use in the database, since the naming conventions of C# and MongoDB collections differs.
         /// </summary>
         public static void InitSettings()
         {
