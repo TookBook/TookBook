@@ -44,6 +44,7 @@
         /// </summary>
         public async void LoadMockData()
         {
+            // TODO: Error handling
             string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
             string rawText = ReadMockDataFromFile(filePath);
 
@@ -60,6 +61,7 @@
         /// <returns>The contents of the provided file as a string.</returns>
         public string ReadMockDataFromFile(string filePath)
         {
+            // TODO: Error handling
             using StreamReader sr = new(filePath);
             return sr.ReadToEnd();
         }
