@@ -14,38 +14,34 @@
 
     public class MongoDBSeeder
     {
-
         private readonly IMongoDatabase _database;
 
         private readonly IMongoCollection<Book> _booksCollection;
 
         private readonly IMongoCollection<User> _userCollection;
 
-       
-
         public MongoDBSeeder()
         {
-            
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
+            // TODO: Use db and collection names from the MongoDBSettings file somehow? Instead of hardcoding the names.
             //_database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             //_booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
 
+            MongoClient client = new MongoClient("mongodb://localhost:27017");
+
             _database = client.GetDatabase("TookBook");
-            
+
             _userCollection = _database.GetCollection<User>("Users");
-            
+
             _booksCollection = _database.GetCollection<Book>("Books");
         }
 
         public async void LoadMockData()
         {
-           
             string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
             string rawText = ReadMockDataFromFile(filePath);
 
             var document = BsonSerializer.Deserialize<IEnumerable<Book>>(rawText);
-            
-            
+
             await _booksCollection.InsertManyAsync(document);
 
         }

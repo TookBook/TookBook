@@ -14,19 +14,18 @@ builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<BookService>();
 builder.Services.AddSingleton<UserService>();
 //builder.Services.AddSingleton<CategoryService>();
-builder.Services.AddSingleton<MongoDBSeeder>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 
-if (builder.Environment.IsDevelopment())
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
     MongoDBSeeder dbSeed = new();
     dbSeed.LoadMockData();
-   // add mongodbseeder here instead when it's working
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
-
-var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -37,9 +36,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseSwagger();
-app.UseSwaggerUI();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
