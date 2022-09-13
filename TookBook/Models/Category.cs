@@ -11,9 +11,9 @@
 
     public class Category : ICategory
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = "";
+        //[BsonId]
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //public string Id { get; set; } = "";
         [BsonElement("categoryname")]
         public string CategoryName { get; set; } = "";
 
