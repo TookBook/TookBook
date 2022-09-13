@@ -12,6 +12,9 @@
     using System.Threading.Tasks;
     using TookBook.Models;
 
+    /// <summary>
+    /// Initializes an instance of the MongoDBSeeder class. Meant to connect to and seed a MongoDB database in a local environment.
+    /// </summary>
     public class MongoDBSeeder
     {
         private readonly IMongoDatabase _database;
@@ -35,6 +38,10 @@
             _booksCollection = _database.GetCollection<Book>("Books");
         }
 
+
+        /// <summary>
+        /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
+        /// </summary>
         public async void LoadMockData()
         {
             string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
@@ -46,6 +53,11 @@
 
         }
 
+        /// <summary>
+        /// Reads a file from disk using StreamReader.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns>The contents of the provided file as a string.</returns>
         public string ReadMockDataFromFile(string filePath)
         {
             using StreamReader sr = new(filePath);

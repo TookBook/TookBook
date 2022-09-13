@@ -33,6 +33,5 @@
         public bool IsBlocked { get; set; } = false;
 
         public IEnumerable<Order> Orders { get; set; }
-
     }
 }
