@@ -20,7 +20,8 @@ builder.Services.AddSwaggerGen();
 
 if (builder.Environment.IsDevelopment())
 {
-    
+    MongoDBSeeder dbSeed = new();
+    dbSeed.LoadMockData();
    // add mongodbseeder here instead when it's working
 }
 

@@ -17,22 +17,24 @@
 
         private readonly IMongoDatabase _database;
 
-        private readonly IMongoCollection<Book> _booksCollection;
+        private readonly IMongoCollection<Book>? _booksCollection;
 
         private readonly IMongoCollection<User> _userCollection;
 
-        private MongoDBSettings _settings;
        
 
-        public MongoDBSeeder(IOptions<MongoDBSettings> mongoDBSettings)
+        public MongoDBSeeder()
         {
             
             MongoClient client = new MongoClient("mongodb://localhost:27017");
-            _database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
+            //_database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
 
-            _booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
-            _userCollection = _database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
+            //_booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
+            //_userCollection = _database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
+            _database = client.GetDatabase("TookBook");
+            _userCollection = _database.GetCollection<User>("Books");
 
+            Console.WriteLine("hello am i working");
            
         }
 
@@ -42,8 +44,10 @@
             string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
             string rawText = ReadMockDataFromFile(filePath);
 
-            var document = BsonSerializer.Deserialize<Book>(rawText);
-            await _booksCollection.InsertOneAsync(document);
+            var document = BsonSerializer.Deserialize<IEnumerable<Book>>(rawText);
+            
+            
+            await _booksCollection.InsertManyAsync(document);
 
         }
 
