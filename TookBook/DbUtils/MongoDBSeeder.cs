@@ -44,12 +44,25 @@
         public async void LoadMockData()
         {
             // TODO: Error handling
-            string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
-            string rawText = ReadMockDataFromFile(filePath);
+            //string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
+            //string bookSeedData = ReadMockDataFromFile(filePath);
 
-            var document = BsonSerializer.Deserialize<IEnumerable<Book>>(rawText);
+            string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
 
-            await _booksCollection.InsertManyAsync(document);
+            var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
+
+            await _booksCollection.InsertManyAsync(bookCollectionDocument);
+        }
+
+        /// <summary>
+        /// Gets text from the chosen file.
+        /// </summary>
+        /// <param name="filename">The name of the file to read text from.</param>
+        /// <returns>The text of the file as a string.</returns>
+        public string GetMockDataFromFile(string filename)
+        {
+            string filePath = Environment.CurrentDirectory + @$"\{filename}";
+            return ReadTextFromFile(filePath);
         }
 
         /// <summary>
@@ -57,11 +70,17 @@
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <returns>The contents of the provided file as a string.</returns>
-        public string ReadMockDataFromFile(string filePath)
+        public string ReadTextFromFile(string filePath)
         {
             // TODO: Error handling
             using StreamReader sr = new(filePath);
             return sr.ReadToEnd();
         }
+
+        /// <summary>
+        /// Drops a database collection.
+        /// </summary>
+        /// <param name="collectionName">Name of the collection to be dropped.</param>
+        public void DropDbCollection(string collectionName) => _database.DropCollection(collectionName);
     }
 }
