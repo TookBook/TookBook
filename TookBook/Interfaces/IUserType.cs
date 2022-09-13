@@ -6,8 +6,9 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface ICategory
+    public interface IUserType
     {
-        public string CategoryName { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsSeller { get; set; }
     }
 }

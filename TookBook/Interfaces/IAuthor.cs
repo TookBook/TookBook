@@ -6,8 +6,10 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface ICategory
+    public interface IAuthor
     {
-        public string CategoryName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
     }
 }
