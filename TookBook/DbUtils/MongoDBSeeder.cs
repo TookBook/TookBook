@@ -21,18 +21,19 @@
 
         private readonly IMongoCollection<User> _userCollection;
 
+        private MongoDBSettings _settings;
        
 
         public MongoDBSeeder(IOptions<MongoDBSettings> mongoDBSettings)
         {
-
+            
             MongoClient client = new MongoClient("mongodb://localhost:27017");
             _database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
 
             _booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
             _userCollection = _database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
 
-            LoadMockData();
+           
         }
 
         public async void LoadMockData()

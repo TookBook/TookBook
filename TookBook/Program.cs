@@ -14,12 +14,13 @@ builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<BookService>();
 builder.Services.AddSingleton<UserService>();
 //builder.Services.AddSingleton<CategoryService>();
- builder.Services.AddSingleton<MongoDBSeeder>();
+builder.Services.AddSingleton<MongoDBSeeder>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 
 if (builder.Environment.IsDevelopment())
 {
+    
    // add mongodbseeder here instead when it's working
 }
 
