@@ -17,7 +17,7 @@
 
         private readonly IMongoDatabase _database;
 
-        private readonly IMongoCollection<Book>? _booksCollection;
+        private readonly IMongoCollection<Book> _booksCollection;
 
         private readonly IMongoCollection<User> _userCollection;
 
@@ -28,14 +28,13 @@
             
             MongoClient client = new MongoClient("mongodb://localhost:27017");
             //_database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
-
             //_booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
-            //_userCollection = _database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
-            _database = client.GetDatabase("TookBook");
-            _userCollection = _database.GetCollection<User>("Books");
 
-            Console.WriteLine("hello am i working");
-           
+            _database = client.GetDatabase("TookBook");
+            
+            _userCollection = _database.GetCollection<User>("Users");
+            
+            _booksCollection = _database.GetCollection<Book>("Books");
         }
 
         public async void LoadMockData()
