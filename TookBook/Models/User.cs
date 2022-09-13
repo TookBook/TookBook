@@ -22,11 +22,12 @@
 
         public string Mail { get; set; } = "";
 
-        public bool[]? UserType { get; set; }
+        public UserType? UserType { get; set; }
 
         public bool IsActive { get; set; } = false;
         public bool IsBlocked { get; set; } = false;
 
-        public string[]? PrevOrders { get; set; }
+        public IEnumerable<Order> Orders { get; set; } = new List<Order>();
+
     }
 }
