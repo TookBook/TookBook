@@ -16,15 +16,20 @@
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = "";
 
+        [BsonElement("username")]
         public string UserName { get; set; } = "";
 
         public string Password { get; set; } = "";
 
         public string Mail { get; set; } = "";
 
+        [BsonElement("usertype")]
         public UserType? UserType { get; set; }
 
+        [BsonElement("isactive")]
         public bool IsActive { get; set; } = false;
+
+        [BsonElement("isblocked")]
         public bool IsBlocked { get; set; } = false;
 
         public IEnumerable<Order> Orders { get; set; }
