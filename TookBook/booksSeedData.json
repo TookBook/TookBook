@@ -1,7 +1,10 @@
 [
   {
     "title": "Bookiest book",
-    "category": "drama",
+    "categories": [
+      { "categoryname": "drama" },
+      { "categoryname": "romance" }
+    ],
     "language": "English",
     "authors": [
       {
@@ -21,7 +24,10 @@
 
   {
     "title": "Another book",
-    "category": "comedy",
+    "categories": [
+      { "categoryname": "comedy" },
+      { "categoryname": "fantasy" }
+    ],
     "language": "English",
     "authors": [
       {
@@ -42,7 +48,9 @@
 
   {
     "title": "More book",
-    "category": "drama",
+    "categories": [
+      { "categoryname": "horror" }
+    ],
     "language": "English",
     "authors": [
       {
