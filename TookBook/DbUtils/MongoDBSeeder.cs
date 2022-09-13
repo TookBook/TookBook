@@ -66,7 +66,7 @@
         }
 
         /// <summary>
-        /// Reads a file from disk using StreamReader.
+        /// Reads text from a file on the disk using StreamReader.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         /// <returns>The contents of the provided file as a string.</returns>
