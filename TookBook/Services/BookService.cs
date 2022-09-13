@@ -25,6 +25,24 @@
             return await _booksCollection.Find(_book => true).ToListAsync();
         }
 
+        public async Task<Book> UpdateBook(Book book)
+        {
+
+            return null;
+        }
+
+        public async Task<Book> DeleteBook()
+        {
+            return null;
+        }
+
+        public async Task PurgeBook(Book bookToRemove) => await _booksCollection.DeleteOneAsync(x => x.BookId == bookToRemove.BookId);
+
+        public async Task<Book> PurgeEmptyBooks()
+        {
+            return null;
+        }
+
         //public async Task CreateAsync(Book book) { }
         //public async Task AddToBookAsync(string id, string bookId) { }
         //public async Task DeleteAsync(string id) { }
