@@ -23,8 +23,5 @@
         public bool IsBlocked { get; set; }
 
         public IEnumerable<Order> Orders { get; set; }
-
-
-
     }
 }

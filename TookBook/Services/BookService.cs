@@ -11,16 +11,15 @@
 
     public class BookService
     {
-
         private readonly IMongoCollection<Book> _booksCollection;
-        
+
         public BookService(IOptions<MongoDBSettings> mongoDBSettings)
         {
-            MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
+            MongoClient client = new(mongoDBSettings.Value.ConnectionURI);
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _booksCollection = database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
         }
-        
+
         public async Task<List<Book>> GetAsync() {
             return await _booksCollection.Find(_book => true).ToListAsync();
         }

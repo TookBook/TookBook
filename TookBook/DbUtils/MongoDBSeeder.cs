@@ -29,7 +29,7 @@
             //_database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             //_booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
 
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
+            MongoClient client = new("mongodb://localhost:27017");
 
             _database = client.GetDatabase("TookBook");
 
@@ -37,7 +37,6 @@
 
             _booksCollection = _database.GetCollection<Book>("Books");
         }
-
 
         /// <summary>
         /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
@@ -51,7 +50,6 @@
             var document = BsonSerializer.Deserialize<IEnumerable<Book>>(rawText);
 
             await _booksCollection.InsertManyAsync(document);
-
         }
 
         /// <summary>
@@ -65,6 +63,5 @@
             using StreamReader sr = new(filePath);
             return sr.ReadToEnd();
         }
-
     }
 }

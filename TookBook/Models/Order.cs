@@ -10,7 +10,7 @@
     public class Order : IOrder
     {
         // TODO: Figure out if mongodb id is to be used?
-        public string OrderId { get; set; } 
+        public string OrderId { get; set; }
         public string Date { get; set; } = "";
         public IEnumerable<Book> Books { get; set; } = new List<Book>();
     }

@@ -11,7 +11,6 @@
     public class User : IUser
     {
 
-       
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = "";
