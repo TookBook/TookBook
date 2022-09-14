@@ -26,14 +26,14 @@
 
         public int Year { get; set; }
 
-        [BsonElement("instock")]
+        [BsonElement("inStock")]
         public InStock InStock { get; set; } = null!;
 
         public decimal Price { get; set; }
 
         public string Seller { get; set; } = "";
 
-        [BsonElement("bookinfo")]
+        [BsonElement("bookInfo")]
         public string BookInfo { get; set; } = "";
     }
 }

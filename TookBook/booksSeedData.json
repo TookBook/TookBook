@@ -2,8 +2,8 @@
   {
     "title": "Bookiest book",
     "categories": [
-      { "categoryname": "drama" },
-      { "categoryname": "romance" }
+      { "categoryName": "drama" },
+      { "categoryName": "romance" }
     ],
     "language": "English",
     "authors": [
@@ -13,20 +13,20 @@
       }
     ],
     "year": 1980,
-    "instock": {
+    "inStock": {
       "new": 1,
       "used": 3
     },
     "price": 42,
     "seller": "username123",
-    "bookinfo": "This is a book about books"
+    "bookInfo": "This is a book about books"
   },
 
   {
     "title": "Another book",
     "categories": [
-      { "categoryname": "comedy" },
-      { "categoryname": "fantasy" }
+      { "categoryName": "comedy" },
+      { "categoryName": "fantasy" }
     ],
     "language": "English",
     "authors": [
@@ -36,20 +36,20 @@
       }
     ],
     "year": 1980,
-    "instock": {
+    "inStock": {
       "new": 5,
       "used": 0
     },
     "price": 99,
     "seller": "Kalle Karlsson",
-    "bookinfo": "This is a book about books"
+    "bookInfo": "This is a book about books"
   },
 
 
   {
     "title": "More book",
     "categories": [
-      { "categoryname": "horror" }
+      { "categoryName": "horror" }
     ],
     "language": "English",
     "authors": [
@@ -59,12 +59,12 @@
       }
     ],
     "year": 1980,
-    "instock": {
+    "inStock": {
       "new": 0,
       "used": 1
     },
     "price": 19,
     "seller": "Företag",
-    "bookinfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    "bookInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
   }
 ]

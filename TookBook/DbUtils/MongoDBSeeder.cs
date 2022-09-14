@@ -23,6 +23,8 @@
 
         private readonly IMongoCollection<User> _userCollection;
 
+        private readonly IMongoCollection<Category> _categoryCollection;
+
         public MongoDBSeeder()
         {
             // TODO: Use db and collection names from the MongoDBSettings file somehow? Instead of hardcoding the names.
@@ -36,6 +38,9 @@
             _userCollection = _database.GetCollection<User>("Users");
 
             _booksCollection = _database.GetCollection<Book>("Books");
+
+            _categoryCollection = _database.GetCollection<Category>("Categories");
+
         }
 
         /// <summary>
@@ -48,10 +53,16 @@
             //string bookSeedData = ReadMockDataFromFile(filePath);
 
             string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
+            string userSeedDataText = GetMockDataFromFile("userSeedData.json");
+            string categorySeedDataText = GetMockDataFromFile("categorySeedData.json");
 
             var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
+            //var userCollectionDocument = BsonSerializer.Deserialize<IEnumerable<User>>(userSeedDataText);
+            var categoryCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Category>>(categorySeedDataText);
 
             await _booksCollection.InsertManyAsync(bookCollectionDocument);
+            //await _userCollection.InsertManyAsync(userCollectionDocument);
+            await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
         }
 
         /// <summary>

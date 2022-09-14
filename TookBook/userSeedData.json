@@ -1,0 +1,131 @@
+[
+
+  {
+    "username": "Username123",
+    "password": "test123",
+    "mail": "test123@test.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      {
+        
+        "date": "",
+        "books": [
+          {
+
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "username": "hellothisismyusername",
+    "password": "hej123",
+    "mail": "email@email.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      {
+        
+        "date": "",
+        "books": [
+          {
+
+          }
+        ]
+      },
+      {
+        
+        "date": "",
+        "books": [
+          {
+
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "username": "MichaelScott",
+    "password": "1234",
+    "mail": "michaelscott@dundermifflin.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": true
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      {
+        
+        "date": "",
+        "books": [
+          {
+            "title": "More book",
+            "categories": [
+              { "categoryName": "horror" }
+            ],
+            "language": "English",
+            "authors": [
+              {
+                "firstName": "Stephen",
+                "lastName": "King"
+              }
+            ],
+            "year": 1980,
+            "inStock": {
+              "new": 0,
+              "used": 1
+            },
+            "price": 19,
+            "seller": "Företag",
+            "bookInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+          }
+        ]
+      },
+      {
+        
+        "date": "",
+        "books": [
+          {
+            "title": "Another book",
+            "categories": [
+              { "categoryName": "comedy" },
+              { "categoryName": "fantasy" }
+            ],
+            "language": "English",
+            "authors": [
+              {
+                "firstName": "George",
+                "lastName": "Martin"
+              }
+            ],
+            "year": 1980,
+            "inStock": {
+              "new": 5,
+              "used": 0
+            },
+            "price": 99,
+            "seller": "Kalle Karlsson",
+            "bookInfo": "This is a book about books"
+          }
+        ]
+      }
+    ]
+  }
+
+
+]
