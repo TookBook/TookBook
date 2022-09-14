@@ -1,0 +1,53 @@
+[
+
+  {
+    "username": "Username123",
+    "password": "test123",
+    "mail": "test123@test.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      
+    ]
+  },
+
+  {
+    "username": "hellothisismyusername",
+    "password": "hej123",
+    "mail": "email@email.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      
+    ]
+  },
+
+  {
+    "username": "MichaelScott",
+    "password": "1234",
+    "mail": "michaelscott@dundermifflin.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": true
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      
+
+    ]
+  }
+
+
+]

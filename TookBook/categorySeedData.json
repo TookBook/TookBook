@@ -1,0 +1,15 @@
+[
+
+  { "categoryName": "Romance" },
+  { "categoryName": "Drama" },
+  { "categoryName": "Comedy" },
+  { "categoryName": "Fantasy" },
+  { "categoryName": "Sci-fi" },
+  { "categoryName": "Non-fiction" },
+  { "categoryName": "Horror" },
+  { "categoryName": "Mystery" },
+  { "categoryName": "Thriller" },
+  { "categoryName": "Biography" },
+  { "categoryName": "Young Adult" }
+
+]
