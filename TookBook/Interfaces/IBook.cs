@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using TookBook.Models;
 
     public interface IBook
     {
@@ -12,16 +13,18 @@
 
         public string Title { get; set; }
 
-        // TODO: Add correct type?
-        public string Category { get; set; } //???
+        public IEnumerable<Category> Categories { get; set; }
+
+        // TODO: Figure out why it doesnt work to use an interface in an interface. It seems counter-intuitive to use a model in an interface, when the interfaces should define the models..?
+        //public IEnumerable<ICategory> Categories { get; set; }
 
         public string Language { get; set; }
 
-        public string[] Authors  { get; set; }
+        public IEnumerable<Author> Authors  { get; set; }
 
         public int Year { get; set; }
 
-        public int[] InStock { get; set; }
+        public InStock InStock { get; set; }
 
         public decimal Price { get; set; }
 

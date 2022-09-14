@@ -6,8 +6,9 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface ICategory
+    public interface IInStock
     {
-        public string CategoryName { get; set; }
+        public int @New { get; set; }
+        public int Used { get; set; }
     }
 }

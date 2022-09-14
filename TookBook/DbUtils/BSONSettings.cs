@@ -12,15 +12,16 @@ using MongoDB.Bson.Serialization.Conventions;
     /// </summary>
     public static class BSONSettings
     {
-
         /// <summary>
-        /// Registers a CamelCaseElementNameConvention-pack into MongoDB's BSON Settings. 
-        /// Makes it easier to create case insensitive models for use in the database, since the naming conventions of C# and MongoDB collection differs.
+        /// Registers a CamelCaseElementNameConvention-pack into MongoDB's BSON Settings
+        /// Makes it easier to create case insensitive models for use in the database, since the naming conventions of C# and MongoDB collections differs.
         /// </summary>
         public static void InitSettings()
         {
-            var pack = new ConventionPack();
-            pack.Add(new CamelCaseElementNameConvention());
+            var pack = new ConventionPack
+            {
+                new CamelCaseElementNameConvention()
+            };
 
             ConventionRegistry.Register("Camel case convention", pack, _ => true);
         }

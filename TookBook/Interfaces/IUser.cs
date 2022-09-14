@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using TookBook.Models;
 
     public interface IUser
     {
@@ -16,14 +17,11 @@
 
         public string Mail { get; set; }
 
-        public bool[] UserType { get; set; }
+        public UserType? UserType { get; set; }
 
         public bool IsActive { get; set; }
         public bool IsBlocked { get; set; }
 
-        public string[] PrevOrders { get; set; }
-
-
-
+        public IEnumerable<Order> Orders { get; set; }
     }
 }

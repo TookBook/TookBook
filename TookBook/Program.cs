@@ -1,13 +1,16 @@
 using TookBook.Models;
 using TookBook.Services;
 using TookBook.DbUtils;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
 BSONSettings.InitSettings();
-// Add services to the container.
 
+// Add services to the container.
+// TODO: Remove multiple xService singletons, each one has a connection to the database, which might cause issues?
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+//builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.g));
 builder.Services.AddSingleton<BookService>();
 builder.Services.AddSingleton<UserService>();
 //builder.Services.AddSingleton<CategoryService>();
@@ -16,6 +19,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    MongoDBSeeder dbSeed = new();
+    dbSeed.LoadMockData();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -26,13 +36,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseSwagger();
-app.UseSwaggerUI();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
