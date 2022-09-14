@@ -11,7 +11,6 @@
     public class User : IUser
     {
 
-       
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string UserId { get; set; } = "";
@@ -33,6 +32,5 @@
         public bool IsBlocked { get; set; } = false;
 
         public IEnumerable<Order> Orders { get; set; }
-
     }
 }

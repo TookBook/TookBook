@@ -16,6 +16,5 @@
         //public string Id { get; set; } = "";
         [BsonElement("categoryname")]
         public string CategoryName { get; set; } = "";
-
     }
 }
