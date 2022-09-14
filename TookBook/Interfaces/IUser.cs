@@ -17,7 +17,7 @@
 
         public string Mail { get; set; }
 
-        public UserType UserType { get; set; }
+        public UserType? UserType { get; set; }
 
         public bool IsActive { get; set; }
         public bool IsBlocked { get; set; }
