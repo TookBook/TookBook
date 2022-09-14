@@ -57,11 +57,11 @@
             string categorySeedDataText = GetMockDataFromFile("categorySeedData.json");
 
             var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
-            //var userCollectionDocument = BsonSerializer.Deserialize<IEnumerable<User>>(userSeedDataText);
+            var userCollectionDocument = BsonSerializer.Deserialize<IEnumerable<User>>(userSeedDataText);
             var categoryCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Category>>(categorySeedDataText);
 
             await _booksCollection.InsertManyAsync(bookCollectionDocument);
-            //await _userCollection.InsertManyAsync(userCollectionDocument);
+            await _userCollection.InsertManyAsync(userCollectionDocument);
             await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
         }
 
