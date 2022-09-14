@@ -46,12 +46,9 @@
         /// <summary>
         /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
         /// </summary>
-        public async void LoadMockData()
+        public async void ReseedMockData()
         {
             // TODO: Error handling
-            //string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
-            //string bookSeedData = ReadMockDataFromFile(filePath);
-
             string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
             string userSeedDataText = GetMockDataFromFile("userSeedData.json");
             string categorySeedDataText = GetMockDataFromFile("categorySeedData.json");
@@ -60,6 +57,7 @@
             var userCollectionDocument = BsonSerializer.Deserialize<IEnumerable<User>>(userSeedDataText);
             var categoryCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Category>>(categorySeedDataText);
 
+            DropTookBookCollections();
             await _booksCollection.InsertManyAsync(bookCollectionDocument);
             await _userCollection.InsertManyAsync(userCollectionDocument);
             await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
@@ -86,6 +84,16 @@
             // TODO: Error handling
             using StreamReader sr = new(filePath);
             return sr.ReadToEnd();
+        }
+
+        /// <summary>
+        /// Helper method to drop all collections manually.
+        /// </summary>
+        public void DropTookBookCollections()
+        {
+            DropDbCollection("Books");
+            DropDbCollection("Categories");
+            DropDbCollection("Users");
         }
 
         /// <summary>
