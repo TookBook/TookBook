@@ -11,25 +11,29 @@ namespace TookBook.Controllers
     {
         private readonly UserService _userService; //TODO: lägg till alla services
 
-        public UserController(BookService bookService)
+        public UserController(UserService userService)
         {
-            _userService = bookService;
+            _userService = userService;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<User>>> Get()
         {
-            var user = await _userService.GetAsync();
-            if (user == null)
+            var users = await _userService.GetAsync();
+            if (users == null)
                 return NotFound();
-            return Ok(user);
+            return Ok(users);
         }
 
         [HttpGet]
         public async Task<ActionResult<User>> Login()
         { 
-            var user = await _userService.LoginAsync();
-            user? return Ok(user) : return NotFound();
+            var user = await _userService.LoginAsync("mail@mail.com", "12345");
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
             
         }
         //[HttpPost]

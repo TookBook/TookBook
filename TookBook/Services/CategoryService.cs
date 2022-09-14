@@ -12,7 +12,7 @@ namespace TookBook.Services
     public class CategoryService
     {
 
-        private readonly IMongoCollection<Book> _categoryCollection;
+        private readonly IMongoCollection<Category> _categoryCollection;
 
         public CategoryService(IOptions<MongoDBSettings> mongoDBSettings)
         {

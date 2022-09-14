@@ -30,10 +30,7 @@
             return await _booksCollection.Find(_book => _book.Category == category).ToListAsync();
         }
 
-        public async Task<List<Book>> GetBooksInCategoryAsync(string category)
-        {
-            return await _booksCollection.Find(_book => _book.Category == category).ToListAsync();
-        }
+
 
         //public async Task CreateAsync(Book book) { }
         //public async Task AddToBookAsync(string id, string bookId) { }

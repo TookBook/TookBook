@@ -27,17 +27,17 @@
 
         public async Task<User> LoginAsync(string username, string password)
         {
-            return await _userCollection.FindAsync(o => o.UserName == username && o.Password == password).Result.Single()
+            return await _userCollection.Find(o => o.UserName == username && o.Password == password).FirstAsync();
         }
         
-        public async Task<User> ForgotPasswordAsync(string mail, string password)
+        public async Task<User> ForgotPasswordAsync(string userOrMail)
         {
-            return await _userCollection.FindAsync(o => o.UserName == username && o.Password == password).Result.Single()
+            return await _userCollection.Find(o => o.UserName == userOrMail || o.Mail == userOrMail).FirstAsync();
         }
 
         public async Task<User> ForgotUsernameAsync(string mail)
         {
-            return await _userCollection.FindAsync(o => o.UserName == username).Result.Single()
+            return await _userCollection.Find(o => o.Mail == mail).FirstAsync();
         }
 
 

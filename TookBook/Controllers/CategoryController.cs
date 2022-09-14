@@ -11,7 +11,7 @@ namespace TookBook.Controllers
     {
         private readonly CategoryService _CategoryService; //TODO: lägg till alla services
 
-        public CategoryController(BookService categoryService)
+        public CategoryController(CategoryService categoryService)
         {
             _CategoryService = categoryService;
         }
