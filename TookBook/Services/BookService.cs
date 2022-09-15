@@ -24,9 +24,9 @@
             return await _booksCollection.Find(_book => true).ToListAsync();
         }
 
-        public async Task<List<Book>> GetBooksInCategoryAsync(string category)
+        public async Task<List<Book>> GetBooksInCategoryAsync(Category category)
         {
-            return await _booksCollection.Find(_book => _book.Category == category).ToListAsync();
+            return await _booksCollection.Find(_book => _book.Categories == category).ToListAsync();
         }
 
 

@@ -16,7 +16,7 @@ namespace TookBook.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet("AllUsers")]
         public async Task<ActionResult<List<User>>> Get()
         {
             var users = await _userService.GetAsync();
@@ -25,16 +25,15 @@ namespace TookBook.Controllers
             return Ok(users);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<User>> Login()
-        { 
-            var user = await _userService.LoginAsync("mail@mail.com", "12345");
+        [HttpGet("Login")]
+        public async Task<ActionResult<User>> Get(string username, string password)
+        {
+            var user = await _userService.LoginAsync(username, password);
             if (user == null)
             {
                 return NotFound();
             }
             return Ok(user);
-            
         }
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Book book) { }
