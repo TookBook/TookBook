@@ -25,6 +25,13 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
+        [HttpDelete("PurgeBook")]
+        public async Task<ActionResult<Book>> PurgeBook(Book bookToPurge, string adminId)
+        {
+            return null;
+        }
+ 
+
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Book book) { }        
         //[HttpPut("{id}")]

@@ -30,16 +30,25 @@
             return null;
         }
 
-        public async Task<Book> DeleteBook()
+        public async Task<Book> DeleteBook(Book bookToDelete)
         {
+            // TODO: How to keep track of which stock to decrease? Don't decrease both by one
+            var newStock = bookToDelete.InStock.New;
+            var usedStock = bookToDelete.InStock.Used;
+            if (newStock > 0) newStock -= 1;
+            if (usedStock > 0) usedStock -= 1;
+            
             return null;
         }
 
         public async Task PurgeBook(Book bookToRemove) => await _booksCollection.DeleteOneAsync(x => x.BookId == bookToRemove.BookId);
 
-        public async Task<Book> PurgeEmptyBooks()
+        public async Task<List<Book>> PurgeEmptyBooks()
         {
-            return null;
+            // TODO: Null stuff here or in controller?
+            return await _booksCollection.Find(book => book.InStock.Total == 0).ToListAsync();
+            
+            
         }
 
         //public async Task CreateAsync(Book book) { }
