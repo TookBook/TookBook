@@ -25,12 +25,35 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
-        [HttpDelete("PurgeBook")]
-        public async Task<ActionResult<Book>> PurgeBook(Book bookToPurge, string adminId)
+
+        // TODO: Admin validation
+        [HttpDelete("{id:length(24)}")]
+        public async Task<ActionResult> DeleteBook(string id, bool usedBook)
         {
-            return null;
+            // TODO: Use real GetBook method when added.
+            var bookToDelete = await _bookService.GetByIdTest(id);
+            if (bookToDelete == null) return NotFound();
+            await _bookService.DeleteBook(bookToDelete, usedBook);
+            return Ok();
         }
- 
+
+        // TODO: Admin validation
+        [HttpDelete("PurgeBook/{id:length(24)}")]
+        public async Task<ActionResult> PurgeBook(string id)
+        {
+            // TODO: Use GetBook method when added
+            var bookToPurge = await _bookService.GetByIdTest(id);
+            if (bookToPurge == null) return NotFound();
+            await _bookService.PurgeBook(bookToPurge);
+            return Ok();
+        }
+
+        // TODO: Admin validation
+        [HttpDelete("PurgeEmptyBooks")]
+        public async Task PurgeBook()
+        {
+           await _bookService.PurgeEmptyBooks();
+        }
 
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Book book) { }        
