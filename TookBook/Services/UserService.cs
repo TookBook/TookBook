@@ -25,8 +25,13 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
-        //public async Task CreateAsync(Book book) { }
-        //public async Task AddToBookAsync(string id, string bookId) { }
-        //public async Task DeleteAsync(string id) { }
+        public async Task BlockUser(User userToBlock)
+        {
+            //TODO: There has to be a simpler way of updating a single property..
+            var filter = Builders<User>.Filter.Eq("_id", userToBlock.UserId);
+            var update = Builders<User>.Update.Set("isblocked", true);
+            await _userCollection.UpdateOneAsync(filter, update);
+        }
+
     }
 }
