@@ -24,30 +24,39 @@
             return await _booksCollection.Find(_book => true).ToListAsync();
         }
 
-        public async Task<Book> UpdateBook(Book book)
+        public async Task UpdateBook(string oldBookId, Book bookWithUpdatedInfo)
         {
-
-            return null;
+            // TODO: Reuse existing GetBook method here instead
+            //var oldBook = await _booksCollection.Find(x => x.BookId == bookWithUpdatedInfo.BookId).FirstOrDefaultAsync();
+            await _booksCollection.ReplaceOneAsync(x => x.BookId == oldBookId, bookWithUpdatedInfo);
         }
 
-        public async Task<Book> DeleteBook(Book bookToDelete)
+        public Task<bool> DeleteBook(Book bookToDelete, bool deleteUsedBook)
         {
-            // TODO: How to keep track of which stock to decrease? Don't decrease both by one
-            var newStock = bookToDelete.InStock.New;
-            var usedStock = bookToDelete.InStock.Used;
-            if (newStock > 0) newStock -= 1;
-            if (usedStock > 0) usedStock -= 1;
-            
-            return null;
+            // TODO: Update book, or does it happen automatically? Decrease total amount of books from here or in InStock obj?
+            // Use UpdateOne + set to decrease InStock new/used instead?
+            var usedBooks = bookToDelete.InStock.Used;
+            var newBooks = bookToDelete.InStock.New;
+            if (deleteUsedBook && usedBooks > 0)
+            {
+                bookToDelete.InStock.Used--;
+                return Task.FromResult(true);
+            }
+
+            if (newBooks > 0 && !deleteUsedBook)
+            {
+                bookToDelete.InStock.New--;
+                return Task.FromResult(true);
+            }
+            return Task.FromResult(false);
         }
 
         public async Task PurgeBook(Book bookToRemove) => await _booksCollection.DeleteOneAsync(x => x.BookId == bookToRemove.BookId);
 
-        public async Task<List<Book>> PurgeEmptyBooks()
+        public async Task PurgeEmptyBooks()
         {
-            // TODO: Null stuff here or in controller?
-            return await _booksCollection.Find(book => book.InStock.Total == 0).ToListAsync();
-            
+            // TODO: Null stuff here or in controller? Delete the books here directly with filter, or send filtered list from controller?
+            await _booksCollection.DeleteManyAsync(book => book.InStock.Total == 0);
             
         }
 
