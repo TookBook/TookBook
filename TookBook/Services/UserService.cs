@@ -25,13 +25,30 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
+        public async Task UpdateUser(User userToUpdate) => await _userCollection.ReplaceOneAsync(x => x.UserId == userToUpdate.UserId, userToUpdate);
+
         public async Task BlockUser(User userToBlock)
         {
-            //TODO: There has to be a simpler way of updating a single property..
+            //TODO: There has to be a simpler way of updating a single property.. Alternative: Replace entire user.
             var filter = Builders<User>.Filter.Eq("_id", userToBlock.UserId);
             var update = Builders<User>.Update.Set("isblocked", true);
             await _userCollection.UpdateOneAsync(filter, update);
         }
+
+        public async Task UnBlockUser(User userToUnblock)
+        {
+            //TODO: Replace entire user, or update single field in user object using filter/update.set?
+            userToUnblock.IsBlocked = false;
+            await UpdateUser(userToUnblock);
+        }
+
+        public async Task ChangeUserPass(User userToChange, string newPassword)
+        {
+            // TODO: Password validation?
+            userToChange.Password = newPassword;
+            await UpdateUser(userToChange);
+        }
+
 
     }
 }

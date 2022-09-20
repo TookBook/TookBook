@@ -10,6 +10,8 @@ namespace TookBook.Controllers
     [Route("api/[controller]")]
     public class BookController : ControllerBase
     {
+        // TODO: Customize api responses?
+
         private readonly BookService _bookService; //TODO: lägg till alla services
 
         public BookController(BookService bookService)
@@ -33,8 +35,11 @@ namespace TookBook.Controllers
             // TODO: Use real GetBook method when added.
             var bookToDelete = await _bookService.GetByIdTest(id);
             if (bookToDelete == null) return NotFound();
-            await _bookService.DeleteBook(bookToDelete, usedBook);
-            return Ok();
+
+            var deletedSuccesfully = await _bookService.DeleteBook(bookToDelete, usedBook);
+            if (!deletedSuccesfully) return BadRequest(deletedSuccesfully);
+            return Ok(deletedSuccesfully);
+
         }
 
         // TODO: Admin validation
