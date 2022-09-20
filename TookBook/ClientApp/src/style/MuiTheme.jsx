@@ -23,10 +23,10 @@ let theme = createTheme({
 			*/
 	palette: {
 		primary: {
-			main: "#A6B727"
+			main: "#6D597A"
 		},
 		secondary: {
-			main: "#325044"
+			main: "#6D597A"
 		},
 		teritary: defaultTheme.palette.augmentColor({
 			color: { main: "#faf0e6" },
