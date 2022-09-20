@@ -20,32 +20,39 @@
             _booksCollection = database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
         }
 
-        public async Task<List<Book>> GetAsync() {
-            return await _booksCollection.Find(_book => true).ToListAsync();
-        }
+        public async Task<List<Book>> GetAsync() => await _booksCollection.Find(_ => true).ToListAsync();
 
-        public async Task<Book> UpdateBook(Book book)
+        public async Task<Book> GetByIdTest(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
+
+        public async Task UpdateBook(string oldBookId, Book bookWithUpdatedInfo) => await _booksCollection.ReplaceOneAsync(x => x.BookId == oldBookId, bookWithUpdatedInfo);
+
+        public async Task<bool> DeleteBook(Book bookToDelete, bool deleteUsedBook = false)
         {
-
-            return null;
-        }
-
-        public async Task<Book> DeleteBook()
-        {
-            return null;
+            // TODO: Use UpdateOne + set to decrease InStock new/used instead?
+            var validUsedBooks = bookToDelete.InStock.Used > 0;
+            var validNewBooks = bookToDelete.InStock.New > 0;
+            //if (deleteUsedBook && validUsedBooks) bookToDelete.InStock.Used--;
+            //if (!deleteUsedBook && validNewBooks) bookToDelete.InStock.New--;
+            if (deleteUsedBook && validUsedBooks)
+            {
+                bookToDelete.InStock.Used--;
+                bookToDelete.InStock.Total--;
+                await UpdateBook(bookToDelete.BookId, bookToDelete);
+                return await Task.FromResult(true);
+            }
+            if (!deleteUsedBook && validNewBooks)
+            {
+                bookToDelete.InStock.New--;
+                bookToDelete.InStock.Total--;
+                await UpdateBook(bookToDelete.BookId, bookToDelete);
+                return await Task.FromResult(true);
+            }
+                return await Task.FromResult(false);
         }
 
         public async Task PurgeBook(Book bookToRemove) => await _booksCollection.DeleteOneAsync(x => x.BookId == bookToRemove.BookId);
 
-        public async Task<Book> PurgeEmptyBooks()
-        {
-            return null;
-        }
-
-        //public async Task CreateAsync(Book book) { }
-        //public async Task AddToBookAsync(string id, string bookId) { }
-        //public async Task DeleteAsync(string id) { }
-
+        public async Task PurgeEmptyBooks() => await _booksCollection.DeleteManyAsync(book => book.InStock.Total == 0);
 
     }
 }
