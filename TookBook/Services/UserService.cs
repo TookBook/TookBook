@@ -49,6 +49,28 @@
             await UpdateUser(userToChange);
         }
 
+        public async Task Promote(User user)
+        {
+            user.UserType.IsAdmin = true;
+            await UpdateUser(user);
+        }
+
+        public async Task Demote(User user)
+        {
+            user.UserType.IsAdmin = false;
+            await UpdateUser(user);
+        }
+
+        public async Task InactivateUser(User user)
+        {
+            user.IsActive = false;
+            await UpdateUser(user);
+        }
+        public async Task InactivateSeller(User user)
+        {
+            user.UserType.IsSeller = false;
+            await UpdateUser(user);
+        }
 
     }
 }
