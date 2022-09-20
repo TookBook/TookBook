@@ -26,6 +26,14 @@
 
         public async Task UpdateBook(string oldBookId, Book bookWithUpdatedInfo) => await _booksCollection.ReplaceOneAsync(x => x.BookId == oldBookId, bookWithUpdatedInfo);
 
+        public async Task AddBookToCategory(Book book, Category category)
+        {
+            // TODO: Correct "id"-name?
+            var filter = Builders<Book>.Filter.Eq("_id", book.BookId);
+            var update = Builders<Book>.Update.AddToSet("categories", category);
+            await _booksCollection.UpdateOneAsync(filter, update);
+        }
+
         public async Task<bool> DeleteBook(Book bookToDelete, bool deleteUsedBook = false)
         {
             // TODO: Use UpdateOne + set to decrease InStock new/used instead?
