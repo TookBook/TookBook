@@ -22,7 +22,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     MongoDBSeeder dbSeed = new();
-    dbSeed.LoadMockData();
+    dbSeed.LoadBookMockData();
+    dbSeed.LoadUserMockData();
+    dbSeed.LoadCategoryMockData();
     app.UseSwagger();
     app.UseSwaggerUI();
 }

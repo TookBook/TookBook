@@ -11,10 +11,7 @@ namespace TookBook.Controllers
     {
         private readonly CategoryService _CategoryService; //TODO: lägg till alla services
 
-        public CategoryController(CategoryService categoryService)
-        {
-            _CategoryService = categoryService;
-        }
+        public CategoryController(CategoryService categoryService) => _CategoryService = categoryService;
 
         [HttpGet]
         public async Task<ActionResult<List<Category>>> Get()

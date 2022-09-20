@@ -11,7 +11,6 @@ namespace TookBook.Services
 
     public class CategoryService
     {
-
         private readonly IMongoCollection<Category> _categoryCollection;
 
         public CategoryService(IOptions<MongoDBSettings> mongoDBSettings)
@@ -21,6 +20,10 @@ namespace TookBook.Services
             _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.CategoryCollectionName);
         }
 
+        /// <summary>
+        /// Gets a list containing all categories
+        /// </summary>
+        /// <returns> Lists of categories </returns>
         public async Task<List<Category>> GetAsync()
         {
             return await _categoryCollection.Find(_category => true).ToListAsync();
@@ -28,7 +31,7 @@ namespace TookBook.Services
 
         public async Task<List<Category>> GetFilterAsync()
         {
-            return await _categoryCollection.Find(_category => true).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera? istället för att filtrera innan?
+            return await _categoryCollection.Find(_category => true).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
         }
 
 

@@ -1,4 +1,4 @@
-namespace TookBook.Controllers
+﻿namespace TookBook.Controllers
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,7 @@ namespace TookBook.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService; //TODO: l�gg till alla services
+        private readonly UserService _userService; //TODO: lägg till alla services
 
         public UserController(UserService userService)
         {
@@ -34,6 +34,27 @@ namespace TookBook.Controllers
                 return NotFound();
             }
             return Ok(user);
+        }
+
+        [HttpGet("ForgotPassword")]
+        public async Task<ActionResult<User>> ᚠᚬᚱᚴᚬᛏᛒᛅᛋᛋᚢᚢᚱᚦ(string userOrMail) //Send whole user or just mail? Think mail is more secure
+        {
+            var user = await _userService.ForgotPasswordAsync(userOrMail);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user.Mail);
+        }
+        [HttpGet("ForgotUsername")]
+        public async Task<ActionResult<User>> ForgorUsername(string mail)  //Send whole user or just mail? Think mail is more secure
+        {
+            var user = await _userService.ForgotPasswordAsync(mail);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user.Mail + " " + user.UserName);
         }
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Book book) { }

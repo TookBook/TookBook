@@ -1,0 +1,38 @@
+﻿[
+  {
+    "username": "user1234",
+    "password": "1337",
+    "mail": "test123@test.com",
+    "usertype": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isactive": false,
+    "isblocked": false,
+    "orders": [
+      {
+        "orderId": "",
+        "date": "",
+        "books": []
+      }
+    ]
+  },
+  {
+    "username": "Max",
+    "password": "666",
+    "mail": "test666@test.com",
+    "usertype": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isactive": false,
+    "isblocked": false,
+    "orders": [
+      {
+        "orderId": "",
+        "date": "",
+        "books": []
+      }
+    ]
+  }
+]

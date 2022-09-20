@@ -20,14 +20,32 @@
             _booksCollection = database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
         }
 
+        //TODO Add comments
         public async Task<List<Book>> GetAsync() {
             return await _booksCollection.Find(_book => true).ToListAsync();
         }
-
+        //TODO Add comments
         public async Task<List<Book>> GetBooksInCategoryAsync(Category category)
         {
             return await _booksCollection.Find(_book => _book.Categories == category).ToListAsync();
         }
+        //TODO Add comments
+        public async Task<List<Book>> GetBooksByAuthorAsync(Author author)
+        {
+            return await _booksCollection.Find(_book => _book.Authors == author).ToListAsync();
+        }
+
+        public async Task<bool> BuyBookAsync(Book book, User user, bool used) //should have "used" bool?
+        {
+            //if user is neither seller or admin
+            if (user.UserType.IsSeller == false && user.UserType.IsAdmin == false)
+            {
+                if (used) return book.InStock.Used > 0;
+                if (!used) return book.InStock.New > 0;
+            }
+            return false;
+        }
+
 
 
 
