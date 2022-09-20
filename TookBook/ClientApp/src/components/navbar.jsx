@@ -12,10 +12,13 @@ import TextField from '@mui/material/TextField';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Searchbar from './Searchbar';
-
+import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 
 const Navbar = () => {
 	//TODO: Breakpoints, responsiveness.
+
+
 	return (
 		<>
 			<AppBar>
@@ -34,19 +37,22 @@ const Navbar = () => {
 						</Typography>
 					</Box>
 
-					<Searchbar></Searchbar>
+					<Searchbar />
 
 					{/**TODO: Proper icon, onlclick etc */}
-					<IconButton sx={{ color: "white" }}>
-						<MenuIcon></MenuIcon>
+					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }}>
+						<PersonSharpIcon fontSize='large' />
 						<Typography>Login</Typography>
 					</IconButton>
 
 					{/**TODO: Proper icon, onlclick etc, basket dropdown thingy */}
-					<IconButton sx={{ color: "white" }}>
-						<MenuIcon></MenuIcon>
+
+					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column", }}>
+						{/* <i class="fa-solid fa-basket-shopping"></i> */}
+						<ShoppingBasketIcon fontSize='large' />
 						<Typography>Basket</Typography>
 					</IconButton>
+
 				</Toolbar>
 
 
