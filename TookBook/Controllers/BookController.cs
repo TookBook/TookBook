@@ -27,6 +27,14 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
+        [HttpPut("AddCategory/{id:length(24)}")]
+        public async Task<ActionResult> AddBookToCategory(string Id, string categoryName)
+        {
+            // Get book
+            // Get category
+            // use AddBookToCategoryService
+            return NoContent();
+        }
 
         // TODO: Admin validation
         [HttpDelete("{id:length(24)}")]
