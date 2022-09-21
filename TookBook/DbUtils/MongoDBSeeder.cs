@@ -46,7 +46,7 @@
         /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
         /// </summary>
 
-        public async void LoadBookMockData();
+
 
         public async void ReseedMockData()
         {
@@ -88,6 +88,18 @@
             var categoryCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Category>>(categorySeedDataText);
 
             await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
+        }
+        
+        /// <summary>
+        /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
+        /// </summary>
+         public async void LoadBookMockData()
+         {
+            string bookySeedDataText = GetMockDataFromFile("categorySeedData.json");
+
+            var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
+
+            await _booksCollection.InsertManyAsync(booksCollectionDocument);
         }
 
         /// <summary>
