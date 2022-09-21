@@ -1,165 +1,164 @@
-
-﻿[
+[
   {
-    "categoryname": "Action"
+    "categoryName": "Action"
   },
   {
-    "categoryname": "Adventure"
+    "categoryName": "Adventure"
   },
   {
-    "categoryname": "Architecture"
+    "categoryName": "Architecture"
   },
   {
-    "categoryname": "Alternative history"
+    "categoryName": "Alternative history"
   },
   {
-    "categoryname": "Autobiography"
+    "categoryName": "Autobiography"
   },
   {
-    "categoryname": "Anthology"
+    "categoryName": "Anthology"
   },
   {
-    "categoryname": "Biography"
+    "categoryName": "Biography"
   },
   {
-    "categoryname": "Business"
+    "categoryName": "Business"
   },
   {
-    "categoryname": "Economics"
+    "categoryName": "Economics"
   },
   {
-    "categoryname": "Children's"
+    "categoryName": "Children's"
   },
   {
-    "categoryname": "Crafts/hobbies"
+    "categoryName": "Crafts/hobbies"
   },
   {
-    "categoryname": "Classic"
+    "categoryName": "Classic"
   },
   {
-    "categoryname": "Cookbook/Food"
+    "categoryName": "Cookbook/Food"
   },
   {
-    "categoryname": "Comic book"
+    "categoryName": "Comic book"
   },
   {
-    "categoryname": "Diary"
+    "categoryName": "Diary"
   },
   {
-    "categoryname": "Coming-of-age"
+    "categoryName": "Coming-of-age"
   },
   {
-    "categoryname": "Dictionary"
+    "categoryName": "Dictionary"
   },
   {
-    "categoryname": "Crime"
+    "categoryName": "Crime"
   },
   {
-    "categoryname": "Encyclopedia"
+    "categoryName": "Encyclopedia"
   },
   {
-    "categoryname": "Drama"
+    "categoryName": "Drama"
   },
   {
-    "categoryname": "Guide"
+    "categoryName": "Guide"
   },
   {
-    "categoryname": "Fairytale"
+    "categoryName": "Fairytale"
   },
   {
-    "categoryname": "Health/fitness"
+    "categoryName": "Health/fitness"
   },
   {
-    "categoryname": "Fantasy"
+    "categoryName": "Fantasy"
   },
   {
-    "categoryname": "History"
+    "categoryName": "History"
   },
   {
-    "categoryname": "Graphic novel"
+    "categoryName": "Graphic novel"
   },
   {
-    "categoryname": "Historical fiction"
+    "categoryName": "Historical fiction"
   },
   {
-    "categoryname": "Humor"
+    "categoryName": "Humor"
   },
   {
-    "categoryname": "Horror"
+    "categoryName": "Horror"
   },
   {
-    "categoryname": "Journal"
+    "categoryName": "Journal"
   },
   {
-    "categoryname": "Mystery"
+    "categoryName": "Mystery"
   },
   {
-    "categoryname": "Math"
+    "categoryName": "Math"
   },
   {
-    "categoryname": "Paranormal"
+    "categoryName": "Paranormal"
   },
   {
-    "categoryname": "Romance"
+    "categoryName": "Romance"
   },
   {
-    "categoryname": "Memoir"
+    "categoryName": "Memoir"
   },
   {
-    "categoryname": "Picture book"
+    "categoryName": "Picture book"
   },
   {
-    "categoryname": "Philosophy"
+    "categoryName": "Philosophy"
   },
   {
-    "categoryname": "Poetry"
+    "categoryName": "Poetry"
   },
   {
-    "categoryname": "Political"
+    "categoryName": "Political"
   },
   {
-    "categoryname": "Religion"
+    "categoryName": "Religion"
   },
   {
-    "categoryname": "Textbook"
+    "categoryName": "Textbook"
   },
   {
-    "categoryname": "Satire"
+    "categoryName": "Satire"
   },
   {
-    "categoryname": "True crime"
+    "categoryName": "True crime"
   },
   {
-    "categoryname": "Science fiction"
+    "categoryName": "Science fiction"
   },
   {
-    "categoryname": "Review"
+    "categoryName": "Review"
   },
   {
-    "categoryname": "Short story"
+    "categoryName": "Short story"
   },
   {
-    "categoryname": "Science"
+    "categoryName": "Science"
   },
   {
-    "categoryname": "Suspense"
+    "categoryName": "Suspense"
   },
   {
-    "categoryname": "Self help"
+    "categoryName": "Self help"
   },
   {
-    "categoryname": "Thriller"
+    "categoryName": "Thriller"
   },
   {
-    "categoryname": "Sports"
+    "categoryName": "Sports"
   },
   {
-    "categoryname": "Western"
+    "categoryName": "Western"
   },
   {
-    "categoryname": "Travel"
+    "categoryName": "Travel"
   },
   {
-    "categoryname": "Young adult"
+    "categoryName": "Young adult"
   }
 ]
