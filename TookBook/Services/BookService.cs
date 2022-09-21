@@ -76,20 +76,30 @@
         /// <param name="user">User who wishes to buy book</param>
         /// <param name="used">true == used book. false == new book</param>
         /// <returns>true if book is purchasable, else false</returns>
-        public async Task<bool> BuyBookAsync(Book book, User user, bool used) //should have "used" bool?
+        //public async Task<bool> BuyBookAsync(Book book, User user, bool used) //should have "used" bool?
+        //{
+        //    //if user is neither seller or admin
+        //    if (user.UserType.IsSeller == false && user.UserType.IsAdmin == false)
+        //    {
+        //        if (used) return book.InStock.Used > 0;
+        //        if (!used) return book.InStock.New > 0;
+        //    }
+        //    return false;
+        //}
+
+        // Testversion av ovan @Max
+        public async Task<bool> BuyBookAsyncTestTestTest(Book book, bool usedBook)
         {
-            //if user is neither seller or admin
-            if (user.UserType.IsSeller == false && user.UserType.IsAdmin == false)
-            {
-                if (used) return book.InStock.Used > 0;
-                if (!used) return book.InStock.New > 0;
-            }
-            return false;
+            if (usedBook && book.InStock.Used > 0)
+                return await Task.FromResult(true);
+            if (!usedBook && book.InStock.New > 0)
+                return await Task.FromResult(true);
+            return await Task.FromResult(false);
         }
 
-        public async Task<Book> GetByIdTest(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
 
 
+        public async Task<Book> GetBookById(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
 
 
         /// <summary>
