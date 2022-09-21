@@ -25,7 +25,7 @@ const Searchbar = () => {
 			<Autocomplete
 				disablePortal
 				id="book-search"
-				options={testData}
+				options={testData} // Options innehåller den data som ska visas upp i search-lådan.
 
 				sx={{ width: 600, backgroundColor: "white", borderRadius: "3px" }}
 				renderInput={(params) =>

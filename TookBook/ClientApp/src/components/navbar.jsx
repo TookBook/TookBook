@@ -14,10 +14,17 @@ import InputBase from '@mui/material/InputBase';
 import Searchbar from './Searchbar';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { useRecoilState } from 'recoil';
+import openUserPortalState from '../atoms/openUserPortalState';
 
 const Navbar = () => {
 	//TODO: Breakpoints, responsiveness.
 
+	const [openUserPortal, setOpenUserPortal] = useRecoilState(openUserPortalState)
+
+	const handleOpenUserPortal = () => {
+		setOpenUserPortal(!openUserPortal)
+	}
 
 	return (
 		<>
@@ -40,7 +47,7 @@ const Navbar = () => {
 					<Searchbar />
 
 					{/**TODO: Proper icon, onlclick etc */}
-					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }}>
+					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
 						<PersonSharpIcon fontSize='large' />
 						<Typography>Login</Typography>
 					</IconButton>
@@ -57,6 +64,7 @@ const Navbar = () => {
 
 
 			</AppBar>
+			<Toolbar sx={{ marginBottom: "15px" }} />
 		</>
 	)
 }
