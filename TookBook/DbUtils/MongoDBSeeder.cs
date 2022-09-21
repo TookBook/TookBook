@@ -48,8 +48,7 @@
 
         public async void LoadBookMockData();
 
-        public async void ReseedMockData();
-
+        public async void ReseedMockData()
         {
             // TODO: Error handling
             string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
