@@ -1,4 +1,4 @@
-
+import ShoppingCart from ".//shoppingCart.css";
 
 const ShoppingCart = () => {
 	  return (

@@ -5,6 +5,7 @@ namespace TookBook.Controllers
     using Microsoft.AspNetCore.Mvc;
     using TookBook.Services;
     using TookBook.Models;
+    using MongoDB.Bson;
 
     [ApiController]
     [Route("api/[controller]")]
@@ -25,12 +26,29 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
+        //TODO: lägg till addbook
+        [HttpPost]
+
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Book book) { }        
         //[HttpPut("{id}")]
-        //public async Task<IActionResult> AddToBooks(string id, [FromBody] string bookId) { }
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(string id) { }
-    };
-}
+        //public async Task<IActionResult> AddToBooks(string id, [FromBody] string bookId) 
+        //{
+        //    var book = await _bookService.GetAsync(id);
+        //    if (book == null)
+        //        return NotFound();
+        //    await _bookService.AddToBookAsync(id, bookId);
+        //    return NoContent();
+        //}
+        
+        
+        public async Task<IActionResult> SetAmount(Book book, int amount)
+        {
+            if (book == null)
+                return NotFound();
+            return Ok();
+        }
+            
+    }
+};
