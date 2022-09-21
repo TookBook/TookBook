@@ -46,9 +46,9 @@
         /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
         /// </summary>
 
-        public async void LoadBookMockData()
+        public async void LoadBookMockData();
 
-        public async void ReseedMockData()
+        public async void ReseedMockData();
 
         {
             // TODO: Error handling
