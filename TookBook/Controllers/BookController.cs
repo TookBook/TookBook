@@ -66,6 +66,21 @@ namespace TookBook.Controllers
         }
         */
 
+        // Jespertest
+        // Sends a user in JSON form via swagger/frontend in the body of the http request, cant use httpget with a body so httppost is used instead
+        [HttpPost("BuyBook/{id:length(24)}")]
+        public async Task<ActionResult> BuyBook(string id, User user, bool usedBook)
+        {
+            var bookToBuy = await _bookService.GetBookById(id);
+            if (bookToBuy == null) return NotFound();
+            if (user.UserType.IsSeller || user.UserType.IsAdmin) return BadRequest("An admin or seller can't buy a book.");
+
+            var bookIsBuyable = await _bookService.BuyBookAsyncTestTestTest(bookToBuy, usedBook);
+            return Ok(bookIsBuyable);
+        }
+
+
+
         [HttpPut("AddCategory/{id:length(24)}")]
         public async Task<ActionResult> AddBookToCategory(string Id, string categoryName)
         {
@@ -80,7 +95,7 @@ namespace TookBook.Controllers
         public async Task<ActionResult> DeleteBook(string id, bool usedBook)
         {
             // TODO: Use real GetBook method when added.
-            var bookToDelete = await _bookService.GetByIdTest(id);
+            var bookToDelete = await _bookService.GetBookById(id);
             if (bookToDelete == null) return NotFound();
 
             var deletedSuccesfully = await _bookService.DeleteBook(bookToDelete, usedBook);
@@ -94,7 +109,7 @@ namespace TookBook.Controllers
         public async Task<ActionResult> PurgeBook(string id)
         {
             // TODO: Use GetBook method when added
-            var bookToPurge = await _bookService.GetByIdTest(id);
+            var bookToPurge = await _bookService.GetBookById(id);
             if (bookToPurge == null) return NotFound();
             await _bookService.PurgeBook(bookToPurge);
             return Ok();

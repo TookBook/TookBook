@@ -29,6 +29,13 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
+        /// <summary>
+        /// Gets a user by id
+        /// </summary>
+        /// <param name="id">The userId.</param>
+        /// <returns></returns>
+        public async Task<User> GetUserById(string id) => await _userCollection.Find(x => x.UserId == id).FirstOrDefaultAsync();
+
         //Tested in swagger /Max
         /// <summary>
         /// Returns the first user whos username and password matches the username and password input
