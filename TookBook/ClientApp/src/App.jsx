@@ -7,6 +7,7 @@ import ThemeWrapper from './style/ThemeWrapper'
 import { Box, Typography } from '@mui/material'
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
 import { RecoilRoot } from 'recoil'
+import Logo from './assets/Logo.svg'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -44,6 +45,7 @@ function App() {
       <div style={{ backgroundColor: "lightcyan" }}>
         <p>Hello World </p>
       </div>
+
       </> */}
       </RecoilRoot>
     </ThemeWrapper>

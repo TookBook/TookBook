@@ -40,12 +40,11 @@
             _booksCollection = _database.GetCollection<Book>("Books");
 
             _categoryCollection = _database.GetCollection<Category>("Categories");
-
         }
 
-        /// <summary>
-        /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
-        /// </summary>
+
+
+
         public async void ReseedMockData()
         {
             // TODO: Error handling

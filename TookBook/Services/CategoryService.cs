@@ -1,3 +1,4 @@
+
 ﻿namespace TookBook.Services
 {
     using Microsoft.Extensions.Options;
@@ -15,13 +16,32 @@
 
         public CategoryService(IOptions<MongoDBSettings> mongoDBSettings)
         {
-            MongoClient client = new(mongoDBSettings.Value.ConnectionURI);
+            MongoClient client = new (mongoDBSettings.Value.ConnectionURI);
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
-            _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.UserCollectionName);
+            _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.CategoryCollectionName);
         }
 
+        //Tested in swagger, only returns empty array?? why??
+        /// <summary>
+        /// Gets a list containing all categories
+        /// </summary>
+        /// <returns> Lists of categories </returns>
+        public async Task<List<Category>> GetAsync()
+        {
+            return await _categoryCollection.Find(_category => true).ToListAsync();
+        }
 
-
+        //Tested in swagger, only returns empty array?? why??
+        /// <summary>
+        /// Gets a filtered list with categories that contains the keyword.
+        /// </summary>
+        /// <param name="keyword">Input from user</param>
+        /// <returns>Filtered category list.</returns>
+        public async Task<List<Category>> GetFilteredAsync(string keyword)
+        {
+            return await _categoryCollection.Find(_category =>_category.CategoryName.Contains(keyword)).ToListAsync();  //kan man inte bara ta kalla p� alla och sen filtrera i frontend? ist�llet f�r att filtrera innan?
+        }
+    
         public async Task<bool> AddCategory(string categoryName)
         {
             // TODO: Check if the category doesn't already exist using existing method?
@@ -35,3 +55,4 @@
         }
     }
 }
+

@@ -1,15 +1,164 @@
 [
-
-  { "categoryName": "Romance" },
-  { "categoryName": "Drama" },
-  { "categoryName": "Comedy" },
-  { "categoryName": "Fantasy" },
-  { "categoryName": "Sci-fi" },
-  { "categoryName": "Non-fiction" },
-  { "categoryName": "Horror" },
-  { "categoryName": "Mystery" },
-  { "categoryName": "Thriller" },
-  { "categoryName": "Biography" },
-  { "categoryName": "Young Adult" }
-
+  {
+    "categoryName": "Action"
+  },
+  {
+    "categoryName": "Adventure"
+  },
+  {
+    "categoryName": "Architecture"
+  },
+  {
+    "categoryName": "Alternative history"
+  },
+  {
+    "categoryName": "Autobiography"
+  },
+  {
+    "categoryName": "Anthology"
+  },
+  {
+    "categoryName": "Biography"
+  },
+  {
+    "categoryName": "Business"
+  },
+  {
+    "categoryName": "Economics"
+  },
+  {
+    "categoryName": "Children's"
+  },
+  {
+    "categoryName": "Crafts/hobbies"
+  },
+  {
+    "categoryName": "Classic"
+  },
+  {
+    "categoryName": "Cookbook/Food"
+  },
+  {
+    "categoryName": "Comic book"
+  },
+  {
+    "categoryName": "Diary"
+  },
+  {
+    "categoryName": "Coming-of-age"
+  },
+  {
+    "categoryName": "Dictionary"
+  },
+  {
+    "categoryName": "Crime"
+  },
+  {
+    "categoryName": "Encyclopedia"
+  },
+  {
+    "categoryName": "Drama"
+  },
+  {
+    "categoryName": "Guide"
+  },
+  {
+    "categoryName": "Fairytale"
+  },
+  {
+    "categoryName": "Health/fitness"
+  },
+  {
+    "categoryName": "Fantasy"
+  },
+  {
+    "categoryName": "History"
+  },
+  {
+    "categoryName": "Graphic novel"
+  },
+  {
+    "categoryName": "Historical fiction"
+  },
+  {
+    "categoryName": "Humor"
+  },
+  {
+    "categoryName": "Horror"
+  },
+  {
+    "categoryName": "Journal"
+  },
+  {
+    "categoryName": "Mystery"
+  },
+  {
+    "categoryName": "Math"
+  },
+  {
+    "categoryName": "Paranormal"
+  },
+  {
+    "categoryName": "Romance"
+  },
+  {
+    "categoryName": "Memoir"
+  },
+  {
+    "categoryName": "Picture book"
+  },
+  {
+    "categoryName": "Philosophy"
+  },
+  {
+    "categoryName": "Poetry"
+  },
+  {
+    "categoryName": "Political"
+  },
+  {
+    "categoryName": "Religion"
+  },
+  {
+    "categoryName": "Textbook"
+  },
+  {
+    "categoryName": "Satire"
+  },
+  {
+    "categoryName": "True crime"
+  },
+  {
+    "categoryName": "Science fiction"
+  },
+  {
+    "categoryName": "Review"
+  },
+  {
+    "categoryName": "Short story"
+  },
+  {
+    "categoryName": "Science"
+  },
+  {
+    "categoryName": "Suspense"
+  },
+  {
+    "categoryName": "Self help"
+  },
+  {
+    "categoryName": "Thriller"
+  },
+  {
+    "categoryName": "Sports"
+  },
+  {
+    "categoryName": "Western"
+  },
+  {
+    "categoryName": "Travel"
+  },
+  {
+    "categoryName": "Young adult"
+  }
 ]

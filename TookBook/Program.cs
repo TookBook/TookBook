@@ -23,6 +23,7 @@ if (app.Environment.IsDevelopment())
 {
     MongoDBSeeder dbSeed = new();
     dbSeed.ReseedMockData();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }
