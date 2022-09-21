@@ -13,19 +13,58 @@ namespace TookBook.Controllers
         // TODO: Customize api responses?
 
         private readonly BookService _bookService; //TODO: lägg till alla services
+        public BookController(BookService bookService) => _bookService = bookService;
 
-        public BookController(BookService bookService)
-        {
-            _bookService = bookService;
-        }
-
-        [HttpGet]
+        //Tested in swagger /Max
+        [HttpGet("AllBooks")]
         public async Task<ActionResult<List<Book>>> Get() {
             var books = await _bookService.GetAsync();
             if (books == null)
                 return NotFound();
             return Ok(books);
         }
+
+        //Tested in swagger /Max
+        [HttpGet("FilteredBooks")]
+        public async Task<ActionResult<List<Book>>> GetFiltered(string keyword)
+        {
+            var books = await _bookService.GetFilteredAsync(keyword);
+            if (books == null)
+                return NotFound();
+            return Ok(books);
+        }
+
+        //Tested in swagger and does not work /Max
+        [HttpGet("BooksInCategory")]
+        public async Task<ActionResult<List<Book>>> GetBooksInCategory(Category category)
+        {
+            var books = await _bookService.GetBooksInCategoryAsync(category);
+            if (books == null)
+                return NotFound();
+            return Ok(books);
+        }
+
+        //Tested in swagger and does not work /Max
+        [HttpGet("BooksByAuthor")]
+        public async Task<ActionResult<List<Book>>> GetBooksByAuthor(string author)
+        {
+            var books = await _bookService.GetBooksByAuthorAsync(author);
+            if (books == null)
+                return NotFound();
+            return Ok(books);
+        }
+
+        //THIS ONE CRASHES PROGRAM AT THE MOMENT, DO NOT REMOVE OR UNCOMMENT
+        /*
+        [HttpGet("BuyBook")]
+        public async Task<ActionResult<List<Book>>> BuyBook(Book book, User user, bool used)
+        {
+            var books = await _bookService.BuyBookAsync(book, user, used);
+            if (!books)
+                return NotFound();
+            return Ok();
+        }
+        */
 
         [HttpPut("AddCategory/{id:length(24)}")]
         public async Task<ActionResult> AddBookToCategory(string Id, string categoryName)
@@ -67,6 +106,7 @@ namespace TookBook.Controllers
         {
            await _bookService.PurgeEmptyBooks();
         }
+
 
         //[HttpPost]
         //public async Task<IActionResult> Post([FromBody] Book book) { }        

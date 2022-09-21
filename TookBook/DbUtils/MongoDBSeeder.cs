@@ -40,12 +40,27 @@
             _booksCollection = _database.GetCollection<Book>("Books");
 
             _categoryCollection = _database.GetCollection<Category>("Categories");
-
         }
+
 
         /// <summary>
         /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
         /// </summary>
+        public async void LoadBookMockData()
+        {
+            // TODO: Error handling
+            //string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
+            //string bookSeedData = ReadMockDataFromFile(filePath);
+
+            string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
+
+            var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
+
+            await _booksCollection.InsertManyAsync(bookCollectionDocument);
+        }
+
+
+
         public async void ReseedMockData()
         {
             // TODO: Error handling
@@ -62,6 +77,32 @@
             await _userCollection.InsertManyAsync(userCollectionDocument);
             await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
         }
+
+        /// <summary>
+        /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
+        /// </summary>
+        public async void LoadUserMockData()
+        {
+
+            string userSeedDataText = GetMockDataFromFile("userSeedData.json");
+
+            var userCollectionDocument = BsonSerializer.Deserialize<IEnumerable<User>>(userSeedDataText);
+
+            await _userCollection.InsertManyAsync(userCollectionDocument);
+        }
+
+        /// <summary>
+        /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
+        /// </summary>
+        public async void LoadCategoryMockData()
+        {
+            string categorySeedDataText = GetMockDataFromFile("categorySeedData.json");
+
+            var categoryCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Category>>(categorySeedDataText);
+
+            await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
+        }
+        
 
         /// <summary>
         /// Gets text from the chosen file.
