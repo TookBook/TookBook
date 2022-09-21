@@ -11,11 +11,9 @@
     {
         private readonly UserService _userService; //TODO: lägg till alla services
 
-        public UserController(UserService userService)
-        {
-            _userService = userService;
-        }
+        public UserController(UserService userService) => _userService = userService;
 
+        //Tested in swagger /Max
         [HttpGet("AllUsers")]
         public async Task<ActionResult<List<User>>> Get()
         {
@@ -25,6 +23,7 @@
             return Ok(users);
         }
 
+        //Tested in swagger /Max
         [HttpGet("Login")]
         public async Task<ActionResult<User>> Get(string username, string password)
         {
@@ -36,6 +35,7 @@
             return Ok(user);
         }
 
+        //Tested in swagger /Max
         [HttpGet("ForgotPassword")]
         public async Task<ActionResult<User>> ᚠᚬᚱᚴᚬᛏᛒᛅᛋᛋᚢᚢᚱᚦ(string userOrMail) //Send whole user or just mail? Think mail is more secure
         {
@@ -46,6 +46,8 @@
             }
             return Ok(user.Mail);
         }
+
+        //Tested in swagger /Max
         [HttpGet("ForgotUsername")]
         public async Task<ActionResult<User>> ForgorUsername(string mail)  //Send whole user or just mail? Think mail is more secure
         {
@@ -56,13 +58,5 @@
             }
             return Ok(user.Mail + " " + user.UserName);
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Book book) { }
-
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> AddToBooks(string id, [FromBody] string bookId) { }
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(string id) { }
     };
 }

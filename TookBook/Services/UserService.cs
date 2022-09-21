@@ -19,7 +19,7 @@
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _userCollection = database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
         }
-
+        //Tested in swagger /Max
         /// <summary>
         /// Gets a list containing all users
         /// </summary>
@@ -29,6 +29,7 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
+        //Tested in swagger /Max
         /// <summary>
         /// Returns the first user whos username and password matches the username and password input
         /// </summary>
@@ -40,6 +41,7 @@
             return await _userCollection.Find(o => o.UserName == username && o.Password == password).FirstAsync();
         }
 
+        //Tested in swagger /Max
         /// <summary>
         /// If a user whos username or email matches input is found, return user. 
         /// </summary>
@@ -50,6 +52,7 @@
             return await _userCollection.Find(o => o.UserName == usernameOrEmail || o.Mail == usernameOrEmail).FirstAsync();
         }
 
+        //Tested in swagger /Max
         /// <summary>
         /// If a user whos email mathes input is found, return user.
         /// </summary>
@@ -59,10 +62,5 @@
         {
             return await _userCollection.Find(o => o.Mail == email).FirstAsync();
         }
-
-
-        //public async Task CreateAsync(Book book) { }
-        //public async Task AddToBookAsync(string id, string bookId) { }
-        //public async Task DeleteAsync(string id) { }
     }
 }

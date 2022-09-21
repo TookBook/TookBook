@@ -9,26 +9,26 @@ namespace TookBook.Controllers
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
-        private readonly CategoryService _CategoryService; //TODO: lägg till alla services
+        private readonly CategoryService _categoryService; //TODO: lägg till alla services
 
-        public CategoryController(CategoryService categoryService) => _CategoryService = categoryService;
+        public CategoryController(CategoryService categoryService) => _categoryService = categoryService;
 
-        [HttpGet]
+        [HttpGet("AllCategories")]
         public async Task<ActionResult<List<Category>>> Get()
         {
-            var categories = await _CategoryService.GetAsync();
+            var categories = await _categoryService.GetAsync();
+            if (categories == null)
+                return NotFound();
+            return Ok(categories);
+        } //Do we need to return ok? cant we just return the list even if empty, frontend wont care
+
+        [HttpGet("FilteredCategories")]
+        public async Task<ActionResult<List<Category>>> GetFiltered(string keyword)
+        {
+            var categories = await _categoryService.GetFilteredAsync(keyword);
             if (categories == null)
                 return NotFound();
             return Ok(categories);
         }
-
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Book book) { }
-
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> AddToBooks(string id, [FromBody] string bookId) { }
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(string id) { }
     };
 }
