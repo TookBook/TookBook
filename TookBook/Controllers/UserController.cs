@@ -96,15 +96,14 @@
         //}
 
 
-        //Activationcode
-        public async Task<ActionResult> ActivateAccount(User accountToActivate)
+        //TODO lägg till activation code
+        [HttpGet("ActivateUser")]
+        public async Task ActivateAccount(User accountToActivate)
         {
             if (accountToActivate == null)
-                return NotFound();
             await _userService.ActivateAccountAsync(accountToActivate);
-            return NoContent();
         }
-        
+
         ////ActivateSeller
         //public async Task<ActionResult<UserType>> ActivateSeller(string id)
         //{
@@ -113,18 +112,18 @@
 
 
 
-        ///// <summary>
-        ///// Returns Ok if user is found, NotFound if user is not found
-        ///// </summary>
-        ///// <returns></returns>
-        //[HttpGet("ListUsers")]
-        //public async Task<ActionResult<List<User>>> ListUsers()
-        //{
-        //    var users = await _userService.ListUsersAsync();
-        //    if (users == null)
-        //        return NotFound();
-        //    return Ok(users);
-        //}
+        /// <summary>
+        /// Returns Ok if user is found and returns users as JSON file
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ListUsers")]
+        public async Task<ActionResult<List<User>>> ListUsers()
+        {
+            var users = await _userService.ListUsersAsync();
+            if (users == null)
+                return NotFound();
+            return Ok(users);
+        }
     }
 
 }

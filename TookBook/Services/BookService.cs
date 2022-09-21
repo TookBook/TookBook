@@ -23,37 +23,45 @@
         public async Task<List<Book>> GetAsync() {
             return await _booksCollection.Find(_book => true).ToListAsync();
         }
-        
+        //test för att hämta en bok /Tiia
+        public async Task<Book> GetByIdTest(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
+
         //TODO: lägg till AddBook
-        public async Task<Book> AddBook(Book book)
+        public async Task<Book> AddBook(Book bookToAdd)
         {
-            await _booksCollection.InsertOneAsync(book);
-            return book;
+            await _booksCollection.InsertOneAsync(bookToAdd);
+            return bookToAdd;
+        }
+
+        public async Task<Book> SetAmountAsync(Book bookToBeChanged, int amount)
+        {
+            bookToBeChanged.InStock.Total = amount;
+            return await _booksCollection.FindOneAndReplaceAsync(x => x.BookId == bookToBeChanged.BookId, bookToBeChanged);
         }
     }
 
-        //public async Task<Book> UpdateBook(Book book)
-        //{
+    //public async Task<Book> UpdateBook(Book book)
+    //{
 
-        //    return null;
-        //}
+    //    return null;
+    //}
 
-        //public async Task<Book> DeleteBook()
-        //{
-        //    return null;
-        //}
+    //public async Task<Book> DeleteBook()
+    //{
+    //    return null;
+    //}
 
-        //public async Task PurgeBook(Book bookToRemove) => await _booksCollection.DeleteOneAsync(x => x.BookId == bookToRemove.BookId);
+    //public async Task PurgeBook(Book bookToRemove) => await _booksCollection.DeleteOneAsync(x => x.BookId == bookToRemove.BookId);
 
-        //public async Task<Book> PurgeEmptyBooks()
-        //{
-        //    return null;
-        //}
+    //public async Task<Book> PurgeEmptyBooks()
+    //{
+    //    return null;
+    //}
 
-        //public async Task CreateAsync(Book book) { }
-        //public async Task AddToBookAsync(string id, string bookId) { }
-        //public async Task DeleteAsync(string id) { }
+    //public async Task CreateAsync(Book book) { }
+
+    //public async Task DeleteAsync(string id) { }
 
 
-    
+
 }

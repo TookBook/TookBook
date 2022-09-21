@@ -57,15 +57,15 @@
 
 
 
-        ////TODO: add ADMIN id
-        ///// <summary>
-        ///// Gets a list containing all users
-        ///// </summary>
-        ///// <returns></returns>
-        //public async Task<List<User>> ListUsersAsync()
-        //{
-        //    return await _userCollection.Find(_user => true).ToListAsync();
-        //}
+        //TODO: add ADMIN id /Tiia
+        /// <summary>
+        /// Gets a list containing all users
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<User>> ListUsersAsync()
+        {
+            return await _userCollection.Find(_user => true).ToListAsync();
+        }
 
         //ska man söka med userId eller namn och email (så som det är nu) eller skicka in hela user? /Tiia
         /// <summary>
@@ -85,6 +85,7 @@
         //        Builders<User>.Update
         //        .Set(x => x.Password, newPassword));
         //}
+        
         public async Task ActivateAccountAsync(User accountToActivate)
         {
             var filter = Builders<User>.Filter.Eq(x => x.UserId, accountToActivate.UserId);
