@@ -42,9 +42,22 @@
             _categoryCollection = _database.GetCollection<Category>("Categories");
         }
 
+
         /// <summary>
         /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
         /// </summary>
+        public async void LoadBookMockData()
+        {
+            // TODO: Error handling
+            //string filePath = Environment.CurrentDirectory + @"\booksSeedData.json";
+            //string bookSeedData = ReadMockDataFromFile(filePath);
+
+            string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
+
+            var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
+
+            await _booksCollection.InsertManyAsync(bookCollectionDocument);
+        }
 
 
 
@@ -90,17 +103,6 @@
             await _categoryCollection.InsertManyAsync(categoryCollectionDocument);
         }
         
-        /// <summary>
-        /// Gets the filepath of JSON files stored in the root directory. Reads and deserializes into a BSON document. Lastly, inserts the BSON document into the appropriate collection.
-        /// </summary>
-         public async void LoadBookMockData()
-         {
-            string bookySeedDataText = GetMockDataFromFile("categorySeedData.json");
-
-            var bookCollectionDocument = BsonSerializer.Deserialize<IEnumerable<Book>>(bookSeedDataText);
-
-            await _booksCollection.InsertManyAsync(booksCollectionDocument);
-        }
 
         /// <summary>
         /// Gets text from the chosen file.
