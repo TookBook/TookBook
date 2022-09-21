@@ -78,13 +78,22 @@
             return await _userCollection.Find(_user => _user.UserName == userIdentifier || _user.Mail==userIdentifier).FirstAsync();
         }
 
-        //public async Task<User> ChangePasswordAsync(string newPassword, string confirm)
+        //får inte denna att funka /Tiia
+        //public async Task<User> ChangePasswordAsync(string username, string newPassword, string confirm)
         //{
-
+        //    return await _userCollection.UpdateOneAsync(x => x.UserName == username,
+        //        Builders<User>.Update
+        //        .Set(x => x.Password, newPassword));
         //}
-
-        //public async Task<User> ActivateAccountAsync()
+        public async Task ActivateAccountAsync(User accountToActivate)
+        {
+            var filter = Builders<User>.Filter.Eq(x => x.UserId, accountToActivate.UserId);
+            var update = Builders<User>.Update.Set(x => x.IsActive, true);
+            await _userCollection.UpdateOneAsync(filter, update);
+        }
     }
+
+    
 
         //public async Task CreateAsync(Book book) { }
         //public async Task AddToBookAsync(string id, string bookId) { }

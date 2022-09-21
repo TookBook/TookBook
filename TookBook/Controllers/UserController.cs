@@ -81,19 +81,30 @@
             return Ok(user);
         }
 
+        ////funkar inte i swagger
         //[HttpGet("ChangePassword")]
-        //public async Task<ActionResult<User>> ChangePassword(string newPassword, string confirm)
+        //public async Task<ActionResult<User>> ChangePassword(User user, string newPassword, string confirmPassword)
         //{
-
+        //    if (user.IsActive) //vet inte om detta behövs här
+        //    {
+        //        user = await _userService.ChangePasswordAsync(user, newPassword, confirmPassword);
+        //        if (newPassword != confirmPassword) //om lösenorden inte stämmer överens
+        //            return NotFound();
+        //        return Ok(user.Password);
+        //    }
+        //    return NotFound();
         //}
 
 
-        ////Activationcode
-        //public async Task<ActionResult<User>> ActivateAccount()
-        //{
-        //    return Ok();
-        //}
-
+        //Activationcode
+        public async Task<ActionResult> ActivateAccount(User accountToActivate)
+        {
+            if (accountToActivate == null)
+                return NotFound();
+            await _userService.ActivateAccountAsync(accountToActivate);
+            return NoContent();
+        }
+        
         ////ActivateSeller
         //public async Task<ActionResult<UserType>> ActivateSeller(string id)
         //{
