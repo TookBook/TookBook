@@ -10,6 +10,8 @@ namespace TookBook.Controllers
     [Route("api/[controller]")]
     public class BookController : ControllerBase
     {
+        // TODO: Customize api responses?
+
         private readonly BookService _bookService; //TODO: lägg till alla services
         public BookController(BookService bookService) => _bookService = bookService;
 
@@ -63,6 +65,47 @@ namespace TookBook.Controllers
             return Ok();
         }
         */
+
+        [HttpPut("AddCategory/{id:length(24)}")]
+        public async Task<ActionResult> AddBookToCategory(string Id, string categoryName)
+        {
+            // Get book
+            // Get category
+            // use AddBookToCategoryService
+            return NoContent();
+        }
+
+        // TODO: Admin validation
+        [HttpDelete("{id:length(24)}")]
+        public async Task<ActionResult> DeleteBook(string id, bool usedBook)
+        {
+            // TODO: Use real GetBook method when added.
+            var bookToDelete = await _bookService.GetByIdTest(id);
+            if (bookToDelete == null) return NotFound();
+
+            var deletedSuccesfully = await _bookService.DeleteBook(bookToDelete, usedBook);
+            if (!deletedSuccesfully) return BadRequest(deletedSuccesfully);
+            return Ok(deletedSuccesfully);
+
+        }
+
+        // TODO: Admin validation
+        [HttpDelete("PurgeBook/{id:length(24)}")]
+        public async Task<ActionResult> PurgeBook(string id)
+        {
+            // TODO: Use GetBook method when added
+            var bookToPurge = await _bookService.GetByIdTest(id);
+            if (bookToPurge == null) return NotFound();
+            await _bookService.PurgeBook(bookToPurge);
+            return Ok();
+        }
+
+        // TODO: Admin validation
+        [HttpDelete("PurgeEmptyBooks")]
+        public async Task PurgeBook()
+        {
+           await _bookService.PurgeEmptyBooks();
+        }
 
 
         //[HttpPost]

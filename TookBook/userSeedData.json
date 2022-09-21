@@ -1,38 +1,51 @@
-﻿[
+[
+
   {
-    "username": "user1234",
-    "password": "1337",
+    "username": "Username123",
+    "password": "test123",
     "mail": "test123@test.com",
-    "usertype": {
+
+    "userType": {
       "isAdmin": false,
       "isSeller": false
     },
-    "isactive": false,
-    "isblocked": false,
+    "isActive": false,
+    "isBlocked": false,
     "orders": [
-      {
-        "orderId": "",
-        "date": "",
-        "books": []
-      }
+      
     ]
   },
+
   {
-    "username": "Max",
-    "password": "666",
-    "mail": "test666@test.com",
-    "usertype": {
+    "username": "hellothisismyusername",
+    "password": "hej123",
+    "mail": "email@email.com",
+
+    "userType": {
       "isAdmin": false,
       "isSeller": false
     },
-    "isactive": false,
-    "isblocked": false,
+    "isActive": false,
+    "isBlocked": false,
     "orders": [
-      {
-        "orderId": "",
-        "date": "",
-        "books": []
-      }
+      
+    ]
+  },
+
+  {
+    "username": "MichaelScott",
+    "password": "1234",
+    "mail": "michaelscott@dundermifflin.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": true
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      
+
     ]
   }
 ]

@@ -22,13 +22,13 @@
 
         public string Mail { get; set; } = "";
 
-        [BsonElement("usertype")]
+        [BsonElement("userType")]
         public UserType? UserType { get; set; }
 
-        [BsonElement("isactive")]
+        [BsonElement("isActive")]
         public bool IsActive { get; set; } = false;
 
-        [BsonElement("isblocked")]
+        [BsonElement("isBlocked")]
         public bool IsBlocked { get; set; } = false;
 
         public IEnumerable<Order> Orders { get; set; }
