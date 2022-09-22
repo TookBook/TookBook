@@ -129,6 +129,7 @@
         public async Task AddBookToCategory(Book book, Category category)
         {
             // TODO: Correct "id"-name?
+            // TODO: Figure out how and why and where
             var filter = Builders<Book>.Filter.Eq("_id", book.BookId);
             var update = Builders<Book>.Update.AddToSet("categories", category);
             await _booksCollection.UpdateOneAsync(filter, update);
