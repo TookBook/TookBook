@@ -22,7 +22,7 @@
 
         public string Language { get; set; } = "";
 
-        public IEnumerable<Author> Authors { get; set; }
+        public IEnumerable<Author> Authors { get; set; } = new List<Author>();
 
         public int Year { get; set; }
 

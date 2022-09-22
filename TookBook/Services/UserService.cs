@@ -70,17 +70,31 @@
             return await _userCollection.Find(o => o.Mail == email).FirstAsync();
         }
 
+        /// <summary>
+        /// Updates a user.
+        /// </summary>
+        /// <param name="userToUpdate">The user to update.</param>
         public async Task UpdateUser(User userToUpdate) => await _userCollection.ReplaceOneAsync(x => x.UserId == userToUpdate.UserId, userToUpdate);
 
+        /// <summary>
+        /// Blocks a user.
+        /// </summary>
+        /// <param name="userToBlock">The user to block.</param>
         public async Task BlockUser(User userToBlock)
         {
             //TODO: There has to be a simpler way of updating a single property.. Alternative: Replace entire user.
-            var filter = Builders<User>.Filter.Eq("_id", userToBlock.UserId);
-            var update = Builders<User>.Update.Set("isblocked", true);
-            await _userCollection.UpdateOneAsync(filter, update);
+            //var filter = Builders<User>.Filter.Eq("userId", userToBlock.UserId);
+            //var update = Builders<User>.Update.Set("isblocked", true);
+            //await _userCollection.UpdateOneAsync(filter, update);
+            userToBlock.IsBlocked = true;
+            await UpdateUser(userToBlock);
         }
 
-        public async Task UnBlockUser(User userToUnblock)
+        /// <summary>
+        /// Unblocks a user.
+        /// </summary>
+        /// <param name="userToUnblock">The user to unblock.</param>
+        public async Task UnblockUser(User userToUnblock)
         {
             //TODO: Replace entire user, or update single field in user object using filter/update.set?
             userToUnblock.IsBlocked = false;

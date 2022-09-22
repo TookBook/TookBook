@@ -68,6 +68,14 @@
             _book.Authors.FirstOrDefault().LastName.ToLower().Contains(author.ToLower())).ToListAsync();
         }
 
+        //public async Task<List<Book>> GetBooksByAuthorAsyncTest(string authorFirstname)
+        //{
+        //    var searchProjection = Builders<Book>.Projection.Expression(x => x.Authors.Where(author => author.FirstName == authorFirstname));
+
+        //    return _booksCollection.Find(_ => true).Project(searchProjection).ToList();
+        //}
+
+
         //Program crash when called in Controller. Have not tested in swagger
         /// <summary>
         /// Checks if buying a book is possible
@@ -99,6 +107,11 @@
 
 
 
+        /// <summary>
+        /// Returns a book by searching for the bookId
+        /// </summary>
+        /// <param name="id">The bookId.</param>
+        /// <returns></returns>
         public async Task<Book> GetBookById(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
 
 
@@ -109,10 +122,10 @@
         public async Task UpdateBook(Book bookWithUpdatedInfo) => await _booksCollection.ReplaceOneAsync(x => x.BookId == bookWithUpdatedInfo.BookId, bookWithUpdatedInfo);
 
         /// <summary>
-        /// Adds a new category to an existing boko.
+        /// Adds a new category to an existing book.
         /// </summary>
-        /// <param name="book">The book.</param>
-        /// <param name="category">The category.</param>
+        /// <param name="book">The book to be updated.</param>
+        /// <param name="category">The category</param>
         public async Task AddBookToCategory(Book book, Category category)
         {
             // TODO: Correct "id"-name?
@@ -122,7 +135,7 @@
         }
 
         /// <summary>
-        /// Deletes a book by decreasing the instock property by one. 
+        /// Deletes a book by decreasing the instock property by one.
         /// </summary>
         /// <param name="bookToDelete">The book to delete.</param>
         /// <param name="deleteUsedBook">if set to <c>true</c>, deletes a book from the used stock.</param>

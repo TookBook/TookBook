@@ -30,5 +30,19 @@ namespace TookBook.Controllers
                 return NotFound();
             return Ok(categories);
         }
+
+        /// <summary>
+        /// Creates a new category in the database from the sent in JSON-object.
+        /// </summary>
+        /// <param name="newCategory">The new category.</param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<ActionResult> CreateCategory(Category newCategory)
+        {
+            var categoryExists = await _categoryService.GetCategoryByName(newCategory.CategoryName);
+            if (categoryExists != null) return BadRequest("A category with that name already exists");
+            await _categoryService.AddCategory(newCategory);
+            return Ok();
+        }
     };
 }
