@@ -13,6 +13,7 @@ namespace TookBook.Controllers
 
         public CategoryController(CategoryService categoryService) => _categoryService = categoryService;
 
+        //Tested in swagger /Max
         [HttpGet("AllCategories")]
         public async Task<ActionResult<List<Category>>> Get()
         {
@@ -22,6 +23,7 @@ namespace TookBook.Controllers
             return Ok(categories);
         } //Do we need to return ok? cant we just return the list even if empty, frontend wont care
 
+        //Tested in swagger /Max
         [HttpGet("FilteredCategories")]
         public async Task<ActionResult<List<Category>>> GetFiltered(string keyword)
         {
