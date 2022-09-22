@@ -26,7 +26,9 @@ import Avatar from '@mui/material/Avatar';
 
 
 const SignUpForm = () => {
-
+	//TODO: Change register to "Send activation code."
+	//TODO: When click on "send activationcode", create pop up with "check your email for your activation code."
+	//TODO: Info; enter activation code to receive password. (temp password?)
 	const [usernameField, setUsernameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 	const [emailField, setEmailField] = useState("")

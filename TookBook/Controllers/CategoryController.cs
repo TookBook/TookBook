@@ -38,12 +38,24 @@ namespace TookBook.Controllers
         /// </summary>
         /// <param name="newCategory">The new category.</param>
         /// <returns></returns>
+        // TODO: Admin validation
         [HttpPost]
         public async Task<ActionResult> CreateCategory(Category newCategory)
         {
             var categoryExists = await _categoryService.GetCategoryByName(newCategory.CategoryName);
             if (categoryExists != null) return BadRequest("A category with that name already exists");
             await _categoryService.AddCategory(newCategory);
+            return Ok();
+        }
+
+
+        // TODO: Admin validation
+        [HttpPut("{id:length(24)}")]
+        public async Task<ActionResult> UpdateCategory(string id, Category categoryUpdate)
+        {
+            var categoryToUpdate = _categoryService.GetCategoryById(id);
+            if (categoryToUpdate == null) return NotFound();
+            await _categoryService.UpdateCategory(categoryUpdate);
             return Ok();
         }
     };

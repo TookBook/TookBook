@@ -108,27 +108,35 @@
             await UpdateUser(userToChange);
         }
 
-        public async Task Promote(User user)
+        public async Task<bool> Promote(User user)
         {
+            if (user.UserType.IsAdmin) return await Task.FromResult(false);
             user.UserType.IsAdmin = true;
             await UpdateUser(user);
+            return await Task.FromResult(true);
         }
 
-        public async Task Demote(User user)
+        public async Task<bool> Demote(User user)
         {
+            if (!user.UserType.IsAdmin) return await Task.FromResult(false);
             user.UserType.IsAdmin = false;
             await UpdateUser(user);
+            return await Task.FromResult(true);
         }
 
-        public async Task InactivateUser(User user)
+        public async Task<bool> InactivateUser(User user)
         {
+            if (!user.IsActive) return await Task.FromResult(false);
             user.IsActive = false;
             await UpdateUser(user);
+            return await Task.FromResult(true);
         }
-        public async Task InactivateSeller(User user)
+        public async Task<bool> InactivateSeller(User user)
         {
+            if (!user.UserType.IsSeller) return await Task.FromResult(false);
             user.UserType.IsSeller = false;
             await UpdateUser(user);
+            return await Task.FromResult(true);
         }
 
 
