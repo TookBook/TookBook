@@ -80,7 +80,9 @@ namespace TookBook.Controllers
         }
 
 
-        //TODO: Figure out a way to avoid having to put in category id in.
+        // TODO: Figure out a way to avoid having to put in category id in.
+        // TODO: Redo using filter/builder stuff.
+        // TODO: Admin validation
         [HttpPut("AddCategory/{id:length(24)}")]
         public async Task<ActionResult> AddCategoryToBook(string id, Category category)
         {
@@ -88,6 +90,15 @@ namespace TookBook.Controllers
             if (bookToUpdate == null) return NotFound();
             await _bookService.AddCategoryToBook(bookToUpdate, category);
             return Ok();
+        }
+
+        // TODO: Orka
+        [HttpDelete("DeleteCategory")]
+        public async Task<ActionResult> DeleteCategoryFromBooks(Category category)
+        {
+            // Get all books where x in Category matches category(param).id/name/whatever
+            // If there are no books with that category, delete the category
+            return NoContent();
         }
 
         /// <summary>
