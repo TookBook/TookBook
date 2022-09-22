@@ -80,13 +80,13 @@ namespace TookBook.Controllers
         }
 
 
-        //TODO: Figure out how filter/update works to update a single field in a collection
+        //TODO: Figure out a way to avoid having to put in category id in.
         [HttpPut("AddCategory/{id:length(24)}")]
-        public async Task<ActionResult> AddBookToCategory(string id, Category category)
+        public async Task<ActionResult> AddCategoryToBook(string id, Category category)
         {
             var bookToUpdate = await _bookService.GetBookById(id);
             if (bookToUpdate == null) return NotFound();
-            await _bookService.AddBookToCategory(bookToUpdate, category);
+            await _bookService.AddCategoryToBook(bookToUpdate, category);
             return Ok();
         }
 
