@@ -21,7 +21,7 @@
             _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.CategoryCollectionName);
         }
 
-        //Tested in swagger, only returns empty array?? why??
+        //Tested in swagger /Max
         /// <summary>
         /// Gets a list containing all categories
         /// </summary>
@@ -31,7 +31,7 @@
             return await _categoryCollection.Find(_category => true).ToListAsync();
         }
 
-        //Tested in swagger, only returns empty array?? why??
+        //Tested in swagger /Max
         /// <summary>
         /// Gets a filtered list with categories that contains the keyword.
         /// </summary>
