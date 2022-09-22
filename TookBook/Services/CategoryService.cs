@@ -64,5 +64,10 @@
 
         public async Task UpdateCategory(Category categoryToUpdate) => await _categoryCollection.ReplaceOneAsync(x => x.Id == categoryToUpdate.Id, categoryToUpdate);
 
+        public async Task UpdateCategoryName(Category categoryToUpdate, string newCatName)
+        {
+            categoryToUpdate.CategoryName = newCatName;
+            await UpdateCategory(categoryToUpdate);
+        }
     }
 }

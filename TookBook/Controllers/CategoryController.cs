@@ -48,14 +48,19 @@ namespace TookBook.Controllers
             return Ok();
         }
 
-
-        // TODO: Admin validation
+        /// <summary>
+        /// Updates an existing category name.
+        /// </summary>
+        /// <param name="id">The ID of the category to update.</param>
+        /// <param name="newCategoryname">The updated name of the category.</param>
+        /// <returns></returns>
+        //TODO: Admin validation
         [HttpPut("{id:length(24)}")]
-        public async Task<ActionResult> UpdateCategory(string id, Category categoryUpdate)
+        public async Task<ActionResult> UpdateCategory(string id, string newCategoryname)
         {
-            var categoryToUpdate = _categoryService.GetCategoryById(id);
+            var categoryToUpdate = await _categoryService.GetCategoryById(id);
             if (categoryToUpdate == null) return NotFound();
-            await _categoryService.UpdateCategory(categoryUpdate);
+            await _categoryService.UpdateCategoryName(categoryToUpdate, newCategoryname);
             return Ok();
         }
     };
