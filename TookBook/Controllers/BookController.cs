@@ -90,6 +90,28 @@ namespace TookBook.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Updates a book with the sent in JSON data.
+        /// </summary>
+        /// <param name="id">The ID of the book to update.</param>
+        /// <param name="bookUpdate">The JSON data which will be used to update the book.</param>
+        /// <returns></returns>
+        // TODO: Admin validation
+        [HttpPut("{id:length(24)}")]
+        public async Task<ActionResult> UpdateBook(string id, Book bookUpdate)
+        {
+            var bookToUpdate = await _bookService.GetBookById(id);
+            if (bookToUpdate == null) return NotFound();
+            await _bookService.UpdateBook(bookUpdate);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Deletes a book by decreasing the amount currently in stock.
+        /// </summary>
+        /// <param name="id">The book to be deleted.</param>
+        /// <param name="usedBook">Whether the book is used or new. </param>
+        /// <returns></returns>
         // TODO: Admin validation
         [HttpDelete("{id:length(24)}")]
         public async Task<ActionResult> DeleteBook(string id, bool usedBook)
@@ -104,6 +126,11 @@ namespace TookBook.Controllers
 
         }
 
+        /// <summary>
+        /// Deletes a book by removing it from the database.
+        /// </summary>
+        /// <param name="id">The book to be deleted.</param>
+        /// <returns></returns>
         // TODO: Admin validation
         [HttpDelete("PurgeBook/{id:length(24)}")]
         public async Task<ActionResult> PurgeBook(string id)
@@ -115,12 +142,13 @@ namespace TookBook.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Removes all books from the database where the total inStock count is zero.
+        /// </summary>
+        /// <returns></returns>
         // TODO: Admin validation
         [HttpDelete("PurgeEmptyBooks")]
-        public async Task PurgeBook()
-        {
-           await _bookService.PurgeEmptyBooks();
-        }
+        public async Task PurgeBook() => await _bookService.PurgeEmptyBooks();
 
 
         //[HttpPost]

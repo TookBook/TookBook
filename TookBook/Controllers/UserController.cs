@@ -58,5 +58,52 @@
             }
             return Ok(user.Mail + " " + user.UserName);
         }
+
+
+        /// <summary>
+        /// Blocks the user.
+        /// </summary>
+        /// <param name="id">The id of the user to be blocked.</param>
+        /// <returns></returns>
+        // TODO: Admin validation.
+        [HttpPut("BlockUser/{id:length(24)}")]
+        public async Task<ActionResult> BlockUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            await _userService.BlockUser(user);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Unblocks the user.
+        /// </summary>
+        /// <param name="id">The id of the user to be unblocked.</param>
+        /// <returns></returns>
+        // TODO: Admin validation.
+        [HttpPut("UnblockUser/{id:length(24)}")]
+        public async Task<ActionResult> UnblockUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            await _userService.UnblockUser(user);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Updates a user with a new password.
+        /// </summary>
+        /// <param name="id">ID of the user to update.</param>
+        /// <param name="newPassword">The new password.</param>
+        /// <returns></returns>
+        // TODO: Admin + password verification.
+        [HttpPut("ChangePass/{id:length(24)}")]
+        public async Task<ActionResult> ChangeUserPassword(string id, string newPassword)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            await _userService.ChangeUserPass(user, newPassword);
+            return Ok();
+        }
     };
 }

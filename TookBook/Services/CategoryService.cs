@@ -41,18 +41,26 @@
         {
             return await _categoryCollection.Find(_category =>_category.CategoryName.Contains(keyword)).ToListAsync();  //kan man inte bara ta kalla p� alla och sen filtrera i frontend? ist�llet f�r att filtrera innan?
         }
-    
-        public async Task<bool> AddCategory(string categoryName)
-        {
-            // TODO: Check if the category doesn't already exist using existing method?
-            Category newCategory = new();
-            newCategory.CategoryName = categoryName;
 
-            var catAlreadyExist = _categoryCollection.Find(x => x.CategoryName == categoryName).FirstOrDefaultAsync();
-            if (catAlreadyExist != null) return await Task.FromResult(false);
-            await _categoryCollection.InsertOneAsync(newCategory);
-            return await Task.FromResult(true);
-        }
+        /// <summary>
+        /// Gets a category by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public async Task<Category> GetCategoryById(string id) => await _categoryCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+        /// <summary>
+        /// Gets a category by name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public async Task<Category> GetCategoryByName(string name) => await _categoryCollection.Find(x => x.CategoryName.ToLower() == name.ToLower()).FirstOrDefaultAsync();
+
+        /// <summary>
+        /// Adds the sent in category to the database.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        public async Task AddCategory(Category category) => await _categoryCollection.InsertOneAsync(category);
+
     }
 }
-
