@@ -62,5 +62,7 @@
         /// <param name="category">The category.</param>
         public async Task AddCategory(Category category) => await _categoryCollection.InsertOneAsync(category);
 
+        public async Task UpdateCategory(Category categoryToUpdate) => await _categoryCollection.ReplaceOneAsync(x => x.Id == categoryToUpdate.Id, categoryToUpdate);
+
     }
 }

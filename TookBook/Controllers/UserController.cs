@@ -105,5 +105,54 @@
             await _userService.ChangeUserPass(user, newPassword);
             return Ok();
         }
+
+
+        // TODO: Admin validation.
+        [HttpPut("PromoteUser/{id:length(24)}")]
+        public async Task<ActionResult> PromoteUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            var userPromoted = await _userService.Promote(user);
+            if (!userPromoted) return BadRequest("User appears to be an admin already.");
+            return Ok();
+
+        }
+
+        // TODO: Admin validation.
+        [HttpPut("DemoteUser/{id:length(24)}")]
+        public async Task<ActionResult> DemoteUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            var userPromoted = await _userService.Demote(user);
+            if (!userPromoted) return BadRequest("User is not an admin.");
+            return Ok();
+
+        }
+
+        // TODO: Admin validation.
+        [HttpPut("InactivateUser/{id:length(24)}")]
+        public async Task<ActionResult> InactivateUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            var userPromoted = await _userService.InactivateUser(user);
+            if (!userPromoted) return BadRequest("User is inactive.");
+            return Ok();
+
+        }
+
+        // TODO: Admin validation.
+        [HttpPut("InactivateSeller/{id:length(24)}")]
+        public async Task<ActionResult> InactivateSeller(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            var userPromoted = await _userService.InactivateSeller(user);
+            if (!userPromoted) return BadRequest("User is not a seller.");
+            return Ok();
+
+        }
     };
 }
