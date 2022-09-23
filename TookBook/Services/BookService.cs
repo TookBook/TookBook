@@ -126,11 +126,13 @@
         /// </summary>
         /// <param name="book">The book to be updated.</param>
         /// <param name="category">The category</param>
-        public async Task AddCategoryToBook(Book book, Category category)
+        public async Task AddCategoryToBook(Book book, string categoryName)
         {
             // TODO: Figure out how and why and where
             var filter = Builders<Book>.Filter.Eq(x => x.BookId, book.BookId);
-            var update = Builders<Book>.Update.AddToSet("categories", category);
+            var categoryFilter = Builders<Category>.Filter.Eq(x => x.CategoryName, categoryName);
+            var update = Builders<Book>.Update.Push("categories", categoryFilter);
+            Console.WriteLine(categoryFilter.ToString());
             await _booksCollection.UpdateOneAsync(filter, update);
         }
 

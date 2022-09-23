@@ -84,11 +84,11 @@ namespace TookBook.Controllers
         // TODO: Redo using filter/builder stuff.
         // TODO: Admin validation
         [HttpPut("AddCategory/{id:length(24)}")]
-        public async Task<ActionResult> AddCategoryToBook(string id, Category category)
+        public async Task<ActionResult> AddCategoryToBook(string id, string categoryName)
         {
             var bookToUpdate = await _bookService.GetBookById(id);
             if (bookToUpdate == null) return NotFound();
-            await _bookService.AddCategoryToBook(bookToUpdate, category);
+            await _bookService.AddCategoryToBook(bookToUpdate, categoryName);
             return Ok();
         }
 
