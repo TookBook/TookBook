@@ -35,13 +35,9 @@ const Navbar = () => {
 						<MenuIcon fontSize='5rem'></MenuIcon>
 					</IconButton>
 
-					<Box display="flex" alignItems="center">
-						<Typography variant='h5' component="div">Logo</Typography>
-						<Typography
-							variant="h3"
-							component="h1">
-							Tookbook
-						</Typography>
+					<Box display="flex" alignItems="center" sx={{background: "gray", heigth: "1.5em", width: "4.5em"}}>
+						<Typography variant='logoTook' sx={{color: "black"}}> Took</Typography>
+						<Typography variant="logoBook"sx={{color: "white"}}>Book</Typography>
 					</Box>
 
 					<Searchbar />
