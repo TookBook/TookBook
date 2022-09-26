@@ -39,23 +39,21 @@
         /// <returns>Filtered book list</returns>
         public async Task<List<Book>> GetFilteredAsync(string keyword)
         {
-            return await _booksCollection.Find(_book => _book.Title.ToLower().Contains(keyword.ToLower())).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
+            return await _booksCollection.Find(_book => _book.Title.ToLower().Contains(keyword)).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
         }
 
-        //Tested in swagger and does not work /Max
+        //Tested in swagger /Max
         /// <summary>
         /// Gets a list of books in a certain category.
         /// </summary>
         /// <param name="category"></param>
         /// <returns>List of books in a category.</returns>
-        public async Task<List<Book>> GetBooksInCategoryAsync(Category category)
+        public async Task<List<Book>> GetBooksInCategoryAsync(string category)
         {
-            return await _booksCollection.Find(_book => _book.Categories.Contains(category)).ToListAsync();
+            return await _booksCollection.Find(_book => _book.Categories.Any(_category => _category.CategoryName == category)).ToListAsync();
         }
 
-        //Tested in swagger and does not work /Max
-        // Foreach does not work with _booksCollection and First() is not valid in swagger
-        // so idk how to get to authors[]
+        //Tested in swagger /Max
         /// <summary>
         /// Gets a list of books by a certain author.
         /// </summary>
@@ -64,16 +62,9 @@
         public async Task<List<Book>> GetBooksByAuthorAsync(string author)
         {
             return await _booksCollection.Find(_book =>
-            _book.Authors.FirstOrDefault().FirstName.ToLower().Contains(author.ToLower()) || 
-            _book.Authors.FirstOrDefault().LastName.ToLower().Contains(author.ToLower())).ToListAsync();
+            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) || 
+            _author.LastName.ToLower().Contains(author))).ToListAsync();
         }
-
-        //public async Task<List<Book>> GetBooksByAuthorAsyncTest(string authorFirstname)
-        //{
-        //    var searchProjection = Builders<Book>.Projection.Expression(x => x.Authors.Where(author => author.FirstName == authorFirstname));
-
-        //    return _booksCollection.Find(_ => true).Project(searchProjection).ToList();
-        //}
 
 
         //Program crash when called in Controller. Have not tested in swagger
