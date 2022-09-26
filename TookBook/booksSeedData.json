@@ -2,8 +2,14 @@
   {
     "title": "Bookiest book",
     "categories": [
-      { "categoryName": "drama" },
-      { "categoryName": "romance" }
+      {
+        "_id": "632c1938fc13ae57f6000455",
+        "categoryName": "Drama"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000463",
+        "categoryName": "Romance"
+      }
     ],
     "language": "English",
     "authors": [
@@ -14,6 +20,7 @@
     ],
     "year": 1980,
     "inStock": {
+      "total": 4,
       "new": 1,
       "used": 3
     },
@@ -25,8 +32,14 @@
   {
     "title": "Another book",
     "categories": [
-      { "categoryName": "comedy" },
-      { "categoryName": "fantasy" }
+      {
+        "_id": "632c1938fc13ae57f6000478",
+        "categoryName": "Comedy"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      }
     ],
     "language": "English",
     "authors": [
@@ -37,6 +50,7 @@
     ],
     "year": 1980,
     "inStock": {
+      "total": 5,
       "new": 5,
       "used": 0
     },
@@ -49,7 +63,10 @@
   {
     "title": "More book",
     "categories": [
-      { "categoryName": "horror" }
+      {
+        "_id": "632c1938fc13ae57f600045e",
+        "categoryName": "Horror"
+      }
     ],
     "language": "English",
     "authors": [
@@ -60,11 +77,14 @@
     ],
     "year": 1980,
     "inStock": {
+      "total": 1,
       "new": 0,
       "used": 1
     },
     "price": 19,
-    "seller": "Företag",
+
+    "seller": "FÃ¶retag",
     "bookInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+
   }
 ]

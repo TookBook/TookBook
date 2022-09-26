@@ -40,7 +40,6 @@
             _booksCollection = _database.GetCollection<Book>("Books");
 
             _categoryCollection = _database.GetCollection<Category>("Categories");
-
         }
 
         /// <summary>

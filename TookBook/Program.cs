@@ -13,7 +13,7 @@ builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("Mo
 //builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.g));
 builder.Services.AddSingleton<BookService>();
 builder.Services.AddSingleton<UserService>();
-//builder.Services.AddSingleton<CategoryService>();
+builder.Services.AddSingleton<CategoryService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 
@@ -23,6 +23,7 @@ if (app.Environment.IsDevelopment())
 {
     MongoDBSeeder dbSeed = new();
     dbSeed.ReseedMockData();
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

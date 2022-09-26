@@ -23,10 +23,10 @@ let theme = createTheme({
 			*/
 	palette: {
 		primary: {
-			main: "#A6B727"
+			main: "#6D597A"
 		},
 		secondary: {
-			main: "#325044"
+			main: "#6D597A"
 		},
 		teritary: defaultTheme.palette.augmentColor({
 			color: { main: "#faf0e6" },
@@ -42,6 +42,14 @@ let theme = createTheme({
 		})
 
 	},
+	typography:{
+		logoTook:{
+			fontFamily: "Raleway"
+		},
+		logoBook:{
+			fontFamily: "Raleway Dots"
+		}	
+	}
 	/** Section to add custom fonts, requires font to be imported in index.html first. Use fontFamily array at the bottom to assign fallback fonts */
 	// typography: {
 	// 	h1: {

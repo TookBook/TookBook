@@ -20,11 +20,127 @@
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _userCollection = database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
         }
-
+        //Tested in swagger /Max
+        /// <summary>
+        /// Gets a list containing all users
+        /// </summary>
+        /// <returns> Lists of users </returns>
         public async Task<List<User>> GetAsync()
         {
             return await _userCollection.Find(_user => true).ToListAsync();
         }
+
+        /// <summary>
+        /// Gets a user by id
+        /// </summary>
+        /// <param name="id">The userId.</param>
+        /// <returns></returns>
+        public async Task<User> GetUserById(string id) => await _userCollection.Find(x => x.UserId == id).FirstOrDefaultAsync();
+
+        //Tested in swagger /Max
+        /// <summary>
+        /// Returns the first user whos username and password matches the username and password input
+        /// </summary>
+        /// <param name="username"> the username</param>
+        /// <param name="password"> the password</param>
+        /// <returns> User if user exists, otherwise null</returns>
+        public async Task<User> LoginAsync(string username, string password)
+        {
+            return await _userCollection.Find(o => o.UserName == username && o.Password == password).FirstAsync();
+        }
+
+        //Tested in swagger /Max
+        /// <summary>
+        /// If a user whos username or email matches input is found, return user. 
+        /// </summary>
+        /// <param name="usernameOrEmail"> username or email </param>
+        /// <returns> User if user exists, otherwise null</returns>
+        public async Task<User> ForgotPasswordAsync(string usernameOrEmail)
+        {
+            return await _userCollection.Find(o => o.UserName == usernameOrEmail || o.Mail == usernameOrEmail).FirstAsync();
+        }
+
+        //Tested in swagger /Max
+        /// <summary>
+        /// If a user whos email mathes input is found, return user.
+        /// </summary>
+        /// <param name="email">The email</param>
+        /// <returns>User if user exists, otherwise null</returns>
+        public async Task<User> ForgotUsernameAsync(string email)
+        {
+            return await _userCollection.Find(o => o.Mail == email).FirstAsync();
+        }
+
+        /// <summary>
+        /// Updates a user.
+        /// </summary>
+        /// <param name="userToUpdate">The user to update.</param>
+        public async Task UpdateUser(User userToUpdate) => await _userCollection.ReplaceOneAsync(x => x.UserId == userToUpdate.UserId, userToUpdate);
+
+        /// <summary>
+        /// Blocks a user.
+        /// </summary>
+        /// <param name="userToBlock">The user to block.</param>
+        public async Task BlockUser(User userToBlock)
+        {
+            //TODO: There has to be a simpler way of updating a single property.. Alternative: Replace entire user.
+            //var filter = Builders<User>.Filter.Eq("userId", userToBlock.UserId);
+            //var update = Builders<User>.Update.Set("isblocked", true);
+            //await _userCollection.UpdateOneAsync(filter, update);
+            userToBlock.IsBlocked = true;
+            await UpdateUser(userToBlock);
+        }
+
+        /// <summary>
+        /// Unblocks a user.
+        /// </summary>
+        /// <param name="userToUnblock">The user to unblock.</param>
+        public async Task UnblockUser(User userToUnblock)
+        {
+            //TODO: Replace entire user, or update single field in user object using filter/update.set?
+            userToUnblock.IsBlocked = false;
+            await UpdateUser(userToUnblock);
+        }
+
+        public async Task ChangeUserPass(User userToChange, string newPassword)
+        {
+            // TODO: Password validation?
+            userToChange.Password = newPassword;
+            await UpdateUser(userToChange);
+        }
+
+        public async Task<bool> Promote(User user)
+        {
+            if (user.UserType.IsAdmin) return await Task.FromResult(false);
+            user.UserType.IsAdmin = true;
+            await UpdateUser(user);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> Demote(User user)
+        {
+            if (!user.UserType.IsAdmin) return await Task.FromResult(false);
+            user.UserType.IsAdmin = false;
+            await UpdateUser(user);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> InactivateUser(User user)
+        {
+            if (!user.IsActive) return await Task.FromResult(false);
+            user.IsActive = false;
+            await UpdateUser(user);
+            return await Task.FromResult(true);
+        }
+        public async Task<bool> InactivateSeller(User user)
+        {
+            if (!user.UserType.IsSeller) return await Task.FromResult(false);
+            user.UserType.IsSeller = false;
+            await UpdateUser(user);
+            return await Task.FromResult(true);
+        }
+
+
         
         //test
         public async Task<User> GetUserById(string id)
