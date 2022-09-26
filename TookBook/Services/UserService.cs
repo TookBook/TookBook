@@ -25,6 +25,12 @@
         {
             return await _userCollection.Find(_user => true).ToListAsync();
         }
+        
+        //test
+        public async Task<User> GetUserById(string id)
+        {
+            return await _userCollection.Find(x => x.UserId == id).FirstOrDefaultAsync();
+        }
 
         /// <summary>
         /// Returns the user with the same username or email as the input
@@ -37,24 +43,11 @@
             return await _userCollection.Find(x => x.UserName == username || x.Mail == email).FirstOrDefaultAsync();
         }
 
-        //testade en annan approach som jag inte fick funka än /Tiia
-        //public async Task<User> EditProfileAsync(string username, string email, string password)
-        //{
-        //    var filter = Builders<User>.Filter.(x => x.UserName == username || x.Mail == email).FirstAsync();
-        //    var update = Builders<User>.Update.Set("password", password)
-        //                            .Set("username", username)
-        //                            .Set("email", email);
 
-        //    var result = await _userCollection.UpdateOneAsync(filter, update);
-        //    return result;
-        //}
-
-        public async Task<User> EditProfileAsync(User updatedUser)
+        public async Task EditProfileAsync(string id, User updatedUser)
         {
-            return await _userCollection.FindOneAndReplaceAsync(x => x.UserId == updatedUser.UserId, updatedUser);
+            await _userCollection.ReplaceOneAsync(x => x.UserId == id, updatedUser);
         }
-
-
 
 
         //TODO: add ADMIN id /Tiia

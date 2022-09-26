@@ -23,6 +23,7 @@
         public async Task<List<Book>> GetAsync() {
             return await _booksCollection.Find(_book => true).ToListAsync();
         }
+        
         //test för att hämta en bok /Tiia
         public async Task<Book> GetByIdTest(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
 

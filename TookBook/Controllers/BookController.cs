@@ -26,26 +26,23 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
-        //TODO behöver hjälp med denna
-        //[HttpGet("AddBook")]
-        //public async Task<ActionResult> AddToBooks(Book bookToAdd)
-        //{
-        //    //om alla parametrar är korrekta
-        //    //öka antalet böcker i databasen
-        //    //annars skapa en bok med alla parametrar
-        //    if (bookToAdd != )
-        //        return new Book { 
-        //            Title = "Title", 
-        //            Categories = new List<Category>(), 
-        //            Language = "Language", 
-        //            Authors = new List<Author>(), 
-        //            Year = 2021, 
-        //            InStock = new InStock , 
-        //            Price = 1, 
-        //            Seller = "Seller", 
-        //            BookInfo = "BookInfo" };
-        //}
-        
+        //TODO: får en error
+        [HttpGet("AddBook")]
+        public async Task<ActionResult> AddToBooks(Book bookToAdd)
+        {
+            var books = await _bookService.GetAsync();
+            var book = books.FirstOrDefault(x => x.BookId == bookToAdd.BookId); //räcker det med id?
+            if (book == null)
+            {
+                await _bookService.AddBook(bookToAdd);
+                return Ok(books);
+            }
+            else
+                book.InStock.Total++;
+            //update?
+            return Ok(book.InStock.Total);
+
+        }
 
         //doesn't make sense and doesn't work on swagger as it should /Tiia
         [HttpGet("SetAmount")]

@@ -57,13 +57,20 @@
         //}
 
         //TODO lite osäker med att den returnerar en hel json-objekt
-        [HttpGet("EditProfile")]
-        public async Task<ActionResult<User>> EditProfile(User updatedUser)
+        [HttpPost("EditProfile")]
+        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
         {
-            var user = await _userService.EditProfileAsync(updatedUser);
-            if (user == null)
-                return NotFound();
-            return Ok(user);
+            var user = await _userService.GetUserById(id);
+            if (user.Password == password) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
+            {
+                user.UserName = username;
+                user.Mail = email;
+                await _userService.EditProfileAsync(user.UserId, user);
+                return Ok(user);
+            }
+
+            return NotFound(); //eventuellt returnera en annan statuskod?
+
         }
 
         //Testat med Swagger /Tiia
