@@ -46,16 +46,6 @@
             return NotFound();
         }
 
-        ////TODO not ready
-        //[HttpGet("EditProfile")]
-        //public async Task<ActionResult<User>> EditProfile(string username, string email, string password)
-        //{
-        //    var user = await _userService.EditProfileAsync(username, email, password);
-        //    if (user == null)
-        //        return NotFound();
-        //    return Ok(user);
-        //}
-
         //TODO lite osäker med att den returnerar en hel json-objekt
         [HttpPost("EditProfile")]
         public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
@@ -104,12 +94,12 @@
 
 
         //TODO lägg till activation code
-        [HttpGet("ActivateUser")]
-        public async Task ActivateAccount(User accountToActivate)
-        {
-            if (accountToActivate == null)
-            await _userService.ActivateAccountAsync(accountToActivate);
-        }
+        //[HttpGet("ActivateUser")]
+        //public async Task ActivateAccount(User accountToActivate)
+        //{
+        //    if (accountToActivate == null)
+        //    await _userService.ActivateAccountAsync(accountToActivate);
+        //}
 
         ////ActivateSeller
         //public async Task<ActionResult<UserType>> ActivateSeller(string id)
