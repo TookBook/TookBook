@@ -18,7 +18,8 @@ namespace TookBook.Controllers
 
         //Tested in swagger /Max
         [HttpGet("AllBooks")]
-        public async Task<ActionResult<List<Book>>> Get() {
+        public async Task<ActionResult<List<Book>>> Get()
+        {
             var books = await _bookService.GetAsync();
             if (books == null)
                 return NotFound();
@@ -160,8 +161,8 @@ namespace TookBook.Controllers
 
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> Delete(string id) { }
-    };
-}
+
+
         //TODO: får en error
         [HttpGet("AddBook")]
         public async Task<ActionResult> AddToBooks(Book bookToAdd)
@@ -180,17 +181,15 @@ namespace TookBook.Controllers
 
         }
 
-        //doesn't make sense and doesn't work on swagger as it should /Tiia
-        [HttpGet("SetAmount")]
-        public async Task<ActionResult> SetAmount(Book bookToBeChanged, int amount)
-        {
-            var book = await _bookService.GetByIdTest(bookToBeChanged.BookId);
-            if (book == null)
-                return NotFound();
-            await _bookService.SetAmountAsync(bookToBeChanged, amount);
-            return Ok(bookToBeChanged);
-        }
-        
-            
+        //[HttpGet("SetAmount")]
+        //public async Task<ActionResult> SetAmount(Book bookToBeChanged, int amount)
+        //{
+        //    var book = await _bookService.GetByIdTest(bookToBeChanged.BookId);
+        //    if (book == null)
+        //        return NotFound();
+        //    await _bookService.SetAmountAsync(bookToBeChanged, amount);
+        //    return Ok(bookToBeChanged);
+        //}
+
     }
-};
+}

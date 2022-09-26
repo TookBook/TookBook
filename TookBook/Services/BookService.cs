@@ -41,7 +41,7 @@
         {
             return await _booksCollection.Find(_book => _book.Title.ToLower().Contains(keyword)).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
         }
-        
+
         //test för att hämta en bok /Tiia
         public async Task<Book> GetByIdTest(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
 
@@ -54,6 +54,9 @@
         public async Task<List<Book>> GetBooksInCategoryAsync(string category)
         {
             return await _booksCollection.Find(_book => _book.Categories.Any(_category => _category.CategoryName == category)).ToListAsync();
+
+        }
+
         //TODO: lägg till AddBook
         public async Task<Book> AddBook(Book bookToAdd)
         {
@@ -70,7 +73,7 @@
         public async Task<List<Book>> GetBooksByAuthorAsync(string author)
         {
             return await _booksCollection.Find(_book =>
-            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) || 
+            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) ||
             _author.LastName.ToLower().Contains(author))).ToListAsync();
         }
 
@@ -103,12 +106,6 @@
                 return await Task.FromResult(true);
             return await Task.FromResult(false);
         }
-            bookToBeChanged.InStock.Total = amount;
-            return await _booksCollection.FindOneAndReplaceAsync(x => x.BookId == bookToBeChanged.BookId, bookToBeChanged);
-        }
-    }
-
-
 
         /// <summary>
         /// Returns a book by searching for the bookId
@@ -178,4 +175,5 @@
         public async Task PurgeEmptyBooks() => await _booksCollection.DeleteManyAsync(book => book.InStock.Total == 0);
 
 
+    }
 }
