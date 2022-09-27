@@ -42,14 +42,6 @@ let theme = createTheme({
 		})
 
 	},
-	typography:{
-		logoTook:{
-			fontFamily: "Raleway"
-		},
-		logoBook:{
-			fontFamily: "Raleway Dots"
-		}	
-	}
 	/** Section to add custom fonts, requires font to be imported in index.html first. Use fontFamily array at the bottom to assign fallback fonts */
 	// typography: {
 	// 	h1: {
