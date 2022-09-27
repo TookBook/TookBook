@@ -55,20 +55,13 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
-        //THIS ONE CRASHES PROGRAM AT THE MOMENT, DO NOT REMOVE OR UNCOMMENT
-        /*
-        [HttpGet("BuyBook")]
-        public async Task<ActionResult<List<Book>>> BuyBook(Book book, User user, bool used)
-        {
-            var books = await _bookService.BuyBookAsync(book, user, used);
-            if (!books)
-                return NotFound();
-            return Ok();
-        }
-        */
-
-        // Jespertest
-        // Sends a user in JSON form via swagger/frontend in the body of the http request, cant use httpget with a body so httppost is used instead
+        /// <summary>
+        /// Finds out whether a book is available to be bought.
+        /// </summary>
+        /// <param name="id">The id of the book.</param>
+        /// <param name="user">The user who wishes to make a purchase.</param>
+        /// <param name="usedBook">if set to <c>true</c>, checks the used stock.</param>
+        /// <returns></returns>
         [HttpPost("BuyBook/{id:length(24)}")]
         public async Task<ActionResult> BuyBook(string id, User user, bool usedBook)
         {
@@ -76,19 +69,30 @@ namespace TookBook.Controllers
             if (bookToBuy == null) return NotFound();
             if (user.UserType.IsSeller || user.UserType.IsAdmin) return BadRequest("An admin or seller can't buy a book.");
 
-            var bookIsBuyable = await _bookService.BuyBookAsyncTestTestTest(bookToBuy, usedBook);
+            var bookIsBuyable = await _bookService.BuyBookAsync(bookToBuy, usedBook);
             return Ok(bookIsBuyable);
         }
 
 
-        //TODO: Figure out how filter/update works to update a single field in a collection
+        // TODO: Figure out a way to avoid having to put in category id in.
+        // TODO: Redo using filter/builder stuff.
+        // TODO: Admin validation
         [HttpPut("AddCategory/{id:length(24)}")]
-        public async Task<ActionResult> AddBookToCategory(string id, Category category)
+        public async Task<ActionResult> AddCategoryToBook(string id, Category category)
         {
             var bookToUpdate = await _bookService.GetBookById(id);
             if (bookToUpdate == null) return NotFound();
-            await _bookService.AddBookToCategory(bookToUpdate, category);
+            await _bookService.AddCategoryToBook(bookToUpdate, category);
             return Ok();
+        }
+
+        // TODO: This
+        [HttpDelete("DeleteBookCategory")]
+        public async Task<ActionResult> DeleteCategoryFromBooks(Category category)
+        {
+            // Get all books where x in Category matches category(param).id/name/whatever
+            // If there are no books with that category, delete the category
+            return NoContent();
         }
 
         /// <summary>
@@ -151,13 +155,5 @@ namespace TookBook.Controllers
         [HttpDelete("PurgeEmptyBooks")]
         public async Task PurgeBook() => await _bookService.PurgeEmptyBooks();
 
-
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Book book) { }        
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> AddToBooks(string id, [FromBody] string bookId) { }
-
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> Delete(string id) { }
     };
 }

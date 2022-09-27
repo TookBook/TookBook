@@ -63,5 +63,20 @@ namespace TookBook.Controllers
             await _categoryService.UpdateCategoryName(categoryToUpdate, newCategoryname);
             return Ok();
         }
+
+        /// <summary>
+        /// Deletes an existing category.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        //TODO: Admin validation
+        [HttpDelete("{id:length(24)}")]
+        public async Task<ActionResult> DeleteCategory (string id)
+        {
+            var categoryToDelete = await _categoryService.GetCategoryById(id);
+            if (categoryToDelete == null) return NotFound();
+            await _categoryService.DeleteCategory(categoryToDelete);
+            return Ok();
+        }
     };
 }

@@ -62,8 +62,23 @@
         /// <param name="category">The category.</param>
         public async Task AddCategory(Category category) => await _categoryCollection.InsertOneAsync(category);
 
+        /// <summary>
+        /// Updates the category.
+        /// </summary>
+        /// <param name="categoryToUpdate">The category to update.</param>
         public async Task UpdateCategory(Category categoryToUpdate) => await _categoryCollection.ReplaceOneAsync(x => x.Id == categoryToUpdate.Id, categoryToUpdate);
 
+        /// <summary>
+        /// Deletes the category.
+        /// </summary>
+        /// <param name="categoryToDelete">The category to delete.</param>
+        public async Task DeleteCategory(Category categoryToDelete) => await _categoryCollection.DeleteOneAsync(x => x.Id == categoryToDelete.Id);
+
+        /// <summary>
+        /// Updates the name of the category.
+        /// </summary>
+        /// <param name="categoryToUpdate">The category to update.</param>
+        /// <param name="newCatName">New name of the cat.</param>
         public async Task UpdateCategoryName(Category categoryToUpdate, string newCatName)
         {
             categoryToUpdate.CategoryName = newCatName;
