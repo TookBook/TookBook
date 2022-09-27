@@ -35,9 +35,10 @@ const Navbar = () => {
 						<MenuIcon fontSize='5rem'></MenuIcon>
 					</IconButton>
 
-					<Box display="flex" alignItems="center" sx={{background: "gray", heigth: "1.5em", width: "4.5em"}}>
-						<Typography variant='logoTook' sx={{color: "black"}}> Took</Typography>
-						<Typography variant="logoBook"sx={{color: "white"}}>Book</Typography>
+					{/* TODO: Make clickable and working */}
+					<Box display="flex" alignItems="center" sx={{cursor: "pointer", heigth: "1.5em", width: "5.2em", marginTop: ".5em", transform: "scale(1.6)"}}>
+						<Typography sx={{fontFamily: "Raleway", color: "black", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none"}}>Took</Typography>	
+						<Typography sx={{fontFamily: "Raleway", color: "white", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none"}}>Book</Typography>
 					</Box>
 
 					<Searchbar />

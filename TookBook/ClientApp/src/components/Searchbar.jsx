@@ -21,7 +21,6 @@ const Searchbar = () => {
 
 		<Box bgcolor={alpha(theme.palette.common.white, 0.15)} position="relative" display="flex" borderRadius="3px">
 
-
 			<Autocomplete
 				disablePortal
 				id="book-search"

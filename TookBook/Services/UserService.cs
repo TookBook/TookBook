@@ -19,6 +19,7 @@
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _userCollection = database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
         }
+
         //Tested in swagger /Max
         /// <summary>
         /// Gets a list containing all users
@@ -139,6 +140,16 @@
             return await Task.FromResult(true);
         }
 
+        public async Task AddUserAsync(string email, string username, string password)
+        {
+            User user = new();
+            user.UserName = username;
+            user.Mail = email;
+            user.Password = password;
+            UserType type = new();
+            user.UserType = type;
+            await _userCollection.InsertOneAsync(user);
+        }
 
     }
 }
