@@ -36,7 +36,8 @@ namespace TookBook.Controllers
 
         //Tested in swagger and does not work /Max
         [HttpGet("BooksInCategory")]
-        public async Task<ActionResult<List<Book>>> GetBooksInCategory(Category category)
+        //[HttpPost("BooksInCategory/{id:length(24)}")]
+        public async Task<ActionResult<List<Book>>> GetBooksInCategory(string category)
         {
             var books = await _bookService.GetBooksInCategoryAsync(category);
             if (books == null)

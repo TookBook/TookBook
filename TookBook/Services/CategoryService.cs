@@ -39,7 +39,7 @@
         /// <returns>Filtered category list.</returns>
         public async Task<List<Category>> GetFilteredAsync(string keyword)
         {
-            return await _categoryCollection.Find(_category =>_category.CategoryName.Contains(keyword)).ToListAsync();  //kan man inte bara ta kalla p� alla och sen filtrera i frontend? ist�llet f�r att filtrera innan?
+            return await _categoryCollection.Find(_category =>_category.CategoryName.ToLower().Contains(keyword.ToLower())).ToListAsync();  //kan man inte bara ta kalla p� alla och sen filtrera i frontend? ist�llet f�r att filtrera innan?
         }
 
         /// <summary>
