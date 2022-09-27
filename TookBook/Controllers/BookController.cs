@@ -164,22 +164,21 @@ namespace TookBook.Controllers
 
 
         //TODO: får en error
-        [HttpGet("AddBook")]
-        public async Task<ActionResult> AddToBooks(Book bookToAdd)
-        {
-            var books = await _bookService.GetAsync();
-            var book = books.FirstOrDefault(x => x.BookId == bookToAdd.BookId); //räcker det med id?
-            if (book == null)
-            {
-                await _bookService.AddBook(bookToAdd);
-                return Ok(books);
-            }
-            else
-                book.InStock.Total++;
-            //update?
-            return Ok(book.InStock.Total);
-
-        }
+        //[HttpGet("AddBook")]
+        //public async Task<ActionResult> AddToBooks(Book bookToAdd)
+        //{
+        //    //var books = await _bookService.GetAsync();
+        //    //var book = books.FirstOrDefault(x => x.BookId == bookToAdd.BookId); //räcker det med id?
+        //    var book = await _bookService.CreateBook(bookToAdd);
+        //    if (book == null)
+        //    {
+        //        await _bookService.AddBook(bookToAdd);
+        //        return Ok(books);
+        //    }
+        //        book.InStock.Total++;
+        //    //update?
+        //    return Ok(book.InStock.Total);
+        //}
 
         //[HttpGet("SetAmount")]
         //public async Task<ActionResult> SetAmount(Book bookToBeChanged, int amount)

@@ -63,6 +63,11 @@
             await _booksCollection.InsertOneAsync(bookToAdd);
             return bookToAdd;
         }
+        
+        public async Task<Book> CreateBook(Book newBook)
+        {
+            return await _booksCollection.Find(x => x.BookId == newBook.BookId).FirstOrDefaultAsync();
+        }
 
         //Tested in swagger /Max
         /// <summary>
@@ -173,7 +178,6 @@
         /// Deletes all books in the collection where the total instock value is 0.
         /// </summary>
         public async Task PurgeEmptyBooks() => await _booksCollection.DeleteManyAsync(book => book.InStock.Total == 0);
-
 
     }
 }
