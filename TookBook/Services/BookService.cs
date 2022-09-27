@@ -150,14 +150,12 @@
             if (deleteUsedBook && validUsedBooks)
             {
                 bookToDelete.InStock.Used--;
-                bookToDelete.InStock.Total--;
                 await UpdateBook(bookToDelete);
                 return await Task.FromResult(true);
             }
             if (!deleteUsedBook && validNewBooks)
             {
                 bookToDelete.InStock.New--;
-                bookToDelete.InStock.Total--;
                 await UpdateBook(bookToDelete);
                 return await Task.FromResult(true);
             }
@@ -173,7 +171,6 @@
         /// <summary>
         /// Deletes all books in the collection where the total instock value is 0.
         /// </summary>
-        public async Task PurgeEmptyBooks() => await _booksCollection.DeleteManyAsync(book => book.InStock.Total == 0);
-
+        public async Task PurgeEmptyBooks() => await _booksCollection.DeleteManyAsync(book => book.InStock.New == 0 && book.InStock.Used == 0);
     }
 }
