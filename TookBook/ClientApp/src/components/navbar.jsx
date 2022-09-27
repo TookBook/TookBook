@@ -16,7 +16,7 @@ import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useRecoilState } from 'recoil';
 import openUserPortalState from '../atoms/openUserPortalState';
-
+import DropDownMenu from './DropDownMenu';
 const Navbar = () => {
 	//TODO: Breakpoints, responsiveness.
 
@@ -31,9 +31,7 @@ const Navbar = () => {
 			<AppBar>
 				<Toolbar sx={{ justifyContent: "space-between" }}>
 
-					<IconButton size='large' sx={{ color: "white", fontSize: "2rem" }}>
-						<MenuIcon fontSize='5rem'></MenuIcon>
-					</IconButton>
+					<DropDownMenu/>
 
 					{/* TODO: Make clickable and working */}
 					<Box display="flex" alignItems="center" sx={{cursor: "pointer", heigth: "1.5em", width: "5.2em", marginTop: ".5em", transform: "scale(1.6)"}}>
