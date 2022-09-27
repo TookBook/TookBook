@@ -39,7 +39,7 @@
         /// <returns>Filtered book list</returns>
         public async Task<List<Book>> GetFilteredAsync(string keyword)
         {
-            return await _booksCollection.Find(_book => _book.Title.ToLower().Contains(keyword)).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
+            return await _booksCollection.Find(_book => _book.Title.ToLower().Contains(keyword.ToLower())).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
         }
 
         //Tested in swagger /Max
@@ -50,7 +50,7 @@
         /// <returns>List of books in a category.</returns>
         public async Task<List<Book>> GetBooksInCategoryAsync(string category)
         {
-            return await _booksCollection.Find(_book => _book.Categories.Any(_category => _category.CategoryName == category)).ToListAsync();
+            return await _booksCollection.Find(_book => _book.Categories.Any(_category => _category.CategoryName.ToLower() == category.ToLower())).ToListAsync();
         }
 
         //Tested in swagger /Max
