@@ -67,27 +67,14 @@
         }
 
 
-        //Program crash when called in Controller. Have not tested in swagger
-        /// <summary>
-        /// Checks if buying a book is possible
-        /// </summary>
-        /// <param name="book">Book to be purchased</param>
-        /// <param name="user">User who wishes to buy book</param>
-        /// <param name="used">true == used book. false == new book</param>
-        /// <returns>true if book is purchasable, else false</returns>
-        //public async Task<bool> BuyBookAsync(Book book, User user, bool used) //should have "used" bool?
-        //{
-        //    //if user is neither seller or admin
-        //    if (user.UserType.IsSeller == false && user.UserType.IsAdmin == false)
-        //    {
-        //        if (used) return book.InStock.Used > 0;
-        //        if (!used) return book.InStock.New > 0;
-        //    }
-        //    return false;
-        //}
 
-        // Testversion av ovan @Max
-        public async Task<bool> BuyBookAsyncTestTestTest(Book book, bool usedBook)
+        /// <summary>
+        /// Checks if a book is able to be bought.
+        /// </summary>
+        /// <param name="book">The book to be bought</param>
+        /// <param name="usedBook">if set to <c>true</c>, checks the used stock.</param>
+        /// <returns></returns>
+        public async Task<bool> BuyBookAsync(Book book, bool usedBook)
         {
             if (usedBook && book.InStock.Used > 0)
                 return await Task.FromResult(true);
@@ -113,11 +100,11 @@
         public async Task UpdateBook(Book bookWithUpdatedInfo) => await _booksCollection.ReplaceOneAsync(x => x.BookId == bookWithUpdatedInfo.BookId, bookWithUpdatedInfo);
 
         /// <summary>
-        /// Adds a new category to an existing book.
+        /// Adds a new category to an existing book by adding the category name.
         /// </summary>
         /// <param name="book">The book to be updated.</param>
         /// <param name="category">The category</param>
-        public async Task AddCategoryToBook(Book book, string categoryName)
+        public async Task AddCategoryToBookByName(Book book, string categoryName)
         {
             // TODO: Figure out how and why and where
             var filter = Builders<Book>.Filter.Eq(x => x.BookId, book.BookId);
@@ -126,6 +113,19 @@
             Console.WriteLine(categoryFilter.ToString());
             await _booksCollection.UpdateOneAsync(filter, update);
         }
+
+        /// <summary>
+        /// Adds a new category to an existing book using a whole category object.
+        /// </summary>
+        /// <param name="book">The book to be updated.</param>
+        /// <param name="category">The category</param>
+        public async Task AddCategoryToBook(Book book, Category category)
+        {
+            var filter = Builders<Book>.Filter.Eq(x => x.BookId, book.BookId);
+            var update = Builders<Book>.Update.AddToSet("categories", category);
+            await _booksCollection.UpdateOneAsync(filter, update);
+        }
+
 
         /// <summary>
         /// Deletes a book by decreasing the instock property by one.
