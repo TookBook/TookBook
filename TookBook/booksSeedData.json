@@ -1,6 +1,7 @@
 [
   {
     "title": "Bookiest book",
+    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
     "categories": [
       {
         "_id": "632c1938fc13ae57f6000455",
@@ -30,6 +31,7 @@
 
   {
     "title": "Another book",
+    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
     "categories": [
       {
         "_id": "632c1938fc13ae57f6000478",
@@ -60,6 +62,7 @@
 
   {
     "title": "More book",
+    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
     "categories": [
       {
         "_id": "632c1938fc13ae57f600045e",

@@ -86,15 +86,6 @@ namespace TookBook.Controllers
             return Ok();
         }
 
-        // TODO: This
-        [HttpDelete("DeleteBookCategory")]
-        public async Task<ActionResult> DeleteCategoryFromBooks(Category category)
-        {
-            // Get all books where x in Category matches category(param).id/name/whatever
-            // If there are no books with that category, delete the category
-            return NoContent();
-        }
-
         /// <summary>
         /// Updates a book with the sent in JSON data.
         /// </summary>
