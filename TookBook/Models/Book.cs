@@ -18,6 +18,9 @@
 
         public string Title { get; set; } = "";
 
+        [BsonElement("imgUrl")]
+        public string ImgUrl { get; set; } = "";
+
         public IEnumerable<Category> Categories { get; set; } = new List<Category>();
 
         public string Language { get; set; } = "";
