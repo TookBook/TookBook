@@ -16,6 +16,7 @@ import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useRecoilState } from 'recoil';
 import openUserPortalState from '../atoms/openUserPortalState';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	//TODO: Breakpoints, responsiveness.
@@ -23,7 +24,9 @@ const Navbar = () => {
 	const [openUserPortal, setOpenUserPortal] = useRecoilState(openUserPortalState)
 
 	const handleOpenUserPortal = () => {
+		console.log("click");
 		setOpenUserPortal(!openUserPortal)
+		// <Link to="userportal" />
 	}
 
 	return (
@@ -36,14 +39,15 @@ const Navbar = () => {
 					</IconButton>
 
 					{/* TODO: Make clickable and working */}
-					<Box display="flex" alignItems="center" sx={{cursor: "pointer", heigth: "1.5em", width: "5.2em", marginTop: ".5em", transform: "scale(1.6)"}}>
-						<Typography sx={{fontFamily: "Raleway", color: "black", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none"}}>Took</Typography>	
-						<Typography sx={{fontFamily: "Raleway", color: "white", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none"}}>Book</Typography>
+					<Box display="flex" alignItems="center" sx={{ cursor: "pointer", heigth: "1.5em", width: "5.2em", marginTop: ".5em", transform: "scale(1.6)" }}>
+						<Typography sx={{ fontFamily: "Raleway", color: "black", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none" }}>Took</Typography>
+						<Typography sx={{ fontFamily: "Raleway", color: "white", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none" }}>Book</Typography>
 					</Box>
 
 					<Searchbar />
 
 					{/**TODO: Proper icon, onlclick etc */}
+
 					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
 						<PersonSharpIcon fontSize='large' />
 						<Typography>Login</Typography>
