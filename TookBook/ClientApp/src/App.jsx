@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import { ThemeProvider } from "@mui/material/styles"
 import Navbar from './components/Navbar'
-import CssBaseline from '@mui/material/CssBaseline'
-import Theme from "./style/MuiTheme"
 import ThemeWrapper from './style/ThemeWrapper'
-import { Box, Typography } from '@mui/material'
+import {
+  BrowserRouter as Router, Routes, Route, Link
+} from "react-router-dom";
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
-import { RecoilRoot } from 'recoil'
+import { RecoilRoot, useRecoilValue } from 'recoil'
+import Homepage from './pages/Homepage';
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
 
 
@@ -19,34 +20,20 @@ function App() {
   return (
     <ThemeWrapper>
       <RecoilRoot>
-        <Navbar />
-        <UserLoginContainer></UserLoginContainer>
-        
-        {/** Exempel på MaterialUI :  */} 
-        {/**<>
-      <Box sx={{ bgcolor: "primary.main" }}>
-        <Typography> Hello World </Typography>
-      </Box>
+        <Router>
+          <Navbar />
 
-      <Box sx={{ bgcolor: "primary.dark" }}>
-        <Typography> Hello World </Typography>
-      </Box>
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            {/* <Route
+              path='userportal'
+              element={(
+                <UserLoginContainer />
+              )}/> */}
+          </Routes>
+          <UserLoginContainer />
 
-      <Box sx={{ bgcolor: "primary.light" }}>
-        <Typography> Hello World </Typography>
-      </Box>
-      </>*/}
-
-        {/** Precis samma som nedan, men <Typography> har inte default margin/padding som <p> :  */}
-        {/**<>
-      <div style={{ backgroundColor: "lightblue" }}>
-        <p>Hello World </p>
-      </div>
-      <div style={{ backgroundColor: "lightcyan" }}>
-        <p>Hello World </p>
-      </div>
-
-      </> */}
+        </Router>
       </RecoilRoot>
     </ThemeWrapper>
   )
