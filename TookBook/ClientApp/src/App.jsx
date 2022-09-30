@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
+import Footer from "./components/Footer"
 import ThemeWrapper from './style/ThemeWrapper'
+import MainWrapper from './style/MainWrapper'
 import {
   BrowserRouter as Router, Routes, Route, Link
 } from "react-router-dom";
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
 import { RecoilRoot, useRecoilValue } from 'recoil'
 import Homepage from './pages/Homepage';
+
 
 
 
@@ -21,18 +24,22 @@ function App() {
     <ThemeWrapper>
       <RecoilRoot>
         <Router>
-          <Navbar />
+          <MainWrapper>
+            <Navbar />
 
-          <Routes>
-            <Route path='/' element={<Homepage />} />
-            {/* <Route
+            <Routes>
+              <Route path='/' element={<Homepage />} />
+              {/* <Route
               path='userportal'
               element={(
                 <UserLoginContainer />
               )}/> */}
-          </Routes>
-          <UserLoginContainer />
+            </Routes>
 
+            <UserLoginContainer />
+          </MainWrapper>
+
+          <Footer />
         </Router>
       </RecoilRoot>
     </ThemeWrapper>
