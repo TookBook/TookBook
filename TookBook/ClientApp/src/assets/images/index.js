@@ -5,11 +5,20 @@ import NumbersRaiseSlide from "./carousell_slides/hitchhikersGuide.png";
 import SwedenSlide from "./carousell_slides/numbersRaise.png";
 import UsedBookStoreSlide from "./carousell_slides/usedBookstore.png";
 
+
+const imageSlides = [DictionaryClichesSlide,
+	HitchhikersGuideSlide,
+	TeenHorrorSlide,
+	NumbersRaiseSlide,
+	SwedenSlide,
+	UsedBookStoreSlide]
+
 export {
 	DictionaryClichesSlide,
 	HitchhikersGuideSlide,
 	TeenHorrorSlide,
 	NumbersRaiseSlide,
 	SwedenSlide,
-	UsedBookStoreSlide
+	UsedBookStoreSlide,
+	imageSlides
 };

@@ -8,10 +8,9 @@ import Typography from '@mui/material/Typography';
 const Homepage = () => {
 
 	return (
-		<Container >
+		<Container maxWidth={false}>
 
 			<Typography align='center'>Homeplaceholder woo</Typography>
-
 			<CarouselSlides />
 
 		</Container>
