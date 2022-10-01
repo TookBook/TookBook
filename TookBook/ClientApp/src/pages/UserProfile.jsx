@@ -5,7 +5,11 @@
 
 const UserProfile = () => {
 
-	return null
+	return (
+
+		<div>Hi, I'm a user profile</div>
+
+	)
 }
 
 
