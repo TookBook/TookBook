@@ -25,16 +25,18 @@ const responsiveSlides = {
 	}
 };
 
-const slideBackground = {
-	position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
-	background: "radial-gradient(circle, rgba(109,89,122,1) 43%, rgba(255,255,255,1) 96%)"
+
+const slideStyles = {
+	slideBackground: {
+		position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
+		background: "radial-gradient(circle, rgba(109,89,122,1) 43%, rgba(255,255,255,1) 96%)"
+	},
+
+	slideFlexBox: {
+		display: { sm: "flex" }, justifyContent: "center", alignItems: "center",
+
+	}
 }
-
-const slideFlexBoxesStyle = {
-	display: { sm: "flex" }, justifyContent: "center", alignItems: "center"
-}
-
-
 
 const CarouselSlides = () => {
 
@@ -42,7 +44,7 @@ const CarouselSlides = () => {
 		<Container maxWidth={"lg"} >
 			<Box position={"relative"} >
 				<Box width={"100vw"} height={"300px"}
-					sx={slideBackground}>
+					sx={slideStyles.slideBackground}>
 				</Box>
 
 				<Carousel
@@ -55,8 +57,8 @@ const CarouselSlides = () => {
 					centerMode={false}
 					removeArrowOnDeviceType={["tablet", "mobile"]}
 				>
-					{imageSlides.map((slide, i) => <Box key={i} sx={slideFlexBoxesStyle} >
-						<img src={slide} draggable="false" style={{ maxWidth: "100%" }} />
+					{imageSlides.map((slide, i) => <Box key={i} sx={{ display: { sm: "flex" }, justifyContent: "center", alignItems: "center", padding: "20px" }}>
+						<img src={slide} draggable="false" style={{ maxWidth: "100%", boxShadow: "0px 0px 20px #6D597A" }} />
 					</Box>)}
 
 				</Carousel>
