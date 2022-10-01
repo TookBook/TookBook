@@ -43,7 +43,7 @@ const CarouselSlides = () => {
 	return (
 		<Container maxWidth={"lg"} >
 			<Box position={"relative"} >
-				<Box width={"100vw"} height={"300px"}
+				<Box width={"99vw"} height={"300px"}
 					sx={slideStyles.slideBackground}>
 				</Box>
 

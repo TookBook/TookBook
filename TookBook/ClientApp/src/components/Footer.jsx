@@ -14,12 +14,12 @@ const Footer = () => {
 
 	return (
 
-		<Box position={"relative"} minWidth={"100vw"} >
-			<Box minWidth={"100%"} minHeight={"100px"}
+		<Box position={"relative"} paddingTop={"5em"}>
+			<Box minWidth={"100%"} minHeight={"200px"}
 				sx={{ backgroundImage: `url("${svgencoded}")`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></Box>
 
 
-			<Toolbar sx={{ justifyContent: "center", bgcolor: "#6D597A", height: "150px" }}>
+			<Toolbar sx={{ justifyContent: "center", bgcolor: "#6D597A", height: "151px" }}>
 				<Typography color={"white"}>
 					© 2022 TookBook
 				</Typography>
