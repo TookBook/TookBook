@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Footer from "./components/Footer"
 import ThemeWrapper from './style/ThemeWrapper'
@@ -7,41 +7,53 @@ import {
   BrowserRouter as Router, Routes, Route, Link
 } from "react-router-dom";
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
-import { RecoilRoot, useRecoilValue } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
 import Homepage from './pages/Homepage';
 
 
 
 
 function App() {
+  const [fetchedBooks, setFetchedBooks] = useRecoilState(fetchedBooksState)
+  const [fetchedCategories, setFetchedCategories] = useRecoilState(fetchedCategoriesState)
+  const [fetchedUsers, setFetchedUsers] = useRecoilState(fetchedUsersState)
+
+  const fetchtest = async () => {
+    let response = await fetch("/api/Book/AllBooks")
+    let data = await response.json();
+    setFetchedBooks(data)
+  };
 
 
+  useEffect(() => {
+    fetchtest();
+    console.log(fetchedBooks)
+  }, [])
 
 
   /** ThemeWrapper är en komponent som ligger i style/Themewrapper, där hämtar den ett tema för hela material-ui från style/MuiTheme.
    *  I MuiTheme så kan man ändra alla färger, ex primary som används nedan. Använder man "primary.main" så får man den färgen man döpte till primary, använder man primary.light så får man automatiskt en ljusare variant av färgen. Likadant med primary.dark  */
   return (
     <ThemeWrapper>
-      <RecoilRoot>
-        <Router>
-          <MainWrapper>
-            <Navbar />
+      <Router>
+        <MainWrapper>
+          <Navbar />
 
-            <Routes>
-              <Route path='/' element={<Homepage />} />
-              {/* <Route
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            {/* <Route
               path='userportal'
               element={(
                 <UserLoginContainer />
               )}/> */}
-            </Routes>
+          </Routes>
 
-            <UserLoginContainer />
-          </MainWrapper>
+          <UserLoginContainer />
+        </MainWrapper>
 
-          <Footer />
-        </Router>
-      </RecoilRoot>
+        <Footer />
+      </Router>
     </ThemeWrapper>
   )
 }
