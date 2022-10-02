@@ -16,36 +16,47 @@ const gradientLine = {
 	marginTop: "5rem"
 }
 
+const BookPlaceholder = () => {
+
+	return (
+		<Box sx={{ height: "100px", width: "150px", border: "1px solid black" }}>
+			<Typography align="center" variant="body1" color="white">[BOOK INFO WITH PICTURE]</Typography>
+		</Box>
+	)
+}
+
 const BooksRecommended = () => {
 
 	return (
 		<>
-			<Box sx={gradientLine}>
+			<Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
 				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
 				</Box>
-
 			</Box>
-			<Box sx={gradientLine}>
-				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-				</Box>
 
+			<Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
+				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+				</Box>
 			</Box>
-			<Box sx={gradientLine}>
-				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-					<Typography align="center" variant="body1" color="white">[BOOK HERE WITH PICTURE]</Typography>
-				</Box>
 
+			<Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
+				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+					<BookPlaceholder />
+				</Box>
 			</Box>
 		</>
 	)
