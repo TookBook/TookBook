@@ -1,53 +1,59 @@
-import { useState } from 'react'
-import { ThemeProvider } from "@mui/material/styles"
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
-import CssBaseline from '@mui/material/CssBaseline'
-import Theme from "./style/MuiTheme"
+import Footer from "./components/Footer"
 import ThemeWrapper from './style/ThemeWrapper'
-import { Box, Typography } from '@mui/material'
+import MainWrapper from './style/MainWrapper'
+import {
+  BrowserRouter as Router, Routes, Route, Link
+} from "react-router-dom";
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
-import { RecoilRoot } from 'recoil'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
+import Homepage from './pages/Homepage';
+
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [fetchedBooks, setFetchedBooks] = useRecoilState(fetchedBooksState)
+  const [fetchedCategories, setFetchedCategories] = useRecoilState(fetchedCategoriesState)
+  const [fetchedUsers, setFetchedUsers] = useRecoilState(fetchedUsersState)
 
+  const fetchtest = async () => {
+    let response = await fetch("/api/Book/AllBooks")
+    let data = await response.json();
+    setFetchedBooks(data)
+  };
+
+
+  useEffect(() => {
+    fetchtest();
+    console.log(fetchedBooks)
+  }, [])
 
 
   /** ThemeWrapper är en komponent som ligger i style/Themewrapper, där hämtar den ett tema för hela material-ui från style/MuiTheme.
    *  I MuiTheme så kan man ändra alla färger, ex primary som används nedan. Använder man "primary.main" så får man den färgen man döpte till primary, använder man primary.light så får man automatiskt en ljusare variant av färgen. Likadant med primary.dark  */
   return (
     <ThemeWrapper>
-      <RecoilRoot>
-        <Navbar />
-        <UserLoginContainer></UserLoginContainer>
-        
-        {/** Exempel på MaterialUI :  */} 
-        {/**<>
-      <Box sx={{ bgcolor: "primary.main" }}>
-        <Typography> Hello World </Typography>
-      </Box>
+      <Router>
+        <MainWrapper>
+          <Navbar />
 
-      <Box sx={{ bgcolor: "primary.dark" }}>
-        <Typography> Hello World </Typography>
-      </Box>
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            {/* <Route
+              path='userportal'
+              element={(
+                <UserLoginContainer />
+              )}/> */}
+          </Routes>
 
-      <Box sx={{ bgcolor: "primary.light" }}>
-        <Typography> Hello World </Typography>
-      </Box>
-      </>*/}
+          <UserLoginContainer />
+        </MainWrapper>
 
-        {/** Precis samma som nedan, men <Typography> har inte default margin/padding som <p> :  */}
-        {/**<>
-      <div style={{ backgroundColor: "lightblue" }}>
-        <p>Hello World </p>
-      </div>
-      <div style={{ backgroundColor: "lightcyan" }}>
-        <p>Hello World </p>
-      </div>
-
-      </> */}
-      </RecoilRoot>
+        <Footer />
+      </Router>
     </ThemeWrapper>
   )
 }

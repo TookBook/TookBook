@@ -1,6 +1,7 @@
 [
   {
     "title": "Bookiest book",
+    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
     "categories": [
       {
         "_id": "632c1938fc13ae57f6000455",
@@ -20,7 +21,6 @@
     ],
     "year": 1980,
     "inStock": {
-      "total": 4,
       "new": 1,
       "used": 3
     },
@@ -31,6 +31,7 @@
 
   {
     "title": "Another book",
+    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
     "categories": [
       {
         "_id": "632c1938fc13ae57f6000478",
@@ -50,7 +51,6 @@
     ],
     "year": 1980,
     "inStock": {
-      "total": 5,
       "new": 5,
       "used": 0
     },
@@ -62,6 +62,7 @@
 
   {
     "title": "More book",
+    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
     "categories": [
       {
         "_id": "632c1938fc13ae57f600045e",
@@ -77,7 +78,6 @@
     ],
     "year": 1980,
     "inStock": {
-      "total": 1,
       "new": 0,
       "used": 1
     },

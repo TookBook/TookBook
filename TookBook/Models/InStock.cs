@@ -9,7 +9,6 @@
 
     public class InStock : IInStock
     {
-        public int Total { get; set; }
         public int New { get; set; }
         public int Used { get; set; }
     }
