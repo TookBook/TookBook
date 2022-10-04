@@ -1,4 +1,4 @@
-import ShoppingCart from ".//shoppingCart.css";
+import "../style/shoppingCart.css";
 
 const ShoppingCart = () => {
 	  return (

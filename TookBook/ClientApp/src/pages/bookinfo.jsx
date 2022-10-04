@@ -1,3 +1,5 @@
+import BookInfo from ".//bookInfo.css";
+
 const BookInfo = () => {
 	return(
 		<div className="book-info-container">
