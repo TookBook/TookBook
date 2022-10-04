@@ -20,16 +20,32 @@ function App() {
   const [fetchedCategories, setFetchedCategories] = useRecoilState(fetchedCategoriesState)
   const [fetchedUsers, setFetchedUsers] = useRecoilState(fetchedUsersState)
 
-  const fetchtest = async () => {
+  const fetchBooks = async () => {
     let response = await fetch("/api/Book/AllBooks")
     let data = await response.json();
     setFetchedBooks(data)
+
   };
 
+  const fetchCategories = async () => {
+    let response = await fetch("/api/Category/AllCategories")
+    let data = await response.json();
+    setFetchedCategories(data)
+  };
+
+  const fetchUsers = async () => {
+    let response = await fetch("/api/User/AllUsers")
+    let data = await response.json();
+    setFetchedUsers(data)
+  };
 
   useEffect(() => {
-    fetchtest();
+    fetchBooks();
+    fetchCategories();
+    fetchUsers();
     console.log(fetchedBooks)
+    console.log(fetchedCategories)
+    console.log(fetchedUsers)
   }, [])
 
 
