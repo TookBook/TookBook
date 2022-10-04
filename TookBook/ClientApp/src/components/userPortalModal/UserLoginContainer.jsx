@@ -19,6 +19,8 @@ import Tab from '@mui/material/Tab';
 import openUserPortalState from "../../atoms/openUserPortalState";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
+import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 
 // Slide animation from Mui.
@@ -53,6 +55,7 @@ const UserPortalContainer = () => {
 
 	const handleClose = () => {
 		setOpenContainer(false);
+		// <Link to="/"></Link>
 	}
 
 	const handleTabChange = (e, newValue) => {
@@ -61,37 +64,40 @@ const UserPortalContainer = () => {
 
 	// TODO: Conditional rendering based on whether user is logged in or not, userloggedinstate
 	return (
-		<Dialog
+		<>
+			<Dialog
 
-			scroll="paper"
+				scroll="paper"
 
-			fullWidth={true}
-			maxWidth={"xs"}
+				fullWidth={true}
+				maxWidth={"xs"}
 
-			open={openContainer}
-			TransitionComponent={Transition}
-			sx={{ minWidth: "100%" }}
-			keepMounted
-			onClose={handleClose}
-			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
-		>
-			<Paper sx={{ minHeight: "550px" }} >
+				open={openContainer}
+				TransitionComponent={Transition}
+				sx={{ minWidth: "100%" }}
+				// keepMounted
+				onClose={handleClose}
+				BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
+			>
+				<Paper sx={{ minHeight: "550px" }} >
 
-				<Tabs centered value={tabValue} onChange={handleTabChange}>
-					<Tab label="Login" value={1} />
-					<Tab label="Register" value={2} />
-				</Tabs>
+					<Tabs centered value={tabValue} onChange={handleTabChange}>
+						<Tab label="Login" value={1} />
+						<Tab label="Register" value={2} />
+					</Tabs>
 
-				<TabPanel value={tabValue} index={1}>
-					<LoginForm />
-				</TabPanel>
+					<TabPanel value={tabValue} index={1}>
+						<LoginForm />
+					</TabPanel>
 
-				<TabPanel value={tabValue} index={2}>
-					<SignUpForm />
-				</TabPanel>
+					<TabPanel value={tabValue} index={2}>
+						<SignUpForm />
+					</TabPanel>
 
-			</Paper>
-		</Dialog>
+				</Paper>
+			</Dialog>
+			<Outlet />
+		</>
 	)
 }
 

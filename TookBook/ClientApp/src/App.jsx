@@ -1,81 +1,77 @@
-import { useState } from 'react'
-import { ThemeProvider } from "@mui/material/styles"
+import { useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
-import CssBaseline from '@mui/material/CssBaseline'
-import Theme from "./style/MuiTheme"
+import Footer from "./components/Footer"
 import ThemeWrapper from './style/ThemeWrapper'
-import { Box, Typography } from '@mui/material'
+import MainWrapper from './style/MainWrapper'
+import {
+  BrowserRouter as Router, Routes, Route, Link
+} from "react-router-dom";
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
-import { RecoilRoot } from 'recoil'
-import ShoppingCart from './pages/ShoppingCart'
-import Button from '@mui/material/button'
-import {BrowserRouter as Router, Routes, NavLink, Route, useNavigate} from 'react-router-dom'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
+import Homepage from './pages/Homepage';
+import AdminMenu from './pages/AdminMenu'
+
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [fetchedBooks, setFetchedBooks] = useRecoilState(fetchedBooksState)
+  const [fetchedCategories, setFetchedCategories] = useRecoilState(fetchedCategoriesState)
+  const [fetchedUsers, setFetchedUsers] = useRecoilState(fetchedUsersState)
 
-  // const navigate = useNavigate();
+  const fetchBooks = async () => {
+    let response = await fetch("/api/Book/AllBooks")
+    let data = await response.json();
+    setFetchedBooks(data)
+
+  };
+
+  const fetchCategories = async () => {
+    let response = await fetch("/api/Category/AllCategories")
+    let data = await response.json();
+    setFetchedCategories(data)
+  };
+
+  const fetchUsers = async () => {
+    let response = await fetch("/api/User/AllUsers")
+    let data = await response.json();
+    setFetchedUsers(data)
+  };
+
+  useEffect(() => {
+    fetchBooks();
+    fetchCategories();
+    fetchUsers();
+    console.log(fetchedBooks)
+    console.log(fetchedCategories)
+    console.log(fetchedUsers)
+  }, [])
 
 
   /** ThemeWrapper är en komponent som ligger i style/Themewrapper, där hämtar den ett tema för hela material-ui från style/MuiTheme.
    *  I MuiTheme så kan man ändra alla färger, ex primary som används nedan. Använder man "primary.main" så får man den färgen man döpte till primary, använder man primary.light så får man automatiskt en ljusare variant av färgen. Likadant med primary.dark  */
   return (
     <ThemeWrapper>
-      <RecoilRoot>
-        <Navbar />
-        <UserLoginContainer></UserLoginContainer>
-        {/** Exempel på MaterialUI :  */} 
-        {/**<>
-      <Box sx={{ bgcolor: "primary.main" }}>
-        <Typography> Hello World </Typography>
-      </Box>
-
-      <Box sx={{ bgcolor: "primary.dark" }}>
-        <Typography> Hello World </Typography>
-      </Box>
-
-      <Box sx={{ bgcolor: "primary.light" }}>
-        <Typography> Hello World </Typography>
-      </Box>
-      </>*/}
-
-        {/*Tiias testsektion*/}
       <Router>
-        <nav className="navibar">
-          <NavLink to="/shoppingCart">Shopping Cart</NavLink>
-        </nav>
-        <Routes>
-        <Route path="/shoppingCart" element={<ShoppingCart />} />
-        {/* <div>
-          <Button onClick={() => navigate("/shoppingCart")} variant="outlined">varukorg</Button>
-        </div> */}
-        </Routes>
+        <MainWrapper>
+          <Navbar />
+
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            {/* <Route path='/' element={<AdminMenu />} /> //kommentera bort raden ovan och sätt dit denna för o se admin sidan. Tills vi har routing färdigt  */}
+            {/* <Route
+              path='userportal'
+              element={(
+                <UserLoginContainer />
+              )}/> */}
+          </Routes>
+
+          <UserLoginContainer />
+        </MainWrapper>
+
+        <Footer />
       </Router>
-
-
-        {/** Precis samma som nedan, men <Typography> har inte default margin/padding som <p> :  */}
-        <div style={{ backgroundColor: "lightblue" }}>
-          <p>Hello World </p>
-        </div>
-        <div style={{ backgroundColor: "lightcyan" }}>
-          <p>Hello World </p>
-        </div>
-        
-
-
-
-        {/** Precis samma som nedan, men <Typography> har inte default margin/padding som <p> :  */}
-        {/**<>
-      <div style={{ backgroundColor: "lightblue" }}>
-        <p>Hello World </p>
-      </div>
-      <div style={{ backgroundColor: "lightcyan" }}>
-        <p>Hello World </p>
-      </div>
-
-      </> */}
-      </RecoilRoot>
     </ThemeWrapper>
   )
 }
