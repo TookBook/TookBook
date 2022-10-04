@@ -38,9 +38,13 @@ const gradientLine = {
 	position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
 }
 
-const tempItems = [1, 2, 3, 4, 5];
+
 
 const BooksHorizontalDisplay = ({ books, displayTitle }) => {
+	const tempItems = [1, 2, 3, 4, 5];
+	if (books == null) books = tempItems;
+
+
 
 	return (
 		<>
@@ -56,7 +60,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 					<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
 						{tempItems.map((book, i) =>
-							<BookPreview key={i} />)}
+							<BookPreview book={book} key={i} />)}
 					</Box>
 				</Container>
 				{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
