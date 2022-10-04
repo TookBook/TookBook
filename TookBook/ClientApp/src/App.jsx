@@ -11,6 +11,7 @@ import { useRecoilValue, useRecoilState } from 'recoil'
 import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
 import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
 import Homepage from './pages/Homepage';
+import AdminMenu from './pages/AdminMenu'
 
 
 
@@ -59,6 +60,7 @@ function App() {
 
           <Routes>
             <Route path='/' element={<Homepage />} />
+            {/* <Route path='/' element={<AdminMenu />} /> //kommentera bort raden ovan och sätt dit denna för o se admin sidan. Tills vi har routing färdigt  */}
             {/* <Route
               path='userportal'
               element={(
