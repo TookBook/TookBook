@@ -43,7 +43,7 @@
         }
 
         //test för att hämta en bok /Tiia
-        public async Task<Book> GetByIdTest(string id) => await _booksCollection.Find(x => x.BookId == id).FirstOrDefaultAsync();
+        public async Task<Book> GetByTitle(string title) => await _booksCollection.Find(x => x.Title == title).FirstOrDefaultAsync();
 
         //Tested in swagger /Max
         /// <summary>
@@ -57,17 +57,98 @@
 
         }
 
-        //TODO: lägg till AddBook
-        public async Task<Book> AddBook(Book bookToAdd)
+
+        public async Task CreateBookAsync(Book bookToAdd)
         {
             await _booksCollection.InsertOneAsync(bookToAdd);
-            return bookToAdd;
         }
         
-        public async Task<Book> CreateBook(Book newBook)
+        //test med att lägga till alla parametrar separat
+        public async Task<Book> AddBookAsyncTest(string title, string category, string language, string authorFirstName, string authorLasName, int year, decimal price, string seller, string bookInfo, int amountOfBooks)
         {
-            return await _booksCollection.Find(x => x.BookId == newBook.BookId).FirstOrDefaultAsync();
+            Book book = new();
+            book.Title = title;
+            Category category1 = new()
+            {
+                CategoryName = category
+            };
+            book.Language = language;
+            Author author1 = new()
+            {
+                FirstName = authorFirstName,
+                LastName = authorLasName
+            };
+            book.Year = year;
+            book.Price = price;
+            book.Seller = seller;
+            book.BookInfo = bookInfo;
+
+            if (book.Seller is "admin") //om det inte finns någon säljare så är det en bok som finns i lager
+            {
+                book.InStock = new InStock()
+                {
+                    New = amountOfBooks
+                };
+            }
+            else
+            {
+                book.InStock = new InStock()
+                {
+                    Used = amountOfBooks
+                };
+            }
+
+            await _booksCollection.InsertOneAsync(book);
+            return book;
         }
+        
+
+        public async Task<Book> TestToAddBook()
+        {
+            Book book = new();
+            await _booksCollection.InsertOneAsync(book);
+            return book;
+        }
+
+        public async Task<string> CreateBook(Book bookToAdd)
+        {
+            bookToAdd.BookId = String.Empty;
+            await _booksCollection.InsertOneAsync(bookToAdd);
+            return bookToAdd.BookId;
+        }
+        //public async Task<Book> AddBookAsync(Book book, bool isNew, int amountOfAddedBooks)
+        //{
+
+
+        //    if (!isNew) book.InStock.Used += amountOfAddedBooks;
+        //    else book.InStock.New += amountOfAddedBooks;
+        //    await _booksCollection.InsertOneAsync(book);
+        //    return book;
+        //}
+
+        //Metod som tar in alla parametrar separat
+        //public async Task AddBookAsync(string title, string category, string author, string language, int year, bool isNew, decimal price, string seller, string description, int amountOfAddedBooks)
+        //{
+        //    Book book = new()
+        //    {
+        //        Title = title,
+        //        CategoryName = category,
+        //        Authors = author,
+        //        Language = language,
+        //        Year = year,
+        //        Price = price,
+        //        Seller = seller,
+        //        BookInfo = description
+        //    };
+
+        //    if (!isNew)
+        //    {
+        //        book.InStock.Used += amountOfAddedBooks;
+        //    }
+        //    else book.InStock.New += amountOfAddedBooks;
+
+        //    await _booksCollection.InsertOneAsync(book);
+        //}
 
         //Tested in swagger /Max
         /// <summary>

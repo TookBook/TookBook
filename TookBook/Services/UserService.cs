@@ -140,14 +140,6 @@
             return await Task.FromResult(true);
         }
 
-
-        
-        //test
-        public async Task<User> GetUserById(string id)
-        {
-            return await _userCollection.Find(x => x.UserId == id).FirstOrDefaultAsync();
-        }
-
         /// <summary>
         /// Returns the user with the same username or email as the input
         /// </summary>
@@ -176,7 +168,7 @@
             return await _userCollection.Find(_user => true).ToListAsync();
         }
 
-        //ska man söka med userId eller namn och email (så som det är nu) eller skicka in hela user? /Tiia
+
         /// <summary>
         /// Finds user by identifier (either userName och email)
         /// </summary>
@@ -186,20 +178,24 @@
         {
             return await _userCollection.Find(_user => _user.UserName == userIdentifier || _user.Mail==userIdentifier).FirstAsync();
         }
-
-        //får inte denna att funka /Tiia
-        //public async Task<User> ChangePasswordAsync(string username, string newPassword, string confirm)
-        //{
-        //    return await _userCollection.UpdateOneAsync(x => x.UserName == username,
-        //        Builders<User>.Update
-        //        .Set(x => x.Password, newPassword));
-        //}
         
         public async Task ActivateAccountAsync(User accountToActivate)
         {
             var filter = Builders<User>.Filter.Eq(x => x.UserId, accountToActivate.UserId);
             var update = Builders<User>.Update.Set(x => x.IsActive, true);
             await _userCollection.UpdateOneAsync(filter, update);
+        }
+
+        //från Max
+        public async Task AddUserAsync(string email, string username, string password)
+        {
+            User user = new();
+            user.UserName = username;
+            user.Mail = email;
+            user.Password = password;
+            UserType type = new();
+            user.UserType = type;
+            await _userCollection.InsertOneAsync(user);
         }
     }
 }

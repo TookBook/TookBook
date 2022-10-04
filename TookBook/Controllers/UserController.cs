@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Mvc;
     using TookBook.Services;
     using TookBook.Models;
-    using TookBook.Services;
 
     [ApiController]
     [Route("api/[controller]")]
@@ -28,23 +27,10 @@
         //Tested in swagger /Max
         [HttpGet("Login")]
         public async Task<ActionResult<User>> Get(string username, string password)
-        //Testat med Swagger /Tiia
-        //TODO:fundera hur man kan skicka aktiveringskod (frontend?)
-        //TODO: skapas id?
-        /// <summary>
-        /// Gets a user by username and email. If user doesn't excist, creates user and sends a mail to user
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="email"></param>
-        /// <returns></returns>
-        [HttpGet("RegisterUser")]
-        public async Task<ActionResult<User>> RegisterUser(string username, string email)
         {
-            var user = await _userService.RegisterUserAsync(username, email);
+            var user = await _userService.LoginAsync(username, password);
             if (user == null)
             {
-                user = new User { UserName = username, Mail = email };
-                return Ok(user.Mail);
                 return NotFound();
             }
             return Ok(user);
@@ -65,25 +51,47 @@
         //Tested in swagger /Max
         [HttpGet("ForgotUsername")]
         public async Task<ActionResult<User>> ForgorUsername(string mail)  //Send whole user or just mail? Think mail is more secure
-        //TODO lite osäker med att den returnerar en hel json-objekt
-        [HttpPost("EditProfile")]
-        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
         {
             var user = await _userService.ForgotPasswordAsync(mail);
             if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user.Mail + " " + user.UserName);
+        }
+
+        /// <summary>
+        /// Gets a user by username and email. If user doesn't excist, creates user and sends a mail to user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpPost("RegisterUser")]
+        public async Task<ActionResult<User>> RegisterUser(string username, string email)
+        {
+            var user = await _userService.RegisterUserAsync(username, email);
+            if (user == null)
+            {
+                user = new User { UserName = username, Mail = email };
+                return Ok(user.Mail);
+            }
+            return Ok(user);
+        }
+
+
+        [HttpPost("EditProfile")]
+        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
+        {
             var user = await _userService.GetUserById(id);
             if (user.Password == password) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
             {
-                return NotFound();
                 user.UserName = username;
                 user.Mail = email;
                 await _userService.EditProfileAsync(user.UserId, user);
                 return Ok(user);
             }
-            return Ok(user.Mail + " " + user.UserName);
+            return BadRequest("Password is invalid");
         }
-
-            return NotFound(); //eventuellt returnera en annan statuskod?
 
         /// <summary>
         /// Blocks the user.
@@ -160,12 +168,6 @@
         // TODO: Admin validation.
         [HttpPut("InactivateUser/{id:length(24)}")]
         public async Task<ActionResult> InactivateUser(string id)
-        /// <summary>
-        /// Returns Ok if user is found and returns users as JSON file
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("ListUsers")]
-        public async Task<ActionResult<List<User>>> ListUsers()
         {
             var user = await _userService.GetUserById(id);
             if (user == null) return NotFound();
@@ -173,11 +175,6 @@
             if (!userPromoted) return BadRequest("User is inactive.");
             return Ok();
 
-            var users = await _userService.ListUsersAsync();
-            if (users == null)
-                return NotFound();
-            return Ok(users);
-        }
         }
 
         // TODO: Admin validation.
@@ -190,6 +187,20 @@
             if (!userPromoted) return BadRequest("User is not a seller.");
             return Ok();
 
+        }
+
+
+        /// <summary>
+        /// Returns Ok if user is found and returns users as JSON file
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ListUsers")]
+        public async Task<ActionResult<List<User>>> ListUsers()
+        {
+            var users = await _userService.ListUsersAsync();
+            if (users == null)
+                return NotFound();
+            return Ok(users);
         }
     };
 }

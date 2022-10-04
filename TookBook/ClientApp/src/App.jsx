@@ -64,7 +64,7 @@ function App() {
         
 
 
-      </ThemeWrapper>
+
         {/** Precis samma som nedan, men <Typography> har inte default margin/padding som <p> :  */}
         {/**<>
       <div style={{ backgroundColor: "lightblue" }}>
