@@ -29,10 +29,8 @@ const Searchbar = () => {
 				sx={{ width: 600, backgroundColor: "white", borderRadius: "3px" }}
 				renderInput={(params) =>
 					<TextField {...params} label="Search.."
-						sx={{
-							backgroundColor: alpha(theme.palette.common.white, 0.15), '&:hover': { backgroundColor: alpha(theme.palette.common.white, 0.3) },
-
-						}}
+						sx={{backgroundColor: alpha(theme.palette.common.white, 0.15), '&:hover': 
+						{ backgroundColor: alpha(theme.palette.common.white, 0.3) }}}
 						variant="filled"
 					/>
 				}>
