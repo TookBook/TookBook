@@ -38,12 +38,9 @@ const gradientLine = {
 	position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
 }
 
-
-
 const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 	const tempItems = [1, 2, 3, 4, 5];
 	if (books == null) books = tempItems;
-
 
 
 	return (
