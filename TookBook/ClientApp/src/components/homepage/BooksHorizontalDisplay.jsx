@@ -39,6 +39,7 @@ const gradientLine = {
 }
 
 const BooksHorizontalDisplay = ({ books, displayTitle }) => {
+
 	const tempItems = [1, 2, 3, 4, 5];
 	if (books == null) books = tempItems;
 

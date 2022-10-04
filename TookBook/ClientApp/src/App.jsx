@@ -9,6 +9,7 @@ import {
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
+import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
 import Homepage from './pages/Homepage';
 
 
@@ -66,6 +67,7 @@ function App() {
           </Routes>
 
           <UserLoginContainer />
+          <ShoppingCartDrawer />
         </MainWrapper>
 
         <Footer />

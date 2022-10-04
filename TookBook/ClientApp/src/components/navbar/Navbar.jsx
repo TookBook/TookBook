@@ -16,16 +16,23 @@ import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useRecoilState } from 'recoil';
 import openUserPortalState from '../../atoms/openUserPortalState';
+import shoppingCartState from '../../atoms/shoppingCartState';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	//TODO: Breakpoints, responsiveness.
 
 	const [openUserPortal, setOpenUserPortal] = useRecoilState(openUserPortalState)
+	const [openShoppingCart, setOpenShoppingCart] = useRecoilState(shoppingCartState)
 
 	const handleOpenUserPortal = () => {
-		console.log("click");
 		setOpenUserPortal(!openUserPortal)
+		// <Link to="userportal" />
+	}
+
+	const handleOpenShoppingCart = () => {
+		setOpenShoppingCart(!openShoppingCart)
+		console.log(shoppingCartState)
 		// <Link to="userportal" />
 	}
 
@@ -55,7 +62,7 @@ const Navbar = () => {
 
 					{/**TODO: Proper icon, onlclick etc, basket dropdown thingy */}
 
-					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column", }}>
+					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column", }} onClick={handleOpenShoppingCart}>
 						{/* <i class="fa-solid fa-basket-shopping"></i> */}
 						<ShoppingBasketIcon fontSize='large' />
 						<Typography>Basket</Typography>
