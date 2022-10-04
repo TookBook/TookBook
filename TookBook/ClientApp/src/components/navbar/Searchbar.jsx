@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { styled, alpha } from '@mui/material/styles';
-import theme from '../style/muitheme';
+import theme from '../../style/MuiTheme';
 
 
 const Searchbar = () => {

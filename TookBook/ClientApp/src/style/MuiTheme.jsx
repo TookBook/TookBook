@@ -26,10 +26,16 @@ let theme = createTheme({
 			main: "#6D597A"
 		},
 		secondary: {
-			main: "#6D597A"
+			main: "#B56576"
+		},
+		error: {
+			main: "#E59999"
+		},
+		success: {
+			main: "#72AB9A"
 		},
 		teritary: defaultTheme.palette.augmentColor({
-			color: { main: "#faf0e6" },
+			color: { main: "#FFE7C4" },
 			name: "teritary"
 		}),
 		backgroundColour: defaultTheme.palette.augmentColor({

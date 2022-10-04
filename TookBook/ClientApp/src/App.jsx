@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Navbar from './components/Navbar'
+import Navbar from './components/navbar/Navbar'
 import Footer from "./components/Footer"
 import ThemeWrapper from './style/ThemeWrapper'
 import MainWrapper from './style/MainWrapper'
@@ -9,6 +9,7 @@ import {
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
+import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
 import Homepage from './pages/Homepage';
 import AdminMenu from './pages/AdminMenu'
 
@@ -68,6 +69,7 @@ function App() {
           </Routes>
 
           <UserLoginContainer />
+          <ShoppingCartDrawer />
         </MainWrapper>
 
         <Footer />
