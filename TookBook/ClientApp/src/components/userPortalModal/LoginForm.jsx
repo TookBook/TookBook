@@ -21,7 +21,6 @@ import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
 
-
 // TODO: API requests, get user etc. Add helpertext. Frontend validation of username/pass?
 const LoginForm = () => {
 
