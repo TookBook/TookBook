@@ -1,8 +1,8 @@
 import Container from '@mui/material/Container';
 import Box from "@mui/material/Box";
-import CarouselSlides from '../components/CarouselSlides';
+import CarouselSlides from '../components/homepage/CarouselSlides';
 import Typography from '@mui/material/Typography';
-import BooksHorizontalDisplay from '../components/BooksHorizontalDisplay';
+import BooksHorizontalDisplay from '../components/homepage/BooksHorizontalDisplay';
 import { useEffect } from 'react';
 
 
@@ -15,7 +15,10 @@ const Homepage = () => {
 			<Box marginTop={"3rem"}>
 				<CarouselSlides />
 			</Box>
-			<BooksHorizontalDisplay />
+
+			<Box>
+				<BooksHorizontalDisplay books={""} />
+			</Box>
 		</Container>
 	)
 }

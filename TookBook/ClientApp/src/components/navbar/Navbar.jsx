@@ -15,7 +15,7 @@ import Searchbar from './Searchbar';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useRecoilState } from 'recoil';
-import openUserPortalState from '../atoms/openUserPortalState';
+import openUserPortalState from '../../atoms/openUserPortalState';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
