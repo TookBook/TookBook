@@ -34,11 +34,18 @@ const BookPreview = ({ book }) => {
 	// onclick, add to cart
 
 	return (
-		<Box sx={{ maxHeight: "200px", maxWidth: "300px", border: "1px solid black" }}>
-			<Box sx={{ maxWidth: "100%", display: "flex", flexDirection: "column", padding: "5px" }}>
+		<Box sx={{
+			maxHeight: "200px", borderRadius: "0.5rem",
+			"&:hover": { transition: "all .2s ease-in-out", transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
+		}}>
+			<Box sx={{
+				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px",
+				backgroundColor: "white", borderRadius: "0.5rem", boxShadow: "0px 0px 5px black"
+
+			}}>
 				<Image src={book.imgUrl} />
 
-				<Typography gutterBottom align="center" variant="body1" color="white">{book.title}</Typography>
+				<Typography fontWeight={"bold"} gutterBottom align="center" variant="body1" color="black">{book.title}</Typography>
 
 				<Button color="secondary" variant="contained" endIcon={<ShoppingBasketIcon />}
 					sx={{
@@ -49,7 +56,7 @@ const BookPreview = ({ book }) => {
 				</Button>
 			</Box>
 
-		</Box>
+		</Box >
 	)
 }
 

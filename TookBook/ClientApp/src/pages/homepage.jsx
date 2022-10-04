@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 
 const Homepage = () => {
 
+	//import fetched books and sort them in various ways, then stuff them inside the horizontal displays
+
 	return (
 		<Container maxWidth={false}>
 
@@ -17,7 +19,9 @@ const Homepage = () => {
 			</Box>
 
 			<Box>
-				<BooksHorizontalDisplay books={""} />
+				<BooksHorizontalDisplay books={""} displayTitle={"Top 5 books"} />
+				<BooksHorizontalDisplay books={""} displayTitle={"Random new books"} />
+				<BooksHorizontalDisplay books={""} displayTitle={"Random used books"} />
 			</Box>
 		</Container>
 	)
