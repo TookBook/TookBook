@@ -10,7 +10,23 @@ import { maxHeight } from "@mui/system";
 
 
 
-
+const responsiveSlides = {
+	desktop: {
+		breakpoint: { max: 3000, min: 1024 },
+		items: 5,
+		slidesToSlide: 0,
+	},
+	tablet: {
+		breakpoint: { max: 1058, min: 464 },
+		items: 3,
+		slidesToSlide: 1
+	},
+	mobile: {
+		breakpoint: { max: 464, min: 0 },
+		items: 1,
+		slidesToSlide: 1
+	}
+};
 
 
 const gradientLine = {
@@ -37,8 +53,10 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 				</Container>
 
 				<Container maxWidth="lg">
+
 					<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
-						{tempItems.map((book, i) => <BookPreview key={i} />)}
+						{tempItems.map((book, i) =>
+							<BookPreview key={i} />)}
 					</Box>
 				</Container>
 				{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
@@ -56,5 +74,22 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 		</>
 	)
 }
+
+/**Carousel style?
+ * 					<Carousel
+						responsive={responsiveSlides}
+						infinite={false}
+						autoPlay={false}
+						autoPlaySpeed={3000}
+						renderButtonGroupOutside={true}
+						arrows={false}
+						centerMode={false}>
+
+						{tempItems.map((book, i) => <Box sx={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
+							<BookPreview key={i} />
+						</Box>)}
+
+					</Carousel>
+ */
 
 export default BooksHorizontalDisplay
