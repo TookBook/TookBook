@@ -3,7 +3,9 @@ import Box from "@mui/material/Box";
 import CarouselSlides from '../components/homepage/CarouselSlides';
 import Typography from '@mui/material/Typography';
 import BooksHorizontalDisplay from '../components/homepage/BooksHorizontalDisplay';
+import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "../atoms/index"
 import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 
 
 const Homepage = () => {
