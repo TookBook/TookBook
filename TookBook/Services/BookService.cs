@@ -116,39 +116,16 @@
             await _booksCollection.InsertOneAsync(bookToAdd);
             return bookToAdd.BookId;
         }
+        
+        //Alternativ som jag inte fick att fungera /Tiia
         //public async Task<Book> AddBookAsync(Book book, bool isNew, int amountOfAddedBooks)
         //{
-
-
         //    if (!isNew) book.InStock.Used += amountOfAddedBooks;
         //    else book.InStock.New += amountOfAddedBooks;
         //    await _booksCollection.InsertOneAsync(book);
         //    return book;
         //}
 
-        //Metod som tar in alla parametrar separat
-        //public async Task AddBookAsync(string title, string category, string author, string language, int year, bool isNew, decimal price, string seller, string description, int amountOfAddedBooks)
-        //{
-        //    Book book = new()
-        //    {
-        //        Title = title,
-        //        CategoryName = category,
-        //        Authors = author,
-        //        Language = language,
-        //        Year = year,
-        //        Price = price,
-        //        Seller = seller,
-        //        BookInfo = description
-        //    };
-
-        //    if (!isNew)
-        //    {
-        //        book.InStock.Used += amountOfAddedBooks;
-        //    }
-        //    else book.InStock.New += amountOfAddedBooks;
-
-        //    await _booksCollection.InsertOneAsync(book);
-        //}
 
         //Tested in swagger /Max
         /// <summary>

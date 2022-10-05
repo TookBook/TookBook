@@ -148,7 +148,7 @@ namespace TookBook.Controllers
         [HttpDelete("PurgeEmptyBooks")]
         public async Task PurgeBook() => await _bookService.PurgeEmptyBooks();
 
-        
+
         /// <summary>
         /// Adds a new book to the database.
         /// </summary>
@@ -160,84 +160,40 @@ namespace TookBook.Controllers
         public async Task<ActionResult> AddBook(string title, string category, string language, string authorFirstName, string authorLasName, int year, decimal price, string seller, string bookInfo, int amountOfBooks)
         {
             var newBook = await _bookService.AddBookAsyncTest(title, category, language, authorFirstName, authorLasName, year, price, seller, bookInfo, amountOfBooks);
-            
+
             //skapar en ny id
             var newId = ObjectId.GenerateNewId().ToString();
 
             //sätter id på boken
-            
+
 
             //kollar om boken redan finns i databasen
             var bookExists = await _bookService.GetByTitle(newBook.Title);
             if (bookExists != null)
             {
                 await _bookService.UpdateBook(newBook);
-                return BadRequest("Book already exists in database.");   
-            }   
+                return BadRequest("Book already exists in database.");
+            }
             else
             {
                 newBook.BookId = newId;
                 await _bookService.CreateBookAsync(newBook);
             }
-                
+
             return Ok(newBook);
         }
-        //DENNA FUNGERAR PÅ NÅTT SÄTT
-        //public async Task<ActionResult> AddBook(string title, int year, decimal price, string seller, int amount)
+
+        //[HttpGet("SetAmount")]
+        //public async Task<ActionResult> SetAmount(Book bookToBeChanged, int amount)
         //{
-        //    var book = await _bookService.GetByTitle(title);
-        //    if (book != null)
-        //    {
-        //        if(book.Seller == "") book.InStock.New+=
-        //        book.InStock.New += amount;
-        //        await _bookService.UpdateBook(book);
-        //        return Ok(book);
-        //    }
-        //    else
-        //    {
-        //        var newBook = new Book
-        //        {
-        //            Title = title,
-        //            Year = year,
-        //            Price = price,
-        //            Seller = seller,
-        //            InStock = new InStock
-        //            {
-        //                New = amount,
-        //                Used = 0
-        //            }
-        //        };
-        //        await _bookService.CreateBookAsync(newBook);
-        //        return CreatedAtAction(nameof(AddBook), new { id = newBook.BookId }, newBook);
-        //    }
+        //    var book = await _bookService.GetByIdTest(bookToBeChanged.BookId);
+        //    if (book == null)
+        //        return NotFound();
+        //    await _bookService.SetAmountAsync(bookToBeChanged, amount);
+        //    return Ok(bookToBeChanged);
         //}
-        //public async Task<ActionResult> AddBook(Book newBook)
-        //{
-        //    var bookExists = await _bookService.GetBookById(newBook.BookId);
 
-        //    if (bookExists != null)
-        //    {
-        //        if (newBook.Seller != string.Empty) newBook.InStock.Used++;
-        //        else newBook.InStock.New++;
-        //        return Ok("Book exists already");
-        //    }
-        //    else
-        //    {
-        //    await _bookService.CreateBookAsync(newBook);
-        //    return Ok(); 
-        //    }
-        //newBook.BookId = ObjectId.GenerateNewId().ToString(); //löser inte problemet med id
+
     }
-
-            //[HttpGet("SetAmount")]
-            //public async Task<ActionResult> SetAmount(Book bookToBeChanged, int amount)
-            //{
-            //    var book = await _bookService.GetByIdTest(bookToBeChanged.BookId);
-            //    if (book == null)
-            //        return NotFound();
-            //    await _bookService.SetAmountAsync(bookToBeChanged, amount);
-            //    return Ok(bookToBeChanged);
-            //}
-
-        
 }
+    

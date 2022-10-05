@@ -32,11 +32,6 @@ const Navbar = () => {
 		// <Link to="userportal" />
 	}
 
-	const handleOpenBasket = () => {
-		console.log("clickOpenBasket");
-		setOpenBasket(!openBasket)
-	}
-
 
 	return (
 		<>
@@ -62,8 +57,7 @@ const Navbar = () => {
 
 					{/**TODO: Proper icon, onlclick etc, basket dropdown thingy */}
 
-					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column", }} 
-					onClick={handleOpenBasket}>
+					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column", }}>
 						{/* <i class="fa-solid fa-basket-shopping"></i> */}
 						<ShoppingBasketIcon fontSize='large' />
 						<Typography>Basket</Typography>

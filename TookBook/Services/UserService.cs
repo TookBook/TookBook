@@ -133,6 +133,7 @@
             await UpdateUser(user);
             return await Task.FromResult(true);
         }
+        
         public async Task<bool> InactivateSeller(User user)
         {
             if (!user.UserType.IsSeller) return await Task.FromResult(false);
@@ -151,6 +152,7 @@
             user.UserType = type;
             await _userCollection.InsertOneAsync(user);
         }
+
         /// <summary>
         /// Returns the user with the same username or email as the input
         /// </summary>
@@ -187,26 +189,14 @@
         /// <returns></returns>
         public async Task<User> ShowProfileAsync(string userIdentifier)
         {
-            return await _userCollection.Find(_user => _user.UserName == userIdentifier || _user.Mail==userIdentifier).FirstAsync();
+            return await _userCollection.Find(_user => _user.UserName == userIdentifier || _user.Mail == userIdentifier).FirstAsync();
         }
-        
+
         public async Task ActivateAccountAsync(User accountToActivate)
         {
             var filter = Builders<User>.Filter.Eq(x => x.UserId, accountToActivate.UserId);
             var update = Builders<User>.Update.Set(x => x.IsActive, true);
             await _userCollection.UpdateOneAsync(filter, update);
-        }
-
-        //från Max
-        public async Task AddUserAsync(string email, string username, string password)
-        {
-            User user = new();
-            user.UserName = username;
-            user.Mail = email;
-            user.Password = password;
-            UserType type = new();
-            user.UserType = type;
-            await _userCollection.InsertOneAsync(user);
         }
     }
 }
