@@ -60,7 +60,7 @@ function App() {
 
           <Routes>
             <Route path='/' element={<Homepage />} />
-            {/* <Route path='/' element={<AdminMenu />} /> //kommentera bort raden ovan och sätt dit denna för o se admin sidan. Tills vi har routing färdigt  */}
+            <Route path='/adminmenu' element={<AdminMenu />} />
             {/* <Route
               path='userportal'
               element={(
