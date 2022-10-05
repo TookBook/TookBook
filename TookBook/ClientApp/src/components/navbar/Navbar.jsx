@@ -14,9 +14,10 @@ import InputBase from '@mui/material/InputBase';
 import Searchbar from './Searchbar';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import openUserPortalState from '../../atoms/openUserPortalState';
 import shoppingCartState from '../../atoms/shoppingCartState';
+import { activeUserState, adminModeState } from '../../atoms';
 import { Link } from 'react-router-dom';
 
 import DropDownMenu from './DropDownMenu';
@@ -25,6 +26,8 @@ const Navbar = () => {
 
 	const [openUserPortal, setOpenUserPortal] = useRecoilState(openUserPortalState)
 	const [openShoppingCart, setOpenShoppingCart] = useRecoilState(shoppingCartState)
+	const isAdmin = useRecoilState(adminModeState)
+
 
 	const handleOpenUserPortal = () => {
 		setOpenUserPortal(!openUserPortal)
@@ -55,11 +58,19 @@ const Navbar = () => {
 					<Searchbar />
 
 					{/**TODO: Proper icon, onlclick etc */}
+					{isAdmin ?
+						<IconButton sx={{ color: "black", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
+							<PersonSharpIcon fontSize='large' />
+							<Typography>Login</Typography>
+						</IconButton>
+						:
+						<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
+							<PersonSharpIcon fontSize='large' />
+							<Typography>Login</Typography>
+						</IconButton>
+					}
 
-					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
-						<PersonSharpIcon fontSize='large' />
-						<Typography>Login</Typography>
-					</IconButton>
+
 
 					{/**TODO: Proper icon, onlclick etc, basket dropdown thingy */}
 
