@@ -109,6 +109,11 @@
             await UpdateUser(userToChange);
         }
 
+        /// <summary>
+        /// Promotes the specified user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public async Task<bool> Promote(User user)
         {
             if (user.UserType.IsAdmin) return await Task.FromResult(false);
@@ -117,6 +122,11 @@
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Demotes the specified user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public async Task<bool> Demote(User user)
         {
             if (!user.UserType.IsAdmin) return await Task.FromResult(false);
@@ -125,6 +135,11 @@
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Inactivates the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public async Task<bool> InactivateUser(User user)
         {
             if (!user.IsActive) return await Task.FromResult(false);
@@ -132,6 +147,11 @@
             await UpdateUser(user);
             return await Task.FromResult(true);
         }
+        /// <summary>
+        /// Inactivates the seller.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public async Task<bool> InactivateSeller(User user)
         {
             if (!user.UserType.IsSeller) return await Task.FromResult(false);
@@ -139,6 +159,8 @@
             await UpdateUser(user);
             return await Task.FromResult(true);
         }
+
+        public async Task<User> GetUserByName(string name) => await _userCollection.Find(x => x.UserName.ToLower() == name.ToLower()).FirstOrDefaultAsync();
 
         public async Task AddUserAsync(string email, string username, string password)
         {
