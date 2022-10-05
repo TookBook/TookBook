@@ -1,5 +1,5 @@
 import Container from '@mui/material/Container';
-import { imageSlides } from '../assets/images/index';
+import { imageSlides } from '../../assets/images/index';
 import Carousel from "react-multi-carousel"
 import Box from "@mui/material/Box";
 import "react-multi-carousel/lib/styles.css";
