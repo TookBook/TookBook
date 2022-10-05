@@ -5,7 +5,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { fetchedUsersState } from '../atoms';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -33,7 +33,6 @@ const style = {
 
 function ChildModal() {
 	
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -71,7 +70,7 @@ function ChildModal() {
 
   
 const AdminMenu = () => {
-	const [Users, setUsers] = useRecoilState(fetchedUsersStateValue)
+	const Users = useRecoilValue(fetchedUsersState)
 	const [userType, setUserType] = React.useState('');
 	const [open, setOpen] = React.useState(false);
 	console.log(Users);
