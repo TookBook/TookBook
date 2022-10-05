@@ -27,6 +27,7 @@ const Navbar = () => {
 	const [openUserPortal, setOpenUserPortal] = useRecoilState(openUserPortalState)
 	const [openShoppingCart, setOpenShoppingCart] = useRecoilState(shoppingCartState)
 	const isAdmin = useRecoilState(adminModeState)
+	const userLoggedIn = useRecoilState(activeUserState)
 
 
 	const handleOpenUserPortal = () => {
@@ -57,9 +58,9 @@ const Navbar = () => {
 
 					<Searchbar />
 
-					{/**TODO: Proper icon, onlclick etc */}
-					{isAdmin ?
-						<IconButton sx={{ color: "black", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
+					{/**TODO: Change to admin menu when user is admin */}
+					{userLoggedIn.isActive ?
+						<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
 							<PersonSharpIcon fontSize='large' />
 							<Typography>Login</Typography>
 						</IconButton>
