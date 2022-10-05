@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 const fetchedBooksState = atom({
 	key: "fetchedBooksState",
-	default: null,
+	default: [],
 });
 
 export default fetchedBooksState

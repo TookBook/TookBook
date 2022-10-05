@@ -189,6 +189,16 @@
 
         }
 
+        [HttpPost("CreateUser")]
+        public async Task<ActionResult> CreateUser(string name, string email, string password)
+        {
+            var userAlreadyExists = await _userService.GetUserByName(name);
+            if (userAlreadyExists != null) return BadRequest("A user with that username already exists");
+            await _userService.AddUserAsync(name, email, password);
+            return Ok();
+
+        }
+
 
         /// <summary>
         /// Returns Ok if user is found and returns users as JSON file

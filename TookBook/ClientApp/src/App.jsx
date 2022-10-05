@@ -64,8 +64,7 @@ function App() {
             <Route path='/' element={<Homepage />} />
             <Route path='ShoppingCart' element={<ShoppingCart />} />
             <Route path='bookInfo' element={<BookInfo />} />
-            <Route path='AdminMenu' element={<AdminMenu />} />
-            {/* <Route path='/' element={<AdminMenu />} /> //kommentera bort raden ovan och sätt dit denna för o se admin sidan. Tills vi har routing färdigt  */}
+            <Route path='/adminmenu' element={<AdminMenu />} />
             {/* <Route
               path='userportal'
               element={(
