@@ -5,6 +5,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection.Metadata.Ecma335;
     using System.Text;
     using System.Threading.Tasks;
     using TookBook.Models;
@@ -132,6 +133,7 @@
             await UpdateUser(user);
             return await Task.FromResult(true);
         }
+        
         public async Task<bool> InactivateSeller(User user)
         {
             if (!user.UserType.IsSeller) return await Task.FromResult(false);
@@ -151,5 +153,50 @@
             await _userCollection.InsertOneAsync(user);
         }
 
+        /// <summary>
+        /// Returns the user with the same username or email as the input
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public async Task<User> RegisterUserAsync(string username, string email)
+        {
+            return await _userCollection.Find(x => x.UserName == username || x.Mail == email).FirstOrDefaultAsync();
+        }
+
+
+        public async Task EditProfileAsync(string id, User updatedUser)
+        {
+            await _userCollection.ReplaceOneAsync(x => x.UserId == id, updatedUser);
+        }
+
+
+        //TODO: add ADMIN id /Tiia
+        /// <summary>
+        /// Gets a list containing all users
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<User>> ListUsersAsync()
+        {
+            return await _userCollection.Find(_user => true).ToListAsync();
+        }
+
+
+        /// <summary>
+        /// Finds user by identifier (either userName och email)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<User> ShowProfileAsync(string userIdentifier)
+        {
+            return await _userCollection.Find(_user => _user.UserName == userIdentifier || _user.Mail == userIdentifier).FirstAsync();
+        }
+
+        public async Task ActivateAccountAsync(User accountToActivate)
+        {
+            var filter = Builders<User>.Filter.Eq(x => x.UserId, accountToActivate.UserId);
+            var update = Builders<User>.Update.Set(x => x.IsActive, true);
+            await _userCollection.UpdateOneAsync(filter, update);
+        }
     }
 }

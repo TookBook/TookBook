@@ -7,6 +7,7 @@
 
     [ApiController]
     [Route("api/[controller]")]
+
     public class UserController : ControllerBase
     {
         private readonly UserService _userService; //TODO: lägg till alla services
@@ -59,6 +60,38 @@
             return Ok(user.Mail + " " + user.UserName);
         }
 
+        /// <summary>
+        /// Gets a user by username and email. If user doesn't excist, creates user and sends a mail to user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpPost("RegisterUser")]
+        public async Task<ActionResult<User>> RegisterUser(string username, string email)
+        {
+            var user = await _userService.RegisterUserAsync(username, email);
+            if (user == null)
+            {
+                user = new User { UserName = username, Mail = email };
+                return Ok(user.Mail);
+            }
+            return Ok(user);
+        }
+
+
+        [HttpPost("EditProfile")]
+        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user.Password == password) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
+            {
+                user.UserName = username;
+                user.Mail = email;
+                await _userService.EditProfileAsync(user.UserId, user);
+                return Ok(user);
+            }
+            return BadRequest("Password is invalid");
+        }
 
         /// <summary>
         /// Blocks the user.
@@ -75,6 +108,7 @@
             return Ok();
         }
 
+        //Testat med Swagger /Tiia
         /// <summary>
         /// Unblocks the user.
         /// </summary>
@@ -153,6 +187,20 @@
             if (!userPromoted) return BadRequest("User is not a seller.");
             return Ok();
 
+        }
+
+
+        /// <summary>
+        /// Returns Ok if user is found and returns users as JSON file
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ListUsers")]
+        public async Task<ActionResult<List<User>>> ListUsers()
+        {
+            var users = await _userService.ListUsersAsync();
+            if (users == null)
+                return NotFound();
+            return Ok(users);
         }
     };
 }
