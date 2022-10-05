@@ -42,6 +42,9 @@
             return await _booksCollection.Find(_book => _book.Title.ToLower().Contains(keyword.ToLower())).ToListAsync();  //kan man inte bara ta kalla på alla och sen filtrera i frontend? istället för att filtrera innan?
         }
 
+        //test för att hämta en bok /Tiia
+        public async Task<Book> GetByTitle(string title) => await _booksCollection.Find(x => x.Title == title).FirstOrDefaultAsync();
+
         //Tested in swagger /Max
         /// <summary>
         /// Gets a list of books in a certain category.
@@ -50,8 +53,79 @@
         /// <returns>List of books in a category.</returns>
         public async Task<List<Book>> GetBooksInCategoryAsync(string category)
         {
-            return await _booksCollection.Find(_book => _book.Categories.Any(_category => _category.CategoryName.ToLower() == category.ToLower())).ToListAsync();
+            return await _booksCollection.Find(_book => _book.Categories.Any(_category => _category.CategoryName == category)).ToListAsync();
+
         }
+
+
+        public async Task CreateBookAsync(Book bookToAdd)
+        {
+            await _booksCollection.InsertOneAsync(bookToAdd);
+        }
+        
+        //test med att lägga till alla parametrar separat
+        public async Task<Book> AddBookAsyncTest(string title, string category, string language, string authorFirstName, string authorLasName, int year, decimal price, string seller, string bookInfo, int amountOfBooks)
+        {
+            Book book = new();
+            book.Title = title;
+            Category category1 = new()
+            {
+                CategoryName = category
+            };
+            book.Language = language;
+            Author author1 = new()
+            {
+                FirstName = authorFirstName,
+                LastName = authorLasName
+            };
+            book.Year = year;
+            book.Price = price;
+            book.Seller = seller;
+            book.BookInfo = bookInfo;
+
+            if (book.Seller is "admin") //om det inte finns någon säljare så är det en bok som finns i lager
+            {
+                book.InStock = new InStock()
+                {
+                    New = amountOfBooks
+                };
+            }
+            else
+            {
+                book.InStock = new InStock()
+                {
+                    Used = amountOfBooks
+                };
+            }
+
+            await _booksCollection.InsertOneAsync(book);
+            return book;
+        }
+        
+
+        public async Task<Book> TestToAddBook()
+        {
+            Book book = new();
+            await _booksCollection.InsertOneAsync(book);
+            return book;
+        }
+
+        public async Task<string> CreateBook(Book bookToAdd)
+        {
+            bookToAdd.BookId = String.Empty;
+            await _booksCollection.InsertOneAsync(bookToAdd);
+            return bookToAdd.BookId;
+        }
+        
+        //Alternativ som jag inte fick att fungera /Tiia
+        //public async Task<Book> AddBookAsync(Book book, bool isNew, int amountOfAddedBooks)
+        //{
+        //    if (!isNew) book.InStock.Used += amountOfAddedBooks;
+        //    else book.InStock.New += amountOfAddedBooks;
+        //    await _booksCollection.InsertOneAsync(book);
+        //    return book;
+        //}
+
 
         //Tested in swagger /Max
         /// <summary>
@@ -62,7 +136,7 @@
         public async Task<List<Book>> GetBooksByAuthorAsync(string author)
         {
             return await _booksCollection.Find(_book =>
-            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) || 
+            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) ||
             _author.LastName.ToLower().Contains(author))).ToListAsync();
         }
 
@@ -82,8 +156,6 @@
                 return await Task.FromResult(true);
             return await Task.FromResult(false);
         }
-
-
 
         /// <summary>
         /// Returns a book by searching for the bookId
