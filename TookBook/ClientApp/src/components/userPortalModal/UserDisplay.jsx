@@ -31,14 +31,16 @@ import { Link } from "react-router-dom";
 const UserDisplay = () => {
 
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
-	const [logout, setLogout] = useRecoilState(isUserLoggedInState)
+	const [adminMode, setAdminMode] = useRecoilState(adminModeState)
+	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isUserLoggedInState)
 	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 
 	const handleLogout = (e) => {
 		e.preventDefault();
-		setLogout(false)
+		setIsLoggedIn(false)
 		setActiveUser({})
-		setOpenContainer(false)
+		setAdminMode(false)
+		// setOpenContainer(false)
 	}
 
 	const handleGoToProfile = () => {

@@ -54,7 +54,7 @@ function TabPanel(props) {
 const UserPortalContainer = () => {
 	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 	const [tabValue, setTabValue] = useState(1);
-
+	const adminMode = useRecoilValue(adminModeState)
 	const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
 
 
@@ -62,7 +62,7 @@ const UserPortalContainer = () => {
 		setOpenContainer(false);
 		// <Link to="/"></Link>
 	}
-
+	//TODO: Tabchange when registered
 	const handleTabChange = (e, newValue) => {
 		setTabValue(newValue)
 	}
@@ -84,9 +84,10 @@ const UserPortalContainer = () => {
 				onClose={handleClose}
 				BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 			>
+				{console.log("admin mode?", adminMode)}
 				<Paper sx={{ minHeight: "550px" }} >
 
-					<Tabs centered value={tabValue} onChange={handleTabChange}>
+					<Tabs centered value={isUserLoggedIn ? 1 : tabValue} onChange={handleTabChange}>
 						<Tab label={isUserLoggedIn ? "User" : "Login"} value={1} />
 						{!isUserLoggedIn && <Tab label="Register" value={2} />}
 					</Tabs>
@@ -96,7 +97,7 @@ const UserPortalContainer = () => {
 					</TabPanel>
 
 					<TabPanel value={tabValue} index={2}>
-						<SignUpForm />
+						<SignUpForm switchTab={setTabValue} />
 					</TabPanel>
 
 				</Paper>
