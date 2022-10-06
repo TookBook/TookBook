@@ -5,9 +5,9 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-// import { useRecoilValue } from 'recoil';
-// import { fetchedUsersState } from '../atoms';
-import Users from '../../../userSeedData.json' //Temp solution
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { fetchedUsersState } from '../atoms';
+
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -73,25 +73,30 @@ function ChildModal() {
   
 const AdminMenu = () => {
 	// const Users = useRecoilValue(fetchedUsersState)
+	const [Users, setUsers] = useRecoilState(fetchedUsersState)
 	const [userType, setUserType] = React.useState();
 	const [open, setOpen] = React.useState(false);
 
-	const handleOpen = () => {
-	  setOpen(true);
-	};
-	const handleClose = () => {
-	  setOpen(false);
-	};
-	const handleChange = (event) => {
-		setUserType(event.target.value);
-	};
+	const handleOpen = () => setOpen(true)
+	const handleClose = () => setOpen(false);
 
-	//Lite psuedo kod för hur man ska ändra usertype
-	const handleUserType =(event) => {
-		let type = event.target.value;
+	const handleBlock = (id, e) => {
+		let updatedUsers = Users.map((user) => {
+		let updatedUser ={...user}
+		if (updatedUser.userId === id) updatedUser.isBlocked =! updatedUser.isBlocked
+		return updatedUser
+		})
+		setUsers(updatedUsers) 
+	}
+
+	const handleUserTypeChange =(id, e) => {
+		let type = e.target.value;
+		let updatedUsers = {...Users}
+		let user = updatedUsers.find(user => user.userIdd === id)
 
 		switch (type) {
 			case "Admin":
+				console.log(user) //Får error att exempelvis isAdmim är read only och inte går att ändra?
 				user.userType.isAdmin = true
 				user.userType.isSeller = false
 				break;
@@ -104,6 +109,7 @@ const AdminMenu = () => {
 				user.userType.isSeller = false
 				break;
 		}
+		setUsers(updatedUsers)
 	}
 
 
@@ -123,16 +129,16 @@ const AdminMenu = () => {
 		  </TableHead>
 		  <TableBody>
 			{Users.map((user) => (
-			  <TableRow key={user.id}>
-				<TableCell>{user.username}</TableCell>
+				<TableRow key={user.userId}>
+				<TableCell>{user.userName}</TableCell>
 				<TableCell>{user.mail}</TableCell>
-				<TableCell>{user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" } 
-
+				<TableCell>
+				{/* {user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" }  */}
 				{/*all users use the same usestate for now*/}
 				<FormControl sx={{ m: 1, minWidth: 120 }}>
 					<Select
 						value={user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer"}
-						onChange={handleChange}
+						onChange={(e)=> (handleUserTypeChange(user.userId, e))}
 						>
 						<MenuItem value={"Customer"}>Customer</MenuItem>
 						<MenuItem value={"Seller"}>Seller</MenuItem>
@@ -144,13 +150,13 @@ const AdminMenu = () => {
 				</TableCell>
 				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
 				{/* // checkbox should change status on users blocked state */}
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox /></TableCell> 
+				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} onChange={(e)=>(handleBlock(user.userId, e))}/></TableCell> 
 
 				<TableCell>
 					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
 					<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
 						<Box sx={{ ...style, width: 400 }}>
-						<h2 id="parent-modal-title">Username should be here but every user has the same modal so it displays the last users name instead..</h2>
+						<h2 id="parent-modal-title"> Username should be here but every user has the same modal so it displays the last users name instead..</h2>
 						some kind of list here of all orders. click order for more info <br />
 						<ChildModal /> <br />
 						<ChildModal /><br />
