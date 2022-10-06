@@ -17,11 +17,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from "@mui/material/Paper"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
+import openUserPortalState from "../../atoms/openUserPortalState";
+import { Link } from "react-router-dom";
 
 
 
@@ -31,15 +32,17 @@ const UserDisplay = () => {
 
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
 	const [logout, setLogout] = useRecoilState(isUserLoggedInState)
+	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 
 	const handleLogout = (e) => {
 		e.preventDefault();
 		setLogout(false)
 		setActiveUser({})
+		setOpenContainer(false)
 	}
 
 	const handleGoToProfile = () => {
-		<Link href="/"></Link>
+		setOpenContainer(false)
 	}
 
 	return (
@@ -63,16 +66,17 @@ const UserDisplay = () => {
 			</Typography>
 
 			<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem", mt: "5rem" }}>
-				<Button
-					type="submit"
-					fullWidth
-					variant="contained"
-					sx={{}}
-					onClick={() => handleGoToProfile()}
-				>
-					Go to profile
-				</Button>
-
+				<Link style={{ textDecoration: "none" }} to={"/userprofile"}>
+					<Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						sx={{}}
+						onClick={handleGoToProfile}
+					>
+						Go to profile
+					</Button>
+				</Link>
 				<Button
 					type=""
 					onClick={(e) => handleLogout(e)}
