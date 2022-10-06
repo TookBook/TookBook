@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,8 +7,8 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { fetchedUsersState } from '../atoms';
-
+import { fetchedUsersState, activeUserState, adminModeState, isUserLoggedInState } from '../atoms';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -72,10 +73,13 @@ function preventDefault(event) {
 
 // TODO: Check if user.usertype is admin to render page, otherwise render error page
 const AdminMenu = () => {
+	const navigate = useNavigate()
+	const adminMode = useRecoilValue(adminModeState)
 	// const Users = useRecoilValue(fetchedUsersState)
 	const [Users, setUsers] = useRecoilState(fetchedUsersState)
 	const [userType, setUserType] = React.useState();
 	const [open, setOpen] = React.useState(false);
+
 
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false);
@@ -112,7 +116,9 @@ const AdminMenu = () => {
 		setUsers(updatedUsers)
 	}
 
-
+	useEffect(() => {
+		if (!adminMode) navigate("/")
+	}, [adminMode])
 
 	return (
 		<React.Fragment>

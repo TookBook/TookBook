@@ -31,6 +31,7 @@ import { Link } from "react-router-dom";
 const UserDisplay = () => {
 
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
+	const [adminMode, setAdminMode] = useRecoilState(adminModeState)
 	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isUserLoggedInState)
 	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 
@@ -38,6 +39,7 @@ const UserDisplay = () => {
 		e.preventDefault();
 		setIsLoggedIn(false)
 		setActiveUser({})
+		setAdminMode(false)
 		// setOpenContainer(false)
 	}
 

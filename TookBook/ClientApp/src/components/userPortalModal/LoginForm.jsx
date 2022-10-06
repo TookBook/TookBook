@@ -69,7 +69,7 @@ const LoginForm = () => {
 			let user = await loginResponse.json();
 			setActiveUser(user)
 			setIsLoggedIn(true);
-			if (user.isAdmin) setIsAdmin(true)
+			if (user.userType.isAdmin) setIsAdmin(true)
 		}
 
 	}
@@ -100,7 +100,7 @@ const LoginForm = () => {
 				<PersonSharpIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				{activeUser.userName}
+				Login
 			</Typography>
 
 			<Box component="form" onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>

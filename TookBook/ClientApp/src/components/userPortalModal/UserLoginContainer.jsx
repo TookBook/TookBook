@@ -54,7 +54,7 @@ function TabPanel(props) {
 const UserPortalContainer = () => {
 	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 	const [tabValue, setTabValue] = useState(1);
-
+	const adminMode = useRecoilValue(adminModeState)
 	const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
 
 
@@ -84,6 +84,7 @@ const UserPortalContainer = () => {
 				onClose={handleClose}
 				BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 			>
+				{console.log("admin mode?", adminMode)}
 				<Paper sx={{ minHeight: "550px" }} >
 
 					<Tabs centered value={isUserLoggedIn ? 1 : tabValue} onChange={handleTabChange}>
