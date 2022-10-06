@@ -18,21 +18,26 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import openUserPortalState from '../../atoms/openUserPortalState';
 import shoppingCartState from '../../atoms/shoppingCartState';
 import { activeUserState, adminModeState } from '../../atoms';
-import { Link } from 'react-router-dom';
-
+import { Link, useAsyncValue } from 'react-router-dom';
 import DropDownMenu from './DropDownMenu';
+import { useEffect, use } from 'react';
+import { useState } from 'react';
+
+
+
 const Navbar = () => {
 	//TODO: Breakpoints, responsiveness.
 
 	const [openUserPortal, setOpenUserPortal] = useRecoilState(openUserPortalState)
 	const [openShoppingCart, setOpenShoppingCart] = useRecoilState(shoppingCartState)
 	const isAdmin = useRecoilState(adminModeState)
-	const userLoggedIn = useRecoilState(activeUserState)
+	const activeUser = useRecoilValue(activeUserState)
 
 
 	const handleOpenUserPortal = () => {
 		setOpenUserPortal(!openUserPortal)
 		// <Link to="userportal" />
+		console.log(activeUser.userName)
 	}
 
 	const handleOpenShoppingCart = () => {
@@ -40,6 +45,8 @@ const Navbar = () => {
 		console.log(shoppingCartState)
 		// <Link to="userportal" />
 	}
+
+
 
 	return (
 		<>
@@ -58,18 +65,17 @@ const Navbar = () => {
 					<Searchbar />
 
 					{/**TODO: Change to admin menu when user is admin */}
-					{userLoggedIn.isActive ?
+
+					<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
+						<PersonSharpIcon fontSize='large' />
+						<Typography>{activeUser.isActive ? "User" : "Login"}</Typography>
+					</IconButton>
+					{activeUser?.userType?.isAdmin &&
 						<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
 							<PersonSharpIcon fontSize='large' />
-							<Typography>Login</Typography>
-						</IconButton>
-						:
-						<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} onClick={handleOpenUserPortal}>
-							<PersonSharpIcon fontSize='large' />
-							<Typography>Login</Typography>
+							<Typography>Admin Dashboard</Typography>
 						</IconButton>
 					}
-
 
 
 					{/**TODO: Proper icon, onlclick etc, basket dropdown thingy */}

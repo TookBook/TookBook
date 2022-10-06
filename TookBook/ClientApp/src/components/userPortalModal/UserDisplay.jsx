@@ -31,6 +31,15 @@ const UserDisplay = () => {
 
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
 
+	const handleLogout = (e) => {
+		e.preventDefault();
+		setActiveUser({})
+	}
+
+	const handleGoToProfile = () => {
+		<Link href="/"></Link>
+	}
+
 	return (
 		<Box
 			sx={{
@@ -43,36 +52,35 @@ const UserDisplay = () => {
 			<Avatar sx={{ m: 1, bgcolor: 'primary.main', height: "55px", width: "55px" }}>
 				<AccountCircleRoundedIcon sx={{ height: "50px", width: "50px" }} />
 			</Avatar>
-			<Typography component="h1" variant="h5">
+			<Typography>Welcome</Typography>
+			<Typography component="p" variant="h4">
 				{activeUser.userName}
 			</Typography>
+			<Typography component="p" variant="body2">
+				{activeUser.mail}
+			</Typography>
 
+			<Box sx={{ display: "flex", flexDirection: "column", gap: "1rem", mt: "5rem" }}>
+				<Button
+					type="submit"
+					fullWidth
+					variant="contained"
+					sx={{}}
+					onClick={() => handleGoToProfile()}
+				>
+					Go to profile
+				</Button>
 
-
-
-
-
-
-			<Button
-				type="submit"
-				fullWidth
-				variant="contained"
-				sx={{ mt: 3, mb: 2 }}
-
-			>
-				View User Profile
-			</Button>
-
-			<Button
-				type=""
-
-				fullWidth
-				variant="contained"
-				sx={{ mt: 3, mb: 2, position: "absolute", maxWidth: 175, bottom: "3rem", }}
-			>
-				Logout
-			</Button>
-
+				<Button
+					type=""
+					onClick={(e) => handleLogout(e)}
+					fullWidth
+					variant="contained"
+					sx={{}}
+				>
+					Logout
+				</Button>
+			</Box>
 
 		</Box>
 	)
