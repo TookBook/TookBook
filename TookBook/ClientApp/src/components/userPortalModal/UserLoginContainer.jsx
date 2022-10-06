@@ -88,7 +88,7 @@ const UserPortalContainer = () => {
 			>
 				<Paper sx={{ minHeight: "550px" }} >
 
-					<Tabs centered value={tabValue} onChange={handleTabChange}>
+					<Tabs centered value={isUserLoggedIn ? 1 : tabValue} onChange={handleTabChange}>
 						<Tab label={isUserLoggedIn ? "User" : "Login"} value={1} />
 						{!isUserLoggedIn && <Tab label="Register" value={2} />}
 					</Tabs>
