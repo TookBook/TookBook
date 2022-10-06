@@ -40,28 +40,34 @@ const gradientLine = {
 
 const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
-	const tempItems = [1, 2, 3, 4, 5];
-	if (books == null) books = tempItems;
+	const placeHolderArray = [1, 2, 3, 4, 5];
 
+	const dataToDisplay = () => {
+		if (!books)
+			return placeHolderArray.map((book, i,) => <BookPreview book={null} key={i}></BookPreview>)
+		return books.map((book, i,) => <BookPreview book={book} key={i}></BookPreview>)
+	}
 
 	return (
 		<>
-
-			<Box position={"relative"} sx={{ padding: "2rem" }}>
-
-				<Box sx={{ ...gradientLine, minWidth: "100%" }}> </Box>
+			<Box margin={"1rem"}>
 				<Container maxWidth="md">
 					<Typography variant={"h6"} gutterBottom textAlign={""} >{displayTitle}</Typography>
 				</Container>
 
-				<Container maxWidth="lg">
+				<Box position={"relative"} sx={{ padding: "2rem" }}>
+					<Box sx={{ ...gradientLine, minWidth: "100%" }}> </Box>
 
-					<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
-						{tempItems.map((book, i) =>
-							<BookPreview book={null} key={i} />)}
-					</Box>
-				</Container>
-				{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
+					<Container maxWidth="lg">
+
+						<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center", alignItems: "center", }}>
+							{/* {books.map((book, i) =>
+							<BookPreview book={book} key={i} />) } */}
+							{dataToDisplay()}
+						</Box>
+
+					</Container>
+					{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
 				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
 
 				</Box>
@@ -72,6 +78,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 				</Box>
 			</Box> */}
+				</Box>
 			</Box>
 		</>
 	)

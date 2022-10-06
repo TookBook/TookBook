@@ -20,18 +20,57 @@ import Tab from '@mui/material/Tab';
 import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
+import { activeUserState, adminModeState } from "../../atoms";
+
+
+
+
+
+const usernameErrorMessage = (username) => {
+	const tooShort = username.length < 4 && username.length != 0
+
+	if (tooShort) return `Username must be longer than four characters`
+
+}
+const passwordErrorMessage = (pass) => {
+	const tooShort = pass.length < 4 && pass.length != 0
+	if (tooShort) return `Password must be longer than four characters`
+}
+
+
+
 
 // TODO: API requests, get user etc. Add helpertext. Frontend validation of username/pass?
 const LoginForm = () => {
 
 	const [usernameField, setUsernameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
+	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
+	const [userSuccesfullyLoggedIn, setUserSuccesfullyLoggedIn] = useState(false)
+	const [infoMessage, setInfoMessage] = useState("")
+	const [isAdmin, setIsAdmin] = useRecoilState(adminModeState)
 
-
-	const handleLoginSubmit = (e) => {
+	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
-		console.log(usernameField)
+
+		const loginData = new FormData(e.currentTarget);
+		const userName = loginData.get("name");
+		const password = loginData.get("password")
+
+		const loginResponse = await fetch(`api/User/Login?username=${userName}&password=${password}`)
+		if (loginResponse.status == 500) {
+			setInfoMessage("User was not found")
+		}
+		if (loginResponse.status == 200) {
+			let user = await loginResponse.json();
+			setActiveUser(user)
+			setUserSuccesfullyLoggedIn(true);
+			if (user.isAdmin) setIsAdmin(true)
+		}
+
 	}
+
+
 	return (
 		<Box
 			sx={{
@@ -45,7 +84,7 @@ const LoginForm = () => {
 				<PersonSharpIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				Sign In
+				{activeUser.userName}
 			</Typography>
 
 			<Box component="form" onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
@@ -58,10 +97,10 @@ const LoginForm = () => {
 					label="Username"
 					name="name"
 					// onFocus={}
-					error={usernameField !== "" && usernameField.length < 5}
+					error={usernameField !== "" && usernameField.length < 4}
 					autoComplete="off"
 					onChange={(e) => setUsernameField(e.target.value)}
-				// helperText={}
+					helperText={usernameErrorMessage(usernameField)}
 				/>
 				<TextField
 					margin="normal"
@@ -72,13 +111,13 @@ const LoginForm = () => {
 					type="password"
 					id="password"
 					// onFocus={}
-					error={passwordField !== "" && passwordField.length < 5}
+					error={passwordField !== "" && passwordField.length < 4}
 					autoComplete="new-password"
 					onChange={(e) => setPasswordField(e.target.value)}
-				// helperText={}
+					helperText={passwordErrorMessage(passwordField)}
 				/>
 
-				<Typography color="error.light" textAlign="center">Error placeholder</Typography>
+				<Typography color="error" textAlign="center">{infoMessage}</Typography>
 
 
 				<Button
@@ -86,7 +125,7 @@ const LoginForm = () => {
 					fullWidth
 					variant="contained"
 					sx={{ mt: 3, mb: 2 }}
-					disabled={passwordField.length < 5 && usernameField.length < 5} // TODO: proper mini validation
+					disabled={(passwordField.length < 4 || usernameField.length < 4)} // TODO: proper mini validation
 				>
 					Login
 				</Button>
@@ -96,7 +135,7 @@ const LoginForm = () => {
 						component="button"
 						variant="body2"
 					>
-						Forgotten your password?
+						{/* Forgotten your password? */}
 					</Link>
 
 				</Box>

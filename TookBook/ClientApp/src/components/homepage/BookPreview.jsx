@@ -31,26 +31,44 @@ const BookPreview = ({ book }) => {
 			price: "25"
 		}
 
-	// onclick, add to cart
+	const handleBookClick = () => {
+		console.log(book.bookId)
+	}
+
+	// Split at space after x letters?
+	const shouldWordWrap = book.title.length > 30
+	const firstBookTitleSection = book.title.substring(0, 30)
+	const secondBookTitleSection = book.title.substring(30)
+	// TODO: onclick, add to cart
 
 	return (
 		<Box sx={{
-			maxHeight: "200px", borderRadius: "0.5rem",
+			maxHeight: "100%", borderRadius: "0.5rem", minWidth: "200px",
 			"&:hover": { transition: "all .2s ease-in-out", transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
 		}}>
 			<Box sx={{
-				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px",
+				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px", minHeight: "300px",
 				backgroundColor: "white", borderRadius: "0.5rem", boxShadow: "0px 0px 5px black"
 
 			}}>
 				<Image src={book.imgUrl} />
 
-				<Typography fontWeight={"bold"} gutterBottom align="center" variant="body1" color="black">{book.title}</Typography>
+				<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "normal", overflow: "hidden", wordBreak: "break-word" }}
+					fontWeight={"bold"} align="center" variant="body1" color="black">
+					{firstBookTitleSection}
+					{secondBookTitleSection}
+				</Typography>
 
-				<Button color="secondary" variant="contained" endIcon={<ShoppingBasketIcon />}
+				{/* <Typography sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word" }}
+					fontWeight={"bold"} align="center" variant="body1" color="black">
+					{secondBookTitleSection}
+				</Typography> */}
+
+				<Button onClick={handleBookClick} color="secondary" variant="contained" endIcon={<ShoppingBasketIcon />}
 					sx={{
-						minWidth: "90%", display: "flex", justifyContent: "space-between", marginInline: "auto",
-						fontSize: "1rem", fontWeight: "bold", paddingTop: "2px", paddingBottom: "2px"
+						minWidth: "90%", display: "flex", justifyContent: "space-evenly", marginInline: "auto",
+						fontSize: "1rem", fontWeight: "bold", paddingTop: "2px", paddingBottom: "2px",
+						marginTop: "auto"
 					}} >
 					{book.price}
 				</Button>
