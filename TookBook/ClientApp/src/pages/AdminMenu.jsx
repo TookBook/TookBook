@@ -19,134 +19,134 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
+	position: 'absolute',
+	top: '50%',
+	left: '50%',
+	transform: 'translate(-50%, -50%)',
+	width: 400,
+	bgcolor: 'background.paper',
+	border: '2px solid #000',
+	boxShadow: 24,
+	pt: 2,
+	px: 4,
+	pb: 3,
 };
 
 function ChildModal() {
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+	const [open, setOpen] = React.useState(false);
+	const handleOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 
-  return (
-    <React.Fragment>
-      <Button onClick={handleOpen}>Order date</Button>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box sx={{ ...style, width: 500 }}>
-          <h2 id="child-modal-title">Order date or id</h2>
-          <p id="child-modal-description">
-            list of all books in order, price etc
-          </p>
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  );
+	return (
+		<React.Fragment>
+			<Button onClick={handleOpen}>Order date</Button>
+			<Modal
+				hideBackdrop
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="child-modal-title"
+				aria-describedby="child-modal-description"
+			>
+				<Box sx={{ ...style, width: 500 }}>
+					<h2 id="child-modal-title">Order date or id</h2>
+					<p id="child-modal-description">
+						list of all books in order, price etc
+					</p>
+					<Button onClick={handleClose}>Close</Button>
+				</Box>
+			</Modal>
+		</React.Fragment>
+	);
 }
 
-  function preventDefault(event) {
+function preventDefault(event) {
 	event.preventDefault();
-  }
+}
 
-  
+// TODO: Check if user.usertype is admin to render page, otherwise render error page
 const AdminMenu = () => {
 	const [userType, setUserType] = React.useState('');
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => {
-	  setOpen(true);
+		setOpen(true);
 	};
 	const handleClose = () => {
-	  setOpen(false);
+		setOpen(false);
 	};
 	const handleChange = (event) => {
 		setUserType(event.target.value);
-	  };
+	};
 
 	return (
 		<React.Fragment>
-		<Table size="small">
-		  <TableHead>
-			<TableRow>
-			  <TableCell>Username</TableCell>
-			  <TableCell>Mail</TableCell>
-			  <TableCell>User Type</TableCell>
-			  <TableCell>Verified Status</TableCell>
-			  <TableCell>Blocked Status</TableCell>
-			  <TableCell>Orders</TableCell>
-			</TableRow>
-		  </TableHead>
-		  <TableBody>
-			{Users.map((user) => (
-			  <TableRow key={user.id}>
-				<TableCell>{user.username}</TableCell>
-				<TableCell>{user.mail}</TableCell>
-				<TableCell>{user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" } 
+			<Table size="small">
+				<TableHead>
+					<TableRow>
+						<TableCell>Username</TableCell>
+						<TableCell>Mail</TableCell>
+						<TableCell>User Type</TableCell>
+						<TableCell>Verified Status</TableCell>
+						<TableCell>Blocked Status</TableCell>
+						<TableCell>Orders</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{Users.map((user) => (
+						<TableRow key={user.id}>
+							<TableCell>{user.username}</TableCell>
+							<TableCell>{user.mail}</TableCell>
+							<TableCell>{user.userType.isAdmin ? "Admin" : user.userType.isSeller ? "Seller" : "Customer"}
 
-				{/*all users use the same usestate for now*/}
-				<FormControl sx={{ m: 1, minWidth: 120 }}>
-					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={userType}
-						onChange={handleChange}
-						inputProps={'Without label'}
-						>
-						<MenuItem value={"Customer"}>Customer</MenuItem>
-						<MenuItem value={"Seller"}>Seller</MenuItem>
-						<MenuItem value={"Admin"}>Admin</MenuItem>
-					</Select>
-					</FormControl>
+								{/*all users use the same usestate for now*/}
+								<FormControl sx={{ m: 1, minWidth: 120 }}>
+									<Select
+										labelId="demo-simple-select-label"
+										id="demo-simple-select"
+										value={userType}
+										onChange={handleChange}
+										inputProps={'Without label'}
+									>
+										<MenuItem value={"Customer"}>Customer</MenuItem>
+										<MenuItem value={"Seller"}>Seller</MenuItem>
+										<MenuItem value={"Admin"}>Admin</MenuItem>
+									</Select>
+								</FormControl>
 
 
-				</TableCell>
-				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
-				{/* // checkbox should change status on users blocked state */}
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox /></TableCell> 
+							</TableCell>
+							<TableCell>{user.isActive ? "Verified" : "Unverified"}</TableCell>
+							{/* // checkbox should change status on users blocked state */}
+							<TableCell>{user.isBlocked ? "Blocked" : "Unblocked"} <Checkbox /></TableCell>
 
-				<TableCell>
-					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
-					<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
-						<Box sx={{ ...style, width: 400 }}>
-						<h2 id="parent-modal-title">Username should be here but every user has the same modal so it displays the last users name instead..</h2>
-						some kind of list here of all orders. click order for more info <br />
-						<ChildModal /> <br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal />
-						</Box>
-					</Modal>
-					</TableCell>
-			  </TableRow>
-			))}
-		  </TableBody>
-		</Table>
-		<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-		  See more users
-		</Link>
-	  </React.Fragment>
+							<TableCell>
+								<Button onClick={handleOpen}>{user.orders ? user.orders.length : 0}</Button>
+								<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
+									<Box sx={{ ...style, width: 400 }}>
+										<h2 id="parent-modal-title">Username should be here but every user has the same modal so it displays the last users name instead..</h2>
+										some kind of list here of all orders. click order for more info <br />
+										<ChildModal /> <br />
+										<ChildModal /><br />
+										<ChildModal /><br />
+										<ChildModal /><br />
+										<ChildModal /><br />
+										<ChildModal />
+									</Box>
+								</Modal>
+							</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+			<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+				See more users
+			</Link>
+		</React.Fragment>
 	)
 }
 
