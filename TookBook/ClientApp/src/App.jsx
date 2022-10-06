@@ -26,9 +26,14 @@ function App() {
   const fetchBooks = async () => {
     let response = await fetch("/api/Book/AllBooks")
     let data = await response.json();
+    console.log(data);
     setFetchedBooks(data)
 
   };
+
+  const fetchBookById = async () => {
+    let response = await fetch(`api/Book/AllBooks/?id=${match.params.id}`)
+  }
 
   const fetchCategories = async () => {
     let response = await fetch("/api/Category/AllCategories")
@@ -44,6 +49,7 @@ function App() {
 
   useEffect(() => {
     fetchBooks();
+    fetchBookById();
     fetchCategories();
     fetchUsers();
     console.log(fetchedBooks)
@@ -63,7 +69,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Homepage />} />
             <Route path='ShoppingCart' element={<ShoppingCart />} />
-            <Route path='bookInfo' element={<BookInfo />} />
+            <Route path='/book/:id' element={<BookInfo />} />
             <Route path='AdminMenu' element={<AdminMenu />} />
             {/* <Route path='/' element={<AdminMenu />} /> //kommentera bort raden ovan och sätt dit denna för o se admin sidan. Tills vi har routing färdigt  */}
             {/* <Route

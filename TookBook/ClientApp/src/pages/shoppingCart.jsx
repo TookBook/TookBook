@@ -20,13 +20,13 @@ import Box from '@mui/material/Box';
 
 const ShoppingCart = () => {
 	return (
-		<Container>
-		<Box sx={{
-			maxHeight: "400px", borderRadius: "0.5rem",
-			"&:hover": { transition: "all .2s ease-in-out", transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
-		}}>
+		<Box position={"relative"} sx={{ padding: "2rem" }}>
+			<Box sx={{
+				maxHeight: "400px", borderRadius: "0.5rem",
+				"&:hover": { transition: "all .2s ease-in-out", transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
+			}}>
+			</Box>
 		</Box>
-		</Container>
 	)
 }
 
