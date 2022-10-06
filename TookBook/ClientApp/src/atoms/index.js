@@ -3,6 +3,7 @@ import fetchedBooksState from "./fetchedBooksState"
 import fetchedCategoriesState from "./fetchedCategoriesState"
 import fetchedUsersState from "./fetchedUsersState"
 import adminModeState from "./adminModeState"
+import isUserLoggedInState from "./isUserLoggedInState"
 
 
 export {
@@ -10,5 +11,6 @@ export {
 	adminModeState,
 	fetchedBooksState,
 	fetchedCategoriesState,
-	fetchedUsersState
+	fetchedUsersState,
+	isUserLoggedInState
 }

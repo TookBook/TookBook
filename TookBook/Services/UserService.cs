@@ -47,7 +47,7 @@
         /// <returns> User if user exists, otherwise null</returns>
         public async Task<User> LoginAsync(string username, string password)
         {
-            return await _userCollection.Find(o => o.UserName == username && o.Password == password).FirstAsync();
+            return await _userCollection.Find(o => o.UserName == username && o.Password == password).FirstOrDefaultAsync();
         }
 
         //Tested in swagger /Max
@@ -163,7 +163,7 @@
 
         public async Task<User> GetUserByName(string name) => await _userCollection.Find(x => x.UserName.ToLower() == name.ToLower()).FirstOrDefaultAsync();
 
-        public async Task AddUserAsync(string email, string username, string password)
+        public async Task<User> AddUserAsync (string username, string email, string password)
         {
             User user = new();
             user.UserName = username;
@@ -172,6 +172,7 @@
             UserType type = new();
             user.UserType = type;
             await _userCollection.InsertOneAsync(user);
+            return user;
         }
 
         /// <summary>

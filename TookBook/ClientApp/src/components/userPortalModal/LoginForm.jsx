@@ -20,7 +20,7 @@ import Tab from '@mui/material/Tab';
 import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
-import { activeUserState, adminModeState } from "../../atoms";
+import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
 
 
 
@@ -46,9 +46,11 @@ const LoginForm = () => {
 	const [usernameField, setUsernameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
-	const [userSuccesfullyLoggedIn, setUserSuccesfullyLoggedIn] = useState(false)
-	const [infoMessage, setInfoMessage] = useState("")
+
 	const [isAdmin, setIsAdmin] = useRecoilState(adminModeState)
+	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isUserLoggedInState)
+	const [infoMessage, setInfoMessage] = useState("")
+
 
 	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
@@ -58,13 +60,13 @@ const LoginForm = () => {
 		const password = loginData.get("password")
 
 		const loginResponse = await fetch(`api/User/Login?username=${userName}&password=${password}`)
-		if (loginResponse.status == 500) {
+		if (loginResponse.status == 404) {
 			setInfoMessage("User was not found")
 		}
 		if (loginResponse.status == 200) {
 			let user = await loginResponse.json();
 			setActiveUser(user)
-			setUserSuccesfullyLoggedIn(true);
+			setIsLoggedIn(true);
 			if (user.isAdmin) setIsAdmin(true)
 		}
 
