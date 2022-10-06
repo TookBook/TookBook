@@ -5,8 +5,10 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { useRecoilValue } from 'recoil';
-import { fetchedUsersState } from '../atoms';
+// import { useRecoilValue } from 'recoil';
+// import { fetchedUsersState } from '../atoms';
+import Users from '../../../userSeedData.json' //Temp solution
+
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -70,10 +72,10 @@ function ChildModal() {
 
   
 const AdminMenu = () => {
-	const Users = useRecoilValue(fetchedUsersState)
-	const [userType, setUserType] = React.useState('');
+	// const Users = useRecoilValue(fetchedUsersState)
+	const [userType, setUserType] = React.useState();
 	const [open, setOpen] = React.useState(false);
-	console.log(Users);
+
 	const handleOpen = () => {
 	  setOpen(true);
 	};
@@ -82,7 +84,29 @@ const AdminMenu = () => {
 	};
 	const handleChange = (event) => {
 		setUserType(event.target.value);
-	  };
+	};
+
+	//Lite psuedo kod för hur man ska ändra usertype
+	const handleUserType =(event) => {
+		let type = event.target.value;
+
+		switch (type) {
+			case "Admin":
+				user.userType.isAdmin = true
+				user.userType.isSeller = false
+				break;
+			case "Seller":
+				user.userType.isAdmin = false
+				user.userType.isSeller = true
+				break;
+			case "Customer":
+				user.userType.isAdmin = false
+				user.userType.isSeller = false
+				break;
+		}
+	}
+
+
 
 	return (
 		<React.Fragment>
@@ -107,11 +131,8 @@ const AdminMenu = () => {
 				{/*all users use the same usestate for now*/}
 				<FormControl sx={{ m: 1, minWidth: 120 }}>
 					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={userType}
+						value={user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer"}
 						onChange={handleChange}
-						inputProps={'Without label'}
 						>
 						<MenuItem value={"Customer"}>Customer</MenuItem>
 						<MenuItem value={"Seller"}>Seller</MenuItem>
