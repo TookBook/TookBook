@@ -68,7 +68,7 @@ function App() {
 
           <Routes>
             <Route path='/' element={<Homepage />} />
-            <Route path='ShoppingCart' element={<ShoppingCart />} />
+            <Route path='shoppingcart' element={<ShoppingCart />} />
             <Route path='/book/:id' element={<BookInfo />} />
             <Route path='/adminmenu' element={<AdminMenu />} />
             {/* <Route
