@@ -62,28 +62,28 @@ let theme = createTheme({
 	// 	fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
 	// },
 	/** Overrides the cssBaseline component to allow for custom styling of scrollbars */
-	// components: {
-	// 	MuiCssBaseline: {
-	// 		styleOverrides: {
+	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
 
-	// 			body: {
-	// 				"&::-webkit-scrollbar": {
-	// 					backgroundColor: "#fff",
-	// 					width: "15px"
-	// 				},
-	// 				"&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": { //the scroll thingy
-	// 					borderRadius: 10,
-	// 					backgroundColor: '#888',
-	// 					border: "3px solid #fff",
+				body: {
+					"&::-webkit-scrollbar": {
+						backgroundColor: "#c6b8cf",
+						width: "15px"
+					},
+					"&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": { //the scroll thingy
+						borderRadius: 0,
+						backgroundColor: "#6D597A",
+						border: "0px solid #fff",
 
-	// 				},
-	// 				'&::-webkit-scrollbar-thumb:hover': {
-	// 					background: '#555'
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// }
+					},
+					'&::-webkit-scrollbar-thumb:hover': {
+						background: '#523f5e'
+					}
+				}
+			}
+		}
+	}
 })
 /** Tries to make all font sizes responsive based on screen size  */
 // theme = responsiveFontSizes(theme)

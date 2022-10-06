@@ -22,6 +22,21 @@ import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
 
 
+const usernameErrorMessage = (username) => {
+	const tooShort = username.length < 4 && username.length != 0
+
+	if (tooShort) return `Username must be longer than four characters`
+
+}
+const passwordErrorMessage = (pass) => {
+	const tooShort = pass.length < 4 && pass.length != 0
+	if (tooShort) return `Password must be longer than four characters`
+}
+
+const emailErrorMessage = (email) => {
+	const invalidMail = email.length < 6 && !email.includes("@") || !email.includes(".")
+	if (invalidMail) return `The entered email is not valid`
+}
 
 
 
@@ -35,8 +50,15 @@ const SignUpForm = () => {
 
 	const handleLoginSubmit = (e) => {
 		e.preventDefault();
-		console.log(usernameField)
-		console.log(emailField)
+
+		const loginData = new FormData(e.currentTarget);
+		const userName = loginData.get("name");
+		const password = loginData.get("password")
+		const email = loginData.get("email")
+
+		console.log(userName)
+		console.log(password)
+		console.log(email)
 	}
 	return (
 		<Box
@@ -64,10 +86,10 @@ const SignUpForm = () => {
 					label="Username"
 					name="name"
 					// onFocus={}
-					error={usernameField !== "" && usernameField.length < 5}
+					error={usernameField !== "" && usernameField.length < 4}
 					autoComplete="off"
 					onChange={(e) => setUsernameField(e.target.value)}
-				// helperText={}
+					helperText={usernameErrorMessage(usernameField)}
 				/>
 				<TextField
 					margin="normal"
@@ -78,10 +100,10 @@ const SignUpForm = () => {
 					type="password"
 					id="password"
 					// onFocus={}
-					error={passwordField !== "" && passwordField.length < 5}
+					error={passwordField !== "" && passwordField.length < 4}
 					autoComplete="new-password"
 					onChange={(e) => setPasswordField(e.target.value)}
-				// helperText={}
+					helperText={passwordErrorMessage(passwordField)}
 				/>
 				<TextField
 					margin="normal"
@@ -92,10 +114,10 @@ const SignUpForm = () => {
 					type="email"
 					id="email"
 					// onFocus={}
-					error={emailField !== "" && (emailField.length < 5 && !emailField.includes("@"))} //TODO: Fix so it checks for "@" correctly
+					error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))} //TODO: Fix so it checks for "@" correctly
 					autoComplete="new-password"
 					onChange={(e) => setEmailField(e.target.value)}
-				// helperText={}
+					helperText={emailField !== "" && emailErrorMessage(emailField)}
 				/>
 
 				<Typography color="error.light" textAlign="center">Error placeholder</Typography>
