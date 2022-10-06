@@ -62,9 +62,10 @@ const UserPortalContainer = () => {
 		setOpenContainer(false);
 		// <Link to="/"></Link>
 	}
-
+	//TODO: Tabchange when registered
 	const handleTabChange = (e, newValue) => {
 		setTabValue(newValue)
+		console.log("tabahnge")
 	}
 
 
@@ -96,7 +97,7 @@ const UserPortalContainer = () => {
 					</TabPanel>
 
 					<TabPanel value={tabValue} index={2}>
-						<SignUpForm />
+						<SignUpForm switchTab={handleTabChange} />
 					</TabPanel>
 
 				</Paper>

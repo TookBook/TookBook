@@ -21,6 +21,9 @@ import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
 import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
+import { useRef } from "react";
+import { getBottomNavigationUtilityClass } from "@mui/material";
+import { useEffect } from "react";
 
 
 
@@ -51,7 +54,6 @@ const LoginForm = () => {
 	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isUserLoggedInState)
 	const [infoMessage, setInfoMessage] = useState("")
 
-
 	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
 
@@ -72,6 +74,18 @@ const LoginForm = () => {
 
 	}
 
+
+	const checkIfRegistered = () => {
+		if (activeUser.userName?.length > 0) {
+			setUsernameField(activeUser.userName)
+			setPasswordField(activeUser.password)
+		}
+		console.log("checkifregisteredfired")
+	}
+
+	useEffect(() => {
+		checkIfRegistered()
+	}, [])
 
 	return (
 		<Box
@@ -98,7 +112,7 @@ const LoginForm = () => {
 					id="name"
 					label="Username"
 					name="name"
-					// onFocus={}
+					value={usernameField}
 					error={usernameField !== "" && usernameField.length < 4}
 					autoComplete="off"
 					onChange={(e) => setUsernameField(e.target.value)}
@@ -113,6 +127,8 @@ const LoginForm = () => {
 					type="password"
 					id="password"
 					// onFocus={}
+					focused={false}
+					value={passwordField}
 					error={passwordField !== "" && passwordField.length < 4}
 					autoComplete="new-password"
 					onChange={(e) => setPasswordField(e.target.value)}

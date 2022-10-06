@@ -21,6 +21,7 @@ import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
 import { activeUserState, isUserLoggedInState } from "../../atoms";
+import openUserPortalState from "../../atoms/openUserPortalState";
 
 
 const usernameErrorMessage = (username) => {
@@ -41,7 +42,7 @@ const emailErrorMessage = (email) => {
 
 
 
-const SignUpForm = ({ login, setLogin }) => {
+const SignUpForm = ({ switchTab }) => {
 	//TODO: Change register to "Send activation code."
 	//TODO: When click on "send activationcode", create pop up with "check your email for your activation code."
 	//TODO: Info; enter activation code to receive password. (temp password?)
@@ -49,7 +50,8 @@ const SignUpForm = ({ login, setLogin }) => {
 	const [passwordField, setPasswordField] = useState("")
 	const [emailField, setEmailField] = useState("")
 	const [loginUser, setLoginUser] = useRecoilState(activeUserState)
-
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(isUserLoggedInState)
+	const [userModal, setUserModal] = useRecoilState(openUserPortalState)
 
 	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
@@ -73,12 +75,17 @@ const SignUpForm = ({ login, setLogin }) => {
 			},
 
 		}
+		// TODO: log in automatically after successfully registering
 		const registerResponse = await fetch(`api/User/CreateUser?name=${userName}&email=${email}&password=${password}`, reqOptions)
 		if (registerResponse.status == 200) {
 			let data = await registerResponse.json()
 			console.log("SUCCESFULLY REGISTERED")
+			setLoginUser(data)
+			// setUserLoggedIn(true)
+			switchTab(2)
 
-			console.log(data)
+
+
 		}
 
 		console.log("Name", userName)
