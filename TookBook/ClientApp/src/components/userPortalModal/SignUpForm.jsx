@@ -51,16 +51,27 @@ const SignUpForm = ({ login, setLogin }) => {
 	const [loginUser, setLoginUser] = useRecoilState(activeUserState)
 
 
-	const handleLoginSubmit = async (e) => {
+	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
 
 		const loginData = new FormData(e.currentTarget);
-		const userName = loginData.get("name");
+		const userName = loginData.get("username");
 		const password = loginData.get("password")
 		const email = loginData.get("email")
 
+		// const userJSON = JSON.stringify({
+		// 	userName: userName,
+		// 	mail: email,
+		// 	password: password
+		// })
+
 		const reqOptions = {
-			method: "POST"
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+
 		}
 		const registerResponse = await fetch(`api/User/CreateUser?name=${userName}&email=${email}&password=${password}`, reqOptions)
 		if (registerResponse.status == 200) {
@@ -70,9 +81,9 @@ const SignUpForm = ({ login, setLogin }) => {
 			console.log(data)
 		}
 
-		console.log(userName)
-		console.log(password)
-		console.log(email)
+		console.log("Name", userName)
+		console.log("Password", password)
+		console.log("Email", email)
 	}
 	return (
 		<Box
@@ -90,15 +101,15 @@ const SignUpForm = ({ login, setLogin }) => {
 				Register
 			</Typography>
 
-			<Box component="form" onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
+			<Box component="form" onSubmit={handleRegisterSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField
 					autoFocus
 					margin="normal"
 					required
 					fullWidth
-					id="name"
+					id="username"
 					label="Username"
-					name="name"
+					name="username"
 					// onFocus={}
 					error={usernameField !== "" && usernameField.length < 4}
 					autoComplete="off"
@@ -128,7 +139,7 @@ const SignUpForm = ({ login, setLogin }) => {
 					type="email"
 					id="email"
 					// onFocus={}
-					error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))} //TODO: Fix so it checks for "@" correctly
+					error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))}
 					autoComplete="new-password"
 					onChange={(e) => setEmailField(e.target.value)}
 					helperText={emailField !== "" && emailErrorMessage(emailField)}

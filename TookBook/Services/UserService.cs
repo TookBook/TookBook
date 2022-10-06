@@ -163,7 +163,7 @@
 
         public async Task<User> GetUserByName(string name) => await _userCollection.Find(x => x.UserName.ToLower() == name.ToLower()).FirstOrDefaultAsync();
 
-        public async Task<User> AddUserAsync(string email, string username, string password)
+        public async Task<User> AddUserAsync (string username, string email, string password)
         {
             User user = new();
             user.UserName = username;
