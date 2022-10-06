@@ -66,6 +66,7 @@ const UserPortalContainer = () => {
 	const handleTabChange = (e, newValue) => {
 		setTabValue(newValue)
 		console.log("tabahnge")
+		console.log(newValue)
 	}
 
 
@@ -97,7 +98,7 @@ const UserPortalContainer = () => {
 					</TabPanel>
 
 					<TabPanel value={tabValue} index={2}>
-						<SignUpForm switchTab={handleTabChange} />
+						<SignUpForm switchTab={setTabValue} />
 					</TabPanel>
 
 				</Paper>

@@ -53,6 +53,8 @@ const SignUpForm = ({ switchTab }) => {
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(isUserLoggedInState)
 	const [userModal, setUserModal] = useRecoilState(openUserPortalState)
 
+
+
 	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
 
@@ -61,19 +63,12 @@ const SignUpForm = ({ switchTab }) => {
 		const password = loginData.get("password")
 		const email = loginData.get("email")
 
-		// const userJSON = JSON.stringify({
-		// 	userName: userName,
-		// 	mail: email,
-		// 	password: password
-		// })
-
 		const reqOptions = {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
-
 		}
 		// TODO: log in automatically after successfully registering
 		const registerResponse = await fetch(`api/User/CreateUser?name=${userName}&email=${email}&password=${password}`, reqOptions)
@@ -81,10 +76,8 @@ const SignUpForm = ({ switchTab }) => {
 			let data = await registerResponse.json()
 			console.log("SUCCESFULLY REGISTERED")
 			setLoginUser(data)
-			// setUserLoggedIn(true)
-			switchTab(2)
-
-
+			setUserLoggedIn(true)
+			switchTab(1)
 
 		}
 
