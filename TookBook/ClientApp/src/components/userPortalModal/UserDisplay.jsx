@@ -21,7 +21,7 @@ import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import { activeUserState, adminModeState } from "../../atoms";
+import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
 
 
 
@@ -30,9 +30,11 @@ import { activeUserState, adminModeState } from "../../atoms";
 const UserDisplay = () => {
 
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
+	const [logout, setLogout] = useRecoilState(isUserLoggedInState)
 
 	const handleLogout = (e) => {
 		e.preventDefault();
+		setLogout(false)
 		setActiveUser({})
 	}
 

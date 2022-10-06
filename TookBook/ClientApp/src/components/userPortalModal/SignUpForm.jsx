@@ -20,6 +20,7 @@ import Tab from '@mui/material/Tab';
 import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
+import { activeUserState, isUserLoggedInState } from "../../atoms";
 
 
 const usernameErrorMessage = (username) => {
@@ -40,21 +41,34 @@ const emailErrorMessage = (email) => {
 
 
 
-const SignUpForm = () => {
+const SignUpForm = ({ login, setLogin }) => {
 	//TODO: Change register to "Send activation code."
 	//TODO: When click on "send activationcode", create pop up with "check your email for your activation code."
 	//TODO: Info; enter activation code to receive password. (temp password?)
 	const [usernameField, setUsernameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 	const [emailField, setEmailField] = useState("")
+	const [loginUser, setLoginUser] = useRecoilState(activeUserState)
 
-	const handleLoginSubmit = (e) => {
+
+	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
 
 		const loginData = new FormData(e.currentTarget);
 		const userName = loginData.get("name");
 		const password = loginData.get("password")
 		const email = loginData.get("email")
+
+		const reqOptions = {
+			method: "POST"
+		}
+		const registerResponse = await fetch(`api/User/CreateUser?name=${userName}&email=${email}&password=${password}`, reqOptions)
+		if (registerResponse.status == 200) {
+			let data = await registerResponse.json()
+			console.log("SUCCESFULLY REGISTERED")
+
+			console.log(data)
+		}
 
 		console.log(userName)
 		console.log(password)

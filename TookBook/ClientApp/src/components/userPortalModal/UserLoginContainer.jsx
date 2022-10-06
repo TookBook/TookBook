@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from "recoil"
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import Slide from '@mui/material/Slide';
 import Box from "@mui/material/Box";
 import Button from '@mui/material/Button';
@@ -17,7 +17,7 @@ import Paper from "@mui/material/Paper"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import openUserPortalState from "../../atoms/openUserPortalState";
-import { activeUserState, adminModeState } from "../../atoms";
+import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { Link } from "react-router-dom";
@@ -54,7 +54,9 @@ function TabPanel(props) {
 const UserPortalContainer = () => {
 	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 	const [tabValue, setTabValue] = useState(1);
-	const isUserLoggedIn = useRecoilValue(activeUserState)
+
+	const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
+
 
 	const handleClose = () => {
 		setOpenContainer(false);
@@ -65,7 +67,7 @@ const UserPortalContainer = () => {
 		setTabValue(newValue)
 	}
 
-	// TODO: Admin mode 
+
 	return (
 		<>
 			<Dialog
@@ -85,12 +87,12 @@ const UserPortalContainer = () => {
 				<Paper sx={{ minHeight: "550px" }} >
 
 					<Tabs centered value={tabValue} onChange={handleTabChange}>
-						<Tab label={isUserLoggedIn.isActive ? "User" : "Login"} value={1} />
-						{!isUserLoggedIn.isActive && <Tab label="Register" value={2} />}
+						<Tab label={isUserLoggedIn ? "User" : "Login"} value={1} />
+						{!isUserLoggedIn && <Tab label="Register" value={2} />}
 					</Tabs>
 
 					<TabPanel value={tabValue} index={1}>
-						{isUserLoggedIn.isActive ? <UserDisplay /> : <LoginForm />}
+						{isUserLoggedIn ? <UserDisplay /> : <LoginForm />}
 					</TabPanel>
 
 					<TabPanel value={tabValue} index={2}>

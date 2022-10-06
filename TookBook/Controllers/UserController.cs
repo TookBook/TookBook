@@ -194,8 +194,8 @@
         {
             var userAlreadyExists = await _userService.GetUserByName(name);
             if (userAlreadyExists != null) return BadRequest("A user with that username already exists");
-            await _userService.AddUserAsync(name, email, password);
-            return Ok();
+            var createdUser = await _userService.AddUserAsync(name, email, password);
+            return Ok(createdUser);
 
         }
 
