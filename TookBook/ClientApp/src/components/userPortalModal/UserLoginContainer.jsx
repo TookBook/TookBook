@@ -65,8 +65,6 @@ const UserPortalContainer = () => {
 	//TODO: Tabchange when registered
 	const handleTabChange = (e, newValue) => {
 		setTabValue(newValue)
-		console.log("tabahnge")
-		console.log(newValue)
 	}
 
 
