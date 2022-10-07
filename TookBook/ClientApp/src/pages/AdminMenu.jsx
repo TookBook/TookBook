@@ -95,7 +95,6 @@ const AdminMenu = () => {
 			if (updatedUser.userId === id){
 					
 				if ( response.status == 200)updatedUser.isBlocked = !updatedUser.isBlocked
-				else console.log("FUNKA INTE???");
 			}
 			return updatedUser
 		})	
