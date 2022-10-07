@@ -13,12 +13,14 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Searchbar from './Searchbar';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import openUserPortalState from '../../atoms/openUserPortalState';
 import shoppingCartState from '../../atoms/shoppingCartState';
 import { activeUserState, adminModeState } from '../../atoms';
 import { Link, useAsyncValue } from 'react-router-dom';
+import Logo from "../../assets/images/logo.png"
 import DropDownMenu from './DropDownMenu';
 import { useEffect, use } from 'react';
 import { useState } from 'react';
@@ -61,12 +63,17 @@ const Navbar = () => {
 
 					<DropDownMenu />
 
-					<Box display="flex" alignItems="center" sx={{ cursor: "pointer", heigth: "1.5em", width: "5.2em", marginTop: ".5em", transform: "scale(1.6)" }}>
+					<Box display="flex" alignItems="center" sx={{ cursor: "pointer", }}>
 						<Link style={{ textDecoration: 'none' }} to={"/"}>
-							<IconButton >
-								<Typography sx={{ fontFamily: "Raleway", color: "black", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none" }}>Took</Typography>
-								<Typography sx={{ fontFamily: "Raleway", color: "white", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none" }}>Book</Typography>
-							</IconButton>
+
+							<Box sx={{ display: "flex", alignItems: "center", gap: "4em" }}>
+								<img src={Logo} style={{ maxHeight: "60px" }}></img>
+								<Box display="flex" alignItems="center" sx={{ cursor: "pointer", marginTop: ".5em", transform: "scale(2.2)" }}>
+									<Typography sx={{ fontFamily: "Raleway", color: "black", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none" }}>Took</Typography>
+									<Typography sx={{ fontFamily: "Raleway", color: "white", textDecoration: "underline overline", textDecorationStyle: "double", userSelect: "none" }}>Book</Typography>
+								</Box>
+							</Box>
+
 						</Link>
 					</Box>
 
@@ -82,7 +89,7 @@ const Navbar = () => {
 						<Link style={{ textDecoration: 'none' }} to={"/adminmenu"}>
 							<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} >
 
-								<PersonSharpIcon fontSize='large' />
+								<ConstructionIcon fontSize='large' />
 								<Typography>Admin Dashboard</Typography>
 							</IconButton>
 						</Link>
