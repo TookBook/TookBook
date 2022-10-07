@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using TookBook.Models;
 
-    public class BookService
+    public class BookService : IBookService
     {
         private readonly IMongoCollection<Book> _booksCollection;
 
@@ -62,7 +62,7 @@
         public async Task<List<Book>> GetBooksByAuthorAsync(string author)
         {
             return await _booksCollection.Find(_book =>
-            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) || 
+            _book.Authors.Any(_author => _author.FirstName.ToLower().Contains(author) ||
             _author.LastName.ToLower().Contains(author))).ToListAsync();
         }
 

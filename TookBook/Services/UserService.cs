@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using TookBook.Models;
 
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IMongoCollection<User> _userCollection;
 
