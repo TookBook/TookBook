@@ -5,6 +5,7 @@ namespace TookBook.Controllers
     using Microsoft.AspNetCore.Mvc;
     using TookBook.Services;
     using TookBook.Models;
+    using MongoDB.Bson;
 
     [ApiController]
     [Route("api/[controller]")]
@@ -17,7 +18,8 @@ namespace TookBook.Controllers
 
         //Tested in swagger /Max
         [HttpGet("AllBooks")]
-        public async Task<ActionResult<List<Book>>> Get() {
+        public async Task<ActionResult<List<Book>>> Get()
+        {
             var books = await _bookService.GetAsync();
             if (books == null)
                 return NotFound();
@@ -146,5 +148,52 @@ namespace TookBook.Controllers
         [HttpDelete("PurgeEmptyBooks")]
         public async Task PurgeBook() => await _bookService.PurgeEmptyBooks();
 
-    };
+
+        /// <summary>
+        /// Adds a new book to the database.
+        /// </summary>
+        /// <param name="newBook"></param>
+        /// <param name="isNew"></param>
+        /// <param name="amount"></param>
+        /// <returns></returns>
+        [HttpPost("AddBook")]
+        public async Task<ActionResult> AddBook(string title, string category, string language, string authorFirstName, string authorLasName, int year, decimal price, string seller, string bookInfo, int amountOfBooks)
+        {
+            var newBook = await _bookService.AddBookAsyncTest(title, category, language, authorFirstName, authorLasName, year, price, seller, bookInfo, amountOfBooks);
+
+            //skapar en ny id
+            var newId = ObjectId.GenerateNewId().ToString();
+
+            //sätter id på boken
+
+
+            //kollar om boken redan finns i databasen
+            var bookExists = await _bookService.GetByTitle(newBook.Title);
+            if (bookExists != null)
+            {
+                await _bookService.UpdateBook(newBook);
+                return BadRequest("Book already exists in database.");
+            }
+            else
+            {
+                newBook.BookId = newId;
+                await _bookService.CreateBookAsync(newBook);
+            }
+
+            return Ok(newBook);
+        }
+
+        //[HttpGet("SetAmount")]
+        //public async Task<ActionResult> SetAmount(Book bookToBeChanged, int amount)
+        //{
+        //    var book = await _bookService.GetByIdTest(bookToBeChanged.BookId);
+        //    if (book == null)
+        //        return NotFound();
+        //    await _bookService.SetAmountAsync(bookToBeChanged, amount);
+        //    return Ok(bookToBeChanged);
+        //}
+
+
+    }
 }
+    

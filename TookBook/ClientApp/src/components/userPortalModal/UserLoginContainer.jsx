@@ -1,5 +1,5 @@
-import { useRecoilState } from "recoil"
-import { useState, forwardRef } from "react";
+import { useRecoilState, useRecoilValue } from "recoil"
+import { useState, forwardRef, useEffect } from "react";
 import Slide from '@mui/material/Slide';
 import Box from "@mui/material/Box";
 import Button from '@mui/material/Button';
@@ -17,10 +17,12 @@ import Paper from "@mui/material/Paper"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import openUserPortalState from "../../atoms/openUserPortalState";
+import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import UserDisplay from "./UserDisplay";
 
 
 // Slide animation from Mui.
@@ -52,17 +54,20 @@ function TabPanel(props) {
 const UserPortalContainer = () => {
 	const [openContainer, setOpenContainer] = useRecoilState(openUserPortalState)
 	const [tabValue, setTabValue] = useState(1);
+	const adminMode = useRecoilValue(adminModeState)
+	const isUserLoggedIn = useRecoilValue(isUserLoggedInState)
+
 
 	const handleClose = () => {
 		setOpenContainer(false);
 		// <Link to="/"></Link>
 	}
-
+	//TODO: Tabchange when registered
 	const handleTabChange = (e, newValue) => {
 		setTabValue(newValue)
 	}
 
-	// TODO: Conditional rendering based on whether user is logged in or not, userloggedinstate
+
 	return (
 		<>
 			<Dialog
@@ -81,17 +86,17 @@ const UserPortalContainer = () => {
 			>
 				<Paper sx={{ minHeight: "550px" }} >
 
-					<Tabs centered value={tabValue} onChange={handleTabChange}>
-						<Tab label="Login" value={1} />
-						<Tab label="Register" value={2} />
+					<Tabs centered value={isUserLoggedIn ? 1 : tabValue} onChange={handleTabChange}>
+						<Tab label={isUserLoggedIn ? "User" : "Login"} value={1} />
+						{!isUserLoggedIn && <Tab label="Register" value={2} />}
 					</Tabs>
 
 					<TabPanel value={tabValue} index={1}>
-						<LoginForm />
+						{isUserLoggedIn ? <UserDisplay /> : <LoginForm />}
 					</TabPanel>
 
 					<TabPanel value={tabValue} index={2}>
-						<SignUpForm />
+						<SignUpForm switchTab={setTabValue} />
 					</TabPanel>
 
 				</Paper>

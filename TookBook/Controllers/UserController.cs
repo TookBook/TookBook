@@ -7,6 +7,7 @@
 
     [ApiController]
     [Route("api/[controller]")]
+
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService; //TODO: lägg till alla services
@@ -21,6 +22,14 @@
             if (users == null)
                 return NotFound();
             return Ok(users);
+        }
+
+        [HttpGet("{id:length(24)}")]
+        public async Task<ActionResult<User>> GetUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            return Ok(user);
         }
 
         //Tested in swagger /Max
@@ -59,6 +68,38 @@
             return Ok(user.Mail + " " + user.UserName);
         }
 
+        /// <summary>
+        /// Gets a user by username and email. If user doesn't excist, creates user and sends a mail to user
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        [HttpPost("RegisterUser")]
+        public async Task<ActionResult<User>> RegisterUser(string username, string email)
+        {
+            var user = await _userService.RegisterUserAsync(username, email);
+            if (user == null)
+            {
+                user = new User { UserName = username, Mail = email };
+                return Ok(user.Mail);
+            }
+            return Ok(user);
+        }
+
+
+        [HttpPost("EditProfile")]
+        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user.Password == password) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
+            {
+                user.UserName = username;
+                user.Mail = email;
+                await _userService.EditProfileAsync(user.UserId, user);
+                return Ok(user);
+            }
+            return BadRequest("Password is invalid");
+        }
 
         /// <summary>
         /// Blocks the user.
@@ -75,6 +116,7 @@
             return Ok();
         }
 
+        //Testat med Swagger /Tiia
         /// <summary>
         /// Unblocks the user.
         /// </summary>
@@ -153,6 +195,30 @@
             if (!userPromoted) return BadRequest("User is not a seller.");
             return Ok();
 
+        }
+
+        [HttpPost("CreateUser")]
+        public async Task<ActionResult> CreateUser(string name, string email, string password)
+        {
+            var userAlreadyExists = await _userService.GetUserByName(name);
+            if (userAlreadyExists != null) return BadRequest("A user with that username already exists");
+            var createdUser = await _userService.AddUserAsync(name, email, password);
+            return Ok(createdUser);
+
+        }
+
+
+        /// <summary>
+        /// Returns Ok if user is found and returns users as JSON file
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ListUsers")]
+        public async Task<ActionResult<List<User>>> ListUsers()
+        {
+            var users = await _userService.ListUsersAsync();
+            if (users == null)
+                return NotFound();
+            return Ok(users);
         }
     };
 }

@@ -1,7 +1,1399 @@
 [
   {
-    "title": "Bookiest book",
-    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
+    "title": "The Hitchhiker's Guide to the Galaxy",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51Ine+shI8L._SX329_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      },
+      {
+        "_id": "632c1938fc13ae57f600046d",
+        "categoryName": "Science fiction"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Douglas",
+        "lastName": "Adams"
+      }
+    ],
+    "year": 1995,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 42,
+    "seller": "",
+    "bookInfo": "Seconds before the Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker's Guide to the Galaxy who, for the last fifteen years, has been posing as an out-of-work actor. \nTogether this dynamic pair begin a journey through space aided by quotes from The Hitchhiker's Guide A towel is about the most massively useful thing an interstellar hitchhiker can have) and a galaxy-full of fellow travelers: Zaphod Beeblebrox--the two-headed, three-armed ex-hippie and totally out-to-lunch president of the galaxy; Trillian, Zaphod's girlfriend (formally Tricia McMillan), whom Arthur tried to pick up at a cocktail party once upon a time zone; Marvin, a paranoid, brilliant, and chronically depressed robot; Veet Voojagig, a former graduate student who is obsessed with the disappearance of all the ballpoint pens he bought over the years. Where are these pens? Why are we born? Why do we die? Why do we spend so much time between wearing digital watches? For all the answers stick your thumb to the stars. And don't forget to bring a towel!"
+  },
+
+  {
+    "title": "The colour of Magic",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/510inXGOv6S._SX322_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f600046d",
+        "categoryName": "Science fiction"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Terry",
+        "lastName": "Pratchet"
+      }
+    ],
+    "year": 1985,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 10,
+    "seller": "",
+    "bookInfo": "Since the publication of this title in 1983, Pratchett's Discworld series now has many best-selling titles in print, every one of which has received rapturous reviews. \"The plot is so ridiculous and so much fun"
+  },
+
+  {
+    "title": "Mort",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51bzgRiXmSS._SX303_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f600046d",
+        "categoryName": "Science fiction"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Terry",
+        "lastName": "Pratchet"
+      }
+    ],
+    "year": 2013,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 10,
+    "seller": "",
+    "bookInfo": "Terry Pratchett's hilarious fourth Discworld novel established once and for all that Death really is a laughing matter..."
+  },
+
+  {
+    "title": "Across the Nightingale Floor",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51O80yrtf+L._SX322_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045c",
+        "categoryName": "Historical fiction"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Lian",
+        "lastName": "Hearn"
+      }
+    ],
+    "year": 2003,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 11,
+    "seller": "",
+    "bookInfo": "Set in a mythical, feudal, Japanese land, a world both beautiful and cruel, the intense love story of two young people takes place against a background of warring clans, secret alliances, high honour and lightning swordplay.\n\nLian Hearn's stunningly powerful bestseller, Across the Nightingale Floor, is an epic story for readers young and old."
+  },
+
+
+  {
+    "title": "Horus Rising",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51VJrhGDofL._SX308_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      },
+      {
+        "_id": "632c1938fc13ae57f600046d",
+        "categoryName": "Science fiction"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Dan",
+        "lastName": "Abnett"
+      }
+    ],
+    "year": 2014,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 23,
+    "seller": "",
+    "bookInfo": "Under the benevolent leadership of the Immortal Emperor the Imperium of Man has stretched out across the galaxy. On the eve of victory, the Emperor leaves the front lines, entrusting the great crusade to his favorite son, Horus. Promoted to Warmaster, the idealistic Horus tries to carry out the Emperor'sgrand design, all the while the seeds of heresy and rebellion have been sowed amongst his brothers.."
+  },
+
+  {
+    "title": "The Silmarillion",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41YFqUNCg2L._SX331_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "J.R.R.",
+        "lastName": "Tolkien"
+      }
+    ],
+    "year": 2014,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 21,
+    "seller": "",
+    "bookInfo": "The story of the creation of the world and of the First Age, this is the ancient drama to which the characters in The Lord of the Rings look back and in whose events some of them, such as Elrond and Galadriel, took part. The three Silmarils were jewels created by Fëanor, most gifted of the Elves. Within them was imprisoned the Light of the Two Trees of Valinor before the Trees themselves were destroyed by Morgoth, the first Dark Lord. Thereafter, the unsullied Light of Valinor lived on only in the Silmarils, but they were seized by Morgoth and set in his crown, which was guarded in the impenetrable fortress of Angband in the north of Middle-earth.\n\nThe Silmarillion is the history of the rebellion of Fëanor and his kindred against the gods, their exile from Valinor and return to Middle-earth, and their war, hopeless despite all their heroism, against the great Enemy."
+  },
+
+  {
+    "title": "Ethical Hacking: A Hands-on Introduction to Breaking In",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/71kDRYEdKjL.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000456",
+        "categoryName": "Guide"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Daniel G.",
+        "lastName": "Graham"
+      }
+    ],
+    "year": 2021,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 450,
+    "seller": "",
+    "bookInfo": "A crash course in modern hacking techniques, Ethical Hacking is already being used to prepare the next generation of offensive security experts. In its many hands-on labs, you’ll explore crucial skills for any aspiring penetration tester, security researcher, or malware analyst.\n\nYou’ll begin with the basics: capturing a victim’s network traffic with an ARP spoofing attack and then viewing it in Wireshark. From there, you’ll deploy reverse shells that let you remotely run commands on a victim’s computer, encrypt files by writing your own ransomware in Python, and fake emails like the ones used in phishing attacks. In advanced chapters, you’ll learn how to fuzz for new vulnerabilities, craft trojans and rootkits, exploit websites with SQL injection, and escalate your privileges to extract credentials, which you’ll use to traverse a private networks"
+  },
+
+  {
+    "title": "Rich Dad Poor Dad",
+    "imgUrl": "https://m.media-amazon.com/images/I/51u8ZRDCVoL._AC_SY780_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600044a",
+        "categoryName": "Economics"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Robert T.",
+        "lastName": "Kiyosaki"
+      },
+      {
+        "firstName": "Sharon",
+        "lastName": "Lechter"
+      }
+    ],
+    "year": 1997,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 80,
+    "seller": "",
+    "bookInfo": "Rich Dad Poor Dad is Robert's story of growing up with two dads; his real father and the father of his best friend, his rich dad; and the ways in which both men shaped his thoughts about money and investing. The book explodes the myth that you need to earn a high income to be rich and explains the difference between working for money and having your money work for you."
+  },
+
+  {
+    "title": "Atomic Habits",
+    "imgUrl": "https://m.media-amazon.com/images/I/51-uspgqWIL._AC_SY780_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "James",
+        "lastName": "Clear"
+      }
+    ],
+    "year": 2018,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 250,
+    "seller": "",
+    "bookInfo": "THE PHENOMENAL INTERNATIONAL BESTSELLER: 1 MILLION COPIES SOLD Transform your life with tiny changes in behaviour, starting now. People think that when you want to change your life, you need to think big. But world-renowned habits expert James Clear has discovered another way. He knows that real change comes from the compound effect of hundreds of small decisions: doing two push-ups a day, waking up five minutes early, or holding a single short phone call. He calls them atomic habits. In this ground-breaking book, Clears reveals exactly how these minuscule changes can grow into such life-altering outcomes.\n\nHe uncovers a handful of simple life hacks (the forgotten art of Habit Stacking, the unexpected power of the Two Minute Rule, or the trick to entering the Goldilocks Zone), and delves into cutting-edge psychology and neuroscience to explain why they matter. Along the way, he tells inspiring stories of Olympic gold medalists, leading CEOs, and distinguished scientists who have used the science of tiny habits to stay productive, motivated, and happy. These small changes will have a revolutionary effect on your career, your relationships, and your life."
+  },
+
+  {
+    "title": "Numbers Ages 3-5",
+    "imgUrl": "https://m.media-amazon.com/images/I/416qWNWMXAL._AC_SY780_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Collins",
+        "lastName": "Easy Learning"
+      }
+    ],
+    "year": 2015,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 40,
+    "seller": "",
+    "bookInfo": "Level: EYFS Subject: Maths Learn the easy way with this numbers activity book! Fully in line with the Early Years Foundation Stage, this Maths book provides reassurance whilst supporting your child's learning at home."
+  },
+
+  {
+    "title": "You Are Fucking Magical : Motivational Swear Words Coloring Book",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/71eN5pZavEL.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600044c",
+        "categoryName": "Crafts/hobbies"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Bridget",
+        "lastName": "Coloring Press"
+      }
+    ],
+    "year": 2020,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 42,
+    "seller": "",
+    "bookInfo": "Relax Your Mind With This Beautiful Snarky Adult Coloring Book.\nBe Honest, You’ve had a Shitty Day.\nWork? Neighbors? Pets? Kids? They all love to stress you out. Don’t bottle it up, color what you want to say! With 25 designs, we’ve got any curse, swear, or put down you can imagine, ready to fucking color! Express how you really feel about your boss, bad grades, your neighbor or the DMV. Color your way to less stress! Color to your fucking hearts content!\nSit down, relax and color the heck out of this book!"
+  },
+
+  {
+    "title": "The Travelling Cat Chronicles",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/713DrRiRbuL.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000476",
+        "categoryName": "Travel"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Hiro",
+        "lastName": "Arikawa"
+      }
+    ],
+    "year": 2017,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 150,
+    "seller": "",
+    "bookInfo": "The tender feelgood story of a man's journey around Japan with a streetcat. Translated by Philip Gabriel, a translator of Murakami. INCLUDES 6 EXQUISITE LINE-DRAWINGS It's not the journey that counts, but who's at your side. Nana is on a road trip, but he is not sure where he is going. All that matters is that he can sit beside his beloved owner Satoru in the front seat of his silver van. Satoru is keen to visit three old friends from his youth, though Nana doesn't know why and Satoru won't say. Set against the backdrop of Japan's changing seasons and narrated with a rare gentleness and humour, Nana's story explores the wonder and thrill of life's unexpected detours. It is about the value of friendship and solitude, and knowing when to give and when to take. TRAVELLING CAT has already demonstrated its power to move thousands of readers with a message of kindness and truth. It shows, above all, how acts of love, both great and small, can transform our lives."
+  },
+
+  {
+    "title": "How to make the best coffee",
+    "imgUrl": "https://m.media-amazon.com/images/I/41oEMTAZS8L._AC_SY780_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600044e",
+        "categoryName": "Cookbook/Food"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "James ",
+        "lastName": "Hoffmann"
+      }
+    ],
+    "year": 2022,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 200,
+    "seller": "",
+    "bookInfo": "A world-leading coffee expert shows how to make barista-level coffee at home"
+  },
+
+  {
+    "title": "The Secrets of Finnish Sauna Design",
+    "imgUrl": "https://m.media-amazon.com/images/I/51wCc9DbqkL.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000444",
+        "categoryName": "Architecture"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Lassi A.",
+        "lastName": "Liikkanen"
+      }
+    ],
+    "year": 2021,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 420,
+    "seller": "",
+    "bookInfo": "Are you planning a new sauna, renovating an old one, or just dreaming? Do yourself a favor. Save your sauna project and read this wonderfully illustrated book about the design of authentic Finnish saunas!New research has identified Finnish sauna bathing as a source of numerous health benefits. To enjoy these effects, one needs a proper Finnish sauna. This book presents the collective wisdom accumulated by Finnish sauna builders, designers, and researchers across centuries, enabling anyone, anywhere, to design a pleasant bath house for family and friend to enjoy. This book provides answers to three major questions:\n\nWhat is a Finnish sauna?\nWhat you should require from its design?How to design a Finnish sauna in detail?"
+  },
+
+  {
+    "title": "Wheel of Time Premium Boxed Set I: Books 1-3",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41urEdt3F0L._SY331_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000442",
+        "categoryName": "Action"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Robert",
+        "lastName": "Jordan"
+      }
+    ],
+    "year": 2019,
+    "inStock": {
+      "new": 3,
+      "used": 0
+    },
+    "price": 39,
+    "seller": "",
+    "bookInfo": "Robert Jordan's #1 New York Times bestselling epic fantasy series, The Wheel of Time®, follows Moiraine Damodred as she arrives in Emond's Field on a quest to find the one prophesized to stand against The Dark One.\n\nWhen a vicious band of half-men, half beasts invade the Two Rivers seeking their master’s enemy, Moiraine persuades Rand al’Thor and his friends to leave their home and enter a larger unimaginable world filled with dangers waiting in the shadows and in the light.\n\nSince its debut in 1990, The Wheel of Time by Robert Jordan has captivated millions of readers around the globe with its scope, originality, and compelling characters.\n\nThis premium mass market boxed set includes the first three volumes in the series.\n\nThe Wheel of Time Premium Boxed Set I contains:\nBook One: The Eye of the World\nBook Two: The Great Hunt\nBook Three: The Dragon Reborn"
+  },
+
+  {
+    "title": "The Lord Of The Rings: The Fellowship Of The Ring",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51Cbkr55apL._SX320_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000442",
+        "categoryName": "Action"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "J.R.R.",
+        "lastName": "Tolkien"
+      }
+    ],
+    "year": 1988,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 12,
+    "seller": "",
+    "bookInfo": "The Lord of the Rings, J.R.R. Tolkien's three-volume epic, is set in the imaginary world of Middle-earth - home to many strange beings, and most notably hobbits, a peace-loving \"little people,\" cheerful and shy. Since its original British publication in 1954-55, the saga has entranced readers of all ages. It is at once a classic myth and a modern fairy tale. Critic Michael Straight has hailed it as one of the \"very few works of genius in recent literature.\" Middle-earth is a world receptive to poets, scholars, children, and all other people of good will. Donald Barr has described it as \"a scrubbed morning world, and a ringing nightmare world...especially sunlit, and shadowed by perils very fundamental, of a peculiarly uncompounded darkness.\" The story of ths world is one of high and heroic adventure. Barr compared it to Beowulf, C.S. Lewis to Orlando Furioso, W.H. Auden to The Thirty-nine Steps. In fact the saga is sui generis - a triumph of imagination which springs to life within its own framework and on its own terms."
+  },
+
+  {
+    "title": "The Lord Of The Rings: The Two Towers",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51iQkbHbTIL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000442",
+        "categoryName": "Action"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "J.R.R.",
+        "lastName": "Tolkien"
+      }
+    ],
+    "year": 1988,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 15,
+    "seller": "",
+    "bookInfo": "The standard hardcover edition of the second volume of The Lord of the Rings includes a large format fold-out map. Frodo and his Companions of the Ring have been beset by danger during their quest to prevent the Ruling Ring from falling into the hands of the Dark Lord by destroying it in the Cracks of Doom. They have lost the wizard, Gandalf, in a battle in the Mines of Moria. And Boromir, seduced by the power of the Ring, tried to seize it by force. While Frodo and Sam made their escape, the rest of the company was attacked by Orcs. Now they continue the journey alone down the great River Anduin -- alone, that is, save for the mysterious creeping figure that follows wherever they go."
+  },
+
+  {
+    "title": "The Lord Of The Rings: The Return Of The King",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51VYBl-eqKL._SX323_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000442",
+        "categoryName": "Action"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "J.R.R.",
+        "lastName": "Tolkien"
+      }
+    ],
+    "year": 1988,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 18,
+    "seller": "",
+    "bookInfo": "The standard harcover edition of the concluding volume of The Lord of the Rings includes a large format fold-out map and extensive appendices. As the Shadow of Mordor grows across the land, the Companions of the Ring have become involved in separate adventures. Aragorn, revealed as the hidden heir of the ancient Kings of the West, has joined with the Riders of Rohan against the forces of Isengard, and takes part in the desperate victory of the Hornburg. Merry and Pippin, captured by Orcs, escape into Fangorn Forest and there encounter the Ents. Gandalf has miraculously returned and defeated the evil wizard, Saruman. Sam has left his master for dead after a battle with the giant spider, Shelob; but Frodo is still alive -- now in the foul hands of the Orcs. And all the while the armies of the Dark Lord are massing as the One Ring draws ever nearer to the Cracks of Doom."
+  },
+
+  {
+    "title": "The Sandman Book One",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51BzreJ0P0L._SX323_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045b",
+        "categoryName": "Graphic novel"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Neil",
+        "lastName": "Gaiman"
+      }
+    ],
+    "year": 2022,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 18,
+    "seller": "",
+    "bookInfo": "From the award-winning writer of American Gods and Coraline, The Sandman is one of the most popular and critically acclaimed graphic novels of all time. Neil Gaimain's award-winning masterpiece set the standard for mature, lyrical fantasy in the modern comics era."
+  },
+
+  {
+    "title": "The Adventures of Tintin: Destination Moon",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/511HQe2+OfL._SX356_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045b",
+        "categoryName": "Graphic novel"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Hergé",
+        "lastName": ""
+      }
+    ],
+    "year": 1974,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 12,
+    "seller": "",
+    "bookInfo": "The classic graphic novel. Professor Calculus is building a rocket, but Tintin quickly realizes that there are spies around every corner trying to steal the professor's design! When Professor Calculus' rocket finally takes off for the moon, Tintin and his dog Snowy are on board."
+  },
+
+  {
+    "title": "The Adventures of Tintin: Red Rackham's Treasure",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/61EGugWt7uL._SX350_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045b",
+        "categoryName": "Graphic novel"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Hergé",
+        "lastName": ""
+      }
+    ],
+    "year": 1974,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 13,
+    "seller": "",
+    "bookInfo": "The classic graphic novel. Tintin and Captain Haddock set sail aboard the Sirius to find the sunken remains of the Unicorn ship and notorious pirate Red Rackham's treasure."
+  },
+
+  {
+    "title": "The Adventures of Tintin: Tintin in Tibet",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51xfoox2bnL._SX358_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000443",
+        "categoryName": "Adventure"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045b",
+        "categoryName": "Graphic novel"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Hergé",
+        "lastName": ""
+      }
+    ],
+    "year": 1975,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 11,
+    "seller": "",
+    "bookInfo": "One day Tintin reads about a plane crash in the Himalayas. When he discovers thathis friend, Chang, was on board, Tintin travels to the crash site in hopes of a rescue."
+  },
+
+  {
+    "title": "The Dark Tower I: The Gunslinger",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41WWz6EG9dL._SX326_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000471",
+        "categoryName": "Suspense"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000473",
+        "categoryName": "Thriller"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Stephen",
+        "lastName": "King"
+      }
+    ],
+    "year": 2016,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 14,
+    "seller": "",
+    "bookInfo": "A #1 national bestseller, The Gunslinger introduces readers to one of Stephen King’s most powerful creations, Roland of Gilead: The Last Gunslinger. He is a haunting figure, a loner on a spellbinding journey into good and evil. In his desolate world, which mirrors our own in frightening ways, Roland tracks The Man in Black, encounters an enticing woman named Alice, and begins a friendship with the boy from New York named Jake."
+  },
+
+  {
+    "title": "The Dark Tower II: The Drawing of the Three",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41w3heQeG7L._SX326_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000471",
+        "categoryName": "Suspense"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000473",
+        "categoryName": "Thriller"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Stephen",
+        "lastName": "King"
+      }
+    ],
+    "year": 2016,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 14,
+    "seller": "",
+    "bookInfo": "Stephen King is a master at creating living, breathing, believable characters\"hails The Baltimore Sun. Beginning just less than seven hours after The Gunslinger ends, in the second installment to the thrilling Dark Tower Series, Roland encounters three mysterious doorways on a deserted beach along the Western Sea. Each one enters into a different person’s life in New York—here, he joins forces with the defiant young Eddie Dean, and with the beautiful, brilliant, and brave Odetta Holmes, to save the Dark Tower. “This quest is one of King’s best...it communicates on a genuine, human level...but is rich in symbolism and allegory” (Columbus Sunday Dispatch). It is a science fiction odyssey that is unlike any tale that Stephen King has ever written."
+  },
+
+  {
+    "title": "The Dark Tower III: The Waste Lands",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41w3heQeG7L._SX326_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000471",
+        "categoryName": "Suspense"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000473",
+        "categoryName": "Thriller"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000459",
+        "categoryName": "Fantasy"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Stephen",
+        "lastName": "King"
+      }
+    ],
+    "year": 2016,
+    "inStock": {
+      "new": 2,
+      "used": 0
+    },
+    "price": 14,
+    "seller": "",
+    "bookInfo": "Several months have passed since The Drawing of the Three, and in The Waste Lands, Roland\u2019s two new tet-mates have become trained gunslingers. Eddie Dean has given up heroin, and Odetta\u2019s two selves have joined, becoming the stronger and more balanced personality of Susannah Dean. But Roland altered ka by saving the life of Jake Chambers, a boy who\u2014in Roland\u2019s world\u2014has already died. Now Roland and Jake exist in different worlds, but they are joined by the same madness: the paradox of double memories. Roland, Susannah, and Eddie must draw Jake into Mid-World and then follow the Path of the Beam all the way to the Dark Tower. There are new evils...new dangers to threaten Roland\u2019s little band in the devastated city of Lud and the surrounding wastelands, as well as horrific confrontations with Blaine the Mono, the piratical Gasher, and the frightening Tick-Tock Man.\n\nThe Dark Tower Series continues to show Stephen King as a master of his craft. What lands, what peoples has he visited that are so unreachable to us except in the pages of his incredible books? Now Roland\u2019s strange odyssey continues. The Waste Lands follows The Gunslinger and The Drawing of the Three as the third volume in what may be the most extraordinary and imaginative cycle of tales in the English language."
+  },
+
+  {
+    "title": "The Complete Sherlock Holmes ",
+    "imgUrl": "https://cdn.waterstones.com/bookjackets/large/9780/0995/9780099529934.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600044d",
+        "categoryName": "Classic"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000453",
+        "categoryName": "Crime"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000460",
+        "categoryName": "Mystery"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Conan",
+        "lastName": "Doyle"
+      }
+    ],
+    "year": 2009,
+    "inStock": {
+      "new": 50,
+      "used": 3
+    },
+    "price": 25,
+    "seller": "",
+    "bookInfo": "This book contains all the investigations and adventures of the world's most popular detective, Sherlock Holmes. From 'The Adventure of the Gloria Scott' to 'His Last Bow' we follow the illustrious career of this quintessential British hero from his university days to his final case. His efforts to uncover the truth take him all over the world and into conflict with all manner of devious criminals and dangerous villains, but thankfully his legendary powers of deduction, and his faithful companion Dr Watson, are more than up to the challenge."
+  },
+
+  {
+    "title": "How To Build A Boat",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41jRJmT41DL._SY498_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000453",
+        "categoryName": "Crime"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Casey",
+        "lastName": "Ursery"
+      }
+    ],
+    "year": 2021,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 9,
+    "seller": "",
+    "bookInfo": "Four good friends go on an adventure seeking to build a boat and learn core values along the way."
+  },
+
+  {
+    "title": "Beginning Programming All-in-One Desk Reference For Dummies",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51CjV8rPAYL._SX397_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600045e",
+        "categoryName": "Horror"
+      },
+      {
+        "_id": "632c1938fc13ae57f600046a",
+        "categoryName": "Textbook"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Wallace",
+        "lastName": "Wang"
+      }
+    ],
+    "year": 2008,
+    "inStock": {
+      "new": 1002,
+      "used": 0
+    },
+    "price": 42,
+    "seller": "",
+    "bookInfo": "So you want to be a programmer? Or maybe you just want to be able to make your computer do what YOU want for a change? Maybe you enjoy the challenge of identifying a problem and solving it. If programming intrigues you for whatever reason, Beginning Programming All In One Desk Reference For Dummies is like having a starter programming library all in one handy, if beefy, book."
+  },
+
+  {
+    "title": "How to Raise an Adult",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51Othd+mQXL._SX336_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000471",
+        "categoryName": "Suspense"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000457",
+        "categoryName": "Fairytale"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Julie",
+        "lastName": "Lythcott-Haims"
+      }
+    ],
+    "year": 2016,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 2,
+    "seller": "",
+    "bookInfo": "A provocative manifesto that exposes the harms of helicopter parenting and sets forth an alternate philosophy for raising preteens and teens to self-sufficient young adulthood."
+  },
+
+  {
+    "title": "Go the F**k to Sleep",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/517bpgo7ksL._SY399_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000465",
+        "categoryName": "Picturebook"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000460",
+        "categoryName": "Mystery"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Adam",
+        "lastName": "Mansbach"
+      },
+      {
+        "firstName": "Ricardo",
+        "lastName": "Cort\u00e9s"
+      }
+
+    ],
+    "year": 2011,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 42,
+    "seller": "",
+    "bookInfo": "Go the Fk to Sleep is a bedtime book for parents who live in the real world, where a few snoozing kitties and cutesy rhymes don't always send a toddler sailing blissfully off to dreamland. Profane, affectionate, and radically honest, California Book Award-winning author Adam Mansbach's verses perfectly capture the familiar--and unspoken--tribulations of putting your little angel down for the night. In the process, they open up a conversation about parenting, granting us permission to admit our frustrations, and laugh at their absurdity."
+  },
+
+  {
+    "title": "Sweden",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51KJllbbjcL._SX411_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000476",
+        "categoryName": "Travel"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000456",
+        "categoryName": "Guide"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Sabine",
+        "lastName": "Von Kienlin"
+      }
+    ],
+    "year": 2020,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 23,
+    "seller": "",
+    "bookInfo": "This illustrated book shows the fascinating diversity and beauty of Sweden. Sweden, a symbol of Scandinavian idyll, inspires with its falun-red wooden houses surrounded by dense forests, with its quiet bays, long sandy beaches, lighthouses and windmills, colorful boathouses, the glittering sea between archipelagos, the\ninfinite number of lakes, the lonely and wide snow landscapes, dog sleds, reindeer and moose."
+  },
+
+  {
+    "title": "How to be Swedish: A Quick Guide to Swedishness - in 55 Steps",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41wncVju2EL._SX320_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000455",
+        "categoryName": "Drama"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Matthias",
+        "lastName": "Kamann"
+      }
+    ],
+    "year": 2017,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 15,
+    "seller": "",
+    "bookInfo": "Are you going to travel to Sweden? Or moving there for your studies, work or love? Are you afraid of a Swedish culture shock? \nMatthias, a \"professional new-Swede\", explains how to act like a typical Swede, in 55 easy steps."
+  },
+
+  {
+    "title": "The Finnish Way: Finding Courage, Wellness, and Happiness Through the Power of Sisu",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/819XCfhG7gL._AC_UL210_SR210,210_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000456",
+        "categoryName": "Guide"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Katja",
+        "lastName": "Pantzar"
+      }
+    ],
+    "year": 2018,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 215,
+    "seller": "",
+    "bookInfo": "An engaging and practical guided tour of the simple and nature-inspired ways that Finns stay happy and healthy--including the powerful concept of sisu, or everyday courage\n Forget hygge--it's time to blow out the candles and get out into the world! Journalist Katja Pantzar did just that, taking the huge leap to move to the remote Nordic country of Finland. What she discovered there transformed her body, mind and spirit. In this engaging and practical guide, she shows readers how to embrace the \"keep it simple and sensible\" daily practices that make Finns one of the happiest populations in the world, year after year."
+  },
+
+  {
+    "title": "The Very Hungry Caterpillar",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/81seu48cujS.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Eric",
+        "lastName": "Carle"
+      }
+    ],
+    "year": 1994,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 150,
+    "seller": "",
+    "bookInfo": "THE all-time classic picture book, from generation to generation, sold somewhere in the world every 30 seconds! A sturdy and beautiful book to give as a gift for new babies, baby showers, birthdays, and other new beginnings!\n\nFeaturing interactive die-cut pages, this board book edition is the perfect size for little hands and great for teaching counting and days of the week."
+  },
+
+  {
+    "title": "Coding All-in-One For Dummies",
+    "imgUrl": "https://kbimages1-a.akamaihd.net/035215a6-0bb9-490f-961d-57972b95ab9c/1200/1200/False/coding-all-in-one-for-dummies.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000456",
+        "categoryName": "Guide"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Nikhil",
+        "lastName": "Abraham"
+      }
+    ],
+    "year": 2017,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 265,
+    "seller": "",
+    "bookInfo": "See all the things coding can accomplish The demand for people with coding know-how exceeds the number of people who understand the languages that power technology. Coding All-in-One For Dummies gives you an ideal place to start when you're ready to add this valuable asset to your professional repertoire."
+  },
+
+  {
+    "title": "Surrounded by Idiots: The Four Types of Human Behaviour",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/61ieoiJnwTL.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000466",
+        "categoryName": "Philosophy"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Thomas",
+        "lastName": "Erikson"
+      }
+    ],
+    "year": 2019,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 120,
+    "seller": "",
+    "bookInfo": "Do you ever think you're the only one making any sense? Or tried to reason with your partner with disastrous results? Do long, rambling answers drive you crazy? Or does your colleague's abrasive manner get your back up? You are not alone. \nAfter a disastrous meeting with a highly successful entrepreneur, who was genuinely convinced he was 'surrounded by idiots', communication expert and bestselling author, Thomas Erikson dedicated himself to understanding how people function and why we often struggle to connect with certain types of people. Originally published in Swedish in 2014 as Omgiven Av Idioter, Erikon's Surrounded by Idiots is already an international phenomenon, selling over 1.5 million copies worldwide, of which over 750,000 copies have been sold in Sweden alone. It offers a simple, yet ground-breaking method for assessing the personalities of people we communicate with - in and out of the office - based on four personality types (Red, Blue, Green and Yellow), and provides insights into how we can adjust the way(s) we speak and share information. Erikson will help you understand yourself better, hone communication and social skills, handle conflict with confidence, improve dynamics with your boss and team, and get the best out of the people you deal with and manage. He also shares simple tricks on body language, improving written communication and advice on when to back away or when to push on, and when to speak up or indeed shut up. \n\nPacked with 'aha!' and 'oh no!' moments, Surrounded by Idiots will help you understand and influence those around you, even people you currently think are beyond all comprehension. And with a bit of luck you can also be confident that the idiot out there isn't you!"
+  },
+
+  {
+    "title": "Who Are Ya?: 92 Football Clubs - And Why You Shouldn't Support Them",
+    "imgUrl": "https://m.media-amazon.com/images/I/418TBTg84GL._AC_SY1000_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000474",
+        "categoryName": "Sports"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Kevin",
+        "lastName": "Day"
+      }
+    ],
+    "year": 2021,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 160,
+    "seller": "",
+    "bookInfo": "Partly autobiographical, partly polemical, but mostly funny, Who Are Ya? is a snapshot of modern football, exploring the history of all 92 English Football League clubs.\n\nDuring his time as a broadcaster, Kevin Day has spoken to thousands of football players, managers and most importantly fans from across the generations. He spent thousands of hours crossing the country on trains, planes, automobiles, coaches - and once a donkey called Lightning - watching football at all levels. This book is the result of that: a tale of being chased down a railway line at Cardiff, a story of meeting George Best, an account of a lady getting her first Hull City tattoo at the age of 80!"
+  },
+
+  {
+    "title": "Swearing Cats: A Hilarious Adult Coloring Book for Cats Lovers",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/511EmROozML._SX384_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000455",
+        "categoryName": "Drama"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000463",
+        "categoryName": "Romance"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000446",
+        "categoryName": "Autobiography"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000447",
+        "categoryName": "Anthology"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000449",
+        "categoryName": "Business"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044a",
+        "categoryName": "Economics"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044c",
+        "categoryName": "Crafts/hobbies"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044d",
+        "categoryName": "Classic"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000471",
+        "categoryName": "Suspense"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000473",
+        "categoryName": "Thriller"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000474",
+        "categoryName": "Sports"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000475",
+        "categoryName": "Western"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000476",
+        "categoryName": "Travel"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000477",
+        "categoryName": "Young adult"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000478",
+        "categoryName": "Comedy"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045c",
+        "categoryName": "Historical fiction"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045d",
+        "categoryName": "Humor"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045e",
+        "categoryName": "Horror"
+      },
+      {
+        "_id": "632c1938fc13ae57f600045f",
+        "categoryName": "Journal"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Sassy Pants Press",
+        "lastName": ""
+      }
+    ],
+    "year": 2020,
+    "inStock": {
+      "new": 5,
+      "used": 0
+    },
+    "price": 8,
+    "seller": "",
+    "bookInfo": "Looking for an awesome gift for that special Cat Lover or maybe you need a good laugh? Well, look no further, Swearing Cats is just what you need. This coloring book is packed with 28 highly detailed awesome designs of hilarious cursing Cats overflowing with attitude. It will provide you with hours of comical entertainment while you enjoy all the benefits of relaxation and stress management."
+  },
+
+  {
+    "title": "HOW TO START AND RUN A USED BOOKSTORE: A Bookstore Owner's Essential Toolkit with Real-World Insights, Strategies, Forms, and Procedures",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51VC2VZqf-L._SX385_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000455",
+        "categoryName": "Drama"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Stephanie",
+        "lastName": "Chandler"
+      }
+    ],
+    "year": 2010,
+    "inStock": {
+      "new": 0,
+      "used": 1
+    },
+    "price": 42,
+    "seller": "",
+    "bookInfo": "If you have ever considered opening a used bookstore, here is your chance to learn from someone who knows first-hand what it takes. In 2003 Stephanie Chandler left behind a career in the Silicon Valley and opened a 2800-square foot bookstore in Sacramento, California. Along the way she documented her processes, noting what worked and didn't work, and compiled the results into this comprehensive, real-world guide that explains what it takes to start and run a successful used bookstore."
+  },
+
+  {
+    "title": "How to Blow Up a Pipeline",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51m5u3pjUhL._SX324_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000477",
+        "categoryName": "Young adult"
+      },
+      {
+        "_id": "632c1938fc13ae57f600044b",
+        "categoryName": "Children's"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000453",
+        "categoryName": "Crime"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000476",
+        "categoryName": "Travel"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Andreas",
+        "lastName": "Malm"
+      }
+    ],
+    "year": 2021,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 19,
+    "seller": "",
+    "bookInfo": "In this lyrical manifesto, noted climate scholar (and saboteur of SUV tires and coal mines) Andreas Malm makes an impassioned call for the climate movement to escalate its tactics in the face of ecological collapse. We need, he argues, to force fossil fuel extraction to stop--with our actions, with our bodies, and by defusing and destroying its tools. We need, in short, to start blowing up some oil pipelines."
+  },
+
+  {
+    "title": "How to Keep House While Drowning: A Gentle Approach to Cleaning and Organizing",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51xm7JFx4xL._SX349_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000474",
+        "categoryName": "Sports"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "KC",
+        "lastName": "Davis"
+      }
+    ],
+    "year": 2022,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 42,
+    "seller": "",
+    "bookInfo": "If you\u2019re struggling to stay on top of your to-do list, you probably have a good reason: anxiety, fatigue, depression, ADHD, or lack of support. For therapist KC Davis, the birth of her second child triggered a stress-mess cycle. The more behind she felt, the less motivated she was to start. She didn\u2019t fold a single piece of laundry for seven months. One life-changing realization restored her sanity\u2014and the functionality of her home: You don\u2019t work for your home; your home works for you."
+  },
+
+  {
+    "title": "Cleaning Sucks: An Unf*ck Your Habitat Guided Journal for Less Mess, Less Stress, and a Home You Don't Hate",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/418VmhtfI2L._SX351_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f6000472",
+        "categoryName": "Self help"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Rachel",
+        "lastName": "Hoffman"
+      }
+    ],
+    "year": 2020,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 2,
+    "seller": "",
+    "bookInfo": "Looking to change your messy ways? This full-color guided journal will help you explore your relationship with cleaning: why you hate it, what stands in your way, and how to make small changes that lead to big results down the road. Forget about those unattainable #goals in glossy magazines and TV makeover shows. Everyone deserves a space they love, and that means something different for everyone. So when you need a little extra motivation, Cleaning Sucks provides the tips, tricks, quotes, and gentle kicks in the pants you need to get off your butt and get cleaning up."
+  },
+
+  {
+    "title": "How to Stop Yelling & Start Connecting with Your Highly-Emotional Teen: Healing Anxiety, Depression & Trauma Using The E.M.B.R.A.C.E. ParentingTM Method",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/41E2lnKh3LL._SX322_BO1,204,203,200_.jpg",
+    "categories": [
+      {
+        "_id": "632c1938fc13ae57f600045e",
+        "categoryName": "Horror"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000473",
+        "categoryName": "Thriller"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000451",
+        "categoryName": "Coming-of-age"
+      },
+      {
+        "_id": "632c1938fc13ae57f6000462",
+        "categoryName": "Paranormal"
+      }
+    ],
+    "language": "English",
+    "authors": [
+      {
+        "firstName": "Samantha",
+        "lastName": "S. Woo"
+      }
+    ],
+    "year": 2022,
+    "inStock": {
+      "new": 1,
+      "used": 0
+    },
+    "price": 1,
+    "seller": "",
+    "bookInfo": "You remember the dreams you had when your child was born. The innocence and possibilities. But lately, things have taken a troubling turn. Sure, you do your best to keep up appearances in public. But you live in constant worry about what\u2019s happening behind your teenager\u2019s closed bedroom door.\n\nGet ready to discover a biblical, graced-based approach to parenting teens that offers hope and healing for your entire family."
+  },
+
+  {
+    "title": "The Dictionary of Clich\u00e9s: A Word Lover's Guide to 4,000 Overused Phrases and Almost-Pleasing Platitude",
+    "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/51WNrmMn3jL._SX311_BO1,204,203,200_.jpg",
     "categories": [
       {
         "_id": "632c1938fc13ae57f6000455",
@@ -15,76 +1407,17 @@
     "language": "English",
     "authors": [
       {
-        "firstName": "JRR",
-        "lastName": "Tolkien"
+        "firstName": "Christine",
+        "lastName": "Ammer"
       }
     ],
-    "year": 1980,
+    "year": 2013,
     "inStock": {
       "new": 1,
-      "used": 3
-    },
-    "price": 42,
-    "seller": "username123",
-    "bookInfo": "This is a book about books"
-  },
-
-  {
-    "title": "Another book",
-    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
-    "categories": [
-      {
-        "_id": "632c1938fc13ae57f6000478",
-        "categoryName": "Comedy"
-      },
-      {
-        "_id": "632c1938fc13ae57f6000459",
-        "categoryName": "Fantasy"
-      }
-    ],
-    "language": "English",
-    "authors": [
-      {
-        "firstName": "George",
-        "lastName": "Martin"
-      }
-    ],
-    "year": 1980,
-    "inStock": {
-      "new": 5,
       "used": 0
     },
-    "price": 99,
-    "seller": "Kalle Karlsson",
-    "bookInfo": "This is a book about books"
-  },
-
-
-  {
-    "title": "More book",
-    "imgUrl": "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
-    "categories": [
-      {
-        "_id": "632c1938fc13ae57f600045e",
-        "categoryName": "Horror"
-      }
-    ],
-    "language": "English",
-    "authors": [
-      {
-        "firstName": "Stephen",
-        "lastName": "King"
-      }
-    ],
-    "year": 1980,
-    "inStock": {
-      "new": 0,
-      "used": 1
-    },
-    "price": 19,
-
-    "seller": "Företag",
-    "bookInfo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
-
+    "price": 16,
+    "seller": "",
+    "bookInfo": "The largest, most comprehensive, and most entertaining reference of its kind, The Dictionary of Clich\u00e9s features more than four thousand unique clich\u00e9s and common expressions. Author Christine Ammer explores the phrases and terms that enliven our language and uncovers expressions that have long been considered dead. With each entry, she includes a thorough definition, origin of the term, and an insightful example."
   }
 ]
