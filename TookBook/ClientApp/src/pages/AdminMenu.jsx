@@ -84,35 +84,48 @@ const AdminMenu = () => {
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false);
 
-	const handleBlock = (id, e) => {
-		let updatedUsers = Users.map((user) => {
-			let updatedUser = { ...user }
-			if (updatedUser.userId === id) updatedUser.isBlocked = !updatedUser.isBlocked
+	const handleBlock = async (id) => {
+		console.log(id)
+		const reqOptions ={method: "PUT"}
+		const response = await fetch(`api/User/BlockUser/${id}`, reqOptions)
+		console.log(response);		
+		let updatedUsers = Users.map( (user) => {
+			let updatedUser ={...user}
+			
+			if (updatedUser.userId === id){
+					
+				if ( response.status == 200)updatedUser.isBlocked = !updatedUser.isBlocked
+			}
 			return updatedUser
-		})
+		})	
 		setUsers(updatedUsers)
+		console.log(updatedUsers);
 	}
 
 	const handleUserTypeChange = (id, e) => {
 		let type = e.target.value;
-		let updatedUsers = { ...Users }
-		let user = updatedUsers.find(user => user.userIdd === id)
-
-		switch (type) {
-			case "Admin":
-				console.log(user) //Får error att exempelvis isAdmim är read only och inte går att ändra?
-				user.userType.isAdmin = true
-				user.userType.isSeller = false
-				break;
-			case "Seller":
-				user.userType.isAdmin = false
-				user.userType.isSeller = true
-				break;
-			case "Customer":
-				user.userType.isAdmin = false
-				user.userType.isSeller = false
-				break;
-		}
+		
+		let updatedUsers = Users.map((user) => {
+			let updatedUser ={...user}
+			if (updatedUser.userId===id) {
+				switch (type) {
+					case "Admin":
+						console.log(user)
+						updatedUser.userType.isAdmin = true
+						updatedUser.userType.isSeller = false
+						break;
+					case "Seller":
+						updatedUser.userType.isAdmin = false
+						updatedUser.userType.isSeller = true
+						break;
+					case "Customer":
+						updatedUser.userType.isAdmin = false
+						updatedUser.userType.isSeller = false
+						break;
+				}
+				return updatedUser
+			}
+		})
 		setUsers(updatedUsers)
 	}
 
@@ -139,7 +152,6 @@ const AdminMenu = () => {
 							<TableCell>{user.userName}</TableCell>
 							<TableCell>{user.mail}</TableCell>
 							<TableCell>
-								{/* {user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" }  */}
 								{/*all users use the same usestate for now*/}
 								<FormControl sx={{ m: 1, minWidth: 120 }}>
 									<Select
@@ -153,34 +165,34 @@ const AdminMenu = () => {
 								</FormControl>
 
 
-							</TableCell>
-							<TableCell>{user.isActive ? "Verified" : "Unverified"}</TableCell>
-							{/* // checkbox should change status on users blocked state */}
-							<TableCell>{user.isBlocked ? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} onChange={(e) => (handleBlock(user.userId, e))} /></TableCell>
+				</TableCell>
+				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
 
-							<TableCell>
-								<Button onClick={handleOpen}>{user.orders ? user.orders.length : 0}</Button>
-								<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
-									<Box sx={{ ...style, width: 400 }}>
-										<h2 id="parent-modal-title"> Username should be here but every user has the same modal so it displays the last users name instead..</h2>
-										some kind of list here of all orders. click order for more info <br />
-										<ChildModal /> <br />
-										<ChildModal /><br />
-										<ChildModal /><br />
-										<ChildModal /><br />
-										<ChildModal /><br />
-										<ChildModal />
-									</Box>
-								</Modal>
-							</TableCell>
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-			<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-				See more users
-			</Link>
-		</React.Fragment>
+				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={()=>(handleBlock(user.userId))}/></TableCell> 
+
+				<TableCell>
+					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
+					<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
+						<Box sx={{ ...style, width: "50%" }}>
+						<h2 id="parent-modal-title"> Username should be here but every user has the same modal so it displays the last users name instead..</h2>
+						some kind of list here of all orders. click order for more info <br />
+						<ChildModal /><br />
+						<ChildModal /><br />
+						<ChildModal /><br />
+						<ChildModal /><br />
+						<ChildModal /><br />
+						<ChildModal />
+						</Box>
+					</Modal>
+				</TableCell>
+			  </TableRow>
+			))}
+		  </TableBody>
+		</Table>
+		<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+		  See more users
+		</Link>
+	  </React.Fragment>
 	)
 }
 
