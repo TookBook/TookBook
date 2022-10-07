@@ -20,7 +20,10 @@ import Tab from '@mui/material/Tab';
 import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
-import { activeUserState, adminModeState } from "../../atoms";
+import { activeUserState, adminModeState, isUserLoggedInState } from "../../atoms";
+import { useRef } from "react";
+import { getBottomNavigationUtilityClass } from "@mui/material";
+import { useEffect } from "react";
 
 
 
@@ -46,9 +49,10 @@ const LoginForm = () => {
 	const [usernameField, setUsernameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 	const [activeUser, setActiveUser] = useRecoilState(activeUserState)
-	const [userSuccesfullyLoggedIn, setUserSuccesfullyLoggedIn] = useState(false)
-	const [infoMessage, setInfoMessage] = useState("")
+
 	const [isAdmin, setIsAdmin] = useRecoilState(adminModeState)
+	const [isLoggedIn, setIsLoggedIn] = useRecoilState(isUserLoggedInState)
+	const [infoMessage, setInfoMessage] = useState("")
 
 	const handleLoginSubmit = async (e) => {
 		e.preventDefault();
@@ -58,18 +62,30 @@ const LoginForm = () => {
 		const password = loginData.get("password")
 
 		const loginResponse = await fetch(`api/User/Login?username=${userName}&password=${password}`)
-		if (loginResponse.status == 500) {
+		if (loginResponse.status == 404) {
 			setInfoMessage("User was not found")
 		}
 		if (loginResponse.status == 200) {
 			let user = await loginResponse.json();
 			setActiveUser(user)
-			setUserSuccesfullyLoggedIn(true);
-			if (user.isAdmin) setIsAdmin(true)
+			setIsLoggedIn(true);
+			if (user.userType.isAdmin) setIsAdmin(true)
 		}
 
 	}
 
+
+	const checkIfRegistered = () => {
+		if (activeUser.userName?.length > 0) {
+			setUsernameField(activeUser.userName)
+			setPasswordField(activeUser.password)
+		}
+		console.log("checkifregisteredfired")
+	}
+
+	useEffect(() => {
+		checkIfRegistered()
+	}, [])
 
 	return (
 		<Box
@@ -84,7 +100,7 @@ const LoginForm = () => {
 				<PersonSharpIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				{activeUser.userName}
+				Login
 			</Typography>
 
 			<Box component="form" onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
@@ -96,7 +112,7 @@ const LoginForm = () => {
 					id="name"
 					label="Username"
 					name="name"
-					// onFocus={}
+					value={usernameField}
 					error={usernameField !== "" && usernameField.length < 4}
 					autoComplete="off"
 					onChange={(e) => setUsernameField(e.target.value)}
@@ -111,6 +127,8 @@ const LoginForm = () => {
 					type="password"
 					id="password"
 					// onFocus={}
+					focused={false}
+					value={passwordField}
 					error={passwordField !== "" && passwordField.length < 4}
 					autoComplete="new-password"
 					onChange={(e) => setPasswordField(e.target.value)}

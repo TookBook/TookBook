@@ -20,6 +20,8 @@ import Tab from '@mui/material/Tab';
 import Link from "@mui/material/Link";
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
 import Avatar from '@mui/material/Avatar';
+import { activeUserState, isUserLoggedInState } from "../../atoms";
+import openUserPortalState from "../../atoms/openUserPortalState";
 
 
 const usernameErrorMessage = (username) => {
@@ -40,25 +42,48 @@ const emailErrorMessage = (email) => {
 
 
 
-const SignUpForm = () => {
+const SignUpForm = ({ switchTab }) => {
 	//TODO: Change register to "Send activation code."
 	//TODO: When click on "send activationcode", create pop up with "check your email for your activation code."
 	//TODO: Info; enter activation code to receive password. (temp password?)
 	const [usernameField, setUsernameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 	const [emailField, setEmailField] = useState("")
+	const [loginUser, setLoginUser] = useRecoilState(activeUserState)
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(isUserLoggedInState)
+	const [userModal, setUserModal] = useRecoilState(openUserPortalState)
 
-	const handleLoginSubmit = (e) => {
+
+
+	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
 
 		const loginData = new FormData(e.currentTarget);
-		const userName = loginData.get("name");
+		const userName = loginData.get("username");
 		const password = loginData.get("password")
 		const email = loginData.get("email")
 
-		console.log(userName)
-		console.log(password)
-		console.log(email)
+		const reqOptions = {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		}
+		// TODO: log in automatically after successfully registering
+		const registerResponse = await fetch(`api/User/CreateUser?name=${userName}&email=${email}&password=${password}`, reqOptions)
+		if (registerResponse.status == 200) {
+			let data = await registerResponse.json()
+			console.log("SUCCESFULLY REGISTERED")
+			setLoginUser(data)
+			setUserLoggedIn(true)
+			switchTab(1)
+
+		}
+
+		console.log("Name", userName)
+		console.log("Password", password)
+		console.log("Email", email)
 	}
 	return (
 		<Box
@@ -76,15 +101,15 @@ const SignUpForm = () => {
 				Register
 			</Typography>
 
-			<Box component="form" onSubmit={handleLoginSubmit} noValidate sx={{ mt: 1 }}>
+			<Box component="form" onSubmit={handleRegisterSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField
 					autoFocus
 					margin="normal"
 					required
 					fullWidth
-					id="name"
+					id="username"
 					label="Username"
-					name="name"
+					name="username"
 					// onFocus={}
 					error={usernameField !== "" && usernameField.length < 4}
 					autoComplete="off"
@@ -114,7 +139,7 @@ const SignUpForm = () => {
 					type="email"
 					id="email"
 					// onFocus={}
-					error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))} //TODO: Fix so it checks for "@" correctly
+					error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))}
 					autoComplete="new-password"
 					onChange={(e) => setEmailField(e.target.value)}
 					helperText={emailField !== "" && emailErrorMessage(emailField)}

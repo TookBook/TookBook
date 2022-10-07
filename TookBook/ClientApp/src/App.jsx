@@ -14,6 +14,7 @@ import Homepage from './pages/Homepage';
 import AdminMenu from './pages/AdminMenu'
 import ShoppingCart from './pages/ShoppingCart';
 import BookInfo from './pages/BookInfo';
+import UserProfile from "./pages/UserProfile"
 
 
 
@@ -71,6 +72,7 @@ function App() {
             <Route path='shoppingcart' element={<ShoppingCart />} />
             <Route path='/book/:id' element={<BookInfo />} />
             <Route path='/adminmenu' element={<AdminMenu />} />
+            <Route path='/userprofile' element={<UserProfile />} /> {/**TODO: user.id stuff? */}
             {/* <Route
               path='userportal'
               element={(
