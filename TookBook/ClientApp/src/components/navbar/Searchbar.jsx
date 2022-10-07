@@ -97,6 +97,7 @@ const Searchbar = () => {
 	//TODO: "All categories" with everything doesn't show up when first loading page, user must select category and then select all categories.
 	//TODO: Reset textfield when Category has been changed
 	// TODO: Get value from autocomplete, store in state, use state + selected search filter to make a search when going to separate search page
+	// TODO: Forward to navigate thingy, get in searchresult page
 	useEffect(() => {
 		if (selectBoxFilter === "") setAutocompleteData(bookEverything)
 		if (selectBoxFilter === "Title") setAutocompleteData(bookTitles)
