@@ -19,8 +19,6 @@ const UserProfile = () => {
 
 	useEffect(() => {
 		if (!userLoggedIn) navigate("/")
-		console.log("user has changed")
-		console.log(activeUserState)
 	}, [userLoggedIn])
 
 	return (

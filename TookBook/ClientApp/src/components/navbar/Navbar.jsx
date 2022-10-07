@@ -39,14 +39,10 @@ const Navbar = () => {
 	const handleOpenUserPortal = () => {
 		setOpenUserPortal(!openUserPortal)
 		// <Link to="userportal" />
-		console.log(activeUser.userName)
+
 	}
 
-	const handleOpenAdmin = () => {
-		<Link to={"/adminmenu"}></Link>
-		// <Link to="userportal" />
-		console.log(activeUser.userName)
-	}
+
 
 	const handleOpenShoppingCart = () => {
 		setOpenShoppingCart(!openShoppingCart)
