@@ -84,13 +84,23 @@ const AdminMenu = () => {
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false);
 
-	const handleBlock = (id) => {
-		let updatedUsers = Users.map((user) => {
+	const handleBlock = async (id) => {
+		console.log(id)
+		const reqOptions ={method: "PUT"}
+		const response = await fetch(`api/User/BlockUser/${id}`, reqOptions)
+		console.log(response);		
+		let updatedUsers = Users.map( (user) => {
 			let updatedUser ={...user}
-			if (updatedUser.userId === id) updatedUser.isBlocked = !updatedUser.isBlocked
+			
+			if (updatedUser.userId === id){
+					
+				if ( response.status == 200)updatedUser.isBlocked = !updatedUser.isBlocked
+				else console.log("FUNKA INTE???");
+			}
 			return updatedUser
-		})
+		})	
 		setUsers(updatedUsers)
+		console.log(updatedUsers);
 	}
 
 	const handleUserTypeChange = (id, e) => {
@@ -143,7 +153,6 @@ const AdminMenu = () => {
 							<TableCell>{user.userName}</TableCell>
 							<TableCell>{user.mail}</TableCell>
 							<TableCell>
-								{/* {user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" }  */}
 								{/*all users use the same usestate for now*/}
 								<FormControl sx={{ m: 1, minWidth: 120 }}>
 									<Select
@@ -160,7 +169,7 @@ const AdminMenu = () => {
 				</TableCell>
 				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
 
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} onChange={()=>(handleBlock(user.userId))}/></TableCell> 
+				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={()=>(handleBlock(user.userId))}/></TableCell> 
 
 				<TableCell>
 					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
