@@ -13,6 +13,7 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Searchbar from './Searchbar';
 import PersonSharpIcon from '@mui/icons-material/PersonSharp';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import openUserPortalState from '../../atoms/openUserPortalState';
@@ -88,7 +89,7 @@ const Navbar = () => {
 						<Link style={{ textDecoration: 'none' }} to={"/adminmenu"}>
 							<IconButton sx={{ color: "white", display: "flex", flexDirection: "column" }} >
 
-								<PersonSharpIcon fontSize='large' />
+								<ConstructionIcon fontSize='large' />
 								<Typography>Admin Dashboard</Typography>
 							</IconButton>
 						</Link>
