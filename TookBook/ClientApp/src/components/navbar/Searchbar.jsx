@@ -17,18 +17,21 @@ import MenuItem from '@mui/material/MenuItem';
 import { fetchedBooksState, fetchedCategoriesState } from '../../atoms';
 import { styled, alpha } from '@mui/material/styles';
 import theme from '../../style/MuiTheme';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 
 
 const Searchbar = () => {
 	const navigate = useNavigate()
-	const [searchFilter, setSearchFilter] = useState("")
+	const [selectBoxFilter, setSelectBoxFilter] = useState("")
+	const [autocompleteData, setAutocompleteData] = useState([])
+
+	const [autocompleteValue, setAutocompleteValue] = useState("")
+	const [selectedSearchItem, setSelectedSearchItem] = useState("")
+
 	const allBooks = useRecoilValue(fetchedBooksState)
 	const allCategories = useRecoilValue(fetchedCategoriesState)
-	const [autoCompleteData, setAutoCompleteData] = useState([])
-
 
 	const bookTitles = allBooks.map((book) => book.title)
 	const bookCategories = allCategories.map((category) => category.categoryName)
@@ -43,7 +46,8 @@ const Searchbar = () => {
 	const CategoryBox = () => {
 
 		const handleChange = (e) => {
-			setSearchFilter(e.target.value)
+			setAutocompleteData([])
+			setSelectBoxFilter(e.target.value)
 		}
 
 		return (
@@ -53,7 +57,7 @@ const Searchbar = () => {
 					autoWidth
 					labelId="select-filter"
 					id="select-filter"
-					value={searchFilter}
+					value={selectBoxFilter}
 					label="search"
 					onChange={handleChange}
 					sx={{
@@ -75,35 +79,60 @@ const Searchbar = () => {
 
 	}
 
-	const handleRedirect = () => {
 
-		console.log("AYAYAY")
+	const handleOnBlur = () => {
+		if (selectedSearchItem) {
+			console.log("Blurred, search item is not null")
+			navigate("/searchresults")
+		}
+
+		// 
+
+	}
+
+	const handleCategorySwtich = () => {
+
 	}
 
 	//TODO: "All categories" with everything doesn't show up when first loading page, user must select category and then select all categories.
+	//TODO: Reset textfield when Category has been changed
+	// TODO: Get value from autocomplete, store in state, use state + selected search filter to make a search when going to separate search page
 	useEffect(() => {
-		if (searchFilter === "") setAutoCompleteData(bookEverything)
-		if (searchFilter === "Title") setAutoCompleteData(bookTitles)
-		if (searchFilter === "Category") setAutoCompleteData(bookCategories)
-		if (searchFilter === "Author") setAutoCompleteData(bookAuthorsUnique)
+		if (selectBoxFilter === "") setAutocompleteData(bookEverything)
+		if (selectBoxFilter === "Title") setAutocompleteData(bookTitles)
+		if (selectBoxFilter === "Category") setAutocompleteData(bookCategories)
+		if (selectBoxFilter === "Author") setAutocompleteData(bookAuthorsUnique)
+		if (!autocompleteData) setAutocompleteData(bookEverything)
+	}, [selectBoxFilter])
 
-	}, [searchFilter])
 
 	useEffect(() => {
-		setSearchFilter("")
-	}, [])
+
+		setSelectedSearchItem(autocompleteValue)
+
+	}, [autocompleteValue])
 
 	return (
 
 		<Box width={"60vmin"} bgcolor={alpha(theme.palette.common.white, 0.15)} position="relative" display="flex" borderRadius="3px">
 			<CategoryBox />
+			{console.log(selectedSearchItem)}
+			{console.log(selectBoxFilter)}
 			<Autocomplete
 				loading={true}
 				disablePortal
 				id="book-search"
-				options={autoCompleteData} // Options innehåller den data som ska visas upp i search-lådan.
-				onChange={handleRedirect}
+				options={autocompleteData} // Options innehåller den data som ska visas upp i search-lådan.
+				onChange={(e, value) => setSelectedSearchItem(value)}
 				sx={{ width: "100%", backgroundColor: "white", borderRadius: "3px" }}
+				renderOption={(props, option, { selected }) => (
+
+					<Box component="li" {...props}>
+						<Link to="/searchresults" state={{ searchItem: selectedSearchItem, searchCategory: selectBoxFilter }}>
+							<Typography key={option.key}>{option}</Typography>
+						</Link>
+					</Box>
+				)}
 				renderInput={(params) =>
 					<TextField {...params} label="Search.."
 						sx={{

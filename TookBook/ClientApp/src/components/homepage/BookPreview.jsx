@@ -43,8 +43,8 @@ const BookPreview = ({ book }) => {
 
 	return (
 		<Box sx={{
-			maxHeight: "100%", borderRadius: "0.5rem", minWidth: "200px",
-			"&:hover": { transition: "all .2s ease-in-out", transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
+			maxHeight: "100%", borderRadius: "0.5rem", minWidth: "200px", transition: "all .2s ease-in-out",
+			"&:hover": { transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
 		}}>
 			<Box sx={{
 				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px", minHeight: "300px",
