@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,8 +7,8 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { fetchedUsersState } from '../atoms';
-
+import { fetchedUsersState, activeUserState, adminModeState, isUserLoggedInState } from '../atoms';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -34,48 +35,51 @@ const style = {
 };
 
 function ChildModal() {
-	
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
+	const [open, setOpen] = React.useState(false);
+	const handleOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 
-  return (
-    <React.Fragment>
-      <Button onClick={handleOpen}>Order date</Button>
-      <Modal
-        hideBackdrop
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="child-modal-title"
-        aria-describedby="child-modal-description"
-      >
-        <Box sx={{ ...style, width: 500 }}>
-          <h2 id="child-modal-title">Order date or id</h2>
-          <p id="child-modal-description">
-            list of all books in order, price etc
-          </p>
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
-      </Modal>
-    </React.Fragment>
-  );
+	return (
+		<React.Fragment>
+			<Button onClick={handleOpen}>Order date</Button>
+			<Modal
+				hideBackdrop
+				open={open}
+				onClose={handleClose}
+				aria-labelledby="child-modal-title"
+				aria-describedby="child-modal-description"
+			>
+				<Box sx={{ ...style, width: 500 }}>
+					<h2 id="child-modal-title">Order date or id</h2>
+					<p id="child-modal-description">
+						list of all books in order, price etc
+					</p>
+					<Button onClick={handleClose}>Close</Button>
+				</Box>
+			</Modal>
+		</React.Fragment>
+	);
 }
 
-  function preventDefault(event) {
+function preventDefault(event) {
 	event.preventDefault();
-  }
+}
 
-  
+// TODO: Check if user.usertype is admin to render page, otherwise render error page
 const AdminMenu = () => {
+	const navigate = useNavigate()
+	const adminMode = useRecoilValue(adminModeState)
 	// const Users = useRecoilValue(fetchedUsersState)
 	const [Users, setUsers] = useRecoilState(fetchedUsersState)
 	const [userType, setUserType] = React.useState();
 	const [open, setOpen] = React.useState(false);
+
 
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false);
@@ -86,10 +90,10 @@ const AdminMenu = () => {
 			if (updatedUser.userId === id) updatedUser.isBlocked = !updatedUser.isBlocked
 			return updatedUser
 		})
-		setUsers(updatedUsers) 
+		setUsers(updatedUsers)
 	}
 
-	const handleUserTypeChange =(id, e) => {
+	const handleUserTypeChange = (id, e) => {
 		let type = e.target.value;
 		
 		let updatedUsers = Users.map((user) => {
@@ -116,39 +120,41 @@ const AdminMenu = () => {
 		setUsers(updatedUsers)
 	}
 
-
+	useEffect(() => {
+		if (!adminMode) navigate("/")
+	}, [adminMode])
 
 	return (
 		<React.Fragment>
-		<Table size="small">
-		  <TableHead>
-			<TableRow>
-			  <TableCell>Username</TableCell>
-			  <TableCell>Mail</TableCell>
-			  <TableCell>User Type</TableCell>
-			  <TableCell>Verified Status</TableCell>
-			  <TableCell>Blocked Status</TableCell>
-			  <TableCell>Orders</TableCell>
-			</TableRow>
-		  </TableHead>
-		  <TableBody>
-			{Users.map((user) => (
-				<TableRow key={user.userId}>
-				<TableCell>{user.userName}</TableCell>
-				<TableCell>{user.mail}</TableCell>
-				<TableCell>
-				{/* {user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" }  */}
-				{/*all users use the same usestate for now*/}
-				<FormControl sx={{ m: 1, minWidth: 120 }}>
-					<Select
-						value={user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer"}
-						onChange={(e)=> (handleUserTypeChange(user.userId, e))}
-						>
-						<MenuItem value={"Customer"}>Customer</MenuItem>
-						<MenuItem value={"Seller"}>Seller</MenuItem>
-						<MenuItem value={"Admin"}>Admin</MenuItem>
-					</Select>
-					</FormControl>
+			<Table size="small">
+				<TableHead>
+					<TableRow>
+						<TableCell>Username</TableCell>
+						<TableCell>Mail</TableCell>
+						<TableCell>User Type</TableCell>
+						<TableCell>Verified Status</TableCell>
+						<TableCell>Blocked Status</TableCell>
+						<TableCell>Orders</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{Users.map((user) => (
+						<TableRow key={user.userId}>
+							<TableCell>{user.userName}</TableCell>
+							<TableCell>{user.mail}</TableCell>
+							<TableCell>
+								{/* {user.userType.isAdmin? "Admin" : user.userType.isSeller? "Seller" : "Customer" }  */}
+								{/*all users use the same usestate for now*/}
+								<FormControl sx={{ m: 1, minWidth: 120 }}>
+									<Select
+										value={user.userType.isAdmin ? "Admin" : user.userType.isSeller ? "Seller" : "Customer"}
+										onChange={(e) => (handleUserTypeChange(user.userId, e))}
+									>
+										<MenuItem value={"Customer"}>Customer</MenuItem>
+										<MenuItem value={"Seller"}>Seller</MenuItem>
+										<MenuItem value={"Admin"}>Admin</MenuItem>
+									</Select>
+								</FormControl>
 
 
 				</TableCell>
