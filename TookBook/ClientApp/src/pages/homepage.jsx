@@ -6,9 +6,25 @@ import BooksHorizontalDisplay from '../components/homepage/BooksHorizontalDispla
 import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "../atoms/index"
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
+import Link  from "react-router-dom";
 
 
 const Homepage = () => {
+
+	//Tiias playground
+	// const [itemsInCart, setItemsInCart] = useState([]);
+
+	// const HandleAddToCart = (newItem) => {
+	// 	let item = {...newItem, quantity: 1};
+	// 	setItemsInCart([...itemsInCart, item]);
+	// }
+
+	// const HandleRemoveFromCart = (itemToRemove) => {
+	// 	let itemsFiltered = itemsInCart.filter(item => item.id !== itemToRemove.id);
+	// 	setItemsInCart(itemsFiltered);
+	// }
+	//TODO: TIIA : lägg till itemsincart som en state i recoil
+
 
 	// TODO: import fetched books and sort them in various ways, then stuff them inside the horizontal displays
 	const fetchedBooks = useRecoilValue(fetchedBooksState)

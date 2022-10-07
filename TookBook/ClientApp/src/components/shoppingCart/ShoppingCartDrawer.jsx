@@ -61,7 +61,7 @@ const ShoppingCartDrawer = () => {
 				<Box padding="1rem" backgroundColor="mainbg.main" paddingBottom="2rem" >
 					<Typography gutterBottom variant="h3" textAlign="center"> Cart Item</Typography>
 					<Typography >
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
+						No items in your basket
 					</Typography>
 				</Box>
 				<Box >
