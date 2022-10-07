@@ -80,7 +80,6 @@ const LoginForm = () => {
 			setUsernameField(activeUser.userName)
 			setPasswordField(activeUser.password)
 		}
-		console.log("checkifregisteredfired")
 	}
 
 	useEffect(() => {
