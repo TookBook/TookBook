@@ -4,7 +4,7 @@ import Footer from "./components/Footer"
 import ThemeWrapper from './style/ThemeWrapper'
 import MainWrapper from './style/MainWrapper'
 import {
-  BrowserRouter as Router, Routes, Route, Link
+  BrowserRouter as Router, Routes, Route, Link, Navigate,
 } from "react-router-dom";
 import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
 import { useRecoilValue, useRecoilState } from 'recoil'
@@ -17,7 +17,7 @@ import BookInfo from './pages/BookInfo';
 import UserProfile from "./pages/UserProfile"
 import SearchResultsPage from "./pages/SearchResultsPage"
 import TestBookInfo from './pages/TestBookInfo'
-
+import Error404Page from "./pages/Error404Page"
 
 
 
@@ -64,18 +64,16 @@ function App() {
           <Navbar />
 
           <Routes>
-            <Route path='/' element={<Homepage />} />
+
             <Route path='ShoppingCart' element={<ShoppingCart />} />
             <Route path='bookInfo' element={<BookInfo />} />
             <Route path='/adminmenu' element={<AdminMenu />} />
             <Route path='/userprofile' element={<UserProfile />} /> {/**TODO: user.id stuff? */}
             <Route path='/searchresults' element={<SearchResultsPage />} />
             <Route path="/testbook/:id" element={<TestBookInfo />} />
-            {/* <Route
-              path='userportal'
-              element={(
-                <UserLoginContainer />
-              )}/> */}
+            <Route path="*" element={<Error404Page />} />
+            <Route path='/' element={<Homepage />} />
+
           </Routes>
 
           <UserLoginContainer />
