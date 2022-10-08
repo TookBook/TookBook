@@ -25,13 +25,10 @@ import { useEffect } from 'react';
 
 const Searchbar = () => {
 	const navigate = useNavigate()
-	const [selectBoxFilter, setSelectBoxFilter] = useState("")
+
+	const [selectBoxFilter, setSelectBoxFilter] = useState("Everything")
 	const [autocompleteData, setAutocompleteData] = useState([])
-
 	const [autocompleteValue, setAutocompleteValue] = useState(null)
-	const [selectedSearchItem, setSelectedSearchItem] = useState("")
-
-	const [forwardSearchItem, setForwardSearchItem] = useState("")
 
 	const allBooks = useRecoilValue(fetchedBooksState)
 	const allCategories = useRecoilValue(fetchedCategoriesState)
@@ -43,9 +40,6 @@ const Searchbar = () => {
 	const bookAuthorsStringified = bookAuthors.map(author => author.toString())
 	const bookAuthorsUnique = Array.from(new Set(bookAuthorsStringified))
 	const bookEverything = bookTitles.concat(bookCategories, bookAuthorsUnique)
-
-
-	const testAutocompleteBooks = allBooks
 
 	const CategoryBox = () => {
 
@@ -63,17 +57,17 @@ const Searchbar = () => {
 					id="select-filter"
 					value={selectBoxFilter}
 					label="search"
+					defaultValue='Everything'
 					onChange={handleChange}
 					sx={{
 						color: "white",
-
 						'& legend': { display: 'none' },
 						'& fieldset': { top: 0 },
 					}}
 					displayEmpty
 					inputProps={{ 'aria-label': 'Without label' }}
 				>
-					<MenuItem value="">All Categories</MenuItem>
+					<MenuItem value={"Everything"}>All Categories</MenuItem>
 					<MenuItem value={"Title"}>Book Title</MenuItem>
 					<MenuItem value={"Category"}>Book Category</MenuItem>
 					<MenuItem value={"Author"}>Book Author</MenuItem>
@@ -84,8 +78,11 @@ const Searchbar = () => {
 	}
 
 
-	//TODO: "All categories" with everything doesn't show up when first loading page, user must select category and then select all categories.
-	//TODO: Reset textfield when Category has been changed
+
+	const navigateToPage = () => {
+		navigate("/searchresults", { state: { searchItem: autocompleteValue, searchCategory: selectBoxFilter } })
+	}
+
 	// TODO: Get value from autocomplete, store in state, use state + selected search filter to make a search when going to separate search page
 	// TODO: Forward to navigate thingy, get in searchresult page
 	useEffect(() => {
@@ -97,62 +94,44 @@ const Searchbar = () => {
 	}, [selectBoxFilter])
 
 
-
-	const handleNavigate = () => {
-		navigate("/searchresults", { state: { searchItem: autocompleteValue, searchCategory: selectBoxFilter } })
-	}
-
-	// useEffect(() => {
-
-	// 	setSelectedSearchItem(autocompleteValue)
-	// 	console.log("AutocompleteValue changed:", autocompleteValue)
-	// }, [autocompleteValue])
-
+	// Navigates to the searchresults-page automatically when the autocomplete-value changes and is not null. There's probably a better solution but I'm at my wits end.
 	useEffect(() => {
 		if (autocompleteValue == null) {
-
 			console.log("autocomplete null, dont navigate")
-
 		}
 		else {
 			console.log("trying to navigate", autocompleteValue)
-			handleNavigate()
+			navigateToPage()
 		}
-
-		// handleNavigate();
-
 	}, [autocompleteValue])
 
-	// useEffect(() => {
-
-	// 	console.log("Selected search item changed to: ", selectedSearchItem)
-	// 	setForwardSearchItem(selectedSearchItem)
-	// }, [selectedSearchItem])
-
-
+	useEffect(() => {
+		console.log(selectBoxFilter)
+	}, [])
 
 	return (
 
 		<Box width={"60vmin"} bgcolor={alpha(theme.palette.common.white, 0.15)} position="relative" display="flex" borderRadius="3px">
 			<CategoryBox />
 			<Autocomplete
-				loading={true}
 				disablePortal
 				id="book-search"
 				onBlur={() => { console.log("BLURRED") }}
 				onClose={() => { console.log("CLOSED") }}
 				clearOnEscape={true}
 				clearOnBlur={true}
+				autoHighlight={true}
 				value={autocompleteValue}
-				options={autocompleteData} // Options innehåller den data som ska visas upp i search-lådan.
+
+				options={selectBoxFilter == "Everything" ? bookEverything : autocompleteData} // Options innehåller den data som ska visas upp i search-lådan.
 				onChange={(e, value) => setAutocompleteValue(value)}
 				sx={{ width: "100%", backgroundColor: "white", borderRadius: "3px" }}
 				renderOption={(props, option, { selected }) => (
 
-					<Box component="li" {...props}>
+					<Box component="li" {...props} sx={{ bgColor: "black" }}  >
 						{/* <Link to="/searchresults" state={{ searchItem: autocompleteValue, searchCategory: selectBoxFilter }}> */}
-						<MuiLink >
-							<Typography key={option.key}>{option}</Typography>
+						<MuiLink underline='none' sx={{ bgColor: "black" }} >
+							<Typography sx={{ fontWeight: "600" }} key={option.key}>{option}</Typography>
 						</MuiLink>
 						{/* </Link> */}
 					</Box>

@@ -5,7 +5,7 @@ import BooksHorizontalDisplay from '../components/homepage/BooksHorizontalDispla
 import { redirect, useNavigate } from 'react-router-dom';
 import { activeUserState, isUserLoggedInState } from "../atoms/index"
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 
 
 
@@ -14,6 +14,7 @@ import { useRecoilValue } from 'recoil';
 const UserProfile = () => {
 	const navigate = useNavigate()
 	const userLoggedIn = useRecoilValue(isUserLoggedInState)
+	const [currentUser, setCurrentUser] = useRecoilState(activeUserState)
 
 
 
@@ -22,9 +23,16 @@ const UserProfile = () => {
 		if (!userLoggedIn) navigate("/")
 	}, [userLoggedIn])
 
+	useEffect(() => {
+		console.log(currentUser)
+	}, [])
 	return (
 		<Container maxWidth={"lg"} sx={{ mt: "5rem" }}>
-			<div>Hi, I'm a user profile</div>
+			<div>Hi, I'm a user profile </div>
+			<Box>
+				{currentUser.userName}
+				{currentUser.mail}
+			</Box>
 		</Container>
 
 	)
