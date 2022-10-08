@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import shoppingCartState from "../../atoms/shoppingCartState";
 import { useRecoilState } from "recoil";
+import Skeleton from '@mui/material/Skeleton';
 
 /** more horizontal
  * 		<Box sx={{ maxHeight: "200px", maxWidth: "300px", border: "1px solid black", display: "flex", flexDirection: "column" }}>
@@ -51,6 +52,7 @@ const BookPreview = ({ book }) => {
 				backgroundColor: "white", borderRadius: "0.5rem", boxShadow: "0px 0px 5px black"
 
 			}}>
+
 				<Image src={book.imgUrl} />
 
 				<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "normal", overflow: "hidden", wordBreak: "break-word" }}

@@ -5,7 +5,8 @@ import Box from "@mui/material/Box";
 import "react-multi-carousel/lib/styles.css";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-
+import Skeleton from '@mui/material/Skeleton';
+import { useEffect, useState } from 'react';
 
 const responsiveSlides = {
 	desktop: {
@@ -38,7 +39,9 @@ const slideStyles = {
 	}
 }
 
+
 const CarouselSlides = () => {
+
 
 	return (
 		<Container maxWidth={"lg"} >

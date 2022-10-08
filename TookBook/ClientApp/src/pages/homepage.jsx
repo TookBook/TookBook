@@ -4,12 +4,13 @@ import CarouselSlides from '../components/homepage/CarouselSlides';
 import Typography from '@mui/material/Typography';
 import BooksHorizontalDisplay from '../components/homepage/BooksHorizontalDisplay';
 import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "../atoms/index"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 
 const Homepage = () => {
 
+	// TODO: Use Mui-Skeleton to temp display while loading data
 	// TODO: import fetched books and sort them in various ways, then stuff them inside the horizontal displays
 	const fetchedBooks = useRecoilValue(fetchedBooksState)
 	const loggedInUser = useRecoilValue(activeUserState)
@@ -20,6 +21,8 @@ const Homepage = () => {
 		let randomArray = [...array]
 		return randomArray.sort(() => Math.random() - 0.5).splice(0, 5);
 	}
+
+
 
 	useEffect(() => {
 		console.log(loggedInUser)
