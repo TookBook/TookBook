@@ -49,10 +49,10 @@ const Searchbar = () => {
 		}
 
 		return (
-			<FormControl sx={{ width: "200px" }} variant="outlined">
+			<FormControl sx={{ maxWidth: "200px" }} variant="outlined">
 				{/* <InputLabel id="select-filter">Filter</InputLabel> */}
 				<Select
-					autoWidth
+					autoWidth={true}
 					labelId="select-filter"
 					id="select-filter"
 					value={selectBoxFilter}
@@ -60,6 +60,7 @@ const Searchbar = () => {
 					defaultValue='Everything'
 					onChange={handleChange}
 					sx={{
+						'.MuiOutlinedInput-notchedOutline': { border: 0 },
 						color: "white",
 						'& legend': { display: 'none' },
 						'& fieldset': { top: 0 },
@@ -111,8 +112,11 @@ const Searchbar = () => {
 
 	return (
 
-		<Box width={"60vmin"} bgcolor={alpha(theme.palette.common.white, 0.15)} position="relative" display="flex" borderRadius="3px">
-			<CategoryBox />
+		<Box width={"60vmin"} bgcolor={alpha(theme.palette.common.white, 0.15)} position="relative" display="flex" borderRadius="3px" border="1px solid" borderColor={alpha(theme.palette.primary.dark, 0.8)}>
+			<Box sx={{}} >
+				<CategoryBox />
+			</Box>
+
 			<Autocomplete
 				disablePortal
 				id="book-search"
