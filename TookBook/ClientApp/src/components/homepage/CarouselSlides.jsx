@@ -7,6 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Skeleton from '@mui/material/Skeleton';
 import { useEffect, useState } from 'react';
+import Image from 'mui-image';
 
 const responsiveSlides = {
 	desktop: {
@@ -42,7 +43,11 @@ const slideStyles = {
 
 const CarouselSlides = () => {
 
+	const [loading, setLoading] = useState(true)
 
+	useEffect(() => {
+		setLoading(false)
+	}, [])
 	return (
 		<Container maxWidth={"lg"} >
 			<Box position={"relative"} >
@@ -60,9 +65,11 @@ const CarouselSlides = () => {
 					centerMode={false}
 					removeArrowOnDeviceType={["tablet", "mobile"]}
 				>
+
 					{imageSlides.map((slide, i) => <Box key={i} sx={{ display: { sm: "flex" }, justifyContent: "center", alignItems: "center", padding: "20px" }}>
-						<img src={slide} draggable="false" style={{ maxWidth: "100%", boxShadow: "0px 0px 20px #6D597A" }} />
+						<Image draggable="false" duration={1000} shift="left" src={slide} showLoading></Image>
 					</Box>)}
+
 
 				</Carousel>
 			</Box >

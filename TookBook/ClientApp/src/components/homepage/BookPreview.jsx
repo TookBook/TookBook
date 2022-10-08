@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography'
-import Image from '@jy95/material-ui-image'
+import Image from 'mui-image';
 import Button from '@mui/material/Button'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import shoppingCartState from "../../atoms/shoppingCartState";
@@ -42,6 +42,8 @@ const BookPreview = ({ book }) => {
 	const shouldWordWrap = book.title.length > 30
 	const firstBookTitleSection = book.title.substring(0, 30)
 	const secondBookTitleSection = book.title.substring(30)
+
+
 	// TODO: onclick, add to cart
 	//TODO: Double check Link element when proper pages are up
 	return (
@@ -50,16 +52,21 @@ const BookPreview = ({ book }) => {
 			"&:hover": { transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
 		}}>
 			<Box sx={{
-				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px", minHeight: "300px",
+				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px", minHeight: "350px",
 				backgroundColor: "white", borderRadius: "0.5rem", boxShadow: "0px 0px 5px black"
 
 			}}>
-				<Link to={`/testbook/${book.bookId}`}>
-					<Image src={book.imgUrl} />
+				{console.log(secondBookTitleSection)}
+				<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
+					<Image shift="left" duration={1000} style={{ maxHeight: "200px", objectFit: "contain" }} src={book.imgUrl} />
 
-					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "normal", overflow: "hidden", wordBreak: "break-word" }}
+					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "wrap", overflow: "hidden", wordBreak: "break-word", paddingTop: "20px" }}
 						fontWeight={"bold"} align="center" variant="body1" color="black">
 						{firstBookTitleSection}
+
+					</Typography>
+					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word", }}
+						fontWeight={"bold"} align="center" variant="body1" color="black">
 						{secondBookTitleSection}
 					</Typography>
 				</Link>
