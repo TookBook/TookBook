@@ -9,7 +9,8 @@ import { useRecoilValue } from 'recoil';
 
 
 
-
+//TODO: Display data from current logged in user.
+// "Edit Profile Information" section in a box with textfields.
 const UserProfile = () => {
 	const navigate = useNavigate()
 	const userLoggedIn = useRecoilValue(isUserLoggedInState)

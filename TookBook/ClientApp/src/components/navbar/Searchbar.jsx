@@ -42,6 +42,7 @@ const Searchbar = () => {
 	const bookEverything = bookTitles.concat(bookCategories, bookAuthorsUnique)
 
 
+	const testAutocompleteBooks = allBooks
 
 	const CategoryBox = () => {
 
@@ -113,9 +114,9 @@ const Searchbar = () => {
 				renderOption={(props, option, { selected }) => (
 
 					<Box component="li" {...props}>
-						<Link to="/searchresults" state={{ searchItem: selectedSearchItem, searchCategory: selectBoxFilter }}>
-							<Typography key={option.key}>{option}</Typography>
-						</Link>
+						{/* <Link to="/searchresults" state={{ searchItem: selectedSearchItem, searchCategory: selectBoxFilter }}> */}
+						<Typography key={option.key}>{option}</Typography>
+						{/* </Link> */}
 					</Box>
 				)}
 				renderInput={(params) =>
