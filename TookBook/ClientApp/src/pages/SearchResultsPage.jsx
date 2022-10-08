@@ -31,11 +31,11 @@ const SearchResultsPage = () => {
 
 	useEffect(() => {
 		console.log(location.state)
-	}, [])
+	}, [location.state])
 
 	return (
 
-		<div>Hi, I'm a search results page</div>
+		<div>Hi, I'm a search results page {location.state.searchItem}</div>
 	)
 }
 

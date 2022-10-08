@@ -13,6 +13,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Popper from '@mui/material/Popper';
+import MuiLink from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import { fetchedBooksState, fetchedCategoriesState } from '../../atoms';
 import { styled, alpha } from '@mui/material/styles';
@@ -27,8 +28,10 @@ const Searchbar = () => {
 	const [selectBoxFilter, setSelectBoxFilter] = useState("")
 	const [autocompleteData, setAutocompleteData] = useState([])
 
-	const [autocompleteValue, setAutocompleteValue] = useState("")
+	const [autocompleteValue, setAutocompleteValue] = useState(null)
 	const [selectedSearchItem, setSelectedSearchItem] = useState("")
+
+	const [forwardSearchItem, setForwardSearchItem] = useState("")
 
 	const allBooks = useRecoilValue(fetchedBooksState)
 	const allCategories = useRecoilValue(fetchedCategoriesState)
@@ -47,7 +50,7 @@ const Searchbar = () => {
 	const CategoryBox = () => {
 
 		const handleChange = (e) => {
-			setAutocompleteData([])
+			setAutocompleteValue(null)
 			setSelectBoxFilter(e.target.value)
 		}
 
@@ -94,11 +97,39 @@ const Searchbar = () => {
 	}, [selectBoxFilter])
 
 
-	useEffect(() => {
 
-		setSelectedSearchItem(autocompleteValue)
+	const handleNavigate = () => {
+		navigate("/searchresults", { state: { searchItem: autocompleteValue, searchCategory: selectBoxFilter } })
+	}
+
+	// useEffect(() => {
+
+	// 	setSelectedSearchItem(autocompleteValue)
+	// 	console.log("AutocompleteValue changed:", autocompleteValue)
+	// }, [autocompleteValue])
+
+	useEffect(() => {
+		if (autocompleteValue == null) {
+
+			console.log("autocomplete null, dont navigate")
+
+		}
+		else {
+			console.log("trying to navigate", autocompleteValue)
+			handleNavigate()
+		}
+
+		// handleNavigate();
 
 	}, [autocompleteValue])
+
+	// useEffect(() => {
+
+	// 	console.log("Selected search item changed to: ", selectedSearchItem)
+	// 	setForwardSearchItem(selectedSearchItem)
+	// }, [selectedSearchItem])
+
+
 
 	return (
 
@@ -108,14 +139,21 @@ const Searchbar = () => {
 				loading={true}
 				disablePortal
 				id="book-search"
+				onBlur={() => { console.log("BLURRED") }}
+				onClose={() => { console.log("CLOSED") }}
+				clearOnEscape={true}
+				clearOnBlur={true}
+				value={autocompleteValue}
 				options={autocompleteData} // Options innehåller den data som ska visas upp i search-lådan.
-				onChange={(e, value) => setSelectedSearchItem(value)}
+				onChange={(e, value) => setAutocompleteValue(value)}
 				sx={{ width: "100%", backgroundColor: "white", borderRadius: "3px" }}
 				renderOption={(props, option, { selected }) => (
 
 					<Box component="li" {...props}>
-						{/* <Link to="/searchresults" state={{ searchItem: selectedSearchItem, searchCategory: selectBoxFilter }}> */}
-						<Typography key={option.key}>{option}</Typography>
+						{/* <Link to="/searchresults" state={{ searchItem: autocompleteValue, searchCategory: selectBoxFilter }}> */}
+						<MuiLink >
+							<Typography key={option.key}>{option}</Typography>
+						</MuiLink>
 						{/* </Link> */}
 					</Box>
 				)}
