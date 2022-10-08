@@ -80,20 +80,6 @@ const Searchbar = () => {
 	}
 
 
-	const handleOnBlur = () => {
-		if (selectedSearchItem) {
-			console.log("Blurred, search item is not null")
-			navigate("/searchresults")
-		}
-
-		// 
-
-	}
-
-	const handleCategorySwtich = () => {
-
-	}
-
 	//TODO: "All categories" with everything doesn't show up when first loading page, user must select category and then select all categories.
 	//TODO: Reset textfield when Category has been changed
 	// TODO: Get value from autocomplete, store in state, use state + selected search filter to make a search when going to separate search page
@@ -117,8 +103,6 @@ const Searchbar = () => {
 
 		<Box width={"60vmin"} bgcolor={alpha(theme.palette.common.white, 0.15)} position="relative" display="flex" borderRadius="3px">
 			<CategoryBox />
-			{console.log(selectedSearchItem)}
-			{console.log(selectBoxFilter)}
 			<Autocomplete
 				loading={true}
 				disablePortal
