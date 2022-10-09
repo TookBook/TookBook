@@ -16,7 +16,8 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { styled, alpha } from '@mui/material/styles';
 import theme from "../style/MuiTheme";
-import { Form } from 'react-router-dom';
+import BookPreview from '../components/BookPreview';
+
 import { useRecoilValue } from 'recoil';
 import { fetchedBooksState, fetchedCategoriesState } from '../atoms';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
@@ -40,7 +41,7 @@ const SearchResultsPage = () => {
 	// TODO: Better solution?.. 
 	const booksByAuthor = allBooks.filter(book => book.authors.some(author => {
 		const splitSearchTerm = searchTerm.split(" ")
-		console.log(splitSearchTerm)
+		// console.log(splitSearchTerm)
 		for (let i = 0; i < splitSearchTerm.length; i++) {
 			if (author.firstName.toLowerCase().includes(splitSearchTerm[i].toLowerCase()) || author.lastName.toLowerCase().includes(splitSearchTerm[i].toLowerCase()))
 				return author
@@ -60,8 +61,9 @@ const SearchResultsPage = () => {
 		if (searchCategory === "Author")
 			return booksByAuthor
 		if (searchCategory === "Everything") {
+			// TODO: Remove duplicates by unique index in each category?
 			const conBooks = booksByTitle.concat(booksByAuthor, booksByCategory, booksByDescription)
-			const conBooksUniqueValues = conBooks.filter((book, i) => { return conBooks.indexOf(book) !== i }) // removes too many books lul. Only remove same name instead of all index?
+			const conBooksUniqueValues = conBooks.filter((book, i) => { return conBooks.indexOf(book) !== i }) // removes too many books.. only remove some name?
 			return conBooks
 		}
 	}
@@ -81,8 +83,9 @@ const SearchResultsPage = () => {
 	return (
 
 		<Container sx={{ mt: "6rem" }}>
-			<div>Hi, I'm a search results page. You searched for: {searchTerm} in category: {searchCategory}</div>
+
 			<Box sx={{ border: "1px solid black", padding: "1rem" }}>
+
 				<Box sx={{ display: "flex", justifyContent: "center", textAlign: "center", gap: "1rem", paddingTop: "3rem" }}>
 					<Typography variant='h6'> You searched for: </Typography>
 					<Typography variant='h5' fontWeight="bold"> {searchTerm} </Typography>
@@ -94,12 +97,16 @@ const SearchResultsPage = () => {
 						Search results: {searchesToDisplay.length}
 					</Typography>
 					<Box>
-						lalala display optionsbox here lalal
+						[lalala display optionsbox here lalal]
 					</Box>
 				</Box>
 
 			</Box>
-			{searchesToDisplay.map((book) => <div>{book.title}</div>)}
+
+			<Box sx={{ border: "1px solid black", borderTop: "none" }}>
+				{searchesToDisplay.map((book, id) => <BookPreview key={book.bookId} book={book}></BookPreview>)}
+			</Box>
+
 		</Container>
 
 	)
