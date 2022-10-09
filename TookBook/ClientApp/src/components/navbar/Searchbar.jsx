@@ -90,7 +90,7 @@ const Searchbar = () => {
 	// 	limit: 5
 	// });
 	const autoCompleteFilter = createFilterOptions({
-		limit: 10
+		// limit: 10
 	})
 
 
@@ -129,7 +129,7 @@ const Searchbar = () => {
 				freeSolo
 				filterOptions={(options, params) => {
 					const filtered = autoCompleteFilter(options, params);
-					filtered.limit = 10;
+					// filtered.limit = 10;
 					if (params.inputValue != "") {
 						filtered.push(
 							`${params.inputValue}`
