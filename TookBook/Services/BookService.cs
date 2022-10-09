@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using TookBook.Models;
 
-    public class BookService : IBookService
+    public class BookService
     {
         private readonly IMongoCollection<Book> _booksCollection;
 
@@ -62,7 +62,7 @@
         {
             await _booksCollection.InsertOneAsync(bookToAdd);
         }
-
+        
         //test med att lägga till alla parametrar separat
         public async Task<Book> AddBookAsyncTest(string title, string category, string language, string authorFirstName, string authorLasName, int year, decimal price, string seller, string bookInfo, int amountOfBooks)
         {
@@ -101,7 +101,7 @@
             await _booksCollection.InsertOneAsync(book);
             return book;
         }
-
+        
 
         public async Task<Book> TestToAddBook()
         {
@@ -116,7 +116,7 @@
             await _booksCollection.InsertOneAsync(bookToAdd);
             return bookToAdd.BookId;
         }
-
+        
         //Alternativ som jag inte fick att fungera /Tiia
         //public async Task<Book> AddBookAsync(Book book, bool isNew, int amountOfAddedBooks)
         //{
