@@ -10,10 +10,8 @@ namespace TookBook.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService; //TODO: lägg till alla services
-        public CategoryController(ICategoryService categoryService = null, CategoryService categoryService1 = null)
-        {
-            _categoryService = categoryService ?? categoryService1;
-        }
+        public CategoryController(ICategoryService categoryService) => _categoryService = categoryService;
+        
 
         //Tested in swagger /Max
         [HttpGet("AllCategories")]
