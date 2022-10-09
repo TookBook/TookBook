@@ -43,7 +43,7 @@ const passwordErrorMessage = (pass) => {
 
 
 
-// TODO: API requests, get user etc. Add helpertext. Frontend validation of username/pass?
+// TODO: Save user in local storage to prevent it being lost on page refresh? See https://javascript.info/localstorage
 const LoginForm = () => {
 
 	const [usernameField, setUsernameField] = useState("")

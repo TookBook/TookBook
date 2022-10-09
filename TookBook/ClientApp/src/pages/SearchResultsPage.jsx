@@ -17,6 +17,7 @@ import { styled, alpha } from '@mui/material/styles';
 import theme from "../style/MuiTheme";
 import { Form } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { fetchedBooksState, fetchedCategoriesState } from '../atoms';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -28,14 +29,49 @@ import { useEffect } from 'react';
 // Use pagination for search results?
 const SearchResultsPage = () => {
 	const location = useLocation();
+	const searchTerm = location.state.searchItem;
+	const searchCategory = location.state.searchCategory
+	const splitSearchTerm = searchTerm.split(" ")
+	const allBooks = useRecoilValue(fetchedBooksState)
+
+	const booksByTitle = allBooks.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
+	const booksByCategory = allBooks.filter(book => book.categories.some(category => category.categoryName.toLowerCase().includes(searchTerm.toLowerCase())))
+	// TODO: Better solution?.. 
+	const booksByAuthor = allBooks.filter(book => book.authors.some(author => {
+		const splitSearchTerm = searchTerm.split(" ")
+		console.log(splitSearchTerm)
+		for (let i = 0; i < splitSearchTerm.length; i++) {
+			if (author.firstName.toLowerCase().includes(splitSearchTerm[i].toLowerCase()) || author.lastName.toLowerCase().includes(splitSearchTerm[i].toLowerCase()))
+				return author
+		}
+	}))
+	const booksByDescription = allBooks.filter(book => book.bookInfo.toLowerCase().includes(searchTerm.toLowerCase()))
+
+	// Category+Authors are lists, map?
+	// const getSearchBarSearch = () => {
+	// 	if (searchCategory === "Title")
+	// 		return allBooks.filter(book => book.title.toLowerCase().includes(searchTerm.toLowerCase()));
+	// 	if (searchCategory === "Category")
+	// 		return allBooks.filter(book => book.category.includes(searchTerm))
+	// if (searchCategory === "Author")
+	// 	return allBooks.filter(book => book.authors.toLowerCase().includes(searchTerm.toLowerCase()))
+	// if (searchCategory === "Everything")
+
+	//}
 
 	useEffect(() => {
 		console.log(location.state)
 	}, [location.state])
 
+	useEffect(() => {
+		console.log("searched for:", searchTerm)
+		console.log("searchbarsearch:", booksByAuthor)
+
+	}, [location.state])
+
 	return (
 
-		<div>Hi, I'm a search results page {location.state.searchItem}</div>
+		<div>Hi, I'm a search results page. You searched for: {searchTerm} in category: {searchCategory}</div>
 	)
 }
 
