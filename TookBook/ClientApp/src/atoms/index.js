@@ -4,6 +4,7 @@ import fetchedCategoriesState from "./fetchedCategoriesState"
 import fetchedUsersState from "./fetchedUsersState"
 import adminModeState from "./adminModeState"
 import isUserLoggedInState from "./isUserLoggedInState"
+import itemsInCartState from "./itemsInCartState"
 
 
 export {
@@ -12,5 +13,6 @@ export {
 	fetchedBooksState,
 	fetchedCategoriesState,
 	fetchedUsersState,
-	isUserLoggedInState
+	isUserLoggedInState,
+	itemsInCartState,
 }

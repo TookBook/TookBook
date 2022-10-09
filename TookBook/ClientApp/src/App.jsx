@@ -32,9 +32,9 @@ function App() {
 
   };
 
-  const fetchBookById = async () => {
-    let response = await fetch(`api/Book/AllBooks/?id=${match.params.id}`)
-  }
+  // const fetchBookById = async () => {
+  //   let response = await fetch(`api/Book/AllBooks/?id=${match.params.id}`)
+  // }
 
   const fetchCategories = async () => {
     let response = await fetch("/api/Category/AllCategories")
@@ -50,7 +50,7 @@ function App() {
 
   useEffect(() => {
     fetchBooks();
-    fetchBookById();
+    // fetchBookById();
     fetchCategories();
     fetchUsers();
     console.log(fetchedBooks)

@@ -3,28 +3,45 @@ import Box from "@mui/material/Box";
 import CarouselSlides from '../components/homepage/CarouselSlides';
 import Typography from '@mui/material/Typography';
 import BooksHorizontalDisplay from '../components/homepage/BooksHorizontalDisplay';
-import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "../atoms/index"
+import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState, itemsInCartState } from "../atoms/index"
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
-import Link  from "react-router-dom";
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { Button } from '@mui/material';
+
+
 
 
 const Homepage = () => {
 
 	//Tiias playground
-	// const [itemsInCart, setItemsInCart] = useState([]);
+	const testBook = {
+		id: 1,
+		title: "Testbook",
+		imgUrl: "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
+		price:"42",
+		amount:1
+	}
 
-	// const HandleAddToCart = (newItem) => {
-	// 	let item = {...newItem, quantity: 1};
-	// 	setItemsInCart([...itemsInCart, item]);
-	// }
+	const idRandomizer = () => {
+		return Math.floor(Math.random() * 1000000000);
+	}
 
-	// const HandleRemoveFromCart = (itemToRemove) => {
-	// 	let itemsFiltered = itemsInCart.filter(item => item.id !== itemToRemove.id);
-	// 	setItemsInCart(itemsFiltered);
-	// }
-	//TODO: TIIA : lägg till itemsincart som en state i recoil
 
+	const [itemsInCart, setItemsInCart] = useRecoilState(itemsInCartState);
+
+	
+
+	const handleAddToCart = (newItem) => {
+		let item = {...newItem, id: idRandomizer()};
+		setItemsInCart(itemsInCart => [...itemsInCart, item]);
+		console.log("added to cart");
+		console.log(testBook);	
+	}
+
+	const addedToCart = useRecoilValue(itemsInCartState);
+	//Slut på Tiias playground
+
+	
 
 	// TODO: import fetched books and sort them in various ways, then stuff them inside the horizontal displays
 	const fetchedBooks = useRecoilValue(fetchedBooksState)
@@ -38,8 +55,12 @@ const Homepage = () => {
 	}
 
 	useEffect(() => {
+		console.log(itemsInCart)
+	}, [itemsInCart])
+
+	useEffect(() => {
 		console.log(loggedInUser)
-	}, [loggedInUser])
+	}, [addedToCart])
 
 	return (
 		<Container maxWidth={false}>
@@ -50,8 +71,12 @@ const Homepage = () => {
 
 			<Box>
 				<BooksHorizontalDisplay books={fetchedBooks.slice(0, 5)} displayTitle={"Top 5 books"} />
+				<Button onClick={() => handleAddToCart(testBook)}>Click me</Button>
 				<BooksHorizontalDisplay books={getRandomItems(fetchedBooks)} displayTitle={"Random new books"} />
 				<BooksHorizontalDisplay books={getRandomItems(fetchedBooks)} displayTitle={"Random used books"} />
+			</Box>
+			<Box>
+				
 			</Box>
 		</Container>
 	)
