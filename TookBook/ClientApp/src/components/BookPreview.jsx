@@ -54,15 +54,16 @@ const BookPreview = ({ book }) => {
 
 
 	const splitBookDescription = book.bookInfo.split(" ").slice(0, 40).join(" ");
-
+	//TODO: Border bottom
 	return (
-		<Box sx={{ display: "flex", justifyContent: "flex-start" }}>
+		<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingBottom: "2rem" }}>
 			<Box sx={{ display: "flex", justifyContent: "flex-start" }}>
 				<Image shift="left" duration={1000} style={{ maxHeight: "200px", objectFit: "contain" }} src={book.imgUrl} />
 			</Box>
-			<Box sx={{ maxWidth: "50%" }}>
+			<Box sx={{ maxWidth: "50%", paddingLeft: "8px" }}>
 				<Typography align="left" variant="h6" >{book.title}</Typography>
 				<Typography align="left" variant="body1" >by <span style={{ fontWeight: "bold" }}>{book.authors.map((author) => author.firstName + " " + author.lastName)}</span></Typography>
+				<Typography variant="body2" fontStyle="italic">{book.categories.map((category) => category.categoryName + " ")}</Typography>
 				<Typography> {splitBookDescription} ...</Typography>
 			</Box>
 
