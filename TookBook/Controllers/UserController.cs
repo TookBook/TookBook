@@ -10,9 +10,9 @@
 
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService; //TODO: lägg till alla services
-        public UserController(IUserService userService) => _userService = userService;
-       
+        private readonly UserService _userService; //TODO: lägg till alla services
+
+        public UserController(UserService userService) => _userService = userService;
 
         //Tested in swagger /Max
         [HttpGet("AllUsers")]
