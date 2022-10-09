@@ -25,7 +25,7 @@ import Skeleton from '@mui/material/Skeleton';
  */
 
 
-const BookPreview = ({ book }) => {
+const BookPreviewHomepage = ({ book }) => {
 	if (book == null)
 		book = {
 			title: "Placeholder book",
@@ -89,4 +89,4 @@ const BookPreview = ({ book }) => {
 	)
 }
 
-export default BookPreview
+export default BookPreviewHomepage
