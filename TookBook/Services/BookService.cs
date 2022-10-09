@@ -20,10 +20,6 @@
             _booksCollection = database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
         }
 
-        public BookService()
-        {
-        }
-
 
         //Tested in swagger /Max
         /// <summary>

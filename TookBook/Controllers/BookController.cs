@@ -19,8 +19,6 @@ namespace TookBook.Controllers
             _bookService = bookService1 ?? bookService;
         }
 
-
-
         //Tested in swagger /Max
         [HttpGet("AllBooks")]
         public async Task<ActionResult<List<Book>>> Get()

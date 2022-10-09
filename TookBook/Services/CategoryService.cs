@@ -21,10 +21,6 @@
             _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.CategoryCollectionName);
         }
 
-        public CategoryService()
-        {
-        }
-
         //Tested in swagger /Max
         /// <summary>
         /// Gets a list containing all categories

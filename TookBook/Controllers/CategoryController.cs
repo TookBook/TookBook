@@ -13,8 +13,6 @@ namespace TookBook.Controllers
 
         public CategoryController(ICategoryService categoryService) => _categoryService = categoryService;
 
-
-
         //Tested in swagger /Max
         [HttpGet("AllCategories")]
         public async Task<ActionResult<List<Category>>> Get()

@@ -21,10 +21,6 @@
             _userCollection = database.GetCollection<User>(mongoDBSettings.Value.UserCollectionName);
         }
 
-        public UserService()
-        {
-        }
-
         //Tested in swagger /Max
         /// <summary>
         /// Gets a list containing all users
