@@ -17,13 +17,26 @@ import { styled, alpha } from '@mui/material/styles';
 import theme from "../style/MuiTheme";
 import { Form } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 
-
+//TODO: Get results from useLocation navigation thingy
+// Display search results based on useLocation selectBoxFilter-thingy and the search term.
+// If both are empty, display list of all books.
+// Use pagination for search results?
 const SearchResultsPage = () => {
+	const location = useLocation();
 
-	return <div>Hi, I'm a search results page</div>
+	useEffect(() => {
+		console.log(location.state)
+	}, [location.state])
+
+	return (
+
+		<div>Hi, I'm a search results page {location.state.searchItem}</div>
+	)
 }
 
 
