@@ -14,6 +14,7 @@
 
         public UserController(IUserService userService) => _userService = userService;
 
+
         //Tested in swagger /Max
         [HttpGet("AllUsers")]
         public async Task<ActionResult<List<User>>> Get()

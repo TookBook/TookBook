@@ -14,7 +14,12 @@ namespace TookBook.Controllers
         // TODO: Customize api responses?
 
         private readonly IBookService _bookService; //TODO: lägg till alla services
-        public BookController(IBookService bookService) => _bookService = bookService;
+        public BookController(IBookService bookService = null, BookService bookService1 = null)
+        {
+            _bookService = bookService1 ?? bookService;
+        }
+
+
 
         //Tested in swagger /Max
         [HttpGet("AllBooks")]
