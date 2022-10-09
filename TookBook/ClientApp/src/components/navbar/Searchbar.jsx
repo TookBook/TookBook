@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Autocomplete from '@mui/material/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
@@ -84,8 +85,15 @@ const Searchbar = () => {
 		navigate("/searchresults", { state: { searchItem: autocompleteValue, searchCategory: selectBoxFilter } })
 	}
 
-	// TODO: Get value from autocomplete, store in state, use state + selected search filter to make a search when going to separate search page
-	// TODO: Forward to navigate thingy, get in searchresult page
+
+	// const limitResultsFilter = createFilterOptions({
+	// 	limit: 5
+	// });
+	const autoCompleteFilter = createFilterOptions({
+		limit: 10
+	})
+
+
 	useEffect(() => {
 		if (selectBoxFilter === "") setAutocompleteData(bookEverything)
 		if (selectBoxFilter === "Title") setAutocompleteData(bookTitles)
@@ -94,8 +102,7 @@ const Searchbar = () => {
 		if (!autocompleteData) setAutocompleteData(bookEverything)
 	}, [selectBoxFilter])
 
-
-	// Navigates to the searchresults-page automatically when the autocomplete-value changes and is not null. There's probably a better solution but I'm at my wits end.
+	// Navigates to the searchresults-page automatically when the autocomplete-value is selected and is not null. There's probably a better solution but I'm at my wits end.
 	useEffect(() => {
 		if (autocompleteValue == null) {
 			console.log("autocomplete null, dont navigate")
@@ -119,12 +126,22 @@ const Searchbar = () => {
 
 			<Autocomplete
 				disablePortal
+				freeSolo
+				filterOptions={(options, params) => {
+					const filtered = autoCompleteFilter(options, params);
+					filtered.limit = 10;
+					if (params.inputValue != "") {
+						filtered.push(
+							`${params.inputValue}`
+						);
+					}
+					return filtered;
+				}}
 				id="book-search"
 				onBlur={() => { console.log("BLURRED") }}
 				onClose={() => { console.log("CLOSED") }}
 				clearOnEscape={true}
 				clearOnBlur={true}
-				autoHighlight={true}
 				value={autocompleteValue}
 
 				options={selectBoxFilter == "Everything" ? bookEverything : autocompleteData} // Options innehåller den data som ska visas upp i search-lådan.
