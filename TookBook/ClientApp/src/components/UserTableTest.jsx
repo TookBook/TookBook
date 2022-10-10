@@ -123,20 +123,20 @@ const UserTableTest = ({user, userList, setUserList}) => {
 			let updatedUser ={...user}
 			
 			if (updatedUser.userId===id) {				
-				switch (type, adminResponse.status, sellerResponse.status) {
-					case "Admin", 200, 200:
+				switch (type) {
+					case "Admin":
 						updatedUser.userType.isAdmin = true
 						updatedUser.userType.isSeller = false
 						break;
-					case "Seller", 200, 200:
+					case "Seller":
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = true
 						break;
-					case "Customer", 200, 200:
+					case "Customer":
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = false
 						break;
-				}
+				}			
 			}
 			return updatedUser
 		})
@@ -158,6 +158,7 @@ const UserTableTest = ({user, userList, setUserList}) => {
 	useEffect(()=>{
 		console.log("Value of selectbox has changed to: ", selectBoxValue)
 		handleUserTypeChange(user.userId);
+		console.log(typeof(user), typeof(user.userType),typeof(user.userType.isAdmin), user.userType.isAdmin.readOnly, user.userType.isSeller.readOnly);
 	},[selectBoxValue])
 
 	return (
