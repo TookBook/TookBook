@@ -63,6 +63,7 @@ const ShoppingCartDrawer = () => {
 					<Typography gutterBottom variant="h3" textAlign="center"> Your cart</Typography>
 					<Box>
 						<ShoppingCart />
+						<Button variant="outlined">To checkout</Button>
 						</Box>
 				</Box>
 				<Box >

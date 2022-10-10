@@ -22,7 +22,12 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
           <p>Price: {item.price} SEK</p>
           <p>Total: {(item.amount * item.price).toFixed(2)} SEK</p>
         </div>
-        <div className="buttons">
+        <Box sx={{ 
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
           <Button
             size="small"
             disableElevation
@@ -41,7 +46,7 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
             +
           </Button>
           
-        </div>
+        </Box>
         </Paper>
       </div>
       
