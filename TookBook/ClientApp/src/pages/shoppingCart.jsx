@@ -21,19 +21,6 @@ const ShoppingCart = () => {
 		}
 	};
 
-	// const handleAddToCart = (book) => {
-	// 	const exists = itemsInCart.find((item) => item.id === book.id);
-
-	// 		if (exists) {
-	// 			setItemsInCart(itemsInCart.map((item) =>
-	// 				item.id === book.id
-	// 					? { ...exists, amount: exists.amount + 1 }
-	// 					: item
-	// 			));
-	// 		} else {
-	// 			setItemsInCart([...itemsInCart, { ...book, amount: 1 }]);
-	// 		}
-	// };
 
 	function handleAddToCart(id) {
 		setItemsInCart(currItems => {
@@ -89,13 +76,13 @@ const ShoppingCart = () => {
 		pb: 3,
 	};
 
-	/* <Box marginTop={"3rem"} key={item.id}> */
+
 
 	const dataToDisplay = () => {
 		return itemsInCart.map((item) => <p key={item.id}>{item.title}</p>)
 	}
 
-	const addedToCart = useRecoilValue(itemsInCartState);
+	// const addedToCart = useRecoilValue(itemsInCartState);
 
 	return (
 		<Container>
