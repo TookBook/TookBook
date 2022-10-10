@@ -13,6 +13,7 @@ import { Button } from '@mui/material';
 
 const Homepage = () => {
 
+	// TODO: Use Mui-Skeleton to temp display while loading data
 	const book1 = {
 		id: 1,
 		title: "The Lord of the Rings",
@@ -71,9 +72,7 @@ const Homepage = () => {
 		return randomArray.sort(() => Math.random() - 0.5).splice(0, 5);
 	}
 
-	// useEffect(() => {
-	// 	console.log(itemsInCart)
-	// }, [])
+
 
 	useEffect(() => {
 		console.log(loggedInUser)

@@ -5,7 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography'
-import BookPreview from "./BookPreview";
+import BookPreviewHomepage from "./BookPreviewHomepage";
 import { maxHeight } from "@mui/system";
 
 
@@ -44,8 +44,8 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 	const dataToDisplay = () => {
 		if (!books)
-			return placeHolderArray.map((book, i,) => <BookPreview book={null} key={i}></BookPreview>)
-		return books.map((book, i,) => <BookPreview book={book} key={i}></BookPreview>)
+			return placeHolderArray.map((book, i,) => <BookPreviewHomepage book={null} key={i}></BookPreviewHomepage>)
+		return books.map((book, i,) => <BookPreviewHomepage book={book} key={i}></BookPreviewHomepage>)
 	}
 
 	return (
@@ -62,7 +62,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 						<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center", alignItems: "center", }}>
 							{/* {books.map((book, i) =>
-							<BookPreview book={book} key={i} />) } */}
+							<BookPreviewHomepage book={book} key={i} />) } */}
 							{dataToDisplay()}
 						</Box>
 
