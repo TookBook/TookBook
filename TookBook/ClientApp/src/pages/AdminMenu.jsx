@@ -17,7 +17,7 @@ import Checkbox from '@mui/material/Checkbox';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import UserTableTest from '../components/UserTableTest';
 
 
 const style = {
@@ -79,10 +79,16 @@ const AdminMenu = () => {
 	const [Users, setUsers] = useRecoilState(fetchedUsersState)
 	const [userType, setUserType] = React.useState();
 	const [open, setOpen] = React.useState(false);
+	const [selected, setSelected] = React.useState({})
 
 
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false);
+	const handleOpenOrders = (modalUser) => {
+		
+		setSelected(modalUser)
+		setOpen(true)
+	}
+
+	const handleCloseOrders = () => setOpen(false);
 
 	const handleBlock = async (id, e) => {
 		const isBlocking = e.target.checked
@@ -166,47 +172,9 @@ const AdminMenu = () => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{Users.map((user) => (
-						<TableRow key={user.userId}>
-							<TableCell>{user.userName}</TableCell>
-							<TableCell>{user.mail}</TableCell>
-							<TableCell>
-								{/*all users use the same usestate for now*/}
-								<FormControl sx={{ m: 1, minWidth: 120 }}>
-									<Select
-										value={user.userType.isAdmin ? "Admin" : user.userType.isSeller ? "Seller" : "Customer"}
-										onChange={(e) => (handleUserTypeChange(user.userId, e))}
-									>
-										<MenuItem value={"Customer"}>Customer</MenuItem>
-										<MenuItem value={"Seller"}>Seller</MenuItem>
-										<MenuItem value={"Admin"}>Admin</MenuItem>
-									</Select>
-								</FormControl>
-
-
-				</TableCell>
-				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
-
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={(e)=>(handleBlock(user.userId, e))}/></TableCell> 
-
-				<TableCell>
-					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
-					<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
-						<Box sx={{ ...style, width: "50%" }}>
-						<h2 id="parent-modal-title"> Username should be here but every user has the same modal so it displays the last users name instead..</h2>
-						some kind of list here of all orders. click order for more info <br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal />
-						</Box>
-					</Modal>
-				</TableCell>
-			  </TableRow>
-			))}
-		  </TableBody>
+					{Users.map((user, i) => (
+					<UserTableTest key={i} user={user} userList ={Users} setUserList ={setUsers}> </UserTableTest>))}
+		 		 </TableBody>
 		</Table>
 		<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
 		  See more users
