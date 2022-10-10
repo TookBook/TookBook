@@ -63,8 +63,7 @@ const ShoppingCartDrawer = () => {
 					<Typography gutterBottom variant="h3" textAlign="center"> Your cart</Typography>
 					<Box>
 						<ShoppingCart />
-						<Button variant="outlined">To checkout</Button>
-						</Box>
+					</Box>
 				</Box>
 				<Box >
 					<List sx={{ backgroundColor: "primary.light", paddingTop: "0", paddingBottom: "2px", "&:first-of-type": { borderTop: "1px solid" } }}>
