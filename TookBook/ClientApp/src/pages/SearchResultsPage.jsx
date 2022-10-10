@@ -11,23 +11,19 @@ import Container from '@mui/material/Container';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { styled, alpha } from '@mui/material/styles';
 import theme from "../style/MuiTheme";
 import BookPreview from '../components/BookPreview';
-
 import { useRecoilValue } from 'recoil';
 import { fetchedBooksState, fetchedCategoriesState } from '../atoms';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
-
-//TODO: Get results from useLocation navigation thingy
-// Display search results based on useLocation selectBoxFilter-thingy and the search term.
-// If both are empty, display list of all books.
 // Use pagination for search results?
 const SearchResultsPage = () => {
 	const location = useLocation();
@@ -41,7 +37,6 @@ const SearchResultsPage = () => {
 	// TODO: Better solution?.. 
 	const booksByAuthor = allBooks.filter(book => book.authors.some(author => {
 		const splitSearchTerm = searchTerm.split(" ")
-		// console.log(splitSearchTerm)
 		for (let i = 0; i < splitSearchTerm.length; i++) {
 			if (author.firstName.toLowerCase().includes(splitSearchTerm[i].toLowerCase()) || author.lastName.toLowerCase().includes(splitSearchTerm[i].toLowerCase()))
 				return author
@@ -52,7 +47,7 @@ const SearchResultsPage = () => {
 
 	const getSearchBarSearch = () => {
 
-		//Concat the most relevant array to show the results higher in the searchresults. 
+		// Concats the most relevant array to show the results higher in the searchresults. 
 		//TODO: Better way to do a weighted search..
 		// TODO: Some searches persist when having searched and then switching category and doing another search
 		if (searchCategory === "Title")
@@ -70,6 +65,7 @@ const SearchResultsPage = () => {
 	}
 
 	const searchesToDisplay = getSearchBarSearch();
+
 
 	useEffect(() => {
 		console.log(location.state)
@@ -97,14 +93,16 @@ const SearchResultsPage = () => {
 						Search results: {searchesToDisplay.length}
 					</Typography>
 					<Box>
-						[lalala display optionsbox here lalal]
+						<Typography paddingRight="2px" fontWeight="bold" variant='body3'>Sort by:</Typography>
+						<Button onClick={() => sortAlphabetical(searchesToDisplay)} variant="text"> AZ </Button>
+						<Button variant="text"> In stock </Button>
 					</Box>
 				</Box>
 
 			</Box>
 
 			<Box sx={{ border: "1px solid black", borderTop: "none", paddingTop: "1rem" }}>
-				{searchesToDisplay.map((book, id) => <BookPreview key={book.bookId} book={book}></BookPreview>)}
+				{searchesToDisplay.sort().map((book, id) => <BookPreview key={book.bookId} book={book}></BookPreview>)}
 			</Box>
 
 		</Container>
