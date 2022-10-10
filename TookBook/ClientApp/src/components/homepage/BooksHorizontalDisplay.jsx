@@ -67,6 +67,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 						</Box>
 
 					</Container>
+				<Box><BookPreview /></Box>
 					{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
 				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
 
