@@ -20,6 +20,7 @@ import { useMediaQuery } from "@mui/material";
 import Toolbar from '@mui/material/Toolbar';
 import shoppingCartState from "../../atoms/shoppingCartState";
 import CancelIcon from '@mui/icons-material/Cancel';
+import ShoppingCart from '../../pages/shoppingCart';
 
 const ShoppingCartDrawer = () => {
 	const [openMenu, setOpenMenu] = useRecoilState(shoppingCartState)
@@ -59,10 +60,10 @@ const ShoppingCartDrawer = () => {
 				sx={{ border: "1px solid", borderLeft: "none" }}
 			>
 				<Box padding="1rem" backgroundColor="mainbg.main" paddingBottom="2rem" >
-					<Typography gutterBottom variant="h3" textAlign="center"> Cart Item</Typography>
-					<Typography >
-						No items in your basket
-					</Typography>
+					<Typography gutterBottom variant="h3" textAlign="center"> Your cart</Typography>
+					<Box>
+						<ShoppingCart />
+						</Box>
 				</Box>
 				<Box >
 					<List sx={{ backgroundColor: "primary.light", paddingTop: "0", paddingBottom: "2px", "&:first-of-type": { borderTop: "1px solid" } }}>

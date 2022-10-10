@@ -6,6 +6,8 @@ import Button from '@mui/material/Button'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import shoppingCartState from "../../atoms/shoppingCartState";
 import { useRecoilState } from "recoil";
+import { Link } from "react-router-dom";
+import { Container } from "@mui/material";
 
 /** more horizontal
  * 		<Box sx={{ maxHeight: "200px", maxWidth: "300px", border: "1px solid black", display: "flex", flexDirection: "column" }}>
@@ -42,16 +44,20 @@ const BookPreview = ({ book }) => {
 	// TODO: onclick, add to cart
 
 	return (
+		
 		<Box sx={{
 			maxHeight: "100%", borderRadius: "0.5rem", minWidth: "200px",
 			"&:hover": { transition: "all .2s ease-in-out", transform: "scale(1.1)", boxShadow: "5px 20px 10px black", }
 		}}>
+			
 			<Box sx={{
 				maxWidth: "100%", display: "flex", flexDirection: "column", padding: "10px", minHeight: "300px",
 				backgroundColor: "white", borderRadius: "0.5rem", boxShadow: "0px 0px 5px black"
 
 			}}>
+				<Link to={`/book/${book.id}`}>
 				<Image src={book.imgUrl} />
+				</Link>
 
 				<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "normal", overflow: "hidden", wordBreak: "break-word" }}
 					fontWeight={"bold"} align="center" variant="body1" color="black">
@@ -73,9 +79,12 @@ const BookPreview = ({ book }) => {
 					{book.price}
 				</Button>
 			</Box>
-
+			
 		</Box >
+		
+
 	)
+	
 }
 
 export default BookPreview

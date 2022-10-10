@@ -11,18 +11,61 @@ const ShoppingCart = () => {
 
 	const [itemsInCart, setItemsInCart] = useRecoilState(itemsInCartState);
 
+	const handleRemoveFromCart = (book) => {
+		const exists = itemsInCart.find((x) => x.id === book.id);
+		console.log(exists)
+		if(exists.amount === 1) {
+			setItemsInCart(itemsInCart.filter((x) => x.id !== book.id));
+		} else {
+			setItemsInCart(itemsInCart.map((x) => x.id === book.id ? {...exists, amount: exists.amount - 1} : x));
+		}
+	};
+
+	// const handleAddToCart = (book) => {
+	// 	const exists = itemsInCart.find((item) => item.id === book.id);
+
+	// 		if (exists) {
+	// 			setItemsInCart(itemsInCart.map((item) =>
+	// 				item.id === book.id
+	// 					? { ...exists, amount: exists.amount + 1 }
+	// 					: item
+	// 			));
+	// 		} else {
+	// 			setItemsInCart([...itemsInCart, { ...book, amount: 1 }]);
+	// 		}
+	// };
+
+	function handleAddToCart(id) {
+		setItemsInCart(currItems => {
+			if (currItems.find(item => item.id === id) == null) {
+				return [...currItems, { id, quantity: 1 }]
+			} else {
+				return currItems.map(item => {
+					if (item.id === id) {
+						return { ...item, quantity: item.quantity + 1 }
+					} else {
+						return item
+					}
+				})
+			}
+		})
+		console.log("addede to cart eller inte")
+		console.log(itemsInCart)
+	}
+
+
 	//remove from cart when amount is =<0, else update amount
-	const reduceAmountInCart = () => {
+	const reduceAmountInCart = (item) => {
 		if (item.amount <= 0) {
-			removeFromCart(item.id)
+			handleRemoveFromCart(item.id)
 		} else {
 			item.amount--;
 		}
 	}
 
-	const increaseAmountInCart = () => {
-		item.amount++;
-	}
+	// const increaseAmountInCart = (item) => {
+	// 	item.amount++;
+	// }
 
 	const removeFromCart = (itemToRemove) => {
 		let itemsFiltered = itemsInCart.filter(item => item.id !== itemToRemove.id);
@@ -57,15 +100,16 @@ const ShoppingCart = () => {
 	return (
 		<Container>
 			<h2>Your Cart</h2>
-			{addedToCart.length === 0 ? <p>No items in cart.</p> : null}
-			{addedToCart.map((item) => (
+			{itemsInCart.length === 0 ? <p>No items in cart.</p> : null}
+			{itemsInCart.map((item) => (
 				<BookInCart
 					key={item.id}
 					item={item}
-					reduceAmountInCart={reduceAmountInCart}
-					increaseAmountInCart={increaseAmountInCart}
+					reduceAmountInCart={(item) => handleRemoveFromCart(item)}
+					increaseAmountInCart={(item) => handleAddToCart(item.id)}
 				/>
 			))}
+			<Button sx={{mt:4}} variant="contained">Proceed to pay</Button>
 		</Container>
 	)
 }

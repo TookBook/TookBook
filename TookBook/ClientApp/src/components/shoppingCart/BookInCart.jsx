@@ -1,4 +1,8 @@
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
 
 const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
 	return(
@@ -6,8 +10,8 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
       <div>
         <h3>{item.title}</h3>
         <div className="information">
-          <p>Price: ${item.price}</p>
-          <p>Total: ${(item.amount * item.price).toFixed(2)}</p>
+          <p>Price: {item.price} SEK</p>
+          <p>Total: {(item.amount * item.price).toFixed(2)} SEK</p>
         </div>
         <div className="buttons">
           <Button
@@ -27,9 +31,22 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
           >
             +
           </Button>
+          <Paper
+          elavation={0}
+          sx= {{
+            mt:2,
+            width: '90%',
+            padding: 4,
+          }}
+          ></Paper>
         </div>
       </div>
       <img src={item.imgUrl} alt={item.title} />
+      <Divider></Divider>
+      <Box>
+          Total: {item.amount * item.price} SEK
+      </Box>
+      
     </Container>
 	)
 }

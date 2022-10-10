@@ -13,7 +13,22 @@ import { Button } from '@mui/material';
 
 const Homepage = () => {
 
-	//Tiias playground
+	const book1 = {
+		id: 1,
+		title: "The Lord of the Rings",
+		imgUrl: "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
+		price: 100,
+		amount: 3,
+	}
+
+	const book2 = {
+		id: 2,
+		title: "Harry Potter and the Philosopher's Stone",
+		imgUrl: "https://images-na.ssl-images-amazon.com/images/I/51Zt3J9ZQWL._SX331_BO1,204,203,200_.jpg",
+		price: 100,
+		amount: 1,
+	}
+
 	const testBook = {
 		id: 1,
 		title: "Testbook",
@@ -21,6 +36,7 @@ const Homepage = () => {
 		price:"42",
 		amount:1
 	}
+
 
 	const idRandomizer = () => {
 		return Math.floor(Math.random() * 1000000000);
@@ -35,7 +51,8 @@ const Homepage = () => {
 		let item = {...newItem, id: idRandomizer()};
 		setItemsInCart(itemsInCart => [...itemsInCart, item]);
 		console.log("added to cart");
-		console.log(testBook);	
+		console.log(testBook);
+		return itemsInCart;
 	}
 
 	const addedToCart = useRecoilValue(itemsInCartState);
@@ -54,13 +71,13 @@ const Homepage = () => {
 		return randomArray.sort(() => Math.random() - 0.5).splice(0, 5);
 	}
 
-	useEffect(() => {
-		console.log(itemsInCart)
-	}, [itemsInCart])
+	// useEffect(() => {
+	// 	console.log(itemsInCart)
+	// }, [])
 
 	useEffect(() => {
 		console.log(loggedInUser)
-	}, [addedToCart])
+	}, [loggedInUser])
 
 	return (
 		<Container maxWidth={false}>
@@ -68,10 +85,9 @@ const Homepage = () => {
 			<Box marginTop={"3rem"}>
 				<CarouselSlides />
 			</Box>
-
 			<Box>
 				<BooksHorizontalDisplay books={fetchedBooks.slice(0, 5)} displayTitle={"Top 5 books"} />
-				<Button onClick={() => handleAddToCart(testBook)}>Click me</Button>
+				<Button onClick={() => handleAddToCart(book1)}>Click me</Button>
 				<BooksHorizontalDisplay books={getRandomItems(fetchedBooks)} displayTitle={"Random new books"} />
 				<BooksHorizontalDisplay books={getRandomItems(fetchedBooks)} displayTitle={"Random used books"} />
 			</Box>
