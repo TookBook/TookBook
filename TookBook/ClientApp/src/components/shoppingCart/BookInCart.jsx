@@ -8,6 +8,15 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
 	return(
 		<Container>
       <div>
+      <Paper
+          elavation={0}
+          sx= {{
+            mt:2,
+            width: '90%',
+            padding: 4,
+            justifyContent: 'center',
+          }}
+          >
         <h3>{item.title}</h3>
         <div className="information">
           <p>Price: {item.price} SEK</p>
@@ -31,16 +40,11 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
           >
             +
           </Button>
-          <Paper
-          elavation={0}
-          sx= {{
-            mt:2,
-            width: '90%',
-            padding: 4,
-          }}
-          ></Paper>
+          
         </div>
+        </Paper>
       </div>
+      
       <img src={item.imgUrl} alt={item.title} />
       <Divider></Divider>
       <Box>

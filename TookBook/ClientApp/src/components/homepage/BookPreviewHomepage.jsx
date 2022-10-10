@@ -8,7 +8,6 @@ import shoppingCartState from "../../atoms/shoppingCartState";
 import { useRecoilState } from "recoil";
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
-import { Link } from "react-router-dom";
 import { Container } from "@mui/material";
 
 /** more horizontal
