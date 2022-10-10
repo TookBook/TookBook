@@ -43,6 +43,8 @@ const BookPreviewHomepage = ({ book }) => {
 	const shouldWordWrap = book.title.length > 30
 	const firstBookTitleSection = book.title.substring(0, 30)
 	const secondBookTitleSection = book.title.substring(30)
+	const firstBookTitleWords = book.title.split(" ").slice(0, 3).join(" ")
+	const secondBookTitleWords = book.title.split(" ").slice(3, 7).join(" ")
 
 
 	// TODO: onclick, add to cart
@@ -65,12 +67,12 @@ const BookPreviewHomepage = ({ book }) => {
 
 					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "wrap", overflow: "hidden", wordBreak: "break-word", paddingTop: "20px" }}
 						fontWeight={"bold"} align="center" variant="body1" color="black">
-						{firstBookTitleSection}
+						{firstBookTitleWords}
 
 					</Typography>
 					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word", }}
 						fontWeight={"bold"} align="center" variant="body1" color="black">
-						{secondBookTitleSection}
+						{secondBookTitleWords}
 					</Typography>
 				</Link>
 				{/* <Typography sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word" }}
