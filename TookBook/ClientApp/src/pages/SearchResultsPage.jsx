@@ -54,6 +54,7 @@ const SearchResultsPage = () => {
 
 		//Concat the most relevant array to show the results higher in the searchresults. 
 		//TODO: Better way to do a weighted search..
+		// TODO: Some searches persist when having searched and then switching category and doing another search
 		if (searchCategory === "Title")
 			return booksByTitle
 		if (searchCategory === "Category")
@@ -92,7 +93,6 @@ const SearchResultsPage = () => {
 				</Box>
 
 				<Box sx={{ display: "flex", justifyContent: "space-between", mt: "2rem" }}>
-
 					<Typography sx={{}}>
 						Search results: {searchesToDisplay.length}
 					</Typography>
@@ -103,7 +103,7 @@ const SearchResultsPage = () => {
 
 			</Box>
 
-			<Box sx={{ border: "1px solid black", borderTop: "none" }}>
+			<Box sx={{ border: "1px solid black", borderTop: "none", paddingTop: "1rem" }}>
 				{searchesToDisplay.map((book, id) => <BookPreview key={book.bookId} book={book}></BookPreview>)}
 			</Box>
 
