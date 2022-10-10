@@ -21,6 +21,10 @@ const passwordErrorMessage = (pass) => {
 	const tooShort = pass.length < 4 && pass.length != 0
 	if (tooShort) return `Password must be longer than four characters`
 }
+const emailErrorMessage = (email) => {
+	const invalidMail = email.length < 6 && !email.includes("@") || !email.includes(".")
+	if (invalidMail) return `The entered email is not valid`
+}
 
 
 //TODO: Display data from current logged in user.
@@ -44,7 +48,11 @@ const UserProfile = () => {
 	}
 
 
-
+	useEffect(() => {
+		setUsernameField(currentUser.userName)
+		setEmailField(currentUser.mail)
+		setPasswordField(currentUser.password)
+	}, [])
 
 	useEffect(() => {
 		if (!userLoggedIn) navigate("/")
@@ -91,7 +99,7 @@ const UserProfile = () => {
 							label="Email"
 							name="email"
 							value={emailField}
-							error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))}
+							// error={emailField !== "" && (!emailField.includes("@") || !emailField.includes("."))}
 							autoComplete="new-password"
 							onChange={(e) => setEmailField(e.target.value)}
 							helperText={emailField !== "" && emailErrorMessage(emailField)}
