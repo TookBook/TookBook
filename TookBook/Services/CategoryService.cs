@@ -10,13 +10,13 @@
     using System.Threading.Tasks;
     using TookBook.Models;
 
-    public class CategoryService
+    public class CategoryService : ICategoryService
     {
         private readonly IMongoCollection<Category> _categoryCollection;
 
         public CategoryService(IOptions<MongoDBSettings> mongoDBSettings)
         {
-            MongoClient client = new (mongoDBSettings.Value.ConnectionURI);
+            MongoClient client = new(mongoDBSettings.Value.ConnectionURI);
             IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
             _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.CategoryCollectionName);
         }
@@ -39,7 +39,7 @@
         /// <returns>Filtered category list.</returns>
         public async Task<List<Category>> GetFilteredAsync(string keyword)
         {
-            return await _categoryCollection.Find(_category =>_category.CategoryName.ToLower().Contains(keyword.ToLower())).ToListAsync();  //kan man inte bara ta kalla p� alla och sen filtrera i frontend? ist�llet f�r att filtrera innan?
+            return await _categoryCollection.Find(_category => _category.CategoryName.ToLower().Contains(keyword.ToLower())).ToListAsync();  //kan man inte bara ta kalla p� alla och sen filtrera i frontend? ist�llet f�r att filtrera innan?
         }
 
         /// <summary>

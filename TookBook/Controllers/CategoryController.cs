@@ -9,9 +9,12 @@ namespace TookBook.Controllers
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
-        private readonly CategoryService _categoryService; //TODO: lägg till alla services
+        private readonly ICategoryService _categoryService; //TODO: lägg till alla services
 
-        public CategoryController(CategoryService categoryService) => _categoryService = categoryService;
+        public CategoryController(ICategoryService categoryService = null, CategoryService categoryService1 = null)
+        {
+            _categoryService = categoryService1 ?? categoryService;
+        }
 
         //Tested in swagger /Max
         [HttpGet("AllCategories")]
