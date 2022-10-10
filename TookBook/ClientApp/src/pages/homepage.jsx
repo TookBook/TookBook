@@ -30,7 +30,7 @@ const Homepage = () => {
 
 	return (
 		<Container maxWidth={false}>
-			<Typography align='center'>Homeplaceholder woo</Typography>
+
 			<Box marginTop={"3rem"}>
 				<CarouselSlides />
 			</Box>

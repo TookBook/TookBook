@@ -55,7 +55,7 @@ const BookPreview = ({ book }) => {
 
 
 	const splitBookDescription = book.bookInfo.split(" ").slice(0, 40).join(" ");
-	//TODO: Border bottom
+
 	return (
 		<>
 			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingBottom: "2rem" }}>
