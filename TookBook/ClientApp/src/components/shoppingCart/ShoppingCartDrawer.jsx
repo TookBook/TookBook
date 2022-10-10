@@ -20,7 +20,7 @@ import { useMediaQuery } from "@mui/material";
 import Toolbar from '@mui/material/Toolbar';
 import shoppingCartState from "../../atoms/shoppingCartState";
 import CancelIcon from '@mui/icons-material/Cancel';
-import ShoppingCart from '../../pages/shoppingCart';
+import ShoppingCart from '../../pages/ShoppingCart';
 
 const ShoppingCartDrawer = () => {
 	const [openMenu, setOpenMenu] = useRecoilState(shoppingCartState)

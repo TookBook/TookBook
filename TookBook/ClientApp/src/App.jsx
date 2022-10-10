@@ -13,7 +13,7 @@ import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
 import Homepage from './pages/Homepage';
 import AdminMenu from './pages/AdminMenu'
 import ShoppingCart from './pages/CheckoutPage';
-import BookInfo from './pages/BookInfo';
+import BookInfo from './pages/Bookinfo';
 import UserProfile from "./pages/UserProfile"
 import SearchResultsPage from "./pages/SearchResultsPage"
 import TestBookInfo from './pages/TestBookInfo'

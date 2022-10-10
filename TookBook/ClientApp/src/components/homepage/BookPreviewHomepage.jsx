@@ -24,7 +24,7 @@ import { Container } from "@mui/material";
 
 		</Box>
  */
-
+const [CartItems, setCartItems] = useRecoilState(shoppingCartState);
 
 const BookPreviewHomepage = ({ book }) => {
 	if (book == null)
@@ -36,6 +36,7 @@ const BookPreviewHomepage = ({ book }) => {
 
 	const handleBookClick = () => {
 		console.log(book.bookId)
+		
 
 	}
 
