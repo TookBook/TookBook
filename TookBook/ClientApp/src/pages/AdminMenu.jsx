@@ -84,17 +84,25 @@ const AdminMenu = () => {
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false);
 
-	const handleBlock = async (id) => {
-		console.log(id)
+	const handleBlock = async (id, e) => {
+		const isBlocking = e.target.checked
+		let response = null
+
 		const reqOptions ={method: "PUT"}
-		const response = await fetch(`api/User/BlockUser/${id}`, reqOptions)
-		console.log(response);		
+
+		isBlocking ? 
+		 response = await fetch(`api/User/BlockUser/${id}`, reqOptions) :
+		 response = await fetch(`api/User/UnblockUser/${id}`, reqOptions)
+
 		let updatedUsers = Users.map( (user) => {
 			let updatedUser ={...user}
 			
 			if (updatedUser.userId === id){
 					
-				if ( response.status == 200)updatedUser.isBlocked = !updatedUser.isBlocked
+				if ( response.status == 200 )
+				 isBlocking ? 
+				 updatedUser.isBlocked = true :
+				 updatedUser.isBlocked = false
 			}
 			return updatedUser
 		})	
@@ -102,23 +110,34 @@ const AdminMenu = () => {
 		console.log(updatedUsers);
 	}
 
-	const handleUserTypeChange = (id, e) => {
+	const handleUserTypeChange = async (id, e) => {
 		let type = e.target.value;
-		
+		const reqOptions ={method: "PUT"}
+		let adminResponse = null
+		let sellerResponse = null
+		if	(type == "Admin"){
+			adminResponse = await fetch(`api/User/PromoteUser/${id}`, reqOptions) 
+			sellerResponse = await fetch(`api/User/DemoteSeller/${id}`, reqOptions)
+		}
+		if (type == "Seller"){
+			adminResponse = await fetch(`api/User/DemoteUser/${id}`, reqOptions)
+			sellerResponse = await fetch(`api/User/PromoteSeller/${id}`, reqOptions)
+		}
+
 		let updatedUsers = Users.map((user) => {
 			let updatedUser ={...user}
-			if (updatedUser.userId===id) {
-				switch (type) {
-					case "Admin":
+			if (updatedUser.userId===id) {				
+				switch (type, adminResponse.status) {
+					case "Admin", 200:
 						console.log(user)
 						updatedUser.userType.isAdmin = true
 						updatedUser.userType.isSeller = false
 						break;
-					case "Seller":
+					case "Seller", 200:
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = true
 						break;
-					case "Customer":
+					case "Customer", 200:
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = false
 						break;
@@ -168,7 +187,7 @@ const AdminMenu = () => {
 				</TableCell>
 				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
 
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={()=>(handleBlock(user.userId))}/></TableCell> 
+				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={(e)=>(handleBlock(user.userId, e))}/></TableCell> 
 
 				<TableCell>
 					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
