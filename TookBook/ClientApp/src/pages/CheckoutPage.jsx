@@ -2,27 +2,18 @@ import "../style/shoppingCart.css";
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
-// const style = {
-// 	position: 'absolute',
-// 	top: '50%',
-// 	left: '50%',
-// 	transform: 'translate(-50%, -50%)',
-// 	width: 400,
-// 	height: 600,
-// 	bgcolor: 'background.paper',
-// 	border: '2px solid #000',
-// 	boxShadow: 24,
-// 	pt: 2,
-// 	px: 4,
-// 	pb: 3,
-//   };
 
-const  CheckoutPage = () => {
+const CheckoutPage = () => {
+
+	const handleClick = () => {
+		<p>You're order has been placed!</p>
+	}
+
 	return (
 		<Container maxWidth="md" >
-			
-			<Box style={{backgroundcolor: '#ab2b06'}} display={"flex"} justifyContent={"center"} 
+			<Box style={{ backgroundcolor: '#ab2b06' }} display={"flex"} justifyContent={"center"}
 				sx={{
 					width: 400,
 					height: 300,
@@ -33,9 +24,63 @@ const  CheckoutPage = () => {
 				<Typography variant={"h6"} gutterBottom textAlign={""} >Checkout</Typography>
 				<Box display={"flex"} justifyContent={"center"}>Books here</Box>
 			</Box>
+
+			<Box
+				component="form"
+				sx={{
+					'& .MuiTextField-root': { m: 1, width: '25ch' },
+				}}
+				noValidate
+				autoComplete="off"
+			>
+				<div>
+					<TextField
+						id="address"
+						label="Address"
+						defaultValue="ex. 1234 Main St"
+					/>
+					<TextField
+						id="zip"
+						label="Zip code"
+						defaultValue="ex. 12345"
+					/>
+					<TextField
+						id="city"
+						label="City/Town"
+						autoComplete="current-password"
+					/>
+				</div>
+				</Box>
+				<Box>
+					<div className="checkout-container">
+						<Typography variant={"h3"}>Credit card info</Typography>
+						<TextField
+						id="cardholders-name"
+						label="Cardholder's name"
+						defaultValue="name"
+					/>
+						<TextField
+							id="card-number"
+							label="Card Number"
+							defaultValue="ex. 1234 5678 9012 3456"
+						/>
+						<TextField
+							id="exp-date"
+							label="Expiration Date"
+							defaultValue="09/23"
+						/>
+						<TextField
+							id="cvv"
+							label="CVV"
+							defaultValue="ex. 123"
+						/>
+						<Button onClick={handleClick()} text="Place order" />
+					</div>
+				
+			</Box>
 			<Button>Submit</Button>
-			
-		</Container>
+			<Typography variant={"p"} gutterBottom textAlign={""} >Note that we currently only ship to Sweden</Typography>
+		</Container >
 	)
 }
 
