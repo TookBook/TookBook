@@ -1,42 +1,89 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import Navbar from './components/navbar/Navbar'
+import Footer from "./components/Footer"
+import ThemeWrapper from './style/ThemeWrapper'
+import MainWrapper from './style/MainWrapper'
+import {
+  BrowserRouter as Router, Routes, Route, Link, Navigate,
+} from "react-router-dom";
+import UserLoginContainer from "./components/userPortalModal/UserLoginContainer"
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUserState } from "./atoms/index"
+import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
+import Homepage from './pages/Homepage';
+import AdminMenu from './pages/AdminMenu'
+import ShoppingCart from './pages/CheckoutPage';
+import BookInfo from './pages/BookInfo';
+import UserProfile from "./pages/UserProfile"
+import SearchResultsPage from "./pages/SearchResultsPage"
+import TestBookInfo from './pages/TestBookInfo'
+import Error404Page from "./pages/Error404Page"
+import CheckoutPage from './pages/CheckoutPage';
+
+
 
 function App() {
-    const [count, setCount] = useState(0)
-    const [weather, setWeather] = useState("")
+  const [fetchedBooks, setFetchedBooks] = useRecoilState(fetchedBooksState)
+  const [fetchedCategories, setFetchedCategories] = useRecoilState(fetchedCategoriesState)
+  const [fetchedUsers, setFetchedUsers] = useRecoilState(fetchedUsersState)
 
-    const getWeather = async () => {
-        const resp = await fetch("/api/weatherforecast")
-        const json = await resp.json()
-        console.log(json)
-        setWeather(json);
-    }
+  const fetchBooks = async () => {
+    let response = await fetch("/api/Book/AllBooks")
+    let data = await response.json();
+    setFetchedBooks(data)
+  };
 
+  const fetchCategories = async () => {
+    let response = await fetch("/api/Category/AllCategories")
+    let data = await response.json();
+    setFetchedCategories(data)
+  };
+
+  const fetchUsers = async () => {
+    let response = await fetch("/api/User/AllUsers")
+    let data = await response.json();
+    setFetchedUsers(data)
+  };
+
+  useEffect(() => {
+    fetchBooks();
+    fetchCategories();
+    fetchUsers();
+    console.log(fetchedBooks)
+    console.log(fetchedCategories)
+    console.log(fetchedUsers)
+  }, [])
+
+
+  /** ThemeWrapper är en komponent som ligger i style/Themewrapper, där hämtar den ett tema för hela material-ui från style/MuiTheme.
+   *  I MuiTheme så kan man ändra alla färger, ex primary som används nedan. Använder man "primary.main" så får man den färgen man döpte till primary, använder man primary.light så får man automatiskt en ljusare variant av färgen. Likadant med primary.dark  */
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-              </button>
-              <button onClick={getWeather}>Fetch</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <ThemeWrapper>
+      <Router>
+        <MainWrapper>
+          <Navbar />
+
+          <Routes>
+
+            <Route path='ShoppingCart' element={<ShoppingCart />} />
+            <Route path='/book/:id' element={<BookInfo />} />
+            <Route path='/adminmenu' element={<AdminMenu />} />
+            <Route path='/userprofile' element={<UserProfile />} /> {/**TODO: user.id stuff? */}
+            <Route path='/searchresults' element={<SearchResultsPage />} />
+            <Route path="/testbook/:id" element={<TestBookInfo />} />
+            <Route path="*" element={<Error404Page />} />
+            <Route path='/' element={<Homepage />} />
+            <Route path='/checkout' element={<CheckoutPage />} />
+
+          </Routes>
+
+          <UserLoginContainer />
+          <ShoppingCartDrawer />
+        </MainWrapper>
+
+        <Footer />
+      </Router>
+    </ThemeWrapper>
   )
 }
 

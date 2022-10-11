@@ -1,0 +1,118 @@
+[
+
+  {
+    "username": "Username123",
+    "password": "test123",
+    "mail": "test123@test.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      
+    ]
+  },
+
+  {
+    "username": "hellothisismyusername",
+    "password": "hej123",
+    "mail": "email@email.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+      
+    ]
+  },
+
+  {
+    "username": "MichaelScott",
+    "password": "1234",
+    "mail": "michaelscott@dundermifflin.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": true
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+
+
+    ]
+  },
+
+  {
+    "username": "admin",
+    "password": "admin",
+    "mail": "admin@admin.com",
+
+    "userType": {
+      "isAdmin": true,
+      "isSeller": false
+    },
+    "isActive": true,
+    "isBlocked": false,
+    "orders": [
+
+
+    ]
+  },
+
+  {
+    "username": "seller",
+    "password": "seller",
+    "mail": "seller@seller.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": true
+    },
+    "isActive": true,
+    "isBlocked": false,
+    "orders": [
+
+
+    ]
+  },
+
+  {
+    "username": "user",
+    "password": "user",
+    "mail": "user@user.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": true,
+    "isBlocked": false,
+    "orders": [
+
+
+    ]
+  },
+  {
+    "username": "inactiveuser",
+    "password": "inactiveuser",
+    "mail": "inactiveuser@inactiveuser.com",
+
+    "userType": {
+      "isAdmin": false,
+      "isSeller": false
+    },
+    "isActive": false,
+    "isBlocked": false,
+    "orders": [
+
+
+    ]
+  }
+]

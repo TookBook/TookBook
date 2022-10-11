@@ -1,0 +1,222 @@
+[
+  {
+    "_id": "632c1938fc13ae57f6000442",
+    "categoryName": "Action"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000443",
+    "categoryName": "Adventure"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000444",
+    "categoryName": "Architecture"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000445",
+    "categoryName": "Alternative history"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000446",
+    "categoryName": "Autobiography"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000447",
+    "categoryName": "Anthology"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000448",
+    "categoryName": "Biography"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000449",
+    "categoryName": "Business"
+  },
+  {
+    "_id": "632c1938fc13ae57f600044a",
+    "categoryName": "Economics"
+  },
+  {
+    "_id": "632c1938fc13ae57f600044b",
+    "categoryName": "Children's"
+  },
+  {
+    "_id": "632c1938fc13ae57f600044c",
+    "categoryName": "Crafts/hobbies"
+  },
+  {
+    "_id": "632c1938fc13ae57f600044d",
+    "categoryName": "Classic"
+  },
+  {
+    "_id": "632c1938fc13ae57f600044e",
+    "categoryName": "Cookbook/Food"
+  },
+  {
+    "_id": "632c1938fc13ae57f600044f",
+    "categoryName": "Comicbook"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000450",
+    "categoryName": "Diary"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000451",
+    "categoryName": "Coming-of-age"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000452",
+    "categoryName": "Dictionary"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000453",
+    "categoryName": "Crime"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000454",
+    "categoryName": "Encyclopedia"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000455",
+    "categoryName": "Drama"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000456",
+    "categoryName": "Guide"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000457",
+    "categoryName": "Fairytale"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000458",
+    "categoryName": "Health/fitness"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000459",
+    "categoryName": "Fantasy"
+  },
+  {
+    "_id": "632c1938fc13ae57f600045a",
+    "categoryName": "History"
+  },
+  {
+    "_id": "632c1938fc13ae57f600045b",
+    "categoryName": "Graphic novel"
+  },
+  {
+    "_id": "632c1938fc13ae57f600045c",
+    "categoryName": "Historical fiction"
+  },
+  {
+    "_id": "632c1938fc13ae57f600045d",
+    "categoryName": "Humor"
+  },
+  {
+    "_id": "632c1938fc13ae57f600045e",
+    "categoryName": "Horror"
+  },
+  {
+    "_id": "632c1938fc13ae57f600045f",
+    "categoryName": "Journal"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000460",
+    "categoryName": "Mystery"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000461",
+    "categoryName": "Math"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000462",
+    "categoryName": "Paranormal"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000463",
+    "categoryName": "Romance"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000464",
+    "categoryName": "Memoir"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000465",
+    "categoryName": "Picturebook"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000466",
+    "categoryName": "Philosophy"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000467",
+    "categoryName": "Poetry"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000468",
+    "categoryName": "Political"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000469",
+    "categoryName": "Religion"
+  },
+  {
+    "_id": "632c1938fc13ae57f600046a",
+    "categoryName": "Textbook"
+  },
+  {
+    "_id": "632c1938fc13ae57f600046b",
+    "categoryName": "Satire"
+  },
+  {
+    "_id": "632c1938fc13ae57f600046c",
+    "categoryName": "True crime"
+  },
+  {
+    "_id": "632c1938fc13ae57f600046d",
+    "categoryName": "Science fiction"
+  },
+  {
+    "_id": "632c1938fc13ae57f600046e",
+    "categoryName": "Review"
+  },
+  {
+    "_id": "632c1938fc13ae57f600046f",
+    "categoryName": "Short story"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000470",
+    "categoryName": "Science"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000471",
+    "categoryName": "Suspense"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000472",
+    "categoryName": "Self help"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000473",
+    "categoryName": "Thriller"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000474",
+    "categoryName": "Sports"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000475",
+    "categoryName": "Western"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000476",
+    "categoryName": "Travel"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000477",
+    "categoryName": "Young adult"
+  },
+  {
+    "_id": "632c1938fc13ae57f6000478",
+    "categoryName": "Comedy"
+  }
+]
