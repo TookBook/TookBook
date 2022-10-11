@@ -44,6 +44,23 @@ const UserProfile = () => {
 
 	const [infoMessage, setInfoMessage] = useState("")
 
+	const TESTORDER = [
+		{
+			orderId: "12345", date: "lololol"
+		},
+		{
+			orderId: "12345", date: "lololol"
+		},
+		{
+			orderId: "12345", date: "lololol"
+		},
+		{
+			orderId: "12345", date: "lololol"
+		},
+		{
+			orderId: "12345", date: "lololol"
+		},
+	]
 
 	const handleUpdateUser = async (e) => {
 		e.preventDefault();
@@ -63,14 +80,10 @@ const UserProfile = () => {
 			const updatedUser = await updateUserResponse.json()
 			setInfoMessage("Account details succesfully updated!")
 			console.log("returned user: ", updatedUser)
+			console.log(updateUserResponse)
 			setCurrentUser(updatedUser)
-
 		}
-		console.log(updateUserResponse)
-		console.log(currentUser)
-
-		console.log("submitted")
-		//TODO: Update user stuff
+		if (!updateUserResponse.ok) setInfoMessage("Could not update user.")
 
 	}
 
@@ -215,7 +228,7 @@ const UserProfile = () => {
 
 									variant="contained"
 									disabled={(passwordField.length < 4 || usernameField.length < 4)
-									} // TODO: proper mini validation
+									}
 								>
 									Update
 								</Button>
@@ -244,10 +257,17 @@ const UserProfile = () => {
 
 					</Box>
 					<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "1rem", }}>
-						<Icon color='primary' sx={{ fontSize: "3rem" }}><ManageAccountsOutlinedIcon sx={{ fontSize: "3rem" }} /></Icon>
-						<Typography variant='h6'>{currentUser.userName}</Typography>
+						<Icon color='primary' sx={{ fontSize: "3rem" }}><ListAltIcon sx={{ fontSize: "3rem" }} /></Icon>
+						<Typography variant='h6'>You have {currentUser.orders.length} orders</Typography>
 
 					</Box>
+					{currentUser.orders.length > 0
+						? currentUser.orders.map((order) => (
+							<Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
+								<Typography>{order.orderId}</Typography>
+								<Typography>{order.date}</Typography>
+							</Box>))
+						: <Typography textAlign="center">No orders to show.</Typography>}
 				</Box >
 
 			</Box>
