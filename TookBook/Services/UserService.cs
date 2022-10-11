@@ -10,7 +10,7 @@
     using System.Threading.Tasks;
     using TookBook.Models;
 
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly IMongoCollection<User> _userCollection;
 
@@ -157,7 +157,7 @@
 
         public async Task<User> GetUserByName(string name) => await _userCollection.Find(x => x.UserName.ToLower() == name.ToLower()).FirstOrDefaultAsync();
 
-        public async Task<User> AddUserAsync (string username, string email, string password)
+        public async Task<User> AddUserAsync(string username, string email, string password)
         {
             User user = new();
             user.UserName = username;
