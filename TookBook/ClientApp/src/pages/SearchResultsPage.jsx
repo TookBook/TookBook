@@ -94,7 +94,7 @@ const SearchResultsPage = () => {
 					</Typography>
 					<Box>
 						<Typography paddingRight="2px" fontWeight="bold" variant='body3'>Sort by:</Typography>
-						<Button onClick={() => sortAlphabetical(searchesToDisplay)} variant="text"> AZ </Button>
+						<Button onClick={() => console.log(searchesToDisplay)} variant="text"> AZ </Button>
 						<Button variant="text"> In stock </Button>
 					</Box>
 				</Box>
