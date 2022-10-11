@@ -13,7 +13,7 @@ import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
 import Homepage from './pages/Homepage';
 import AdminMenu from './pages/AdminMenu'
 import ShoppingCart from './pages/CheckoutPage';
-import BookInfo from './pages/BookInfo';
+import BookInfo from './pages/Bookinfo';
 import UserProfile from "./pages/UserProfile"
 import SearchResultsPage from "./pages/SearchResultsPage"
 import TestBookInfo from './pages/TestBookInfo'
@@ -30,6 +30,7 @@ function App() {
   const fetchBooks = async () => {
     let response = await fetch("/api/Book/AllBooks")
     let data = await response.json();
+    // console.log(data);
     setFetchedBooks(data)
   };
 
@@ -49,9 +50,6 @@ function App() {
     fetchBooks();
     fetchCategories();
     fetchUsers();
-    console.log(fetchedBooks)
-    console.log(fetchedCategories)
-    console.log(fetchedUsers)
   }, [])
 
 

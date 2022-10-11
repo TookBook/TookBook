@@ -1,8 +1,8 @@
 import { atom } from "recoil";
 
-const shoppingCartContents = atom({
+const shoppingCartContentsState = atom({
 	key: "shoppingCartContentsState",
 	default: [],
 });
 
-export default shoppingCartContents
+export default shoppingCartContentsState
