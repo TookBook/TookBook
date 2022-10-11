@@ -54,10 +54,10 @@ const ShoppingCartDrawer = () => {
 			}}
 		>
 			{showCloseButton && <CloseIcon />}
-			<Toolbar sx={{ paddingTop: "7.6rem" }} />
+			<Toolbar sx={{ paddingTop: "4rem" }} />
 
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
-				sx={{ border: "1px solid", borderLeft: "none" }}
+				sx={{  borderLeft: "none" }}
 			>
 				<Box padding="1rem" backgroundColor="mainbg.main" paddingBottom="2rem" >
 					<Typography gutterBottom variant="h3" textAlign="center"> Your cart</Typography>
@@ -78,9 +78,9 @@ const ShoppingCartDrawer = () => {
 				</Box>
 			</Box>
 
-			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", borderRight: "1px solid", backgroundColor: "primary.light" }}>
+			{/* <Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", borderRight: "1px solid", backgroundColor: "primary.light" }}>
 				Test
-			</Box>
+			</Box> */}
 		</Drawer>
 	)
 }

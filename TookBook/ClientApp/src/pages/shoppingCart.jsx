@@ -66,6 +66,7 @@ const ShoppingCart = () => {
 
 	return (
 		<Container>
+
 			{itemsInCart.length === 0 ? <p>No items in cart.</p> : null}
 			{itemsInCart.map((book) => (
 				<BookInCart
