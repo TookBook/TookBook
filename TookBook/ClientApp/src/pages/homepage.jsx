@@ -85,7 +85,6 @@ const getRandomItems = (array) => {
 			</Box>
 			<Box>
 				<BooksHorizontalDisplay books={fetchedBooks.slice(0, 5)} displayTitle={"Top 5 books"} />
-				<Button onClick={() => handleAddToCart(fetchedBooks)}>Click me</Button>
 				<BooksHorizontalDisplay books={getRandomItems(fetchedBooks)} displayTitle={"Random new books"} />
 				<BooksHorizontalDisplay books={getRandomItems(fetchedBooks)} displayTitle={"Random used books"} />
 			</Box>

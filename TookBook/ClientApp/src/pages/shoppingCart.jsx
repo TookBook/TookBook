@@ -3,14 +3,14 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { itemsInCartState} from "../atoms/index";
+import shoppingCartContentsState from '../atoms/shoppingCartContents';
 import { useRecoilState, useRecoilValue} from 'recoil';
 import BookInCart from '../components/shoppingCart/BookInCart';
 import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
 
-	const [itemsInCart, setItemsInCart] = useRecoilState(itemsInCartState);
+	const [itemsInCart, setItemsInCart] = useRecoilState(shoppingCartContentsState);
 	
 
 	const handleRemoveFromCart = (book) => {
@@ -24,37 +24,34 @@ const ShoppingCart = () => {
 	};
 
 
-	function handleAddToCart(id) {
-		setItemsInCart(currItems => {
-			if (currItems.find(item => item.id === id) == null) {
-				return [...currItems, { id, quantity: 1 }]
-			} else {
-				return currItems.map(item => {
-					if (item.id === id) {
-						return { ...item, quantity: item.quantity + 1 }
-					} else {
-						return item
-					}
-				})
-			}
-		})
-		console.log("addede to cart")
-		console.log(itemsInCart)
-	}
+	// function handleAddToCart(id) {
+	// 	let exists = itemsInCart.find(item => item.id === id);
+		
+	// 	setItemsInCart(currItems => {
+	// 		if (exists == null) {
+	// 			return [...currItems, { id, amount: 1 }]
+	// 		} else {
+	// 			return currItems.map(item => {
+	// 				if (item.id === id) {
+	// 					return { ...item, amount: item.amount + 1 }
+	// 				} else {
+	// 					return item
+	// 				}
+	// 			})
+	// 		}
+	// 	})
+	// 	console.log("added to cart")
+		
+	// }
 
+	const handleAddToCartTwo = (book) => {
+		
+
+		setItemsInCart([...itemsInCart, book])
+		console.log("Items in cart:", itemsInCart)
+	}
 
 	//remove from cart when amount is =<0, else update amount
-	const reduceAmountInCart = (item) => {
-		if (item.amount <= 0) {
-			handleRemoveFromCart(item.id)
-		} else {
-			item.amount--;
-		}
-	}
-
-	// const increaseAmountInCart = (item) => {
-	// 	item.amount++;
-	// }
 
 	const removeFromCart = (itemToRemove) => {
 		let itemsFiltered = itemsInCart.filter(item => item.id !== itemToRemove.id);
@@ -65,27 +62,21 @@ const ShoppingCart = () => {
 	// 	removeFromCart(item);
 	// }
 
-
-	// const dataToDisplay = () => {
-	// 	return itemsInCart.map((item) => <p key={item.id}>{item.title}</p>)
-	// }
-
 	// const addedToCart = useRecoilValue(itemsInCartState);
 
 	return (
 		<Container>
-			<h2>Your Cart</h2>
 			{itemsInCart.length === 0 ? <p>No items in cart.</p> : null}
-			{itemsInCart.map((item) => (
+			{itemsInCart.map((book) => (
 				<BookInCart
-					key={item.id}
-					item={item}
-					reduceAmountInCart={(item) => handleRemoveFromCart(item)}
-					increaseAmountInCart={(item) => handleAddToCart(item.id)}
+					key={book.bookId}
+					book={book}
+					reduceAmountInCart={(book) => handleRemoveFromCart(book)}
+					increaseAmountInCart={(book) => handleAddToCartTwo(book)}
 				/>
 			))}
 			<Link to="/checkout">
-			<Button onClick={console.log("clicked")} sx={{mt:4}} variant="contained">Proceed to pay</Button>
+			<Button sx={{mt:4}} variant="contained">Proceed to pay</Button>
 			</Link>
 		</Container>
 	)

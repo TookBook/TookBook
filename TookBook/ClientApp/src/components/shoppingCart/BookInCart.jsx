@@ -3,8 +3,22 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { useEffect } from 'react';
+import Image from 'mui-image';
+import shoppingCartContentsState from "../../atoms/shoppingCartContents";
+import { useRecoilValue } from "recoil";
 
-const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
+const BookInCart = ({book}, {increaseAmountInCart, reduceAmountInCart}) => {
+
+const booksInCart = useRecoilValue(shoppingCartContentsState);
+const addedBook = book.book
+const booksInStock = addedBook.inStock.new + addedBook.inStock.used;
+
+useEffect(() => {
+  console.log("You opened the cart, item:", book)
+},[])
+  
 	return(
 		<Container>
       <div>
@@ -17,10 +31,11 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
             justifyContent: 'center',
           }}
           >
-        <h3>{item.title}</h3>
+            <Image sx={{ml: 0, }} shift="left" duration={500} style={{ maxHeight: "200px", objectFit: "contain" }} src={addedBook.imgUrl} alt={addedBook.title} />
+        <Typography variant={"h5"}>{addedBook.title}</Typography>
         <div className="information">
-          <p>Price: {item.price} SEK</p>
-          <p>Total: {(item.amount * item.price).toFixed(2)} SEK</p>
+          <p>Price: {addedBook.price} SEK</p>
+          <p>Total: {((addedBook.inStock.new + addedBook.inStock.used) * addedBook.price).toFixed(2)} SEK</p>
         </div>
         <Box sx={{ 
           display: 'flex',
@@ -32,16 +47,16 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
             size="small"
             disableElevation
             variant="contained"
-            onClick={() => reduceAmountInCart(item.id)}
+            onClick={() => reduceAmountInCart(book.id)}
           >
             -
           </Button>
-          <p>{item.amount}</p>
+          <p>{addedBook.amount}</p>
           <Button
             size="small"
             disableElevation
             variant="contained"
-            onClick={() => increaseAmountInCart(item.id)}
+            onClick={() => increaseAmountInCart(book.id)}
           >
             +
           </Button>
@@ -50,10 +65,10 @@ const BookInCart = ({item, increaseAmountInCart, reduceAmountInCart}) => {
         </Paper>
       </div>
       
-      <img src={item.imgUrl} alt={item.title} />
+      
       <Divider></Divider>
       <Box>
-          Total: {item.amount * item.price} SEK
+          Total: { booksInCart.length * addedBook.price} SEK
       </Box>
       
     </Container>

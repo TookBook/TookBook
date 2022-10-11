@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import Image from 'mui-image';
 import Button from '@mui/material/Button'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import shoppingCartState from "../../atoms/shoppingCartState";
+import shoppingCartContentsState from "../../atoms/shoppingCartContents";
 import { useRecoilState } from "recoil";
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
@@ -24,20 +24,43 @@ import { Container } from "@mui/material";
 
 		</Box>
  */
-const [CartItems, setCartItems] = useRecoilState(shoppingCartState);
+
 
 const BookPreviewHomepage = ({ book }) => {
-	if (book == null)
-		book = {
-			title: "Placeholder book",
-			imgUrl: "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
-			price: "25"
-		}
+
+	const [itemsInCart, setItemsInCart] = useRecoilState(shoppingCartContentsState);
 
 	const handleBookClick = () => {
 		console.log(book.bookId)
 		
 
+	}
+
+	function handleAddToCart(id) {
+		let exists = itemsInCart.find(item => item.id === id);
+		
+		setItemsInCart(currItems => {
+			if (exists == null) {
+				return [...currItems, { id, amount: 1 }]
+			} else {
+				return currItems.map(item => {
+					if (item.id === id) {
+						return { ...item, amount: item.amount + 1 }
+					} else {
+						return item
+					}
+				})
+			}
+		})
+		console.log("added to cart")
+	}
+
+
+	const handleAddToCartTwo = (e, book) => {
+		e.preventDefault()
+
+		setItemsInCart([...itemsInCart, {book}])
+		console.log("Added to cart? Current items in cart:", itemsInCart)
 	}
 
 	// Split at space after x letters?
@@ -81,7 +104,7 @@ const BookPreviewHomepage = ({ book }) => {
 					{secondBookTitleSection}
 				</Typography> */}
 
-				<Button onClick={handleBookClick} color="secondary" variant="contained" endIcon={<ShoppingBasketIcon />}
+				<Button onClick={(e) => handleAddToCartTwo(e, book)} color="secondary" variant="contained" endIcon={<ShoppingBasketIcon />}
 					sx={{
 						minWidth: "90%", display: "flex", justifyContent: "space-evenly", marginInline: "auto",
 						fontSize: "1rem", fontWeight: "bold", paddingTop: "2px", paddingBottom: "2px",

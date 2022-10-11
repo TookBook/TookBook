@@ -30,7 +30,7 @@ function App() {
   const fetchBooks = async () => {
     let response = await fetch("/api/Book/AllBooks")
     let data = await response.json();
-    console.log(data);
+    // console.log(data);
     setFetchedBooks(data)
   };
 
@@ -50,9 +50,6 @@ function App() {
     fetchBooks();
     fetchCategories();
     fetchUsers();
-    console.log(fetchedBooks)
-    console.log(fetchedCategories)
-    console.log(fetchedUsers)
   }, [])
 
 
