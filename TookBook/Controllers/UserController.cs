@@ -88,13 +88,14 @@
 
 
         [HttpPost("EditProfile")]
-        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
+        public async Task<ActionResult> EditProfile(string id, string username, string email, string oldPassword, string newPassword)
         {
             var user = await _userService.GetUserById(id);
-            if (user.Password == password) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
+            if (user.Password == oldPassword) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
             {
                 user.UserName = username;
                 user.Mail = email;
+                user.Password = newPassword;
                 await _userService.EditProfileAsync(user.UserId, user);
                 return Ok(user);
             }
