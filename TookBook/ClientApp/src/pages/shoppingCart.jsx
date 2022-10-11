@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { itemsInCartState, shoppingCartState } from "../atoms/index";
+import { itemsInCartState} from "../atoms/index";
 import { useRecoilState, useRecoilValue} from 'recoil';
 import BookInCart from '../components/shoppingCart/BookInCart';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const ShoppingCart = () => {
 
 	const [itemsInCart, setItemsInCart] = useRecoilState(itemsInCartState);
-	const [openMenu, setOpenMenu] = useRecoilState(shoppingCartState);
+	
 
 	const handleRemoveFromCart = (book) => {
 		const exists = itemsInCart.find((x) => x.id === book.id);
@@ -85,7 +85,7 @@ const ShoppingCart = () => {
 				/>
 			))}
 			<Link to="/checkout">
-			<Button onClick={() => setOpenMenu(false)} sx={{mt:4}} variant="contained">Proceed to pay</Button>
+			<Button onClick={console.log("clicked")} sx={{mt:4}} variant="contained">Proceed to pay</Button>
 			</Link>
 		</Container>
 	)
