@@ -56,20 +56,20 @@ const Homepage = () => {
 		return itemsInCart;
 	}
 
-const addedToCart = useRecoilValue(itemsInCartState);
+	const addedToCart = useRecoilValue(itemsInCartState);
 
 
 
-// TODO: import fetched books and sort them in various ways, then stuff them inside the horizontal displays
-const fetchedBooks = useRecoilValue(fetchedBooksState)
-const loggedInUser = useRecoilValue(activeUserState)
+	// TODO: import fetched books and sort them in various ways, then stuff them inside the horizontal displays
+	const fetchedBooks = useRecoilValue(fetchedBooksState)
+	const loggedInUser = useRecoilValue(activeUserState)
 
-//TODO: get 5 most popular books
+	//TODO: get 5 most popular books
 
-const getRandomItems = (array) => {
-	let randomArray = [...array]
-	return randomArray.sort(() => Math.random() - 0.5).splice(0, 5);
-}
+	const getRandomItems = (array) => {
+		let randomArray = [...array]
+		return randomArray.sort(() => Math.random() - 0.5).splice(0, 5);
+	}
 
 
 

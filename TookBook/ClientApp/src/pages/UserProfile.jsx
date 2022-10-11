@@ -41,7 +41,7 @@ const UserProfile = () => {
 	const [newPasswordField, setNewPasswordField] = useState("")
 	const [confirmNewPassField, setConfirmNewPassField] = useState("")
 	const [emailField, setEmailField] = useState("")
-
+	const [updateSuccess, setUpdateSuccess] = useState(false)
 	const [infoMessage, setInfoMessage] = useState("")
 
 	const TESTORDER = [
@@ -82,6 +82,7 @@ const UserProfile = () => {
 			console.log("returned user: ", updatedUser)
 			console.log(updateUserResponse)
 			setCurrentUser(updatedUser)
+			setUpdateSuccess(true)
 		}
 		if (!updateUserResponse.ok) setInfoMessage("Could not update user.")
 
@@ -217,7 +218,7 @@ const UserProfile = () => {
 									helperText={passwordErrorMessage(confirmNewPassField)}
 								/>
 							</Box>
-							<Typography color="error" textAlign="center" sx={{}}>{infoMessage}</Typography>
+							<Typography color="error" textAlign="center" sx={{ color: { updateSuccess: "green" } }}>{infoMessage}</Typography>
 
 							<Box sx={{
 								display: "flex", justifyContent: "space-between", padding: "10px", paddingTop: "2rem"
@@ -258,10 +259,10 @@ const UserProfile = () => {
 					</Box>
 					<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "1rem", }}>
 						<Icon color='primary' sx={{ fontSize: "3rem" }}><ListAltIcon sx={{ fontSize: "3rem" }} /></Icon>
-						<Typography variant='h6'>You have {currentUser.orders.length} orders</Typography>
+						<Typography variant='h6'>You have {currentUser.orders?.length} orders</Typography>
 
 					</Box>
-					{currentUser.orders.length > 0
+					{currentUser.orders?.length > 0
 						? currentUser.orders.map((order) => (
 							<Box sx={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center", gap: "1rem" }}>
 								<Typography>{order.orderId}</Typography>

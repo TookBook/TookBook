@@ -15,9 +15,6 @@
 
         public IEnumerable<Category> Categories { get; set; }
 
-        // TODO: Figure out why it doesnt work to use an interface in an interface. It seems counter-intuitive to use a model in an interface, when the interfaces should define the models..?
-        //public IEnumerable<ICategory> Categories { get; set; }
-
         public string Language { get; set; }
 
         public IEnumerable<Author> Authors  { get; set; }
