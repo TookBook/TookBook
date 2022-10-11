@@ -84,10 +84,6 @@
         /// <param name="userToBlock">The user to block.</param>
         public async Task BlockUser(User userToBlock)
         {
-            //TODO: There has to be a simpler way of updating a single property.. Alternative: Replace entire user.
-            //var filter = Builders<User>.Filter.Eq("userId", userToBlock.UserId);
-            //var update = Builders<User>.Update.Set("isblocked", true);
-            //await _userCollection.UpdateOneAsync(filter, update);
             userToBlock.IsBlocked = true;
             await UpdateUser(userToBlock);
         }
@@ -98,14 +94,12 @@
         /// <param name="userToUnblock">The user to unblock.</param>
         public async Task UnblockUser(User userToUnblock)
         {
-            //TODO: Replace entire user, or update single field in user object using filter/update.set?
             userToUnblock.IsBlocked = false;
             await UpdateUser(userToUnblock);
         }
 
         public async Task ChangeUserPass(User userToChange, string newPassword)
         {
-            // TODO: Password validation?
             userToChange.Password = newPassword;
             await UpdateUser(userToChange);
         }
@@ -193,7 +187,6 @@
         }
 
 
-        //TODO: add ADMIN id /Tiia
         /// <summary>
         /// Gets a list containing all users
         /// </summary>

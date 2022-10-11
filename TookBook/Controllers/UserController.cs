@@ -10,7 +10,7 @@
 
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService; //TODO: lägg till alla services
+        private readonly UserService _userService;
 
         public UserController(UserService userService) => _userService = userService;
 
@@ -120,7 +120,6 @@
         /// </summary>
         /// <param name="id">The id of the user to be blocked.</param>
         /// <returns></returns>
-        // TODO: Admin validation.
         [HttpPut("BlockUser/{id:length(24)}")]
         public async Task<ActionResult> BlockUser(string id)
         {
@@ -136,7 +135,6 @@
         /// </summary>
         /// <param name="id">The id of the user to be unblocked.</param>
         /// <returns></returns>
-        // TODO: Admin validation.
         [HttpPut("UnblockUser/{id:length(24)}")]
         public async Task<ActionResult> UnblockUser(string id)
         {
@@ -152,7 +150,6 @@
         /// <param name="id">ID of the user to update.</param>
         /// <param name="newPassword">The new password.</param>
         /// <returns></returns>
-        // TODO: Admin + password verification.
         [HttpPut("ChangePass/{id:length(24)}")]
         public async Task<ActionResult> ChangeUserPassword(string id, string newPassword)
         {
@@ -163,8 +160,7 @@
         }
 
 
-        // TODO: Admin validation.
-        [HttpPut("PromoteUser/{id:length(24)}")]
+           [HttpPut("PromoteUser/{id:length(24)}")]
         public async Task<ActionResult> PromoteUser(string id)
         {
             var user = await _userService.GetUserById(id);
@@ -175,8 +171,7 @@
 
         }
 
-        // TODO: Admin validation.
-        [HttpPut("DemoteUser/{id:length(24)}")]
+            [HttpPut("DemoteUser/{id:length(24)}")]
         public async Task<ActionResult> DemoteUser(string id)
         {
             var user = await _userService.GetUserById(id);
@@ -187,7 +182,6 @@
 
         }
 
-        // TODO: Admin validation.
         [HttpPut("InactivateUser/{id:length(24)}")]
         public async Task<ActionResult> InactivateUser(string id)
         {
@@ -199,7 +193,6 @@
 
         }
 
-        // TODO: Admin validation.
         [HttpPut("InactivateSeller/{id:length(24)}")]
         public async Task<ActionResult> InactivateSeller(string id)
         {

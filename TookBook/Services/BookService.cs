@@ -178,11 +178,9 @@
         /// <param name="category">The category</param>
         public async Task AddCategoryToBookByName(Book book, string categoryName)
         {
-            // TODO: Figure out how and why and where
             var filter = Builders<Book>.Filter.Eq(x => x.BookId, book.BookId);
             var categoryFilter = Builders<Category>.Filter.Eq(x => x.CategoryName, categoryName);
             var update = Builders<Book>.Update.Push("categories", categoryFilter);
-            Console.WriteLine(categoryFilter.ToString());
             await _booksCollection.UpdateOneAsync(filter, update);
         }
 
@@ -207,7 +205,6 @@
         /// <returns>True if a book was succesfully deleted, false if no book was deleted.</returns>
         public async Task<bool> DeleteBook(Book bookToDelete, bool deleteUsedBook = false)
         {
-            // TODO: Use UpdateOne + set to decrease InStock new/used instead?
             var validUsedBooks = bookToDelete.InStock.Used > 0;
             var validNewBooks = bookToDelete.InStock.New > 0;
             if (deleteUsedBook && validUsedBooks)
