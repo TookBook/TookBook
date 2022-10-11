@@ -53,23 +53,26 @@ const CheckoutPage = () => {
 	]
 
 	return (
-		<Container maxWidth="md" >
-			<Box style={{ backgroundcolor: '#ab2b06' }} display={"flex"} justifyContent={"center"}
+		<Container maxWidth="md" sx={{mt: "4em"}} >
+			<Typography variant={"h4"} gutterBottom textAlign={""} >Checkout</Typography>
+			<Box style={{ backgroundcolor: '#ab2b06' }} display={"flex"} 
 				sx={{
-					width: 400,
-					height: 300,
+					width: 700,
+					
 					backgroundColor: '#f2f2f2',
 					borderRadius: 1,
 				}}
 			>
-				<Typography variant={"h6"} gutterBottom textAlign={""} >Checkout</Typography>
+				
 
-				<Box display={"flex"} justifyContent={"center"} flexDirection={"column"}>Books here:
+				<Box display={"flex"} justifyContent={"left"} flexDirection={"column"} sx={{pl: "2em", pt: "2em"}}>
+					<Typography variant={"h6"} gutterBottom textAlign={""} >Your Items</Typography>
 
-					{testCartContents.map((stuff) =>
-						<Box>
-							<Typography>{stuff.title}</Typography>
-							<Typography>{stuff.bookInfo}</Typography>
+					{shoppingCart.map((stuff) =>
+						<Box display="flex" sx={{pb: "1em"}}>
+							<Typography>{stuff.book.title}
+							<Typography>{stuff.book.price} SEK</Typography></Typography>
+							
 						</Box>)}
 
 				</Box>
