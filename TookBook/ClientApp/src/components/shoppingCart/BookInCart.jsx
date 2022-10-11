@@ -34,8 +34,8 @@ useEffect(() => {
             <Image sx={{ml: 0, }} shift="left" duration={500} style={{ maxHeight: "200px", objectFit: "contain" }} src={addedBook.imgUrl} alt={addedBook.title} />
         <Typography variant={"h5"}>{addedBook.title}</Typography>
         <div className="information">
-          <p>Price: {addedBook.price} SEK</p>
-          <p>Total: {((addedBook.inStock.new + addedBook.inStock.used) * addedBook.price).toFixed(2)} SEK</p>
+          <Typography variant={"h6"}>Price: {addedBook.price} SEK</Typography>
+          
         </div>
         <Box sx={{ 
           display: 'flex',
@@ -43,7 +43,7 @@ useEffect(() => {
           justifyContent: 'space-between',
           alignItems: 'center',
         }}>
-          <Button
+          {/* <Button
             size="small"
             disableElevation
             variant="contained"
@@ -59,14 +59,14 @@ useEffect(() => {
             onClick={() => increaseAmountInCart(book.id)}
           >
             +
-          </Button>
+          </Button> */}
           
         </Box>
         </Paper>
       </div>
       
       
-      <Divider></Divider>
+     {/* TODO:fix total so it doesn't show wrong amount' */}
       <Box>
           Total: { booksInCart.length * addedBook.price} SEK
       </Box>
