@@ -18,6 +18,10 @@
         }
 
         //Tested in swagger /Max
+        /// <summary>
+        /// gets all users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("AllUsers")]
         public async Task<ActionResult<List<User>>> Get()
         {
@@ -36,6 +40,12 @@
         }
 
         //Tested in swagger /Max
+        /// <summary>
+        /// checks if user can log in
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpGet("Login")]
         public async Task<ActionResult<User>> Get(string username, string password)
         {
@@ -48,6 +58,11 @@
         }
 
         //Tested in swagger /Max
+        /// <summary>
+        /// takes user's email and checks if mail exist
+        /// </summary>
+        /// <param name="userOrMail"></param>
+        /// <returns></returns>
         [HttpGet("ForgotPassword")]
         public async Task<ActionResult<User>> ᚠᚬᚱᚴᚬᛏᛒᛅᛋᛋᚢᚢᚱᚦ(string userOrMail) //Send whole user or just mail? Think mail is more secure
         {
@@ -60,6 +75,11 @@
         }
 
         //Tested in swagger /Max
+        /// <summary>
+        /// takes user's email and checks if mail exists
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
         [HttpGet("ForgotUsername")]
         public async Task<ActionResult<User>> ForgorUsername(string mail)  //Send whole user or just mail? Think mail is more secure
         {
@@ -72,7 +92,7 @@
         }
 
         /// <summary>
-        /// Gets a user by username and email. If user doesn't excist, creates user and sends a mail to user
+        /// Gets a user by username and email. If user doesn't exist, creates user and sends a mail to user
         /// </summary>
         /// <param name="username"></param>
         /// <param name="email"></param>
@@ -163,7 +183,13 @@
         }
 
 
-           [HttpPut("PromoteUser/{id:length(24)}")]
+        // TODO: Admin validation.
+        /// <summary>
+        /// Promotes user to admin if not admin already
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut("PromoteUser/{id:length(24)}")]
         public async Task<ActionResult> PromoteUser(string id)
         {
             var user = await _userService.GetUserById(id);
@@ -173,6 +199,11 @@
             return Ok();
 
         }
+        /// <summary>
+        /// promotes user to seller if not seller already
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("PromoteSeller/{id:length(24)}")]
         public async Task<ActionResult> PromoteSellerUser(string id)
         {
@@ -183,6 +214,11 @@
             return Ok();
         }
 
+        /// <summary>
+        /// demotes user from seller if user is seller
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("DemoteSeller/{id:length(24)}")]
         public async Task<ActionResult> DemoteSellerUser(string id)
         {
@@ -193,7 +229,13 @@
             return Ok();
         }
 
-            [HttpPut("DemoteUser/{id:length(24)}")]
+        // TODO: Admin validation.
+        /// <summary>
+        /// demotes user from admin if user is admin
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut("DemoteUser/{id:length(24)}")]
         public async Task<ActionResult> DemoteUser(string id)
         {
             var user = await _userService.GetUserById(id);
@@ -204,6 +246,12 @@
 
         }
 
+        // TODO: Admin validation.
+        /// <summary>
+        /// inactivates user if user is active
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPut("InactivateUser/{id:length(24)}")]
         public async Task<ActionResult> InactivateUser(string id)
         {
