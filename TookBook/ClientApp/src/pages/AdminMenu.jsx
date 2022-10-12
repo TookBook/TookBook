@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { fetchedUsersState, activeUserState, adminModeState, isUserLoggedInState } from '../atoms';
 import { useNavigate } from 'react-router-dom';
-
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -17,7 +17,7 @@ import Checkbox from '@mui/material/Checkbox';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-
+import UserTableTest from '../components/UserTableTest';
 
 
 const style = {
@@ -79,46 +79,76 @@ const AdminMenu = () => {
 	const [Users, setUsers] = useRecoilState(fetchedUsersState)
 	const [userType, setUserType] = React.useState();
 	const [open, setOpen] = React.useState(false);
+	const [selected, setSelected] = React.useState({})
 
+	const fetchUsers = async () => {
+		let response = await fetch("/api/User/AllUsers")
+		let data = await response.json();
+		setUsers(data)
+	};
 
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false);
+	const handleOpenOrders = (modalUser) => {
 
-	const handleBlock = async (id) => {
-		console.log(id)
-		const reqOptions ={method: "PUT"}
-		const response = await fetch(`api/User/BlockUser/${id}`, reqOptions)
-		console.log(response);		
-		let updatedUsers = Users.map( (user) => {
-			let updatedUser ={...user}
-			
-			if (updatedUser.userId === id){
-					
-				if ( response.status == 200)updatedUser.isBlocked = !updatedUser.isBlocked
+		setSelected(modalUser)
+		setOpen(true)
+	}
+
+	const handleCloseOrders = () => setOpen(false);
+
+	const handleBlock = async (id, e) => {
+		const isBlocking = e.target.checked
+		let response = null
+
+		const reqOptions = { method: "PUT" }
+
+		isBlocking ?
+			response = await fetch(`api/User/BlockUser/${id}`, reqOptions) :
+			response = await fetch(`api/User/UnblockUser/${id}`, reqOptions)
+
+		let updatedUsers = Users.map((user) => {
+			let updatedUser = { ...user }
+
+			if (updatedUser.userId === id) {
+
+				if (response.status == 200)
+					isBlocking ?
+						updatedUser.isBlocked = true :
+						updatedUser.isBlocked = false
 			}
 			return updatedUser
-		})	
+		})
 		setUsers(updatedUsers)
 		console.log(updatedUsers);
 	}
 
-	const handleUserTypeChange = (id, e) => {
+	const handleUserTypeChange = async (id, e) => {
 		let type = e.target.value;
-		
+		const reqOptions = { method: "PUT" }
+		let adminResponse = null
+		let sellerResponse = null
+		if (type == "Admin") {
+			adminResponse = await fetch(`api/User/PromoteUser/${id}`, reqOptions)
+			sellerResponse = await fetch(`api/User/DemoteSeller/${id}`, reqOptions)
+		}
+		if (type == "Seller") {
+			adminResponse = await fetch(`api/User/DemoteUser/${id}`, reqOptions)
+			sellerResponse = await fetch(`api/User/PromoteSeller/${id}`, reqOptions)
+		}
+
 		let updatedUsers = Users.map((user) => {
-			let updatedUser ={...user}
-			if (updatedUser.userId===id) {
-				switch (type) {
-					case "Admin":
+			let updatedUser = { ...user }
+			if (updatedUser.userId === id) {
+				switch (type, adminResponse.status) {
+					case "Admin", 200:
 						console.log(user)
 						updatedUser.userType.isAdmin = true
 						updatedUser.userType.isSeller = false
 						break;
-					case "Seller":
+					case "Seller", 200:
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = true
 						break;
-					case "Customer":
+					case "Customer", 200:
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = false
 						break;
@@ -133,66 +163,37 @@ const AdminMenu = () => {
 		if (!adminMode) navigate("/")
 	}, [adminMode])
 
+	useEffect(() => {
+		fetchUsers();
+
+	}, [])
+
 	return (
 		<React.Fragment>
-			<Table size="small">
-				<TableHead>
-					<TableRow>
-						<TableCell>Username</TableCell>
-						<TableCell>Mail</TableCell>
-						<TableCell>User Type</TableCell>
-						<TableCell>Verified Status</TableCell>
-						<TableCell>Blocked Status</TableCell>
-						<TableCell>Orders</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{Users.map((user) => (
-						<TableRow key={user.userId}>
-							<TableCell>{user.userName}</TableCell>
-							<TableCell>{user.mail}</TableCell>
-							<TableCell>
-								{/*all users use the same usestate for now*/}
-								<FormControl sx={{ m: 1, minWidth: 120 }}>
-									<Select
-										value={user.userType.isAdmin ? "Admin" : user.userType.isSeller ? "Seller" : "Customer"}
-										onChange={(e) => (handleUserTypeChange(user.userId, e))}
-									>
-										<MenuItem value={"Customer"}>Customer</MenuItem>
-										<MenuItem value={"Seller"}>Seller</MenuItem>
-										<MenuItem value={"Admin"}>Admin</MenuItem>
-									</Select>
-								</FormControl>
-
-
-				</TableCell>
-				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
-
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={()=>(handleBlock(user.userId))}/></TableCell> 
-
-				<TableCell>
-					<Button onClick={handleOpen}>{user.orders? user.orders.length : 0}</Button>
-					<Modal open={open} onClose={handleClose} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
-						<Box sx={{ ...style, width: "50%" }}>
-						<h2 id="parent-modal-title"> Username should be here but every user has the same modal so it displays the last users name instead..</h2>
-						some kind of list here of all orders. click order for more info <br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal /><br />
-						<ChildModal />
-						</Box>
-					</Modal>
-				</TableCell>
-			  </TableRow>
-			))}
-		  </TableBody>
-		</Table>
-		<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-		  See more users
-		</Link>
-	  </React.Fragment>
+			<Container sx={{ mt: "5rem" }}>
+				<Box sx={{ border: "1px solid black", padding: "1rem" }}>
+					<Table size="small">
+						<TableHead sx={{ bgcolor: "primary.main" }}>
+							<TableRow >
+								<TableCell sx={{ color: "white" }}>Username</TableCell>
+								<TableCell sx={{ color: "white" }}>Mail</TableCell>
+								<TableCell sx={{ color: "white" }}>User Type</TableCell>
+								<TableCell sx={{ color: "white" }}>Verified Status</TableCell>
+								<TableCell sx={{ color: "white" }}>Blocked Status</TableCell>
+								<TableCell sx={{ color: "white" }}>Orders</TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{Users.map((user) => (
+								<UserTableTest key={user.userId} user={user} userList={Users} setUserList={setUsers}> </UserTableTest>))}
+						</TableBody>
+					</Table>
+					<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+						See more users
+					</Link>
+				</Box>
+			</Container>
+		</React.Fragment>
 	)
 }
 

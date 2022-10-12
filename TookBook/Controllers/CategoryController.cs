@@ -9,7 +9,7 @@ namespace TookBook.Controllers
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _categoryService; //TODO: lägg till alla services
+        private readonly ICategoryService _categoryService; //TODO: lï¿½gg till alla services
 
         public CategoryController(ICategoryService categoryService = null, CategoryService categoryService1 = null)
         {
@@ -41,7 +41,6 @@ namespace TookBook.Controllers
         /// </summary>
         /// <param name="newCategory">The new category.</param>
         /// <returns></returns>
-        // TODO: Admin validation
         [HttpPost]
         public async Task<ActionResult> CreateCategory(Category newCategory)
         {
@@ -57,7 +56,6 @@ namespace TookBook.Controllers
         /// <param name="id">The ID of the category to update.</param>
         /// <param name="newCategoryname">The updated name of the category.</param>
         /// <returns></returns>
-        //TODO: Admin validation
         [HttpPut("{id:length(24)}")]
         public async Task<ActionResult> UpdateCategory(string id, string newCategoryname)
         {
@@ -72,7 +70,6 @@ namespace TookBook.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        //TODO: Admin validation
         [HttpDelete("{id:length(24)}")]
         public async Task<ActionResult> DeleteCategory (string id)
         {

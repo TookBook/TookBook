@@ -6,8 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography'
 import BookPreviewHomepage from "./BookPreviewHomepage";
-import { maxHeight } from "@mui/system";
-
+import Divider from "@mui/material/Divider";
 
 
 const responsiveSlides = {
@@ -35,6 +34,7 @@ const gradientLine = {
 	zIndex: "-1",
 	border: "1px solid black",
 	borderLeft: "none", borderRight: "none",
+	borderImage: "radial-gradient(circle, black, transparent) 1",
 	position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
 }
 
@@ -42,17 +42,15 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 	const placeHolderArray = [1, 2, 3, 4, 5];
 
-	const dataToDisplay = () => {
-		if (!books)
-			return placeHolderArray.map((book, i,) => <BookPreviewHomepage book={null} key={i}></BookPreviewHomepage>)
-		return books.map((book, i,) => <BookPreviewHomepage book={book} key={i}></BookPreviewHomepage>)
-	}
+
 
 	return (
 		<>
-			<Box margin={"1rem"}>
+			<Box margin={"1rem"} sx={{ marginTop: "4rem" }}>
 				<Container maxWidth="md">
-					<Typography variant={"h6"} gutterBottom textAlign={""} >{displayTitle}</Typography>
+					<Divider>
+						<Typography fontFamily={"lato"} variant={"h5"} gutterBottom textAlign={"center"} sx={{ fontWeight: "bold", color: "primary.dark" }} >{displayTitle}</Typography>
+					</Divider>
 				</Container>
 
 				<Box position={"relative"} sx={{ padding: "2rem" }}>
@@ -63,42 +61,14 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 						<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center", alignItems: "center", }}>
 							{/* {books.map((book, i) =>
 							<BookPreviewHomepage book={book} key={i} />) } */}
-							{dataToDisplay()}
+							{books.map((book, i,) => <BookPreviewHomepage book={book} key={i}></BookPreviewHomepage>)}
 						</Box>
 
 					</Container>
-					{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
-				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-
-				</Box>
-			</Box>
-
-			<Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
-				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-
-				</Box>
-			</Box> */}
 				</Box>
 			</Box>
 		</>
 	)
 }
-
-/**Carousel style?
- * 					<Carousel
-						responsive={responsiveSlides}
-						infinite={false}
-						autoPlay={false}
-						autoPlaySpeed={3000}
-						renderButtonGroupOutside={true}
-						arrows={false}
-						centerMode={false}>
-
-						{tempItems.map((book, i) => <Box sx={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
-							<BookPreview key={i} />
-						</Box>)}
-
-					</Carousel>
- */
 
 export default BooksHorizontalDisplay

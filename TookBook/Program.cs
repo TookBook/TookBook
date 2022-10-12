@@ -8,9 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 BSONSettings.InitSettings();
 
 // Add services to the container.
-// TODO: Remove multiple xService singletons, each one has a connection to the database, which might cause issues?
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
-//builder.Services.AddSingleton<IMongoClient>(s => new MongoClient(builder.Configuration.g));
 builder.Services.AddSingleton<BookService>();
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<CategoryService>();
@@ -21,6 +19,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    // If app environment is development, try to create and seed a local MongoDB database.
     MongoDBSeeder dbSeed = new();
     dbSeed.ReseedMockData();
 
