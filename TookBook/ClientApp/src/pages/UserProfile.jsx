@@ -259,7 +259,7 @@ const UserProfile = () => {
 					</Box>
 					<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "1rem", }}>
 						<Icon color='primary' sx={{ fontSize: "3rem" }}><ListAltIcon sx={{ fontSize: "3rem" }} /></Icon>
-						<Typography variant='h6'>You have {currentUser.orders?.length} orders</Typography>
+						<Typography variant='h6'>You have {currentUser.orders ? currentUser.orders?.length : "0"} orders</Typography>
 
 					</Box>
 					{currentUser.orders?.length > 0
