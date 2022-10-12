@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchedBooksState } from "../atoms";
 import Image from "mui-image";
 import { useRecoilValue, useRecoilState } from "recoil";
+import Box from "@mui/material/Box";
 import { minHeight } from "@mui/system";
 import shoppingCartContentsState from "../atoms/shoppingCartContents";
 import { useEffect } from "react";
@@ -34,34 +35,36 @@ const TestBookInfo = ({ props }) => {
 
 	if (book)
 		return (
-			<div className="book-info-container">
-				<Image shift="right" duration={1000} className="picture" style={{ marginRight: "10px", objectFit: "contain", minHeight: "500px" }} src={book.imgUrl} />
-				<div className="book-info">
-					<Typography variant={"h2"} >{book.title}</Typography>
-					<Typography variant={"h6"} >
+			<Box sx={{ paddingBottom: "10vmin" }}>
+				<div className="book-info-container" >
+					<Image shift="right" duration={1000} className="picture" style={{ marginRight: "10px", objectFit: "contain", minHeight: "500px", maxHeight: "800px" }} src={book.imgUrl} />
+					<div className="book-info">
+						<Typography variant={"h2"} >{book.title}</Typography>
+						<Typography variant={"h6"} >
+							<ul>
+								{book.authors.map((author, i) => <li key={i}> {author.firstName + " " + author.lastName}</li>)}
+							</ul>
+						</Typography>
 						<ul>
-							{book.authors.map((author, i) => <li key={i}> {author.firstName + " " + author.lastName}</li>)}
+							{book.categories.map((category, i) => <li key={i}> {category.categoryName} </li>)}
 						</ul>
-					</Typography>
-					<ul>
-						{book.categories.map((category, i) => <li key={i}> {category.categoryName} </li>)}
-					</ul>
-					<div className="description">{book.bookInfo}</div>
-				</div>
-				<div className="purchase-info">
-					<div className="book-price">
-						<p>Price: {book.price}</p>
+						<div className="description">{book.bookInfo}</div>
 					</div>
-					<div className="buy-book">
+					<div className="purchase-info">
+						<div className="book-price">
+							<p>Price: {book.price}</p>
+						</div>
+						<div className="buy-book" >
 
-						<Button onClick={(e) => handleAddToCartTwo(e, book)} variant="contained">Add To the Cart</Button>
+							<Button onClick={(e) => handleAddToCartTwo(e, book)} variant="contained">Add To the Cart</Button>
 
-						<p>In storage: {book.inStock.new + book.inStock.used}</p>
+							<p>In storage: {book.inStock.new + book.inStock.used}</p>
+
+						</div>
 
 					</div>
-
 				</div>
-			</div>
+			</Box>
 		)
 	if (!book) navigate("/")
 }

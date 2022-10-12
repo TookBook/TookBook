@@ -14,7 +14,7 @@ const Footer = () => {
 
 	return (
 
-		<Box position={"relative"} paddingTop={"5em"}>
+		<Box position={"relative"} marginTop={"5em"}>
 			<Box minWidth={"100%"} minHeight={"200px"}
 				sx={{ backgroundImage: `url("${svgencoded}")`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></Box>
 
