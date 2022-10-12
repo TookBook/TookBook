@@ -31,7 +31,9 @@ const responsiveSlides = {
 const slideStyles = {
 	slideBackground: {
 		position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
-		background: "radial-gradient(circle, rgba(109,89,122,1) 43%, rgba(255,255,255,1) 96%)"
+		background: "radial-gradient(circle, rgba(109,89,122,1) 43%, rgba(255,255,255,1) 96%)",
+		border: "1px solid black", borderLeft: "none", borderRight: "none",
+		borderImage: "radial-gradient(circle, black, transparent) 1",
 	},
 
 	slideFlexBox: {

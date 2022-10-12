@@ -34,6 +34,7 @@ const gradientLine = {
 	zIndex: "-1",
 	border: "1px solid black",
 	borderLeft: "none", borderRight: "none",
+	borderImage: "radial-gradient(circle, black, transparent) 1",
 	position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)",
 }
 
@@ -68,39 +69,10 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 						</Box>
 
 					</Container>
-					{/* <Box><BookPreviewHomePage /></Box> */}
-					{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
-				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-
-				</Box>
-			</Box>
-
-			<Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
-				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
-
-				</Box>
-			</Box> */}
 				</Box>
 			</Box>
 		</>
 	)
 }
-
-/**Carousel style?
- * 					<Carousel
-						responsive={responsiveSlides}
-						infinite={false}
-						autoPlay={false}
-						autoPlaySpeed={3000}
-						renderButtonGroupOutside={true}
-						arrows={false}
-						centerMode={false}>
-
-						{tempItems.map((book, i) => <Box sx={{ display: "flex", gap: "3rem", justifyContent: "center" }}>
-							<BookPreview key={i} />
-						</Box>)}
-
-					</Carousel>
- */
 
 export default BooksHorizontalDisplay
