@@ -1,58 +1,87 @@
-import "../style/shoppingCart.css";
+// import "../style/shoppingCart.css";
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
-const style = {
-	position: 'absolute',
-	top: '50%',
-	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: 400,
-	height: 600,
-	bgcolor: 'background.paper',
-	border: '2px solid #000',
-	boxShadow: 24,
-	pt: 2,
-	px: 4,
-	pb: 3,
-  };
+import Button from '@mui/material/Button';
+import shoppingCartContentsState from '../atoms/shoppingCartContents';
+import { isUserLoggedInState } from '../atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import BookInCart from '../components/shoppingCart/BookInCart';
+import { Link } from 'react-router-dom';
 
 const ShoppingCart = () => {
+
+	const [itemsInCart, setItemsInCart] = useRecoilState(shoppingCartContentsState);
+	const userLoggedInStatus = useRecoilValue(isUserLoggedInState)
+
+	const handleRemoveFromCart = (book) => {
+		const exists = itemsInCart.find((x) => x.id === book.id);
+		console.log(exists)
+		if (exists.amount === 1) {
+			setItemsInCart(itemsInCart.filter((x) => x.id !== book.id));
+		} else {
+			setItemsInCart(itemsInCart.map((x) => x.id === book.id ? { ...exists, amount: exists.amount - 1 } : x));
+		}
+	};
+
+
+	// function handleAddToCart(id) {
+	// 	let exists = itemsInCart.find(item => item.id === id);
+
+	// 	setItemsInCart(currItems => {
+	// 		if (exists == null) {
+	// 			return [...currItems, { id, amount: 1 }]
+	// 		} else {
+	// 			return currItems.map(item => {
+	// 				if (item.id === id) {
+	// 					return { ...item, amount: item.amount + 1 }
+	// 				} else {
+	// 					return item
+	// 				}
+	// 			})
+	// 		}
+	// 	})
+	// 	console.log("added to cart")
+
+	// }
+
+	const handleAddToCartTwo = (book) => {
+
+
+		setItemsInCart([...itemsInCart, book])
+		console.log("Items in cart:", itemsInCart)
+	}
+
+	//remove from cart when amount is =<0, else update amount
+
+	const removeFromCart = (itemToRemove) => {
+		let itemsFiltered = itemsInCart.filter(item => item.id !== itemToRemove.id);
+		setItemsInCart(itemsFiltered);
+	}
+
+	// const handleRemove = (item) => {
+	// 	removeFromCart(item);
+	// }
+
+	// const addedToCart = useRecoilValue(itemsInCartState);
+
 	return (
-		<Container maxWidth="md" >
-			<Box style={{backgroundcolor: '#ab2b06'}} display={"flex"} justifyContent={"center"} 
-				sx={{
-					width: 400,
-					height: 300,
-					backgroundColor: '#f2f2f2',
-					borderRadius: 1,
-				}}
-			/>
-			<Typography align='center'>Shopping Cart</Typography>
-			<Box marginTop={"3rem"}>
-				
-			</Box>
-			
+		<Container>
+			{itemsInCart.length === 0 ? <p>No items in cart.</p> : null}
+			{itemsInCart.map((book) => (
+				<BookInCart
+					key={book.bookId}
+					book={book}
+					reduceAmountInCart={(book) => handleRemoveFromCart(book)}
+					increaseAmountInCart={(book) => handleAddToCartTwo(book)}
+				/>
+			))}
+
+			<Button disabled={!userLoggedInStatus} sx={{ mt: 4 }} variant="contained"> <Link style={{ color: "white", textDecoration: "none" }} to="/checkout">Proceed to pay</Link></Button>
+
+			{!userLoggedInStatus && <Typography>Please log in before proceeding to checkout.</Typography>}
 		</Container>
 	)
 }
-// 	  return (
-// 	<div className="main-container">
-// 		<h1>Your shopping cart</h1>
-// 		<div className="book-info">
-// 			<p>book title here</p>
-// 			<p>authors name here</p>
-// 			<p>-</p>
-// 			<p>2</p>
-// 			<p>+</p>
-// 			</div>
-
-// 		<div className="book-price">
-// 			<p>xx SEK</p>
-// 			</div>
-	  
-// 	</div>
-//   );
-
 export default ShoppingCart;
+

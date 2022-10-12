@@ -10,9 +10,12 @@
 
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService; //TODO: lägg till alla services
+        private readonly IUserService _userService; //TODO: lägg till alla services
 
-        public UserController(UserService userService) => _userService = userService;
+        public UserController(IUserService userService = null, UserService userService1 = null)
+        {
+            _userService = userService1 ?? userService;
+        }
 
         //Tested in swagger /Max
         /// <summary>
@@ -106,26 +109,33 @@
             return Ok(user);
         }
 
+
         /// <summary>
-        /// takes user and edits profile if user exists and inputs correct password
+        /// Updates a users profile-info.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="username"></param>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
+        /// <param name="id">The ID of the user</param>
+        /// <param name="username">The username.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="oldPassword">The old password.</param>
+        /// <param name="newPassword">The new password.</param>
+        /// <returns>A 200-response along with the updated user, if user was found. Error 500 if password did not match. Error 404 Not Found if user was not found </returns>
         [HttpPost("EditProfile")]
-        public async Task<ActionResult> EditProfile(string id, string username, string email, string password)
+        public async Task<ActionResult> EditProfile(string id, string username, string email, string oldPassword, string newPassword)
         {
             var user = await _userService.GetUserById(id);
-            if (user.Password == password) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
+            if (user != null)
             {
-                user.UserName = username;
-                user.Mail = email;
-                await _userService.EditProfileAsync(user.UserId, user);
-                return Ok(user);
+                if (user.Password == oldPassword) //vi kan kontrollera att användaren skriver in rätt lösenord för att kunna ändra profilen
+                {
+                    user.UserName = username;
+                    user.Mail = email;
+                    user.Password = newPassword;
+                    await _userService.EditProfileAsync(user.UserId, user);
+                    return Ok(user);
+                }
+                return BadRequest("Password did not match");
             }
-            return BadRequest("Password is invalid");
+            return NotFound("Could not find user");
         }
 
         /// <summary>
@@ -133,7 +143,6 @@
         /// </summary>
         /// <param name="id">The id of the user to be blocked.</param>
         /// <returns></returns>
-        // TODO: Admin validation.
         [HttpPut("BlockUser/{id:length(24)}")]
         public async Task<ActionResult> BlockUser(string id)
         {
@@ -149,7 +158,6 @@
         /// </summary>
         /// <param name="id">The id of the user to be unblocked.</param>
         /// <returns></returns>
-        // TODO: Admin validation.
         [HttpPut("UnblockUser/{id:length(24)}")]
         public async Task<ActionResult> UnblockUser(string id)
         {
@@ -165,7 +173,6 @@
         /// <param name="id">ID of the user to update.</param>
         /// <param name="newPassword">The new password.</param>
         /// <returns></returns>
-        // TODO: Admin + password verification.
         [HttpPut("ChangePass/{id:length(24)}")]
         public async Task<ActionResult> ChangeUserPassword(string id, string newPassword)
         {
@@ -256,7 +263,6 @@
 
         }
 
-        // TODO: Admin validation.
         [HttpPut("InactivateSeller/{id:length(24)}")]
         public async Task<ActionResult> InactivateSeller(string id)
         {

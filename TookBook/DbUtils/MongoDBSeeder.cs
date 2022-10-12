@@ -13,7 +13,7 @@
     using TookBook.Models;
 
     /// <summary>
-    /// Initializes an instance of the MongoDBSeeder class. Meant to connect to and seed a MongoDB database in a local environment.
+    /// MongoDBSeeder class. Meant to connect to and seed a MongoDB database in a local environment.
     /// </summary>
     public class MongoDBSeeder
     {
@@ -25,12 +25,12 @@
 
         private readonly IMongoCollection<Category> _categoryCollection;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoDBSeeder"/> class.
+        /// </summary>
         public MongoDBSeeder()
         {
-            // TODO: Use db and collection names from the MongoDBSettings file somehow? Instead of hardcoding the names.
-            //_database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
-            //_booksCollection = _database.GetCollection<Book>(mongoDBSettings.Value.BookCollectionName);
-
+  
             MongoClient client = new("mongodb://localhost:27017");
 
             _database = client.GetDatabase("TookBook");
@@ -47,7 +47,6 @@
         /// </summary>
         public async void ReseedMockData()
         {
-            // TODO: Error handling
             string bookSeedDataText = GetMockDataFromFile("booksSeedData.json");
             string userSeedDataText = GetMockDataFromFile("userSeedData.json");
             string categorySeedDataText = GetMockDataFromFile("categorySeedData.json");
@@ -80,13 +79,12 @@
         /// <returns>The contents of the provided file as a string.</returns>
         public string ReadTextFromFile(string filePath)
         {
-            // TODO: Error handling
             using StreamReader sr = new(filePath);
             return sr.ReadToEnd();
         }
 
         /// <summary>
-        /// Helper method to drop all collections manually.
+        /// Helper method to drop all local db-collections manually.
         /// </summary>
         public void DropTookBookCollections()
         {

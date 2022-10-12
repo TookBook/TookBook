@@ -52,8 +52,7 @@ const SignUpForm = ({ switchTab }) => {
 	const [loginUser, setLoginUser] = useRecoilState(activeUserState)
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(isUserLoggedInState)
 	const [userModal, setUserModal] = useRecoilState(openUserPortalState)
-
-
+	const [infoMessage, setInfoMessage] = useState("")
 
 	const handleRegisterSubmit = async (e) => {
 		e.preventDefault();
@@ -145,13 +144,14 @@ const SignUpForm = ({ switchTab }) => {
 					helperText={emailField !== "" && emailErrorMessage(emailField)}
 				/>
 
-				<Typography color="error.light" textAlign="center">Error placeholder</Typography>
+				<Typography color="error.light" textAlign="center">{infoMessage}</Typography>
 
 
 				<Button
 					type="submit"
 					fullWidth
 					variant="contained"
+					disabled={(passwordField.length < 4 || usernameField.length < 4)} // TODO: proper mini validation
 					sx={{ mt: 3, mb: 2 }}
 				>
 					Register

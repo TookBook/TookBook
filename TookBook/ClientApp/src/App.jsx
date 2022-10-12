@@ -12,12 +12,13 @@ import { fetchedBooksState, fetchedCategoriesState, fetchedUsersState, activeUse
 import ShoppingCartDrawer from './components/shoppingCart/ShoppingCartDrawer'
 import Homepage from './pages/Homepage';
 import AdminMenu from './pages/AdminMenu'
-import ShoppingCart from './pages/ShoppingCart';
-import BookInfo from './pages/BookInfo';
+import ShoppingCart from './pages/CheckoutPage';
+import BookInfo from './pages/Bookinfo';
 import UserProfile from "./pages/UserProfile"
 import SearchResultsPage from "./pages/SearchResultsPage"
 import TestBookInfo from './pages/TestBookInfo'
 import Error404Page from "./pages/Error404Page"
+import CheckoutPage from './pages/CheckoutPage';
 
 
 
@@ -29,8 +30,8 @@ function App() {
   const fetchBooks = async () => {
     let response = await fetch("/api/Book/AllBooks")
     let data = await response.json();
+    // console.log(data);
     setFetchedBooks(data)
-
   };
 
   const fetchCategories = async () => {
@@ -49,9 +50,6 @@ function App() {
     fetchBooks();
     fetchCategories();
     fetchUsers();
-    console.log(fetchedBooks)
-    console.log(fetchedCategories)
-    console.log(fetchedUsers)
   }, [])
 
 
@@ -66,13 +64,14 @@ function App() {
           <Routes>
 
             <Route path='ShoppingCart' element={<ShoppingCart />} />
-            <Route path='bookInfo' element={<BookInfo />} />
+            <Route path='/book/:id' element={<BookInfo />} />
             <Route path='/adminmenu' element={<AdminMenu />} />
             <Route path='/userprofile' element={<UserProfile />} /> {/**TODO: user.id stuff? */}
             <Route path='/searchresults' element={<SearchResultsPage />} />
             <Route path="/testbook/:id" element={<TestBookInfo />} />
             <Route path="*" element={<Error404Page />} />
             <Route path='/' element={<Homepage />} />
+            <Route path='/checkout' element={<CheckoutPage />} />
 
           </Routes>
 

@@ -14,8 +14,7 @@
 .picture {
 	width: 15vw;
 	height: 30vh;
-	background-color: #333;
-	border: 3px solid rgb(164, 142, 153);
+
 	border-radius: 3px;
 	justify-content:center;
 	margin: auto;
@@ -25,6 +24,7 @@
 	margin-right: 2em;
 	margin-top: 2em;
 	position: relative;
+
 	box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 }
 
@@ -34,16 +34,22 @@
 	text-align: left;
 	margin: auto;
 	margin-top: 2em;
+	margin-left: 3em;
 	grid-column: 2;
 	grid-row: 1/2;
-	margin-left: 0;
+	margin-left: 4em;
 	padding: 0;
+}
+
+.description{
+	margin-top: 2em;
+	width: 30%;
 }
 
 .book-info > h2 {
 	margin: 0;
 }
-.book-info > ul {
+.book-info   ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0 0 0 0;

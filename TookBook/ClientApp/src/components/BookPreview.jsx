@@ -5,25 +5,13 @@ import Image from 'mui-image';
 import Button from '@mui/material/Button'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import shoppingCartState from "../atoms/shoppingCartState"
-import { useRecoilState } from "recoil";
+import shoppingCartContentsState from "../atoms/shoppingCartContents";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import Divider from "@mui/material/Divider";
 
-/** more horizontal
- * 		<Box sx={{ maxHeight: "200px", maxWidth: "300px", border: "1px solid black", display: "flex", flexDirection: "column" }}>
-			<Box sx={{ maxWidth: "100%", display: "flex" }}>
 
-				<Image src={book.imgUrl} />
-				<Typography align="center" variant="body1" color="white">{book.title}</Typography>
-
-				<Button variant="contained" sx={{ maxWidth: "100%" }}>
-					{book.price}
-				</Button>
-			</Box>
-
-		</Box>
- */
 
 const CartButton = ({ bookPrice }) => {
 
@@ -48,17 +36,19 @@ const CartButton = ({ bookPrice }) => {
 const BookPreview = ({ book }) => {
 
 
-	const handleBookClick = () => {
-		console.log(book.bookId)
+	const handleAddToCartTwo = (e, book) => {
+		e.preventDefault()
+
+		setItemsInCart([...itemsInCart, { book }])
 
 	}
 
 
 	const splitBookDescription = book.bookInfo.split(" ").slice(0, 40).join(" ");
-	//TODO: Border bottom
+
 	return (
 		<>
-			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingBottom: "2rem" }}>
+			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingLeft: "10px", paddingBottom: "2rem" }}>
 				<Box sx={{ display: "flex", justifyContent: "flex-start" }}>
 					<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
 						<Image shift="left" duration={1000} style={{ maxHeight: "200px", objectFit: "contain" }} src={book.imgUrl} />
@@ -66,7 +56,7 @@ const BookPreview = ({ book }) => {
 				</Box>
 				<Box sx={{ maxWidth: "50%", paddingLeft: "8px" }}>
 					<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
-						<Typography align="left" variant="h6" >{book.title}</Typography>
+						<Typography sx={{ color: "primary.main" }} fontWeight="bold" align="left" variant="h6" >{book.title}</Typography>
 					</Link >
 					<Typography align="left" variant="body1" >by <span style={{ fontWeight: "bold" }}>{book.authors.map((author) => author.firstName + " " + author.lastName)}</span></Typography>
 					<Typography variant="body2" fontStyle="italic">{book.categories.map((category) => category.categoryName + " ")}</Typography>
