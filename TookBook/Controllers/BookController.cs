@@ -17,6 +17,10 @@ namespace TookBook.Controllers
         public BookController(BookService bookService) => _bookService = bookService;
 
         //Tested in swagger /Max
+        /// <summary>
+        /// gets all book
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("AllBooks")]
         public async Task<ActionResult<List<Book>>> Get()
         {
@@ -27,6 +31,11 @@ namespace TookBook.Controllers
         }
 
         //Tested in swagger /Max
+        /// <summary>
+        /// gets filtered books
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         [HttpGet("FilteredBooks")]
         public async Task<ActionResult<List<Book>>> GetFiltered(string keyword)
         {
@@ -36,9 +45,13 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
-        //Tested in swagger and does not work /Max
-        [HttpGet("BooksInCategory")]
-        //[HttpPost("BooksInCategory/{id:length(24)}")]
+        //Tested in swagger and works /Max
+        /// <summary>
+        /// gets books in category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        [HttpGet("BooksInCategory")]    
         public async Task<ActionResult<List<Book>>> GetBooksInCategory(string category)
         {
             var books = await _bookService.GetBooksInCategoryAsync(category);
@@ -47,7 +60,12 @@ namespace TookBook.Controllers
             return Ok(books);
         }
 
-        //Tested in swagger and does not work /Max
+        //Tested in swagger and works /Max
+        /// <summary>
+        /// gets books by author
+        /// </summary>
+        /// <param name="author"></param>
+        /// <returns></returns>
         [HttpGet("BooksByAuthor")]
         public async Task<ActionResult<List<Book>>> GetBooksByAuthor(string author)
         {
@@ -79,6 +97,12 @@ namespace TookBook.Controllers
         // TODO: Figure out a way to avoid having to put in category id in.
         // TODO: Redo using filter/builder stuff.
         // TODO: Admin validation
+        /// <summary>
+        /// adds category to book
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpPut("AddCategory/{id:length(24)}")]
         public async Task<ActionResult> AddCategoryToBook(string id, Category category)
         {
