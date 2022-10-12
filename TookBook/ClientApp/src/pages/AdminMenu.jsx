@@ -81,6 +81,11 @@ const AdminMenu = () => {
 	const [open, setOpen] = React.useState(false);
 	const [selected, setSelected] = React.useState({})
 
+	const fetchUsers = async () => {
+		let response = await fetch("/api/User/AllUsers")
+		let data = await response.json();
+		setUsers(data)
+	};
 
 	const handleOpenOrders = (modalUser) => {
 
@@ -158,6 +163,11 @@ const AdminMenu = () => {
 		if (!adminMode) navigate("/")
 	}, [adminMode])
 
+	useEffect(() => {
+		fetchUsers();
+
+	}, [])
+
 	return (
 		<React.Fragment>
 			<Container sx={{ mt: "5rem" }}>
@@ -174,8 +184,8 @@ const AdminMenu = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{Users.map((user, i) => (
-								<UserTableTest key={i} user={user} userList={Users} setUserList={setUsers}> </UserTableTest>))}
+							{Users.map((user) => (
+								<UserTableTest key={user.userId} user={user} userList={Users} setUserList={setUsers}> </UserTableTest>))}
 						</TableBody>
 					</Table>
 					<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
