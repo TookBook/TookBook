@@ -187,7 +187,7 @@ const UserTableTest = ({ user, userList, setUserList }) => {
 					<Modal open={open} onClose={(e) => (handleCloseOrders())} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
 						<Box sx={{ ...style, width: "50%" }}>
 							<h2 id="parent-modal-title"> {user.userName} Orders:  </h2>
-							{user.orders.lenght > 0 ? user.orders.map((order) => order.orderId) :
+							{user.orders?.lenght > 0 ? user.orders.map((order) => order.orderId) :
 								FEJKORDER.map((order) => (<Box display="flex" flexDirection="column">
 									<Typography>{order.orderId}</Typography>
 									<Typography>{order.date}</Typography>
