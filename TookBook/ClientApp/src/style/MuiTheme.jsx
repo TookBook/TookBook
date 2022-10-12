@@ -49,18 +49,18 @@ let theme = createTheme({
 
 	},
 	/** Section to add custom fonts, requires font to be imported in index.html first. Use fontFamily array at the bottom to assign fallback fonts */
-	// typography: {
-	// 	h1: {
-	// 		fontFamily: ""
-	// 	},
-	// 	h2: {
-	// 		fontFamily: ""
-	// 	},
-	// 	h3: {
-	// 		fontFamily: ""
-	// 	},
-	// 	fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
-	// },
+	typography: {
+		// 	h1: {
+		// 		fontFamily: ""
+		// 	},
+		// 	h2: {
+		// 		fontFamily: ""
+		// 	},
+		// 	h3: {
+		// 		fontFamily: ""
+		// 	},
+		fontFamily: ["Montserrat", "Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
+	},
 	/** Overrides the cssBaseline component to allow for custom styling of scrollbars */
 	components: {
 		MuiCssBaseline: {

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { fetchedUsersState, activeUserState, adminModeState, isUserLoggedInState } from '../atoms';
 import { useNavigate } from 'react-router-dom';
-
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -83,7 +83,7 @@ const AdminMenu = () => {
 
 
 	const handleOpenOrders = (modalUser) => {
-		
+
 		setSelected(modalUser)
 		setOpen(true)
 	}
@@ -94,45 +94,45 @@ const AdminMenu = () => {
 		const isBlocking = e.target.checked
 		let response = null
 
-		const reqOptions ={method: "PUT"}
+		const reqOptions = { method: "PUT" }
 
-		isBlocking ? 
-		 response = await fetch(`api/User/BlockUser/${id}`, reqOptions) :
-		 response = await fetch(`api/User/UnblockUser/${id}`, reqOptions)
+		isBlocking ?
+			response = await fetch(`api/User/BlockUser/${id}`, reqOptions) :
+			response = await fetch(`api/User/UnblockUser/${id}`, reqOptions)
 
-		let updatedUsers = Users.map( (user) => {
-			let updatedUser ={...user}
-			
-			if (updatedUser.userId === id){
-					
-				if ( response.status == 200 )
-				 isBlocking ? 
-				 updatedUser.isBlocked = true :
-				 updatedUser.isBlocked = false
+		let updatedUsers = Users.map((user) => {
+			let updatedUser = { ...user }
+
+			if (updatedUser.userId === id) {
+
+				if (response.status == 200)
+					isBlocking ?
+						updatedUser.isBlocked = true :
+						updatedUser.isBlocked = false
 			}
 			return updatedUser
-		})	
+		})
 		setUsers(updatedUsers)
 		console.log(updatedUsers);
 	}
 
 	const handleUserTypeChange = async (id, e) => {
 		let type = e.target.value;
-		const reqOptions ={method: "PUT"}
+		const reqOptions = { method: "PUT" }
 		let adminResponse = null
 		let sellerResponse = null
-		if	(type == "Admin"){
-			adminResponse = await fetch(`api/User/PromoteUser/${id}`, reqOptions) 
+		if (type == "Admin") {
+			adminResponse = await fetch(`api/User/PromoteUser/${id}`, reqOptions)
 			sellerResponse = await fetch(`api/User/DemoteSeller/${id}`, reqOptions)
 		}
-		if (type == "Seller"){
+		if (type == "Seller") {
 			adminResponse = await fetch(`api/User/DemoteUser/${id}`, reqOptions)
 			sellerResponse = await fetch(`api/User/PromoteSeller/${id}`, reqOptions)
 		}
 
 		let updatedUsers = Users.map((user) => {
-			let updatedUser ={...user}
-			if (updatedUser.userId===id) {				
+			let updatedUser = { ...user }
+			if (updatedUser.userId === id) {
 				switch (type, adminResponse.status) {
 					case "Admin", 200:
 						console.log(user)
@@ -173,13 +173,13 @@ const AdminMenu = () => {
 				</TableHead>
 				<TableBody>
 					{Users.map((user, i) => (
-					<UserTableTest key={i} user={user} userList ={Users} setUserList ={setUsers}> </UserTableTest>))}
-		 		 </TableBody>
-		</Table>
-		<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-		  See more users
-		</Link>
-	  </React.Fragment>
+						<UserTableTest key={i} user={user} userList={Users} setUserList={setUsers}> </UserTableTest>))}
+				</TableBody>
+			</Table>
+			<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+				See more users
+			</Link>
+		</React.Fragment>
 	)
 }
 

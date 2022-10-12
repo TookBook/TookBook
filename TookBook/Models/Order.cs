@@ -10,7 +10,7 @@
 
     public class Order : IOrder
     {
-        // TODO: Figure out if mongodb id is to be used?
+        
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string OrderId { get; set; } = "";

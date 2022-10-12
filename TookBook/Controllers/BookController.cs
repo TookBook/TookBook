@@ -13,8 +13,13 @@ namespace TookBook.Controllers
     {
         // TODO: Customize api responses?
 
-        private readonly BookService _bookService; //TODO: lägg till alla services
-        public BookController(BookService bookService) => _bookService = bookService;
+        private readonly IBookService _bookService; //TODO: lägg till alla services
+        //public BookController(BookService bookService) => _bookService = bookService;
+
+        public BookController(IBookService bookService = null, BookService bookService1 = null)
+        {
+            _bookService = bookService1 ?? bookService;
+        }
 
         //Tested in swagger /Max
         [HttpGet("AllBooks")]
@@ -76,9 +81,12 @@ namespace TookBook.Controllers
         }
 
 
-        // TODO: Figure out a way to avoid having to put in category id in.
-        // TODO: Redo using filter/builder stuff.
-        // TODO: Admin validation
+        /// <summary>
+        /// Adds a category to a book. Requires a complete category object.
+        /// </summary>
+        /// <param name="id">The id of the book to update.</param>
+        /// <param name="category">The category to be added.</param>
+        /// <returns></returns>
         [HttpPut("AddCategory/{id:length(24)}")]
         public async Task<ActionResult> AddCategoryToBook(string id, Category category)
         {
@@ -94,8 +102,7 @@ namespace TookBook.Controllers
         /// <param name="id">The ID of the book to update.</param>
         /// <param name="bookUpdate">The JSON data which will be used to update the book.</param>
         /// <returns></returns>
-        // TODO: Admin validation
-        [HttpPut("{id:length(24)}")]
+          [HttpPut("{id:length(24)}")]
         public async Task<ActionResult> UpdateBook(string id, Book bookUpdate)
         {
             var bookToUpdate = await _bookService.GetBookById(id);
@@ -110,12 +117,10 @@ namespace TookBook.Controllers
         /// <param name="id">The book to be deleted.</param>
         /// <param name="usedBook">Whether the book is used or new. </param>
         /// <returns></returns>
-        // TODO: Admin validation
-        [HttpDelete("{id:length(24)}")]
+          [HttpDelete("{id:length(24)}")]
         public async Task<ActionResult> DeleteBook(string id, bool usedBook)
         {
-            // TODO: Use real GetBook method when added.
-            var bookToDelete = await _bookService.GetBookById(id);
+             var bookToDelete = await _bookService.GetBookById(id);
             if (bookToDelete == null) return NotFound();
 
             var deletedSuccesfully = await _bookService.DeleteBook(bookToDelete, usedBook);
@@ -129,11 +134,9 @@ namespace TookBook.Controllers
         /// </summary>
         /// <param name="id">The book to be deleted.</param>
         /// <returns></returns>
-        // TODO: Admin validation
         [HttpDelete("PurgeBook/{id:length(24)}")]
         public async Task<ActionResult> PurgeBook(string id)
         {
-            // TODO: Use GetBook method when added
             var bookToPurge = await _bookService.GetBookById(id);
             if (bookToPurge == null) return NotFound();
             await _bookService.PurgeBook(bookToPurge);
@@ -144,7 +147,6 @@ namespace TookBook.Controllers
         /// Removes all books from the database where the total inStock count is zero.
         /// </summary>
         /// <returns></returns>
-        // TODO: Admin validation
         [HttpDelete("PurgeEmptyBooks")]
         public async Task PurgeBook() => await _bookService.PurgeEmptyBooks();
 

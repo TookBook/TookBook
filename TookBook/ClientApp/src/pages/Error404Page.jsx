@@ -7,7 +7,7 @@ const Error404Page = () => {
 
 	return (
 		<Container>
-
+			<div>oops</div>
 
 		</Container>
 	)
