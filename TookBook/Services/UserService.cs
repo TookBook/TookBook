@@ -98,6 +98,12 @@
             await UpdateUser(userToUnblock);
         }
 
+        /// <summary>
+        /// Changes user's password
+        /// </summary>
+        /// <param name="userToChange"></param>
+        /// <param name="newPassword"></param>
+        /// <returns></returns>
         public async Task ChangeUserPass(User userToChange, string newPassword)
         {
             userToChange.Password = newPassword;
@@ -130,6 +136,11 @@
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Promotes the specified user to seller.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public async Task<bool> PromoteSeller(User user)
         {
             if (user.UserType.IsSeller) return await Task.FromResult(false);
@@ -138,6 +149,11 @@
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Demotes the specified user from seller.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public async Task<bool> DemoteSeller(User user)
         {
             if (!user.UserType.IsSeller) return await Task.FromResult(false);
@@ -171,9 +187,21 @@
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// Get user who's name matches inputed keyword.
+        /// </summary>
+        /// <param name="name">Keyword for search.</param>
+        /// <returns></returns>
         public async Task<User> GetUserByName(string name) => await _userCollection.Find(x => x.UserName.ToLower() == name.ToLower()).FirstOrDefaultAsync();
 
-        public async Task<User> AddUserAsync(string username, string email, string password)
+        /// <summary>
+        /// Takes input and andds it to a new User
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public async Task<User> AddUserAsync (string username, string email, string password)
         {
             User user = new();
             user.UserName = username;
@@ -196,7 +224,12 @@
             return await _userCollection.Find(x => x.UserName == username || x.Mail == email).FirstOrDefaultAsync();
         }
 
-
+        /// <summary>
+        /// Takes id of existing user and replaces user with new updated user.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="updatedUser"></param>
+        /// <returns></returns>
         public async Task EditProfileAsync(string id, User updatedUser)
         {
             await _userCollection.ReplaceOneAsync(x => x.UserId == id, updatedUser);
@@ -223,6 +256,11 @@
             return await _userCollection.Find(_user => _user.UserName == userIdentifier || _user.Mail == userIdentifier).FirstAsync();
         }
 
+        /// <summary>
+        /// Activates user
+        /// </summary>
+        /// <param name="accountToActivate"></param>
+        /// <returns></returns>
         public async Task ActivateAccountAsync(User accountToActivate)
         {
             var filter = Builders<User>.Filter.Eq(x => x.UserId, accountToActivate.UserId);

@@ -57,13 +57,30 @@
 
         }
 
-
+        /// <summary>
+        /// Takes a Book and adds it to booksCollection
+        /// </summary>
+        /// <param name="bookToAdd"></param>
+        /// <returns></returns>
         public async Task CreateBookAsync(Book bookToAdd)
         {
             await _booksCollection.InsertOneAsync(bookToAdd);
         }
-
-        //test med att lägga till alla parametrar separat
+        
+        /// <summary>
+        /// Takes data for a book and creates a new one based on input
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="category"></param>
+        /// <param name="language"></param>
+        /// <param name="authorFirstName"></param>
+        /// <param name="authorLasName"></param>
+        /// <param name="year"></param>
+        /// <param name="price"></param>
+        /// <param name="seller"></param>
+        /// <param name="bookInfo"></param>
+        /// <param name="amountOfBooks"></param>
+        /// <returns></returns>
         public async Task<Book> AddBookAsyncTest(string title, string category, string language, string authorFirstName, string authorLasName, int year, decimal price, string seller, string bookInfo, int amountOfBooks)
         {
             Book book = new();
