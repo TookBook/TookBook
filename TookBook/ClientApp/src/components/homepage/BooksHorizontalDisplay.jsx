@@ -6,8 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography'
 import BookPreviewHomepage from "./BookPreviewHomepage";
-import { maxHeight } from "@mui/system";
-
+import Divider from "@mui/material/Divider";
 
 
 const responsiveSlides = {
@@ -50,9 +49,11 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 	return (
 		<>
-			<Box margin={"1rem"}>
+			<Box margin={"1rem"} sx={{ marginTop: "4rem" }}>
 				<Container maxWidth="md">
-					<Typography variant={"h6"} gutterBottom textAlign={""} >{displayTitle}</Typography>
+					<Divider>
+						<Typography fontFamily={"lato"} variant={"h5"} gutterBottom textAlign={"center"} sx={{ fontWeight: "bold", color: "primary.dark" }} >{displayTitle}</Typography>
+					</Divider>
 				</Container>
 
 				<Box position={"relative"} sx={{ padding: "2rem" }}>
@@ -67,7 +68,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 						</Box>
 
 					</Container>
-				{/* <Box><BookPreviewHomePage /></Box> */}
+					{/* <Box><BookPreviewHomePage /></Box> */}
 					{/* <Box border={"1px solid black"} borderLeft={"none"} borderRight={"none"} sx={gradientLine}>
 				<Box display={"flex"} gap={"1rem"} justifyContent={"center"}>
 

@@ -69,12 +69,12 @@ const BookPreviewHomepage = ({ book }) => {
 				<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
 					<Image shift="left" duration={1000} style={{ maxHeight: "200px", objectFit: "contain" }} src={book.imgUrl} />
 
-					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "wrap", overflow: "hidden", wordBreak: "break-word", paddingTop: "20px" }}
+					<Typography sx={{ color: "primary.dark", textOverflow: "ellipsis", whiteSpace: "wrap", overflow: "hidden", wordBreak: "break-word", paddingTop: "20px" }}
 						fontWeight={"bold"} align="center" variant="body1" color="black">
 						{firstBookTitleWords}
 
 					</Typography>
-					<Typography sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word", }}
+					<Typography sx={{ color: "primary.dark", textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word", }}
 						fontWeight={"bold"} align="center" variant="body1" color="black">
 						{secondBookTitleWords}
 					</Typography>
