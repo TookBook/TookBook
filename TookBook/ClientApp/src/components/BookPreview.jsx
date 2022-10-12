@@ -58,7 +58,7 @@ const BookPreview = ({ book }) => {
 
 	return (
 		<>
-			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingBottom: "2rem" }}>
+			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingLeft: "10px", paddingBottom: "2rem" }}>
 				<Box sx={{ display: "flex", justifyContent: "flex-start" }}>
 					<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
 						<Image shift="left" duration={1000} style={{ maxHeight: "200px", objectFit: "contain" }} src={book.imgUrl} />
@@ -66,7 +66,7 @@ const BookPreview = ({ book }) => {
 				</Box>
 				<Box sx={{ maxWidth: "50%", paddingLeft: "8px" }}>
 					<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
-						<Typography align="left" variant="h6" >{book.title}</Typography>
+						<Typography sx={{ color: "primary.main" }} fontWeight="bold" align="left" variant="h6" >{book.title}</Typography>
 					</Link >
 					<Typography align="left" variant="body1" >by <span style={{ fontWeight: "bold" }}>{book.authors.map((author) => author.firstName + " " + author.lastName)}</span></Typography>
 					<Typography variant="body2" fontStyle="italic">{book.categories.map((category) => category.categoryName + " ")}</Typography>

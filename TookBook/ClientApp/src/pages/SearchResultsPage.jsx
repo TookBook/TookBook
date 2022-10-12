@@ -57,25 +57,16 @@ const SearchResultsPage = () => {
 		if (searchCategory === "Author")
 			return booksByAuthor
 		if (searchCategory === "Everything") {
-			// TODO: Remove duplicates by unique index in each category?
-			const conBooks = booksByTitle.concat(booksByAuthor, booksByCategory, booksByDescription)
-			const conBooksUniqueValues = conBooks.filter((book, i) => { return conBooks.indexOf(book) !== i }) // removes too many books.. only remove some name?
-			return conBooks
+			return Array.from(new Set(booksByTitle.concat(booksByAuthor, booksByCategory, booksByDescription))) // "Set" to filter duplicates
 		}
 	}
 
 	const searchesToDisplay = getSearchBarSearch();
 
 
-	useEffect(() => {
-		console.log(location.state)
-	}, [location.state])
+	// useEffect(() => {
 
-	useEffect(() => {
-		console.log("searched for:", searchTerm)
-		console.log("searchbarsearch:", searchesToDisplay)
-
-	}, [location.state])
+	// }, [location.state])
 
 	return (
 
@@ -84,8 +75,8 @@ const SearchResultsPage = () => {
 			<Box sx={{ border: "1px solid black", padding: "1rem" }}>
 
 				<Box sx={{ display: "flex", justifyContent: "center", textAlign: "center", gap: "1rem", paddingTop: "3rem" }}>
-					<Typography variant='h6'> You searched for: </Typography>
-					<Typography variant='h5' fontWeight="bold"> {searchTerm} </Typography>
+					<Typography variant='h6' sx={{ color: "primary.dark" }}> You searched for: </Typography>
+					<Typography variant='h5' sx={{ color: "primary.dark" }} fontWeight="bold"> {searchTerm} </Typography>
 				</Box>
 
 				<Box sx={{ display: "flex", justifyContent: "space-between", mt: "2rem" }}>
@@ -93,7 +84,7 @@ const SearchResultsPage = () => {
 						Search results: {searchesToDisplay.length}
 					</Typography>
 					<Box>
-						<Typography paddingRight="2px" fontWeight="bold" variant='body3'>Sort by:</Typography>
+						<Typography sx={{ color: "primary.dark" }} paddingRight="2px" fontWeight="bold" variant='body3'>Sort by:</Typography>
 						<Button onClick={() => console.log(searchesToDisplay)} variant="text"> AZ </Button>
 						<Button variant="text"> In stock </Button>
 					</Box>

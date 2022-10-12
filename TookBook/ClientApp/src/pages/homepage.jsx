@@ -74,7 +74,7 @@ const Homepage = () => {
 
 
 	useEffect(() => {
-		console.log(loggedInUser)
+
 	}, [loggedInUser])
 
 	return (
