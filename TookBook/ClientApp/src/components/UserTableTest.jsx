@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { fetchedUsersState, activeUserState, adminModeState, isUserLoggedInState } from "../atoms"
 import { useNavigate } from 'react-router-dom';
-import  Typography  from '@mui/material/Typography';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -32,7 +32,7 @@ const style = {
 	pb: 3,
 };
 
-const UserTableTest = ({user, userList, setUserList}) => {
+const UserTableTest = ({ user, userList, setUserList }) => {
 	const [userType, setUserType] = React.useState("")
 	const [open, setOpen] = React.useState(false);
 
@@ -49,21 +49,21 @@ const UserTableTest = ({user, userList, setUserList}) => {
 	}
 
 	const handleOpenOrders = () => {
-		
+
 		setOpen(true)
 	}
 	const FEJKORDER = [
-	{
-		orderId: "99991234",
-		date: "5731",
-		books: "BÖCKER"
-	},
-	{
-		orderId: "1233414",
-		date: "513731",
-		books: "MERBÖCKER"
-	}
-]
+		{
+			orderId: "99991234",
+			date: "5731",
+			books: "BÖCKER"
+		},
+		{
+			orderId: "1233414",
+			date: "513731",
+			books: "MERBÖCKER"
+		}
+	]
 
 	const handleCloseOrders = () => setOpen(false);
 
@@ -71,32 +71,32 @@ const UserTableTest = ({user, userList, setUserList}) => {
 		const isBlocking = e.target.checked
 		let response = null
 
-		const reqOptions ={method: "PUT"}
+		const reqOptions = { method: "PUT" }
 
-		isBlocking ? 
-		 response = await fetch(`api/User/BlockUser/${id}`, reqOptions) :
-		 response = await fetch(`api/User/UnblockUser/${id}`, reqOptions)
+		isBlocking ?
+			response = await fetch(`api/User/BlockUser/${id}`, reqOptions) :
+			response = await fetch(`api/User/UnblockUser/${id}`, reqOptions)
 
-		let updatedUsers = userList.map( (user) => {
-			let updatedUser ={...user}
-			
-			if (updatedUser.userId === id){
-					
-				if ( response.status == 200 )
-				 isBlocking ? 
-				 updatedUser.isBlocked = true :
-				 updatedUser.isBlocked = false
+		let updatedUsers = userList.map((user) => {
+			let updatedUser = { ...user }
+
+			if (updatedUser.userId === id) {
+
+				if (response.status == 200)
+					isBlocking ?
+						updatedUser.isBlocked = true :
+						updatedUser.isBlocked = false
 			}
 			return updatedUser
-		})	
+		})
 		setUserList(updatedUsers)
 	}
 
 	useEffect(() => {
 		console.log("usertable user is ", user)
-	},[])
+	}, [])
 
-	
+
 
 
 	const handleUserTypeChange = async (id) => {
@@ -104,13 +104,13 @@ const UserTableTest = ({user, userList, setUserList}) => {
 		let adminResponse = null
 		let sellerResponse = null
 
-		const reqOptions ={method: "PUT"}
+		const reqOptions = { method: "PUT" }
 
-		if	(type == "Admin"){
-			adminResponse = await fetch(`api/User/PromoteUser/${id}`, reqOptions) 
+		if (type == "Admin") {
+			adminResponse = await fetch(`api/User/PromoteUser/${id}`, reqOptions)
 			sellerResponse = await fetch(`api/User/DemoteSeller/${id}`, reqOptions)
 		}
-		if (type == "Seller"){
+		if (type == "Seller") {
 			adminResponse = await fetch(`api/User/DemoteUser/${id}`, reqOptions)
 			sellerResponse = await fetch(`api/User/PromoteSeller/${id}`, reqOptions)
 		}
@@ -119,10 +119,10 @@ const UserTableTest = ({user, userList, setUserList}) => {
 			sellerResponse = await fetch(`api/User/DemoteSeller/${id}`, reqOptions)
 		}
 
-		let updatedUsers = userList.map( (user) => {
-			let updatedUser ={...user}
-			
-			if (updatedUser.userId===id) {				
+		let updatedUsers = userList.map((user) => {
+			let updatedUser = { ...user }
+
+			if (updatedUser.userId === id) {
 				switch (type) {
 					case "Admin":
 						updatedUser.userType.isAdmin = true
@@ -136,7 +136,7 @@ const UserTableTest = ({user, userList, setUserList}) => {
 						updatedUser.userType.isAdmin = false
 						updatedUser.userType.isSeller = false
 						break;
-				}			
+				}
 			}
 			return updatedUser
 		})
@@ -148,60 +148,57 @@ const UserTableTest = ({user, userList, setUserList}) => {
 		if (user.userType.isAdmin) setUserType("Admin")
 		if (user.userType.isSeller) setUserType("Seller")
 		if (!user.userType.isAdmin && !user.userType.isSeller) setUserType("Customer")
-	},[])
-	
-	useEffect(()=>{	
-		setSelectBoxValue(userType)
-	},[userType])
-	
+	}, [])
 
-	useEffect(()=>{
-		console.log("Value of selectbox has changed to: ", selectBoxValue)
+	useEffect(() => {
+		setSelectBoxValue(userType)
+	}, [userType])
+
+
+	useEffect(() => {
 		handleUserTypeChange(user.userId);
-		console.log(typeof(user), typeof(user.userType),typeof(user.userType.isAdmin), user.userType.isAdmin.readOnly, user.userType.isSeller.readOnly);
-	},[selectBoxValue])
+	}, [selectBoxValue])
 
 	return (
 		<>
 			<TableRow >
-							<TableCell>{user.userName}</TableCell>
-							<TableCell>{user.mail}</TableCell>
-							<TableCell>
-								<FormControl sx={{ m: 1, minWidth: 120 }}>
-									<Select
-										value={selectBoxValue}
-										onChange={(e) => setSelectBoxValue(e.target.value)}
-										// onBlur= {(e) => (handleUserTypeChange(user.userId, e))}
-									>
-										<MenuItem value={"Customer"}>Customer</MenuItem>
-										<MenuItem value={"Seller"}>Seller</MenuItem>
-										<MenuItem value={"Admin"}>Admin</MenuItem>
-									</Select>
-								</FormControl>
+				<TableCell>{user.userName}</TableCell>
+				<TableCell>{user.mail}</TableCell>
+				<TableCell>
+					<FormControl sx={{ m: 1, minWidth: 120 }}>
+						<Select
+							value={selectBoxValue}
+							onChange={(e) => setSelectBoxValue(e.target.value)}
+						>
+							<MenuItem value={"Customer"}>Customer</MenuItem>
+							<MenuItem value={"Seller"}>Seller</MenuItem>
+							<MenuItem value={"Admin"}>Admin</MenuItem>
+						</Select>
+					</FormControl>
 
 
 				</TableCell>
-				<TableCell>{user.isActive? "Verified" : "Unverified"}</TableCell>
+				<TableCell>{user.isActive ? "Verified" : "Unverified"}</TableCell>
 
-				<TableCell>{user.isBlocked? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked ={user.isBlocked} onChange={(e)=>(handleBlock(user.userId, e))}/></TableCell> 
+				<TableCell>{user.isBlocked ? "Blocked" : "Unblocked"} <Checkbox value={user.isBlocked} checked={user.isBlocked} onChange={(e) => (handleBlock(user.userId, e))} /></TableCell>
 
 				<TableCell>
-					<Button onClick={(e) => (handleOpenOrders())}>{user.orders? user.orders.length : 0}</Button>
+					<Button onClick={(e) => (handleOpenOrders())}>{user.orders ? user.orders.length : 0}</Button>
 					<Modal open={open} onClose={(e) => (handleCloseOrders())} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
 						<Box sx={{ ...style, width: "50%" }}>
-						<h2 id="parent-modal-title"> {user.userName} Orders:  </h2>
-						 {user.orders.lenght > 0 ? user.orders.map((order) => order.orderId) :
-						  FEJKORDER.map((order) => ( <Box display="flex" flexDirection="column"> 
-						  <Typography>{order.orderId}</Typography>
-						  <Typography>{order.date}</Typography>
-						  <Typography>{order.books}</Typography>
-					  </Box> ))
-}
-						
-						
-						
+							<h2 id="parent-modal-title"> {user.userName} Orders:  </h2>
+							{user.orders.lenght > 0 ? user.orders.map((order) => order.orderId) :
+								FEJKORDER.map((order) => (<Box display="flex" flexDirection="column">
+									<Typography>{order.orderId}</Typography>
+									<Typography>{order.date}</Typography>
+									<Typography>{order.books}</Typography>
+								</Box>))
+							}
 
-							</Box>
+
+
+
+						</Box>
 						{/**<Box display="flex" flexDirection="column"> 
 								<Typography>{order.orderId}</Typography>
 								<Typography>{order.date}</Typography>
@@ -209,7 +206,7 @@ const UserTableTest = ({user, userList, setUserList}) => {
 							</Box>  */}
 					</Modal>
 				</TableCell>
-			  </TableRow>
+			</TableRow>
 		</>
 	)
 }

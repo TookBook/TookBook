@@ -160,25 +160,29 @@ const AdminMenu = () => {
 
 	return (
 		<React.Fragment>
-			<Table size="small">
-				<TableHead>
-					<TableRow>
-						<TableCell>Username</TableCell>
-						<TableCell>Mail</TableCell>
-						<TableCell>User Type</TableCell>
-						<TableCell>Verified Status</TableCell>
-						<TableCell>Blocked Status</TableCell>
-						<TableCell>Orders</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{Users.map((user, i) => (
-						<UserTableTest key={i} user={user} userList={Users} setUserList={setUsers}> </UserTableTest>))}
-				</TableBody>
-			</Table>
-			<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-				See more users
-			</Link>
+			<Container sx={{ mt: "5rem" }}>
+				<Box sx={{ border: "1px solid black", padding: "1rem" }}>
+					<Table size="small">
+						<TableHead sx={{ bgcolor: "primary.main" }}>
+							<TableRow >
+								<TableCell sx={{ color: "white" }}>Username</TableCell>
+								<TableCell sx={{ color: "white" }}>Mail</TableCell>
+								<TableCell sx={{ color: "white" }}>User Type</TableCell>
+								<TableCell sx={{ color: "white" }}>Verified Status</TableCell>
+								<TableCell sx={{ color: "white" }}>Blocked Status</TableCell>
+								<TableCell sx={{ color: "white" }}>Orders</TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{Users.map((user, i) => (
+								<UserTableTest key={i} user={user} userList={Users} setUserList={setUsers}> </UserTableTest>))}
+						</TableBody>
+					</Table>
+					<Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+						See more users
+					</Link>
+				</Box>
+			</Container>
 		</React.Fragment>
 	)
 }
