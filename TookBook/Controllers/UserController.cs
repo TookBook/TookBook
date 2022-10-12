@@ -83,7 +83,7 @@
         [HttpGet("ForgotUsername")]
         public async Task<ActionResult<User>> ForgorUsername(string mail)  //Send whole user or just mail? Think mail is more secure
         {
-            var user = await _userService.ForgotUsernameAsync(mail);
+            var user = await _userService.ForgotPasswordAsync(mail);
             if (user == null)
             {
                 return NotFound();
