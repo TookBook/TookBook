@@ -24,5 +24,7 @@ namespace TookBook.Services
         Task<User> ShowProfileAsync(string userIdentifier);
         Task UnblockUser(User userToUnblock);
         Task UpdateUser(User userToUpdate);
+        Task<bool> PromoteSeller(User user);
+        Task<bool> DemoteSeller(User user);
     }
 }

@@ -173,6 +173,25 @@
             return Ok();
 
         }
+        [HttpPut("PromoteSeller/{id:length(24)}")]
+        public async Task<ActionResult> PromoteSellerUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            var userPromoted = await _userService.PromoteSeller(user);
+            if (!userPromoted) return BadRequest("User appears to be a seller already.");
+            return Ok();
+        }
+
+        [HttpPut("DemoteSeller/{id:length(24)}")]
+        public async Task<ActionResult> DemoteSellerUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            var userPromoted = await _userService.DemoteSeller(user);
+            if (!userPromoted) return BadRequest("User is not a seller.");
+            return Ok();
+        }
 
             [HttpPut("DemoteUser/{id:length(24)}")]
         public async Task<ActionResult> DemoteUser(string id)

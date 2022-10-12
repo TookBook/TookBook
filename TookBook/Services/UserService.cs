@@ -130,6 +130,22 @@
             return await Task.FromResult(true);
         }
 
+        public async Task<bool> PromoteSeller(User user)
+        {
+            if (user.UserType.IsSeller) return await Task.FromResult(false);
+            user.UserType.IsSeller = true;
+            await UpdateUser(user);
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DemoteSeller(User user)
+        {
+            if (!user.UserType.IsSeller) return await Task.FromResult(false);
+            user.UserType.IsSeller = false;
+            await UpdateUser(user);
+            return await Task.FromResult(true);
+        }
+
         /// <summary>
         /// Inactivates the user.
         /// </summary>
