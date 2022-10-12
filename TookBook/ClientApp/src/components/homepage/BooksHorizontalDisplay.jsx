@@ -42,11 +42,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 
 	const placeHolderArray = [1, 2, 3, 4, 5];
 
-	const dataToDisplay = () => {
-		if (!books)
-			return placeHolderArray.map((book, i,) => <BookPreviewHomepage book={null} key={i}></BookPreviewHomepage>)
-		return books.map((book, i,) => <BookPreviewHomepage book={book} key={i}></BookPreviewHomepage>)
-	}
+
 
 	return (
 		<>
@@ -65,7 +61,7 @@ const BooksHorizontalDisplay = ({ books, displayTitle }) => {
 						<Box sx={{ display: "flex", gap: "3rem", justifyContent: "center", alignItems: "center", }}>
 							{/* {books.map((book, i) =>
 							<BookPreviewHomepage book={book} key={i} />) } */}
-							{dataToDisplay()}
+							{books.map((book, i,) => <BookPreviewHomepage book={book} key={i}></BookPreviewHomepage>)}
 						</Box>
 
 					</Container>

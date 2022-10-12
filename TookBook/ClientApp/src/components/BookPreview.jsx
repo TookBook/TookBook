@@ -58,7 +58,7 @@ const BookPreview = ({ book }) => {
 
 	return (
 		<>
-			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingBottom: "2rem" }}>
+			<Box sx={{ display: "flex", justifyContent: "flex-start", padding: "5px", paddingLeft: "10px", paddingBottom: "2rem" }}>
 				<Box sx={{ display: "flex", justifyContent: "flex-start" }}>
 					<Link style={{ textDecoration: "none" }} to={`/testbook/${book.bookId}`}>
 						<Image shift="left" duration={1000} style={{ maxHeight: "200px", objectFit: "contain" }} src={book.imgUrl} />
