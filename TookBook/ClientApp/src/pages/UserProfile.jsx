@@ -122,7 +122,11 @@ const UserProfile = () => {
 					<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "1rem", }}>
 						<Icon color='primary' sx={{ fontSize: "3rem" }}><ManageAccountsOutlinedIcon sx={{ fontSize: "3rem" }} /></Icon>
 						<Typography variant='h6'>{currentUser.userName}</Typography>
-						<Typography variant='h6'>{currentUser.isBlocked && "You're blocked."}</Typography>
+						{currentUser.isBlocked && <>
+							<Typography variant='h6' sx={{ color: "error.main" }}>Status: Blocked</Typography>
+							<Typography variant='h6' sx={{ color: "error.main" }}>Contact an Admin</Typography></>
+						}
+
 					</Box>
 
 					<Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", padding: "1rem", paddingTop: "0", gap: "1rem" }} >
