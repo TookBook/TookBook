@@ -28,6 +28,14 @@
             return Ok(users);
         }
 
+        [HttpGet("{id:length(24)}")]
+        public async Task<ActionResult<User>> GetUser(string id)
+        {
+            var user = await _userService.GetUserById(id);
+            if (user == null) return NotFound();
+            return Ok(user);
+        }
+
         //Tested in swagger /Max
         /// <summary>
         /// checks if user can log in
