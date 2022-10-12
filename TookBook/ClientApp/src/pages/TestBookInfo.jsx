@@ -2,16 +2,19 @@ import "../style/bookInfo.css";
 import { useParams } from "react-router-dom";
 import { fetchedBooksState } from "../atoms";
 import Image from "mui-image";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { minHeight } from "@mui/system";
+import shoppingCartContentsState from "../atoms/shoppingCartContents";
 import { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
 
 const TestBookInfo = ({ props }) => {
-	const fetchedBooks = useRecoilValue(fetchedBooksState)
 	const navigate = useNavigate()
+	const fetchedBooks = useRecoilValue(fetchedBooksState)
+	const [itemsInCart, setItemsInCart] = useRecoilState(shoppingCartContentsState)
+
 
 	const { id } = useParams()
 	const book = fetchedBooks.find(book => book.bookId === id)
@@ -21,13 +24,14 @@ const TestBookInfo = ({ props }) => {
 		window.scrollTo(0, 0);
 	}, [])
 
+	const handleAddToCartTwo = (e, book) => {
+		e.preventDefault()
 
-	useEffect(() => {
-		console.log("props:", props)
-	}, [])
-	// TODO: Crash when refreshing page since it doesn't get any info rom useParams, intercept and redirect?
+		setItemsInCart([...itemsInCart, { book }])
 
-	// if (!book) navigate("/")
+	}
+
+
 	if (book)
 		return (
 			<div className="book-info-container">
@@ -35,9 +39,9 @@ const TestBookInfo = ({ props }) => {
 				<div className="book-info">
 					<Typography variant={"h2"} >{book.title}</Typography>
 					<Typography variant={"h6"} >
-					<ul>
-						{book.authors.map((author, i) => <li key={i}> {author.firstName + " " + author.lastName}</li>)}
-					</ul>
+						<ul>
+							{book.authors.map((author, i) => <li key={i}> {author.firstName + " " + author.lastName}</li>)}
+						</ul>
 					</Typography>
 					<ul>
 						{book.categories.map((category, i) => <li key={i}> {category.categoryName} </li>)}
@@ -49,8 +53,8 @@ const TestBookInfo = ({ props }) => {
 						<p>Price: {book.price}</p>
 					</div>
 					<div className="buy-book">
-						
-					<Button variant="contained">Add To the Cart</Button>
+
+						<Button onClick={(e) => handleAddToCartTwo(e, book)} variant="contained">Add To the Cart</Button>
 
 						<p>In storage: {book.inStock.new + book.inStock.used}</p>
 

@@ -39,21 +39,12 @@ const BookPreviewHomepage = ({ book }) => {
 
 	const handleAddToCartTwo = (e, book) => {
 		e.preventDefault()
-
 		setItemsInCart([...itemsInCart, { book }])
-		console.log("Added to cart? Current items in cart:", itemsInCart)
 	}
 
-	// Split at space after x letters?
-	const shouldWordWrap = book.title.length > 30
-	const firstBookTitleSection = book.title.substring(0, 30)
-	const secondBookTitleSection = book.title.substring(30)
 	const firstBookTitleWords = book.title.split(" ").slice(0, 3).join(" ")
 	const secondBookTitleWords = book.title.split(" ").slice(3, 7).join(" ")
 
-
-	// TODO: onclick, add to cart
-	//TODO: Double check Link element when proper pages are up
 	return (
 
 		<Box sx={{
@@ -79,10 +70,6 @@ const BookPreviewHomepage = ({ book }) => {
 						{secondBookTitleWords}
 					</Typography>
 				</Link>
-				{/* <Typography sx={{ textOverflow: "ellipsis", whiteSpace: "nowrap", overflow: "hidden", wordBreak: "break-word" }}
-					fontWeight={"bold"} align="center" variant="body1" color="black">
-					{secondBookTitleSection}
-				</Typography> */}
 
 				<Button onClick={(e) => handleAddToCartTwo(e, book)} color="secondary" variant="contained" endIcon={<ShoppingBasketIcon />}
 					sx={{
