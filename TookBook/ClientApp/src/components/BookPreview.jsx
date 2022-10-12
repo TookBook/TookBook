@@ -5,25 +5,13 @@ import Image from 'mui-image';
 import Button from '@mui/material/Button'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import shoppingCartState from "../atoms/shoppingCartState"
-import { useRecoilState } from "recoil";
+import shoppingCartContentsState from "../atoms/shoppingCartContents";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import Divider from "@mui/material/Divider";
 
-/** more horizontal
- * 		<Box sx={{ maxHeight: "200px", maxWidth: "300px", border: "1px solid black", display: "flex", flexDirection: "column" }}>
-			<Box sx={{ maxWidth: "100%", display: "flex" }}>
 
-				<Image src={book.imgUrl} />
-				<Typography align="center" variant="body1" color="white">{book.title}</Typography>
-
-				<Button variant="contained" sx={{ maxWidth: "100%" }}>
-					{book.price}
-				</Button>
-			</Box>
-
-		</Box>
- */
 
 const CartButton = ({ bookPrice }) => {
 
@@ -48,8 +36,10 @@ const CartButton = ({ bookPrice }) => {
 const BookPreview = ({ book }) => {
 
 
-	const handleBookClick = () => {
-		console.log(book.bookId)
+	const handleAddToCartTwo = (e, book) => {
+		e.preventDefault()
+
+		setItemsInCart([...itemsInCart, { book }])
 
 	}
 
